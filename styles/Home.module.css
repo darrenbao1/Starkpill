@@ -133,4 +133,7 @@
   .footer {
     padding-bottom: 10vh;
   }
+  .main {
+    min-height: calc(100vh - 105px - 10vh);
+  }
 }
