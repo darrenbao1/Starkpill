@@ -1,8 +1,19 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
+  const [isDarkMode,setIsDarkMode] = useState(true);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      let matched = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if(matched)
+          setIsDarkMode(true);
+        else
+          setIsDarkMode(false);
+    }
+  },[])
   return (
     <div className={styles.container}>
       <Head>
@@ -28,7 +39,7 @@ export default function Home() {
           By  
           
 
-            <Image src="/companyLogo.png" alt="Seraphlabs Logo" width={40} height={40} />
+            <Image src={isDarkMode ? "/companyLogo.png": "/companyLogoLight.png"} alt="Seraphlabs Logo" width={40} height={40} />
             Seraphlabs
         </a>
       </footer>
