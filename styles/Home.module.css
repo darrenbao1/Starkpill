@@ -1,6 +1,5 @@
 .container {
   padding: 0 2rem;
-  margin-bottom: 15vh;
 }
 
 .main {
@@ -127,5 +126,11 @@
   }
   .logo img {
     filter: invert(1);
+  }
+}
+
+@media screen and (max-width: 1153px) {
+  .footer {
+    padding-bottom: 10vh;
   }
 }
