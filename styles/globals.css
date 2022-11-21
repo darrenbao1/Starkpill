@@ -1,9 +1,11 @@
+@import "https://fonts.googleapis.com/css?family=Patrick+Hand";
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Patrick Hand ,Helvetica Neue, sans-serif;
+    background-color: bisque;
+    color: white;
 }
 
 a {
@@ -14,13 +16,19 @@ a {
 * {
   box-sizing: border-box;
 }
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+.connectWalletButton {
+  border-radius: 6px;
+  height:50px;
+  padding: 0 1rem;
+  padding-top: 13px;
+  cursor: pointer;
+  background-color: #FF4F0A;
+}
+.background {
+  position:fixed;
+  top:110;
+  left:0;
+  width:100vw;
+  height:calc(100vh - 110px);
+  z-index: -1;
 }
