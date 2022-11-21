@@ -26,6 +26,15 @@
   border : 5px solid #29296E;
   font-size: 3rem;
   text-align: center;
+  grid-template-rows: 1fr 1fr 1fr;
+  display: grid;
+}
+.trait .name {
+  border : 2px solid #29296E;
+  border-radius: 6px;
+  width:75%;
+  height: 75%;
+  margin :auto;
 }
 .mintButton{
   background-color:  #FF4F0A;
