@@ -19,6 +19,5 @@ export default function about() {
     The Starkpill mint will officially end when StarkNet’s Mainnet is fully live.<br/><br/>
     </div>
     </div>
-    
     </div>
 }

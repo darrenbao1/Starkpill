@@ -1,0 +1,18 @@
+.card {
+    width:250px;
+    height:350px;
+    margin: auto;
+}
+.image {
+   width: 250px;
+   height:250px;
+   background-color:  #FF4F0A;
+   border: 3px solid  #29296E;
+}
+.content {
+    padding: 1rem;
+    text-align: center;
+    height:100px;
+    background-color:  #FF4F0A;
+    border: 3px solid  #29296E;
+}

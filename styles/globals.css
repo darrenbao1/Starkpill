@@ -25,23 +25,40 @@ a {
   background-color: #FF4F0A;
 }
 .background {
-  position:fixed;
-  top:110;
-  left:0;
-  width:100vw;
-  height:calc(100vh - 110px);
   z-index: -1;
 }
 .container {
   position:fixed;
   left:0;
   width:100vw;
-  height:calc(100vh - 110px);
+  height:calc(100vh - 100px);
   align-content: center;
+  background-image: url("/background.png");
+  background-size:cover;
+  background-repeat: no-repeat;
+  margin-right: 8px;
+}
+.container:hover {
+  overflow-y: overlay;
+}
+
+.container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.container::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.container::-webkit-scrollbar-thumb {
+  border-width: 4px;
+  border-style: solid;
+  border-color: #FF4F0A;
+  border-radius: 4px;
 }
 .contentContainer {
   position: relative;
   margin: 0 auto;
-  width:1440px;
-  height:calc(100vh - 110px);
+  max-width: 1440px;
+  height: auto;
 }
