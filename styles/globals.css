@@ -37,8 +37,6 @@ a {
   background-size:cover;
   background-repeat: no-repeat;
   margin-right: 8px;
-}
-.container:hover {
   overflow-y: overlay;
 }
 
