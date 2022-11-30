@@ -24,6 +24,9 @@ a {
   cursor: pointer;
   background-color: #FF4F0A;
 }
+.connectWalletButton:hover {
+  background-color: #fe7641;
+}
 .background {
   z-index: -1;
 }
