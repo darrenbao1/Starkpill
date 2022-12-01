@@ -9,7 +9,7 @@ export const StarkPillCard = (props: Props) => {
 	return (
 		<div className={styles.card}>
 			<picture>
-				<img src="/starkpill.PNG" className={styles.image}></img>
+				<img src="/starkpill.PNG" className={styles.image} alt=""></img>
 			</picture>
 			<div className={styles.content}>
 				<div> Starkpill #{props.Starkpill.id} </div>

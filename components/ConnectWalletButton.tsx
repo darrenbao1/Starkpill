@@ -1,6 +1,6 @@
 import { useAccount, useConnectors } from "@starknet-react/core";
 import { useEffect, useState } from "react";
-import { shortenAddress } from "../types/utils";
+import { shortAddressForModal, shortenAddress } from "../types/utils";
 import ConnectMenuModal from "./Modals/ConnectMenuModal";
 import styles from "../styles/ConnectWalletButton.module.css";
 import { TransactionList } from "./TransactionList";
@@ -71,7 +71,7 @@ const ConnectedButton = (props: { address: string; disconnect: any }) => {
 									className={styles.copyIcon}
 									onClick={() => CopyAddress(props.address)}
 								>
-									<img src="/copyIcon.svg"></img>
+									<img src="/copyIcon.svg" alt=""></img>
 								</picture>
 							</div>
 							<TransactionList />
@@ -79,15 +79,12 @@ const ConnectedButton = (props: { address: string; disconnect: any }) => {
 								disconnect wallet
 							</div>
 						</div>
-						{showSnackBar && <div className={styles.snackbar}>copied</div>}
+						{showSnackBar && (
+							<div className="snackbar">wallet address copied</div>
+						)}
 					</div>
 				</div>
 			)}
 		</>
 	);
 };
-
-function shortAddressForModal(string: string) {
-	if (string === undefined) return "unknown";
-	return string.substring(0, 23) + "..." + string.substring(string.length - 4);
-}

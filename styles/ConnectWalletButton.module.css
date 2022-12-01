@@ -28,38 +28,18 @@
     align-items: center;
 
 }
-.snackbar {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 250px;
-    height: 50px;
-    background: #29296E;
-    z-index: 3;
-    left: calc(50vw - 125px);
-    top: calc(100vh - 70px);
-    border-radius: 8px;
-    color: #d4d4d8;
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
-}
+
 @media screen and (max-width: 750px) {
     .dropdown {
         float: none;
         display:flex;
         margin: auto;
     }
-    .snackbar {
-        top:85vh;
-    }
 }
 .dropdown h1{
     margin: 0;
     width:100%;
     text-align: center;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #FF4F0A;
 }
 .dropdown span{
     margin-top: 1rem;
