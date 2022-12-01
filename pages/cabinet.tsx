@@ -135,14 +135,9 @@ export default function cabinet() {
 		<div className="container">
 			<div className="contentContainer">
 				<div className={styles.cardContainer}>
-					{starkPillArray.map(
-						(starkpill, index) => (
-							<StarkPillCard
-								Starkpill={starkpill}
-								key={index}
-							/>
-						)
-					)}
+					{starkPillArray.map((starkpill, index) => (
+						<StarkPillCard Starkpill={starkpill} key={index} />
+					))}
 				</div>
 			</div>
 		</div>

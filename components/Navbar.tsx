@@ -9,16 +9,13 @@ import Cross from "../public/cross.svg";
 import { LinksModal } from "./Modals/LinksModal";
 export const Navbar = () => {
 	const router = useRouter();
-	const [showModal, setShowModal] =
-		useState(false);
+	const [showModal, setShowModal] = useState(false);
 	return (
 		<>
 			<div className={styles.container}>
 				<div className={styles.navbar}>
 					<Link href="/">
-						<div className={styles.logo}>
-							getStarkpilled
-						</div>
+						<div className={styles.logo}>getStarkpilled</div>
 					</Link>
 					<div className={styles.links}>
 						{Constants.ACTIVE_PAGES.map(
@@ -59,11 +56,7 @@ export const Navbar = () => {
 					)}
 				</div>
 			</div>
-			{showModal && (
-				<LinksModal
-					close={() => setShowModal(false)}
-				/>
-			)}
+			{showModal && <LinksModal close={() => setShowModal(false)} />}
 		</>
 	);
 };

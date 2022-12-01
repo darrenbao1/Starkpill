@@ -12,12 +12,7 @@ export const TransactionList = () => {
 	}
 	return (
 		<div style={{ margin: "1rem 0" }}>
-			{hashes
-				.map(
-					(data, index) =>
-						data && <div>something</div>
-				)
-				.reverse()}
+			{hashes.map((data, index) => data && <div>something</div>).reverse()}
 		</div>
 	);
 };
