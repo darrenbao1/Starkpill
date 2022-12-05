@@ -16,7 +16,7 @@ export default function Home() {
 			</div>
 			<footer>
 				by: &nbsp; &nbsp;
-				<a href="https://www.seraphlabs.io/" target="_blank">
+				<a href="https://www.seraphlabs.io/" target="_blank" rel="noreferrer">
 					<Image
 						src="/companyLogo.png"
 						height={43}
