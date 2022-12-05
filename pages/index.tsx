@@ -7,10 +7,16 @@ export default function Home() {
 	return (
 		<div className={styles.container}>
 			<div className={styles.content}>
-				<h1>getstarkpilled</h1>
+				<h1>
+					getstarkpilled
+					<Image src="/landingPage.png" width={150} height={150} alt=""></Image>
+				</h1>
 				<h2>
-					<Link href="/mint">
-						<u>the doctor will see you now</u> &nbsp; <ForwardIcon />
+					<Link href="/mint" className={styles.link}>
+						<u>the doctor will see you now</u> &nbsp; &nbsp;
+						<div style={{ marginTop: "5px" }}>
+							<ForwardIcon />
+						</div>
 					</Link>
 				</h2>
 			</div>
@@ -19,8 +25,8 @@ export default function Home() {
 				<a href="https://www.seraphlabs.io/" target="_blank" rel="noreferrer">
 					<Image
 						src="/companyLogo.png"
-						height={43}
-						width={163}
+						height={40}
+						width={136}
 						alt="seraphLabs"
 					></Image>
 				</a>

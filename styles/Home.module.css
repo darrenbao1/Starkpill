@@ -18,11 +18,18 @@
     flex-direction: column;
 }
 .content h1 {
+    margin-left: 35px;
+    height:150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 35px;
 }
 .content h2{
     font-size: 25px;
-
+}
+.link {
+    display:flex;
 }
 .content h2:hover{
     color:grey;
