@@ -15,7 +15,7 @@ export const Navbar = () => {
 		<>
 			<div className={styles.container}>
 				<div className={styles.navbar}>
-					<Link href="/mint">
+					<Link href="/mint" onClick={() => setShowModal(false)}>
 						<div className={styles.logo}>getStarkpilled</div>
 					</Link>
 					<div className={styles.links}>
