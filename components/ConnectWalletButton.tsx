@@ -24,7 +24,7 @@ export const ConnectWalletButton = () => {
 					connect wallet
 				</div>
 			) : (
-				<ConnectedButton address={address!} disconnect={() => disconnect} />
+				<ConnectedButton address={address!} disconnect={disconnect} />
 			)}
 			{showConnectMenuModal ? (
 				<ConnectMenuModal
@@ -75,7 +75,7 @@ const ConnectedButton = (props: { address: string; disconnect: any }) => {
 								</picture>
 							</div>
 							<TransactionList />
-							<div className={styles.disconnect} onClick={props.disconnect()}>
+							<div className={styles.disconnect} onClick={props.disconnect}>
 								disconnect wallet
 							</div>
 						</div>
