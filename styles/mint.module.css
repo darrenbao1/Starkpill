@@ -19,7 +19,7 @@
     left:0;
 }
 .traitsContainer {
-    width:100%;
+    width:70%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -45,3 +45,63 @@
     padding: 11px 86px;
 }
 
+.modalContainer{
+    transition: 1s;
+    width: 0%;
+    height: calc(100vh - 100px);
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.75);
+    color:white;
+    display: flex;
+    flex-direction: column;
+}
+.closeButton {
+    margin-right: 25px;
+    margin-left: auto;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    width:60px;
+    stroke: white;
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: transparent;
+    border: none;
+}
+.closeButton:hover{
+    stroke:grey;
+}
+.header{
+    text-align: center;
+    font-size: 30px;
+    white-space: nowrap;
+}
+.selectionContainer {
+    display: grid;
+    --grid-layout-gap: 10px;
+    --grid-column-count: 6;
+    --grid-item--min-width: 90px;
+    --gap-count: calc(var(--grid-column-count) - 1);
+    --total-gap-width: calc(var(--gap-count) * var(--grid-layout-gap));
+    --grid-item--max-width: calc(
+      (100% - var(--total-gap-width)) / var(--grid-column-count)
+    );
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr)
+    );
+    grid-template-rows: max-content;
+    grid-gap: 2rem;
+    padding:2rem;
+    
+}
+.selectionIcon {
+    width:90px;
+    height:90px;
+    background-color: white;
+}
+.selectionIconActive {
+    width:90px;
+    height:90px;
+    background-color: white;
+    border: 4px solid #FF4F0A;
+}

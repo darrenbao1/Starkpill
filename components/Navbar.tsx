@@ -44,7 +44,6 @@ export const Navbar = () => {
 							className={styles.hamburger_menu}
 							onClick={() => setShowModal(false)}
 						>
-							{" "}
 							<Cross />
 						</div>
 					) : (

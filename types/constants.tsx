@@ -1,4 +1,4 @@
-import { Page } from "./interfaces";
+import { FaceTrait, Page } from "./interfaces";
 import { StarkPill } from "./interfaces";
 export const PAGES: Page[] = [
 	{
@@ -12,6 +12,19 @@ export const PAGES: Page[] = [
 		isActive: true,
 	},
 ];
+export const FACE_TRAITS: FaceTrait[] = [
+	{
+		id: 0,
+		name: "Braavos",
+		link: "/Braavos_Trait.png",
+	},
+	{
+		id: 1,
+		name: "Briq",
+		link: "/Briq_Trait.png",
+	},
+];
+
 export const SAMPLE_DATA: StarkPill[] = [
 	{
 		id: 1,
