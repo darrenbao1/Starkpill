@@ -119,52 +119,52 @@ export const BACKGROUND: Trait[] = [
 	{
 		id: 1,
 		name: "White",
-		link: "/sampleTraits/Briq_Trait.png",
+		link: "/sampleBG/White_BG.png",
 	},
 	{
 		id: 2,
 		name: "Vietnam",
-		link: "/sampleTraits/Briq_Trait.png",
+		link: "/sampleBG/Vietnam_BG.png",
 	},
 	{
 		id: 3,
 		name: "China",
-		link: "/sampleTraits/Briq_Trait.png",
+		link: "/sampleBG/China_BG.png",
 	},
 	{
 		id: 4,
 		name: "South Africa",
-		link: "/sampleTraits/Briq_Trait.png",
+		link: "/sampleBG/South_Africa_BG.png",
 	},
 	{
 		id: 5,
 		name: "France",
-		link: "/sampleTraits/Briq_Trait.png",
+		link: "/sampleBG/France_BG.png",
 	},
 	{
 		id: 6,
 		name: "USA",
-		link: "/sampleTraits/Briq_Trait.png",
+		link: "/sampleBG/USA_BG.png",
 	},
 	{
 		id: 7,
 		name: "Singapore",
-		link: "/sampleTraits/Briq_Trait.png",
+		link: "/sampleBG/Singapore_BG.png",
 	},
 	{
 		id: 8,
 		name: "Poland",
-		link: "/sampleTraits/Briq_Trait.png",
+		link: "/sampleBG/Poland_BG.png",
 	},
 	{
 		id: 9,
 		name: "Philippines",
-		link: "/sampleTraits/Briq_Trait.png",
+		link: "/sampleBG/Philippines_BG.png",
 	},
 	{
 		id: 10,
 		name: "Thailand",
-		link: "/sampleTraits/Briq_Trait.png",
+		link: "/sampleBG/Thailand_BG.png",
 	},
 ];
 export const SAMPLE_DATA: StarkPill[] = [
