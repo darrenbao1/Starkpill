@@ -89,7 +89,9 @@ const Mint = () => {
 										height={90}
 										alt={faceTrait.name}
 										onClick={() => setSelectedTraitId(faceTrait.id)}
+										className={styles.centreTrait}
 									></Image>
+									<div className={styles.tooltiptext}>{faceTrait.name}</div>
 								</div>
 							))}
 						</div>
@@ -121,6 +123,7 @@ const Mint = () => {
 										alt={background.name}
 										onClick={() => setBackgroundId(background.id)}
 									></Image>
+									<div className={styles.tooltiptext}>{background.name}</div>
 								</div>
 							))}
 						</div>
