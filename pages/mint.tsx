@@ -8,12 +8,11 @@ import { FACE_TRAITS } from "../types/constants";
 const Mint = () => {
 	const { account } = useAccount();
 	const [showTraitsModal, setShowTraitsModal] = useState(false);
-	const [selectedTraitId, setSelectedTraitId] = useState(0);
-	const [showBackgroundModal, setShowBackgroundModal] = useState(false);
+	const [selectedTraitId, setSelectedTraitId] = useState(1);
 	return (
 		<div className="container">
 			<div className={styles.backgroundFade}></div>
-			<div className="contentContainer">
+			<div className={styles.contentContainer}>
 				<div className={styles.traitsContainer}>
 					<div className={styles.imageContainer}>
 						{/* base pill */}
@@ -25,7 +24,7 @@ const Mint = () => {
 						></Image>
 						{/* face trait */}
 						<Image
-							src={FACE_TRAITS[selectedTraitId].link}
+							src={FACE_TRAITS[selectedTraitId - 1].link}
 							alt=""
 							fill
 							className={styles.imageLayer}
@@ -45,38 +44,37 @@ const Mint = () => {
 						<div className="connectWalletButton">Mint</div>
 					)}
 				</div>
-				<div
-					className={styles.modalContainer}
-					style={showTraitsModal ? { width: "100%" } : {}}
-				>
-					<button
-						className={styles.closeButton}
-						onClick={() => setShowTraitsModal(false)}
-					>
-						<Cross />
-					</button>
-					<div className={styles.header}>select facial trait</div>
-					<div className={styles.selectionContainer}>
-						{FACE_TRAITS.map((faceTrait, index) => (
-							<div
-								className={
-									index == selectedTraitId
-										? styles.selectionIconActive
-										: styles.selectionIcon
-								}
-								key={index}
-							>
-								<Image
-									src={faceTrait.link}
-									width={90}
-									height={90}
-									alt={faceTrait.name}
-									onClick={() => setSelectedTraitId(faceTrait.id)}
-								></Image>
-							</div>
-						))}
+				{showTraitsModal && (
+					<div className={styles.modalContainer}>
+						<button
+							className={styles.closeButton}
+							onClick={() => setShowTraitsModal(false)}
+						>
+							<Cross />
+						</button>
+						<div className={styles.header}>select facial trait</div>
+						<div className={styles.selectionContainer}>
+							{FACE_TRAITS.map((faceTrait, index) => (
+								<div
+									className={
+										index == selectedTraitId - 1
+											? styles.selectionIconActive
+											: styles.selectionIcon
+									}
+									key={index}
+								>
+									<Image
+										src={faceTrait.link}
+										width={90}
+										height={90}
+										alt={faceTrait.name}
+										onClick={() => setSelectedTraitId(faceTrait.id)}
+									></Image>
+								</div>
+							))}
+						</div>
 					</div>
-				</div>
+				)}
 			</div>
 		</div>
 	);

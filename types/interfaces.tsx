@@ -8,7 +8,7 @@ export interface StarkPill {
 	cost: number;
 	owner: string;
 }
-export interface FaceTrait {
+export interface Trait {
 	id: number;
 	name: string;
 	link: string;
