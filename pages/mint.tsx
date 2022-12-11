@@ -3,13 +3,13 @@ import Image from "next/image";
 import { useAccount } from "@starknet-react/core";
 import { ConnectWalletButton } from "../components/ConnectWalletButton";
 import { useState } from "react";
-import Cross from "../public/svgs/cross.svg";
 import { FACE_TRAITS, BACKGROUND } from "../types/constants";
+import { TraitsModal } from "../components/Modals/TraitsModal";
 const Mint = () => {
 	const { account } = useAccount();
-	const [showTraitsModal, setShowTraitsModal] = useState(false);
+	const [showFaceModal, setShowFaceModal] = useState(false);
 	const [showBackgroundModal, setShowBackgroundModal] = useState(false);
-	const [selectedTraitId, setSelectedTraitId] = useState(1);
+	const [selectedFaceId, setSelectedFaceId] = useState(1);
 	const [selectedBackgroundId, setBackgroundId] = useState(1);
 	return (
 		<div className="container">
@@ -32,7 +32,7 @@ const Mint = () => {
 						></Image>
 						{/* face trait */}
 						<Image
-							src={FACE_TRAITS[selectedTraitId - 1].link}
+							src={FACE_TRAITS[selectedFaceId - 1].link}
 							alt=""
 							fill
 							className={styles.imageLayer}
@@ -42,7 +42,7 @@ const Mint = () => {
 					<div
 						className={styles.button}
 						onClick={() => {
-							setShowTraitsModal(true);
+							setShowFaceModal(true);
 							setShowBackgroundModal(false);
 						}}
 					>
@@ -52,7 +52,7 @@ const Mint = () => {
 						className={styles.button}
 						onClick={() => {
 							setShowBackgroundModal(true);
-							setShowTraitsModal(false);
+							setShowFaceModal(false);
 						}}
 					>
 						select background
@@ -63,71 +63,23 @@ const Mint = () => {
 						<div className="connectWalletButton">Mint</div>
 					)}
 				</div>
-				{showTraitsModal && (
-					<div className={styles.modalContainer}>
-						<button
-							className={styles.closeButton}
-							onClick={() => setShowTraitsModal(false)}
-						>
-							<Cross />
-						</button>
-						<div className={styles.header}>select facial trait</div>
-						<div className={styles.selectionContainer}>
-							{FACE_TRAITS.map((faceTrait, index) => (
-								<div
-									className={
-										index == selectedTraitId - 1
-											? styles.selectionIconActive
-											: styles.selectionIcon
-									}
-									key={index}
-									style={{ backgroundColor: "white" }}
-								>
-									<Image
-										src={faceTrait.link}
-										width={90}
-										height={90}
-										alt={faceTrait.name}
-										onClick={() => setSelectedTraitId(faceTrait.id)}
-										className={styles.centreTrait}
-									></Image>
-									<div className={styles.tooltiptext}>{faceTrait.name}</div>
-								</div>
-							))}
-						</div>
-					</div>
+				{showFaceModal && (
+					<TraitsModal
+						traitName="face trait"
+						trait={FACE_TRAITS}
+						selectedId={selectedFaceId}
+						close={() => setShowFaceModal(false)}
+						select={setSelectedFaceId}
+					/>
 				)}
 				{showBackgroundModal && (
-					<div className={styles.modalContainer}>
-						<button
-							className={styles.closeButton}
-							onClick={() => setShowBackgroundModal(false)}
-						>
-							<Cross />
-						</button>
-						<div className={styles.header}>select background</div>
-						<div className={styles.selectionContainer}>
-							{BACKGROUND.map((background, index) => (
-								<div
-									className={
-										index == selectedBackgroundId - 1
-											? styles.selectionIconActive
-											: styles.selectionIcon
-									}
-									key={index}
-								>
-									<Image
-										src={background.link}
-										width={90}
-										height={90}
-										alt={background.name}
-										onClick={() => setBackgroundId(background.id)}
-									></Image>
-									<div className={styles.tooltiptext}>{background.name}</div>
-								</div>
-							))}
-						</div>
-					</div>
+					<TraitsModal
+						traitName="background"
+						trait={BACKGROUND}
+						selectedId={selectedBackgroundId}
+						close={() => setShowBackgroundModal(false)}
+						select={setBackgroundId}
+					/>
 				)}
 			</div>
 		</div>
