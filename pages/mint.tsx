@@ -16,7 +16,11 @@ const Mint = () => {
 	const [hasEditedFace, setHasEditedFace] = useState(false);
 	const [hasEditedBackground, setHasEditedBackground] = useState(false);
 	const [showMintModal, setShowMintModal] = useState(false);
-
+	const closeAllModals = () => {
+		setShowFaceModal(false);
+		setShowBackgroundModal(false);
+		setShowMintModal(false);
+	};
 	const selectFaceButton = (
 		<div
 			className={hasEditedFace ? styles.editButton : styles.button}
@@ -24,8 +28,8 @@ const Mint = () => {
 				if (!hasEditedFace) {
 					setHasEditedFace(true);
 				}
+				closeAllModals();
 				setShowFaceModal(true);
-				setShowBackgroundModal(false);
 			}}
 		>
 			{hasEditedFace
@@ -50,8 +54,8 @@ const Mint = () => {
 				if (!hasEditedBackground) {
 					setHasEditedBackground(true);
 				}
+				closeAllModals();
 				setShowBackgroundModal(true);
-				setShowFaceModal(false);
 			}}
 		>
 			{hasEditedBackground
@@ -70,7 +74,14 @@ const Mint = () => {
 		</div>
 	);
 	const mintButton = (
-		<div className="connectWalletButton" style={{ padding: "1rem 2rem" }}>
+		<div
+			className="connectWalletButton"
+			style={{ padding: "1rem 2rem" }}
+			onClick={() => {
+				closeAllModals();
+				setShowMintModal(true);
+			}}
+		>
 			mint
 		</div>
 	);
@@ -126,7 +137,7 @@ const Mint = () => {
 						select={setBackgroundId}
 					/>
 				)}
-				{!showMintModal && <MintModal />}
+				{showMintModal && <MintModal close={() => setShowMintModal(false)} />}
 			</div>
 		</div>
 	);
