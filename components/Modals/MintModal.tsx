@@ -3,12 +3,19 @@ import styles from "../../styles/MintModal.module.css";
 import SubtractIcon from "../../public/svgs/subtractIcon.svg";
 import AdditionIcon from "../../public/svgs/additionIcon.svg";
 import { createRef, useState } from "react";
-export const MintModal = (props: { close: any }) => {
+import { FACE_TRAITS, BACKGROUND } from "../../types/constants";
+export const MintModal = (props: {
+	close: any;
+	faceId: number;
+	backgroundId: number;
+}) => {
+	const inputRef = createRef<HTMLInputElement>();
 	const Stepper = () => {
-		const inputRef = createRef<HTMLInputElement>();
 		const [mintPrice, setMintPrice] = useState(0.1);
-		const handleChange = (e: any) =>
+		const handleChange = (e: any) => {
 			setMintPrice(handleDecimalsOnValue(e.target.value));
+		};
+
 		//set to limit to 1 decimal place
 		function handleDecimalsOnValue(value: any) {
 			const regex = /([0-9]*[\.|\,]{0,1}[0-9]{0,1})/s;
@@ -16,31 +23,36 @@ export const MintModal = (props: { close: any }) => {
 		}
 		return (
 			<div className={styles.stepper}>
-				<div
-					className={styles.buttonActive}
-					onClick={() => inputRef.current?.stepDown()}
+				<button
+					onClick={() => {
+						inputRef.current?.stepDown();
+						setMintPrice(Number(inputRef.current?.value));
+					}}
+					disabled={mintPrice == 0.1}
 				>
 					<SubtractIcon />
-				</div>
+				</button>
 				<div className={styles.inputContainer}>
 					<input
 						type="number"
 						min={0.1}
 						step={0.1}
 						value={mintPrice}
-						onChange={handleChange}
+						onChange={(e) => handleChange(e)}
 						className={styles.mintPrice}
 						placeholder="mint price"
 						ref={inputRef}
 					/>
-					<span className={styles.unitOfMeasurement}>ETH</span>
+					<span className={styles.unitOfMeasurement}>eth</span>
 				</div>
-				<div
-					className={styles.buttonActive}
-					onClick={() => inputRef.current?.stepUp()}
+				<button
+					onClick={() => {
+						inputRef.current?.stepUp();
+						setMintPrice(Number(inputRef.current?.value));
+					}}
 				>
 					<AdditionIcon />
-				</div>
+				</button>
 			</div>
 		);
 	};
@@ -64,6 +76,17 @@ export const MintModal = (props: { close: any }) => {
 					width: "fit-content",
 					padding: "1rem 2rem",
 					marginTop: "30px",
+				}}
+				onClick={() => {
+					//TODO mint button here
+					alert(
+						"Mint Price:" +
+							inputRef.current?.value +
+							" Face Trait: " +
+							FACE_TRAITS[props.faceId - 1].name +
+							" Background Trait: " +
+							BACKGROUND[props.backgroundId - 1].name
+					);
 				}}
 			>
 				mint

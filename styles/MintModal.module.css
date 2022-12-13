@@ -39,19 +39,32 @@
     align-self: center;
     margin-top: 40px;
 }
-.stepper .buttonActive {
+.stepper button {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
     background-color: #FF4F0A;
     padding:23px;
+    border: none;
+}
+.stepper button:disabled {
+    background: #BFBFBF;
+    cursor:default;
+}
+.stepper button:disabled:hover{
+    background: #BFBFBF;
+}
+.stepper button:hover {
+    background-color: #fe7641;
 }
 .inputContainer {
     width:100px;
     display: flex;
     flex-direction: column;
     background-color: #F5F5F5;
+    font-family: inherit;
     color:#FF4F0A;
     margin: 0 40px;
 }
@@ -63,6 +76,7 @@
     text-align: center;
     border: transparent;
     -moz-appearance: textfield;
+    font-family: inherit;
 }
 .mintPrice::-webkit-outer-spin-button,
 .mintPrice::-webkit-inner-spin-button {
@@ -72,6 +86,7 @@
 .unitOfMeasurement {
     text-align: center;
     font-weight: 700;
+    font-family: inherit;
 }
 
 @media screen and (max-width: 750px) {

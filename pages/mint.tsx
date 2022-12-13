@@ -137,7 +137,13 @@ const Mint = () => {
 						select={setBackgroundId}
 					/>
 				)}
-				{showMintModal && <MintModal close={() => setShowMintModal(false)} />}
+				{showMintModal && (
+					<MintModal
+						close={() => setShowMintModal(false)}
+						faceId={selectedFaceId}
+						backgroundId={selectedBackgroundId}
+					/>
+				)}
 			</div>
 		</div>
 	);
