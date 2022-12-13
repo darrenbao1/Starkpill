@@ -13,3 +13,7 @@ export interface Trait {
 	name: string;
 	link: string;
 }
+export interface FAQ {
+	question: string;
+	answer: string;
+}

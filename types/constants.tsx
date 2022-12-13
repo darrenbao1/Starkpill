@@ -1,9 +1,14 @@
-import { Page, Trait } from "./interfaces";
+import { FAQ, Page, Trait } from "./interfaces";
 import { StarkPill } from "./interfaces";
 export const PAGES: Page[] = [
 	{
 		title: "about",
 		link: "/about",
+		isActive: true,
+	},
+	{
+		title: "faq",
+		link: "/faq",
 		isActive: true,
 	},
 	{
@@ -272,5 +277,42 @@ export const SAMPLE_DATA: StarkPill[] = [
 		id: 1,
 		cost: 0,
 		owner: "0x0464F1765E2911F0743e24eAA81C40cbF27D2bbaE690c9A82F052FF96c68689c",
+	},
+];
+export const FAQ_QUESTIONS: FAQ[] = [
+	{
+		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+		answer:
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+	},
+	{
+		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+		answer:
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+	},
+	{
+		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+		answer:
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+	},
+	{
+		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+		answer:
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+	},
+	{
+		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+		answer:
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+	},
+	{
+		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+		answer:
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+	},
+	{
+		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+		answer:
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
 	},
 ];
