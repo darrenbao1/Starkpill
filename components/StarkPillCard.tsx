@@ -13,9 +13,7 @@ export const StarkPillCard = (props: Props) => {
 			</picture>
 			<div className={styles.content}>
 				<div> Starkpill #{props.Starkpill.id} </div>
-				<div>
-					Cost: {props.Starkpill.cost == 0 ? "Free!" : props.Starkpill.cost}
-				</div>
+				<div>Cost: {props.Starkpill.cost}</div>
 				<div>Owned By: {shortenAddress(props.Starkpill.owner)}</div>
 			</div>
 		</div>

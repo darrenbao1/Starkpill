@@ -1,10 +1,21 @@
 import Link from "next/link";
 import styles from "../styles/about.module.css";
+import Image from "next/image";
+
 export default function about() {
 	return (
-		<div className="container">
-			<div className="contentContainer">
+		<div className="container" style={{ background: "#ffffff" }}>
+			<div className={styles.contentContainer}>
+				<Image
+					src="/sampleBG/China_BG.png"
+					className={styles.image}
+					height={2000}
+					width={2000}
+					alt=""
+				></Image>
+
 				<div className={styles.text}>
+					<h1>about us</h1>
 					<Link
 						href="https://twitter.com/GuthL/status/1594292390092750848?s=20&t=XaDDRn52fCJ5adU_GxeoHg"
 						target="_blank"
