@@ -26,7 +26,7 @@ export const FACE_TRAITS: Trait[] = [
 	{
 		id: 1,
 		name: "Briq",
-		link: "/sampleTraits/Briq_Trait.png",
+		link: "https://arweave.net/lh2w5UME0mDoJyARHl931tj2aEFLbCZA6jjedUKjBEg/PillIngredient/ing_001.png",
 	},
 	{
 		id: 2,
