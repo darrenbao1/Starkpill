@@ -4,172 +4,77 @@ export const PAGES: Page[] = [
 	{
 		title: "about",
 		link: "/about",
-		isActive: true,
+		isActive: false,
 	},
 	{
 		title: "faq",
 		link: "/faq",
-		isActive: true,
+		isActive: false,
 	},
 	{
 		title: "cabinet",
 		link: "/cabinet",
-		isActive: true,
+		isActive: false,
 	},
 ];
 export const FACE_TRAITS: Trait[] = [
 	{
-		id: 1,
+		id: 0,
 		name: "None",
 		link: "/sampleTraits/None_Trait.png",
 	},
 	{
-		id: 2,
-		name: "Wassie Face",
-		link: "/sampleTraits/Wassie_Trait.png",
-	},
-	{
-		id: 3,
+		id: 1,
 		name: "Briq",
 		link: "/sampleTraits/Briq_Trait.png",
 	},
 	{
-		id: 4,
+		id: 2,
 		name: "Braavos",
 		link: "/sampleTraits/Braavos_Trait.png",
 	},
 	{
-		id: 5,
+		id: 3,
 		name: "Orbiter",
 		link: "/sampleTraits/Orbiter_Trait.png",
 	},
 	{
-		id: 6,
-		name: "CL",
-		link: "/sampleTraits/CL_Trait.png",
-	},
-	{
-		id: 7,
-		name: "Banteg Hat",
-		link: "/sampleTraits/Banteg_Trait.png",
-	},
-	{
-		id: 8,
+		id: 4,
 		name: "ChainLink Cap",
 		link: "/sampleTraits/ChainLink_Cap_Trait.png",
-	},
-	{
-		id: 9,
-		name: "Cairo Cap",
-		link: "/sampleTraits/Cairo_Cap_Trait.png",
-	},
-	{
-		id: 10,
-		name: "(3,3) Face",
-		link: "/sampleTraits/(3,3)_Trait.png",
-	},
-	{
-		id: 11,
-		name: "Aviators",
-		link: "/sampleTraits/Aviators_Trait.png",
-	},
-	{
-		id: 12,
-		name: "Bunny Plush",
-		link: "/sampleTraits/Bunny_Plush_Trait.png",
-	},
-	{
-		id: 13,
-		name: "Mfers",
-		link: "/sampleTraits/Mfers_Trait.png",
-	},
-	{
-		id: 14,
-		name: "Wassie Cone",
-		link: "/sampleTraits/Wassie_Cone_Trait.png",
-	},
-	{
-		id: 15,
-		name: "Kabuto Helmet",
-		link: "/sampleTraits/Kabuto_Trait.png",
-	},
-	{
-		id: 16,
-		name: "Pepe",
-		link: "/sampleTraits/Pepe_Trait.png",
-	},
-	{
-		id: 17,
-		name: "Wojak",
-		link: "/sampleTraits/Wojak_Trait.png",
-	},
-	{
-		id: 18,
-		name: "Wojak Big Brain",
-		link: "/sampleTraits/Wojak_Big_Brain_Trait.png",
-	},
-	{
-		id: 19,
-		name: "Wojak Cope",
-		link: "/sampleTraits/Wojak_Cope_Trait.png",
-	},
-	{
-		id: 20,
-		name: "Wassie Doomer",
-		link: "/sampleTraits/Wojak_Doomer_Trait.png",
 	},
 ];
 
 export const BACKGROUND: Trait[] = [
 	{
-		id: 1,
+		id: 0,
 		name: "White",
-		link: "/sampleBG/White_BG.png",
+		link: "https://arweave.net/lh2w5UME0mDoJyARHl931tj2aEFLbCZA6jjedUKjBEg/PillBackground/bg_000.png",
+	},
+	{
+		id: 1,
+		name: "Yellow",
+		link: "https://arweave.net/lh2w5UME0mDoJyARHl931tj2aEFLbCZA6jjedUKjBEg/PillBackground/bg_001.png",
 	},
 	{
 		id: 2,
-		name: "Vietnam",
-		link: "/sampleBG/Vietnam_BG.png",
+		name: "Pink",
+		link: "https://arweave.net/lh2w5UME0mDoJyARHl931tj2aEFLbCZA6jjedUKjBEg/PillBackground/bg_002.png",
 	},
 	{
 		id: 3,
-		name: "China",
-		link: "/sampleBG/China_BG.png",
+		name: "Purple",
+		link: "https://arweave.net/lh2w5UME0mDoJyARHl931tj2aEFLbCZA6jjedUKjBEg/PillBackground/bg_003.png",
 	},
 	{
 		id: 4,
-		name: "South Africa",
-		link: "/sampleBG/South_Africa_BG.png",
+		name: "Cyan",
+		link: "https://arweave.net/lh2w5UME0mDoJyARHl931tj2aEFLbCZA6jjedUKjBEg/PillBackground/bg_004.png",
 	},
 	{
 		id: 5,
-		name: "France",
-		link: "/sampleBG/France_BG.png",
-	},
-	{
-		id: 6,
-		name: "USA",
-		link: "/sampleBG/USA_BG.png",
-	},
-	{
-		id: 7,
-		name: "Singapore",
-		link: "/sampleBG/Singapore_BG.png",
-	},
-	{
-		id: 8,
-		name: "Poland",
-		link: "/sampleBG/Poland_BG.png",
-	},
-	{
-		id: 9,
-		name: "Philippines",
-		link: "/sampleBG/Philippines_BG.png",
-	},
-	{
-		id: 10,
-		name: "Thailand",
-		link: "/sampleBG/Thailand_BG.png",
+		name: "Green",
+		link: "https://arweave.net/lh2w5UME0mDoJyARHl931tj2aEFLbCZA6jjedUKjBEg/PillBackground/bg_005.png",
 	},
 ];
 export const SAMPLE_DATA: StarkPill[] = [

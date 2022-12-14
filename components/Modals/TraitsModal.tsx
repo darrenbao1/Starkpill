@@ -24,7 +24,7 @@ export const TraitsModal = (props: {
 				{props.trait.map((trait, index) => (
 					<div
 						className={
-							index == props.selectedId - 1
+							index == props.selectedId
 								? styles.selectionIconActive
 								: styles.selectionIcon
 						}

@@ -11,8 +11,8 @@ const Mint = () => {
 	const { account } = useAccount();
 	const [showFaceModal, setShowFaceModal] = useState(false);
 	const [showBackgroundModal, setShowBackgroundModal] = useState(false);
-	const [selectedFaceId, setSelectedFaceId] = useState(1);
-	const [selectedBackgroundId, setBackgroundId] = useState(1);
+	const [selectedFaceId, setSelectedFaceId] = useState(0);
+	const [selectedBackgroundId, setBackgroundId] = useState(0);
 	const [hasEditedFace, setHasEditedFace] = useState(false);
 	const [hasEditedBackground, setHasEditedBackground] = useState(false);
 	const [showMintModal, setShowMintModal] = useState(false);
@@ -33,7 +33,7 @@ const Mint = () => {
 			}}
 		>
 			{hasEditedFace
-				? FACE_TRAITS[selectedFaceId - 1].name
+				? FACE_TRAITS[selectedFaceId].name
 				: "select facial traits"}
 			{hasEditedFace && (
 				<div
@@ -59,7 +59,7 @@ const Mint = () => {
 			}}
 		>
 			{hasEditedBackground
-				? BACKGROUND[selectedBackgroundId - 1].name
+				? BACKGROUND[selectedBackgroundId].name
 				: "select background"}
 			{hasEditedBackground && (
 				<div
@@ -94,7 +94,7 @@ const Mint = () => {
 					<div className={styles.imageContainer}>
 						{/* background trait */}
 						<Image
-							src={BACKGROUND[selectedBackgroundId - 1].link}
+							src={BACKGROUND[selectedBackgroundId].link}
 							alt=""
 							fill
 							className={styles.imageLayer}
@@ -108,7 +108,7 @@ const Mint = () => {
 						></Image>
 						{/* face trait */}
 						<Image
-							src={FACE_TRAITS[selectedFaceId - 1].link}
+							src={FACE_TRAITS[selectedFaceId].link}
 							alt=""
 							fill
 							className={styles.imageLayer}
