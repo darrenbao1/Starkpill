@@ -21,7 +21,7 @@ export const PAGES: Page[] = [
 		isActive: false,
 	},
 ];
-const LINK_HASH = "lh2w5UME0mDoJyARHl931tj2aEFLbCZA6jjedUKjBEg";
+const LINK_HASH = "68YBNIVVS8fj5gs9oiA3ff0nQm70SHBWj7_dtwAKsSw";
 const FACE_TRAIT_LINK = "https://arweave.net/" + LINK_HASH + "/PillIngredient/";
 export const FACE_TRAITS: Trait[] = [
 	{
@@ -48,6 +48,16 @@ export const FACE_TRAITS: Trait[] = [
 		id: 4,
 		name: "ChainLink Cap",
 		link: FACE_TRAIT_LINK + "ing_004.png",
+	},
+	{
+		id: 5,
+		name: "Guthmann",
+		link: FACE_TRAIT_LINK + "ing_005.png",
+	},
+	{
+		id: 6,
+		name: "Kitsune Mask",
+		link: FACE_TRAIT_LINK + "ing_006.png",
 	},
 ];
 const BACKGROUND_LINK =
@@ -82,6 +92,11 @@ export const BACKGROUND: Trait[] = [
 		id: 5,
 		name: "Green",
 		link: BACKGROUND_LINK + "005.png",
+	},
+	{
+		id: 6,
+		name: "Aquarius Sky Vaporwave",
+		link: BACKGROUND_LINK + "006.png",
 	},
 ];
 

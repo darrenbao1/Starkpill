@@ -85,7 +85,7 @@ export const MintModal = (props: {
 				const value = uint256ToBN(data[0]);
 				return Number(value) >= 1000000000000000;
 			}
-		}, [data]);
+		}, [data, error, loading]);
 		//function to let them approve eth
 		const allowanceCall = [
 			{
