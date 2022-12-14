@@ -11,9 +11,12 @@ import {
 	useStarknetExecute,
 	useTransactionManager,
 } from "@starknet-react/core";
-import { Abi, uint256 } from "starknet";
+import { Abi } from "starknet";
 import { uint256ToBN } from "starknet/dist/utils/uint256";
-import { toBN, toFelt } from "starknet/dist/utils/number";
+import {
+	STARKETH_CONTRACT_ADDRESS,
+	STARKPILL_CONTRACT_ADDRESS,
+} from "../../types/constants";
 export const MintModal = (props: {
 	close: any;
 	faceId: number;
@@ -35,8 +38,7 @@ export const MintModal = (props: {
 		const { addTransaction } = useTransactionManager();
 		const calls = [
 			{
-				contractAddress:
-					"0x05ef092a31619faa63bf317bbb636bfbba86baf8e0e3e8d384ee764f2904e5dd",
+				contractAddress: STARKPILL_CONTRACT_ADDRESS,
 				entrypoint: "mint",
 				calldata: [
 					props.faceId,
@@ -60,20 +62,14 @@ export const MintModal = (props: {
 		const { execute } = useStarknetExecute({ calls });
 		//code to check allowance balance
 		const { contract } = useContract({
-			address:
-				"0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7",
+			address: STARKETH_CONTRACT_ADDRESS,
 			abi: starknetEthAbi as Abi,
 		});
 		const { address } = useAccount();
 		const { data, loading, error } = useStarknetCall({
 			contract,
 			method: "allowance",
-			args: address
-				? [
-						address,
-						"0x05ef092a31619faa63bf317bbb636bfbba86baf8e0e3e8d384ee764f2904e5dd",
-				  ]
-				: undefined,
+			args: address ? [address, STARKPILL_CONTRACT_ADDRESS] : undefined,
 			options: {
 				watch: true,
 			},
@@ -93,11 +89,10 @@ export const MintModal = (props: {
 		//function to let them approve eth
 		const allowanceCall = [
 			{
-				contractAddress:
-					"0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7",
+				contractAddress: STARKETH_CONTRACT_ADDRESS,
 				entrypoint: "approve",
 				calldata: [
-					"0x05ef092a31619faa63bf317bbb636bfbba86baf8e0e3e8d384ee764f2904e5dd",
+					STARKPILL_CONTRACT_ADDRESS,
 					"0x" + (mintPrice * Math.pow(10, 18)).toString(16),
 					0,
 				],

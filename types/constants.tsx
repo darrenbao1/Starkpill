@@ -1,5 +1,9 @@
 import { FAQ, Page, Trait } from "./interfaces";
 import { StarkPill } from "./interfaces";
+export const STARKPILL_CONTRACT_ADDRESS =
+	"0x05ef092a31619faa63bf317bbb636bfbba86baf8e0e3e8d384ee764f2904e5dd";
+export const STARKETH_CONTRACT_ADDRESS =
+	"0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7";
 export const PAGES: Page[] = [
 	{
 		title: "about",
@@ -17,66 +21,70 @@ export const PAGES: Page[] = [
 		isActive: false,
 	},
 ];
+const LINK_HASH = "lh2w5UME0mDoJyARHl931tj2aEFLbCZA6jjedUKjBEg";
+const FACE_TRAIT_LINK = "https://arweave.net/" + LINK_HASH + "/PillIngredient/";
 export const FACE_TRAITS: Trait[] = [
 	{
 		id: 0,
 		name: "None",
-		link: "/sampleTraits/None_Trait.png",
+		link: FACE_TRAIT_LINK + "ing_000.png",
 	},
 	{
 		id: 1,
 		name: "Briq",
-		link: "https://arweave.net/lh2w5UME0mDoJyARHl931tj2aEFLbCZA6jjedUKjBEg/PillIngredient/ing_001.png",
+		link: FACE_TRAIT_LINK + "ing_001.png",
 	},
 	{
 		id: 2,
 		name: "Braavos",
-		link: "/sampleTraits/Braavos_Trait.png",
+		link: FACE_TRAIT_LINK + "ing_002.png",
 	},
 	{
 		id: 3,
 		name: "Orbiter",
-		link: "/sampleTraits/Orbiter_Trait.png",
+		link: FACE_TRAIT_LINK + "ing_003.png",
 	},
 	{
 		id: 4,
 		name: "ChainLink Cap",
-		link: "/sampleTraits/ChainLink_Cap_Trait.png",
+		link: FACE_TRAIT_LINK + "ing_004.png",
 	},
 ];
-
+const BACKGROUND_LINK =
+	"https://arweave.net/" + LINK_HASH + "/PillBackground/bg_";
 export const BACKGROUND: Trait[] = [
 	{
 		id: 0,
 		name: "White",
-		link: "https://arweave.net/lh2w5UME0mDoJyARHl931tj2aEFLbCZA6jjedUKjBEg/PillBackground/bg_000.png",
+		link: BACKGROUND_LINK + "000.png",
 	},
 	{
 		id: 1,
 		name: "Yellow",
-		link: "https://arweave.net/lh2w5UME0mDoJyARHl931tj2aEFLbCZA6jjedUKjBEg/PillBackground/bg_001.png",
+		link: BACKGROUND_LINK + "001.png",
 	},
 	{
 		id: 2,
 		name: "Pink",
-		link: "https://arweave.net/lh2w5UME0mDoJyARHl931tj2aEFLbCZA6jjedUKjBEg/PillBackground/bg_002.png",
+		link: BACKGROUND_LINK + "002.png",
 	},
 	{
 		id: 3,
 		name: "Purple",
-		link: "https://arweave.net/lh2w5UME0mDoJyARHl931tj2aEFLbCZA6jjedUKjBEg/PillBackground/bg_003.png",
+		link: BACKGROUND_LINK + "003.png",
 	},
 	{
 		id: 4,
 		name: "Cyan",
-		link: "https://arweave.net/lh2w5UME0mDoJyARHl931tj2aEFLbCZA6jjedUKjBEg/PillBackground/bg_004.png",
+		link: BACKGROUND_LINK + "004.png",
 	},
 	{
 		id: 5,
 		name: "Green",
-		link: "https://arweave.net/lh2w5UME0mDoJyARHl931tj2aEFLbCZA6jjedUKjBEg/PillBackground/bg_005.png",
+		link: BACKGROUND_LINK + "005.png",
 	},
 ];
+
 export const SAMPLE_DATA: StarkPill[] = [
 	{
 		id: 1,
