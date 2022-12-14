@@ -1,0 +1,35 @@
+.contentContainer {
+    position: relative; 
+    margin: 0 auto;
+    max-width: 1440px;
+    overflow:auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height:100%;
+  }
+.text{
+    margin: auto;
+    width:100%;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 150%;
+    padding: 2rem 4rem;
+    color:black;
+    overflow: auto;
+}
+.image{
+    margin: auto;
+    max-width: 375px;
+    max-height: 375px;
+    width:100%;
+    height:100%;
+    background-color: aqua;
+}
+@media screen and (max-width: 750px) {
+    .contentContainer {
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+    }
+}

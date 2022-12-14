@@ -1,9 +1,11 @@
+@import "https://fonts.googleapis.com/css?family=Patrick+Hand";
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Patrick Hand ,Helvetica Neue, sans-serif;
+    background-color: black;
+    color: white;
 }
 
 a {
@@ -14,13 +16,72 @@ a {
 * {
   box-sizing: border-box;
 }
+.connectWalletButton {
+  border-radius: 6px;
+  height:50px;
+  padding: 0 1rem;
+  padding-top: 13px;
+  cursor: pointer;
+  background-color: #FF4F0A;
+}
+.connectWalletButton:hover {
+  background-color: #fe7641;
+}
+.background {
+  z-index: -1;
+}
+.container {
+  position:fixed;
+  left:0;
+  width:100vw;
+  top:100px;
+  height:calc(100vh - 100px);
+  align-content: center;
+  background-image: url("/background.png");
+  background-size:cover;
+  background-repeat: no-repeat;
+  margin-right: 8px;
+  overflow-y: overlay;
+}
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
+.container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.container::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.container::-webkit-scrollbar-thumb {
+  border-width: 4px;
+  border-style: solid;
+  border-color: #FF4F0A;
+  border-radius: 4px;
+}
+.contentContainer {
+  position: relative;
+  margin: 0 auto;
+  max-width: 1440px;
+}
+.snackbar {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 250px;
+  height: 50px;
+  background: #29296E;
+  color:white;
+  z-index: 3;
+  left: calc(50vw - 125px);
+  top: calc(100vh - 70px);
+  border-radius: 8px;
+  color: #d4d4d8;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+@media screen and (max-width: 750px) {
+  .snackbar {
+      top:85vh;
   }
 }

@@ -1,0 +1,105 @@
+.modalContainer{
+    width: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.75);
+    color:white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.closeButton {
+    margin-right: 25px;
+    margin-left: auto;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    width:60px;
+    stroke: white;
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: transparent;
+    border: none;
+}
+.closeButton:hover{
+    stroke:grey;
+}
+.header{
+    text-align: center;
+    font-size: 30px;
+    white-space: nowrap;
+}
+.text {
+    font-size:20px;
+    text-align: center;
+    margin-top: 40px;
+    padding: 0 5rem;
+}
+.stepper {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin-top: 40px;
+}
+.stepper button {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #FF4F0A;
+    padding:23px;
+    border: none;
+}
+.stepper button:disabled {
+    background: #BFBFBF;
+    cursor:default;
+}
+.stepper button:disabled:hover{
+    background: #BFBFBF;
+}
+.stepper button:hover {
+    background-color: #fe7641;
+}
+.inputContainer {
+    width:100px;
+    display: flex;
+    flex-direction: column;
+    background-color: #F5F5F5;
+    font-family: inherit;
+    color:#FF4F0A;
+    margin: 0 40px;
+}
+.mintPrice {
+    color: #FF4F0A;
+    font-size: 25px;
+    font-weight: 700;
+    background-color: #F5F5F5;
+    text-align: center;
+    border: transparent;
+    -moz-appearance: textfield;
+    font-family: inherit;
+}
+.mintPrice::-webkit-outer-spin-button,
+.mintPrice::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.unitOfMeasurement {
+    text-align: center;
+    font-weight: 700;
+    font-family: inherit;
+}
+
+@media screen and (max-width: 750px) {
+    .modalContainer {
+        position: fixed;
+        top:100px;
+        width:100%;
+        height:calc(100vh - 100px);
+    }
+    .closeButton {
+        width:30px;
+    }
+    .text {
+        padding: 0 2rem;
+    }
+  }
