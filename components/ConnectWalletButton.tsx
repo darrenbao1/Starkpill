@@ -4,6 +4,7 @@ import { shortAddressForModal, shortenAddress } from "../types/utils";
 import ConnectMenuModal from "./Modals/ConnectMenuModal";
 import styles from "../styles/ConnectWalletButton.module.css";
 import { TransactionList } from "./TransactionList";
+import { UserBalance } from "../hooks/GetEthBalance";
 export const ConnectWalletButton = () => {
 	const { account, address } = useAccount();
 	const { available, refresh, disconnect } = useConnectors();
@@ -75,6 +76,15 @@ const ConnectedButton = (props: { address: string; disconnect: any }) => {
 								</picture>
 							</div>
 							<TransactionList />
+							<div
+								className={styles.addressContainer}
+								style={{ marginBottom: "20px" }}
+							>
+								<div>eth balance</div>
+								<div className={styles.copyIcon}>
+									{UserBalance && <UserBalance />}
+								</div>
+							</div>
 							<div className={styles.disconnect} onClick={props.disconnect}>
 								disconnect wallet
 							</div>

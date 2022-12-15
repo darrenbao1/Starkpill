@@ -2,21 +2,14 @@ import Cross from "../../public/svgs/cross.svg";
 import styles from "../../styles/MintModal.module.css";
 import SubtractIcon from "../../public/svgs/subtractIcon.svg";
 import AdditionIcon from "../../public/svgs/additionIcon.svg";
-import { createRef, useMemo, useState } from "react";
-import starknetEthAbi from "../../abi/starkEth.json";
+import { createRef, useState } from "react";
 import {
-	useAccount,
-	useContract,
-	useStarknetCall,
 	useStarknetExecute,
 	useTransactionManager,
 } from "@starknet-react/core";
-import { Abi } from "starknet";
-import { uint256ToBN } from "starknet/dist/utils/uint256";
-import {
-	STARKETH_CONTRACT_ADDRESS,
-	STARKPILL_CONTRACT_ADDRESS,
-} from "../../types/constants";
+import { HasEnoughAllowance } from "../../hooks/GetEthAllowance";
+import { getMintVariables } from "../../hooks/MintFunction";
+import { getApproveVariables } from "../../hooks/ApproveFunction";
 export const MintModal = (props: {
 	close: any;
 	faceId: number;
@@ -25,32 +18,27 @@ export const MintModal = (props: {
 	const inputRef = createRef<HTMLInputElement>();
 	const Stepper = () => {
 		const [mintPrice, setMintPrice] = useState(0.001);
+		const { addTransaction } = useTransactionManager();
 		const handleChange = (e: any) => {
 			setMintPrice(handleDecimalsOnValue(e.target.value));
 		};
-
-		//set to limit to 1 decimal place
+		//set to limit to 3 decimal place
 		function handleDecimalsOnValue(value: any) {
 			const regex = /([0-9]*[\.|\,]{0,3}[0-9]{0,3})/s;
 			return value.match(regex)[0];
 		}
 		//code to mint pill
-		const { addTransaction } = useTransactionManager();
-		const calls = [
-			{
-				contractAddress: STARKPILL_CONTRACT_ADDRESS,
-				entrypoint: "mint",
-				calldata: [
-					props.faceId,
-					props.backgroundId,
-					"0x" + (mintPrice * Math.pow(10, 18)).toString(16),
-					0,
-				],
-			},
-		];
+		const mintVariables = getMintVariables(
+			props.faceId,
+			props.backgroundId,
+			mintPrice
+		);
+		const { execute: mintExecute } = useStarknetExecute({
+			calls: mintVariables,
+		});
 		const mintPill = async () => {
 			try {
-				const response = await execute();
+				const response = await mintExecute();
 				addTransaction({
 					hash: response.transaction_hash,
 					metadata: { test: "Mint Pill" },
@@ -59,45 +47,7 @@ export const MintModal = (props: {
 				console.log(e);
 			}
 		};
-		const { execute } = useStarknetExecute({ calls });
-		//code to check allowance balance
-		const { contract } = useContract({
-			address: STARKETH_CONTRACT_ADDRESS,
-			abi: starknetEthAbi as Abi,
-		});
-		const { address } = useAccount();
-		const { data, loading, error } = useStarknetCall({
-			contract,
-			method: "allowance",
-			args: address ? [address, STARKPILL_CONTRACT_ADDRESS] : undefined,
-			options: {
-				watch: true,
-			},
-		});
-		const hasAllowance = useMemo(() => {
-			if (loading || !data?.length) {
-				return false;
-			}
-			if (error) {
-				return false;
-			}
-			if (data && data.length > 0) {
-				const value = uint256ToBN(data[0]);
-				return Number(value) >= 1000000000000000;
-			}
-		}, [data, error, loading]);
 		//function to let them approve eth
-		const allowanceCall = [
-			{
-				contractAddress: STARKETH_CONTRACT_ADDRESS,
-				entrypoint: "approve",
-				calldata: [
-					STARKPILL_CONTRACT_ADDRESS,
-					"0x" + (mintPrice * Math.pow(10, 18)).toString(16),
-					0,
-				],
-			},
-		];
 		const approveAllowance = async () => {
 			try {
 				const response = await approveAllowanceExecute();
@@ -110,8 +60,10 @@ export const MintModal = (props: {
 			}
 		};
 		const { execute: approveAllowanceExecute } = useStarknetExecute({
-			calls: allowanceCall,
+			calls: getApproveVariables(mintPrice),
 		});
+		//boolean variable to check current approved balance
+		let hasEnoughAllowance = HasEnoughAllowance(mintPrice);
 
 		return (
 			<>
@@ -147,7 +99,7 @@ export const MintModal = (props: {
 						<AdditionIcon />
 					</button>
 				</div>
-				{hasAllowance ? (
+				{hasEnoughAllowance ? (
 					<div
 						className="connectWalletButton"
 						style={{
