@@ -8,10 +8,7 @@
     flex-direction: column;
 }
 .closeButton {
-    margin-right: 25px;
-    margin-left: auto;
-    margin-top: 25px;
-    margin-bottom: 20px;
+    float:right;
     width:60px;
     stroke: white;
     cursor: pointer;
@@ -26,6 +23,8 @@
     text-align: center;
     font-size: 30px;
     white-space: nowrap;
+    padding-left: 60px;
+    margin-top: 20px;
 }
 .selectionContainer {
     display: grid;
@@ -94,10 +93,15 @@
   .selectionIconActive:hover .tooltiptext {
     visibility: visible;
   }
+  .centreTraitBackground {
+    position: relative;
+    width:90px;
+    height:90px;
+  }
   .centreTrait {
     position: relative;
-    top:15px;
-    right: 5px;
+    width:90px;
+    height:90px;
   }
   @media screen and (max-width: 750px) {
     .modalContainer {
@@ -105,9 +109,6 @@
         top:100px;
         width:100%;
         height:calc(100vh - 100px);
-    }
-    .closeButton {
-        width:30px;
     }
     .selectionContainer{
         padding-bottom: 10vh;

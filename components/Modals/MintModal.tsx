@@ -106,6 +106,7 @@ export const MintModal = (props: {
 							width: "fit-content",
 							padding: "1rem 2rem",
 							marginTop: "30px",
+							alignSelf: "center",
 						}}
 						onClick={() => {
 							mintPill();
@@ -119,7 +120,8 @@ export const MintModal = (props: {
 						style={{
 							width: "fit-content",
 							padding: "1rem 2rem",
-							marginTop: "30px",
+							margin: "30px auto",
+							alignItems: "center",
 						}}
 						onClick={() => {
 							approveAllowance();
@@ -133,10 +135,12 @@ export const MintModal = (props: {
 	};
 	return (
 		<div className={styles.modalContainer}>
-			<button className={styles.closeButton} onClick={props.close}>
-				<Cross />
-			</button>
-			<div className={styles.header}>mint</div>
+			<div className={styles.header}>
+				<span>mint</span>
+				<button className={styles.closeButton} onClick={props.close}>
+					<Cross />
+				</button>
+			</div>
 			<div className={styles.text}>
 				if you wish to support our efforts you can choose pay for your Starkpill
 				in any amount of ETH.

@@ -97,6 +97,7 @@ const Mint = () => {
 							src={BACKGROUND[selectedBackgroundId].link}
 							alt=""
 							fill
+							sizes="100%"
 							className={styles.imageLayer}
 						></Image>
 						{/* base pill */}
@@ -104,6 +105,7 @@ const Mint = () => {
 							src="/Base_StarkPill.PNG"
 							alt=""
 							fill
+							sizes="100%"
 							className={styles.imageLayer}
 						></Image>
 						{/* face trait */}
@@ -111,10 +113,10 @@ const Mint = () => {
 							src={FACE_TRAITS[selectedFaceId].link}
 							alt=""
 							fill
+							sizes="100%"
 							className={styles.imageLayer}
 						></Image>
 					</div>
-					<div className={styles.header}>prescribe yourself!</div>
 					{selectFaceButton}
 					{selectBackgroundButton}
 					{!account ? <ConnectWalletButton /> : mintButton}
