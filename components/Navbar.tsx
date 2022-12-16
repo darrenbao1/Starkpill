@@ -7,6 +7,7 @@ import { ConnectWalletButton } from "./ConnectWalletButton";
 import Hamburger from "../public/hamburger.svg";
 import Cross from "../public/cross.svg";
 import { LinksModal } from "./Modals/LinksModal";
+import Image from "next/image";
 export const Navbar = () => {
 	const router = useRouter();
 	const [showModal, setShowModal] = useState(false);
@@ -16,7 +17,15 @@ export const Navbar = () => {
 			<div className={styles.container}>
 				<div className={styles.navbar}>
 					<Link href="/mint" onClick={() => setShowModal(false)}>
-						<div className={styles.logo}>getStarkpilled</div>
+						<div className={styles.logo}>
+							<span>getStarkpilled</span>
+							<Image
+								src="/landingPage.png"
+								width={65}
+								height={65}
+								alt=""
+							></Image>{" "}
+						</div>
 					</Link>
 					<div className={styles.links}>
 						{PAGES.map(
