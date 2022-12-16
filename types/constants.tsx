@@ -18,7 +18,7 @@ export const PAGES: Page[] = [
 	{
 		title: "cabinet",
 		link: "/cabinet",
-		isActive: true,
+		isActive: false,
 	},
 ];
 const LINK_HASH = "68YBNIVVS8fj5gs9oiA3ff0nQm70SHBWj7_dtwAKsSw";
