@@ -18,7 +18,7 @@
     max-width: 375px;
     width:50%;
     position:relative;
-    border: 2px solid #29296E;
+    
     border-radius: 6px;
    margin-bottom: 1rem;
 }
@@ -30,7 +30,7 @@
     min-width: 210px;
     width:100%;
     object-fit: contain;
-    border-radius: 6px;
+    border-radius: 3px;
 }
 .traitsContainer {
     width:100%;
@@ -57,8 +57,7 @@
     padding: 11px 15px;
 }
 .traitsContainer .button:hover {
-    color:grey;
-    border-color: grey;
+    background-color: #fe7641;
 }
 .traitsContainer .editButton {
     background: #262626;

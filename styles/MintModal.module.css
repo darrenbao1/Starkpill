@@ -13,12 +13,13 @@
 }
 .closeButton {
     float:right;
-    width:60px;
+    width:48px;
     stroke: white;
     cursor: pointer;
     transition: 0.3s;
-    background-color: transparent;
+    background-color: #FF4F0A;
     border: none;
+    border-radius: 5px;
 }
 .closeButton:hover{
     stroke:grey;
@@ -29,6 +30,8 @@
     white-space: nowrap;
     padding-left: 60px;
     margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 .text {
     font-size:20px;
