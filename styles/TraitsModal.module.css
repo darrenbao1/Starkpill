@@ -49,7 +49,7 @@
     );
     grid-template-rows: max-content;
     grid-gap: 2rem;
-    padding:1rem;
+    padding:2rem;
     overflow: overlay;
     
 }
@@ -57,7 +57,7 @@
   display:grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 2rem;
-  padding:1rem;
+  padding:2rem;
   overflow: hidden;
 }
 .selectionContainer2:hover {
