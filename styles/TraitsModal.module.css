@@ -10,6 +10,7 @@
     flex-direction: column;
     transition: transform .6s ease-in-out;
 	  animation: toast-in-right .7s;
+    padding : 1rem;
 }
 .closeButton {
     float:right;
@@ -57,7 +58,7 @@
   display:grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 2rem;
-  padding:2rem;
+  padding:1rem;
   overflow: hidden;
 }
 .selectionContainer2:hover {
