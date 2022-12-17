@@ -7,9 +7,7 @@ import {
 	useStarknetExecute,
 	useTransactionManager,
 } from "@starknet-react/core";
-import { HasEnoughAllowance } from "../../hooks/GetEthAllowance";
 import { getMintVariables } from "../../hooks/MintFunction";
-import { getApproveVariables } from "../../hooks/ApproveFunction";
 export const MintModal = (props: {
 	close: any;
 	faceId: number;
@@ -41,29 +39,12 @@ export const MintModal = (props: {
 				const response = await mintExecute();
 				addTransaction({
 					hash: response.transaction_hash,
-					metadata: { test: "Mint Pill" },
+					metadata: { transactionName: "Approve and Mint Pill" },
 				});
 			} catch (e) {
 				console.log(e);
 			}
 		};
-		//function to let them approve eth
-		const approveAllowance = async () => {
-			try {
-				const response = await approveAllowanceExecute();
-				addTransaction({
-					hash: response.transaction_hash,
-					metadata: { test: "approve eth" },
-				});
-			} catch (e) {
-				console.log(e);
-			}
-		};
-		const { execute: approveAllowanceExecute } = useStarknetExecute({
-			calls: getApproveVariables(mintPrice),
-		});
-		//boolean variable to check current approved balance
-		let hasEnoughAllowance = HasEnoughAllowance(mintPrice);
 
 		return (
 			<>
@@ -99,37 +80,20 @@ export const MintModal = (props: {
 						<AdditionIcon />
 					</button>
 				</div>
-				{hasEnoughAllowance ? (
-					<div
-						className="connectWalletButton"
-						style={{
-							width: "fit-content",
-							padding: "1rem 2rem",
-							marginTop: "30px",
-							alignSelf: "center",
-						}}
-						onClick={() => {
-							mintPill();
-						}}
-					>
-						mint
-					</div>
-				) : (
-					<div
-						className="connectWalletButton"
-						style={{
-							width: "fit-content",
-							padding: "1rem 2rem",
-							margin: "30px auto",
-							alignItems: "center",
-						}}
-						onClick={() => {
-							approveAllowance();
-						}}
-					>
-						approve eth
-					</div>
-				)}
+				<div
+					className="connectWalletButton"
+					style={{
+						width: "fit-content",
+						padding: "1rem 2rem",
+						marginTop: "30px",
+						alignSelf: "center",
+					}}
+					onClick={() => {
+						mintPill();
+					}}
+				>
+					mint
+				</div>
 			</>
 		);
 	};
