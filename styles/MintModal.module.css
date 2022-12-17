@@ -73,6 +73,7 @@
     font-family: inherit;
     color:#F5F5F5;
     margin: 0 40px;
+    border-radius: 5px;
 }
 .mintPrice {
     color: #F5F5F5;
@@ -83,6 +84,7 @@
     border: transparent;
     -moz-appearance: textfield;
     font-family: inherit;
+    border-radius: 5px 5px 0 0;
 }
 .mintPrice::-webkit-outer-spin-button,
 .mintPrice::-webkit-inner-spin-button {
