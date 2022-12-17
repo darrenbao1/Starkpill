@@ -9,7 +9,7 @@
     position: fixed;
     width: 100vw;
     height:calc(100vh - 100px);
-    background: linear-gradient(269.9deg, rgba(0, 0, 0, 0.8) 53.43%, rgba(0, 0, 0, 0) 99.92%);
+    background: linear-gradient(269.9deg, rgba(0, 0, 0, 0.792) 53.43%, rgba(0, 0, 0, 0.7755) 96.05%, rgba(0, 0, 0, 0.784406) 99.91%, rgba(0, 0, 0, 0) 99.92%);
     z-index: -1;
 }
 .imageContainer{
@@ -38,7 +38,6 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    transition: 1s;
     margin: auto;
 }
 .traitsContainer .button{

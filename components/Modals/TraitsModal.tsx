@@ -22,22 +22,21 @@ export const TraitsModal = (props: {
 					<Cross />
 				</button>
 			</div>
-			<div className={styles.selectionContainer}>
+			<div className={styles.selectionContainer2}>
 				{props.trait.map((trait, index) => (
-					<div
-						className={
-							index == props.selectedId
-								? styles.selectionIconActive
-								: styles.selectionIcon
-						}
-						key={index}
-					>
-						<div className={styles.imageContainer}>
+					<div key={index}>
+						<div
+							className={
+								index == props.selectedId
+									? styles.selectionIconActive
+									: styles.selectionIcon
+							}
+						>
 							<Image
 								src={trait.link}
-								width={200}
-								height={200}
 								alt={trait.name}
+								layout="fill"
+								objectFit="contain"
 								onClick={() => {
 									props.select(trait.id);
 								}}
@@ -48,7 +47,7 @@ export const TraitsModal = (props: {
 								}
 							></Image>
 						</div>
-						<div className={styles.tooltiptext}>{trait.name}</div>
+						<div className={styles.traitName}>{trait.name}</div>
 					</div>
 				))}
 			</div>

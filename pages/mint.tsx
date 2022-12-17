@@ -73,7 +73,7 @@ const Mint = () => {
 			)}
 		</div>
 	);
-	const mintButton = (
+	const mintButton = !showMintModal && (
 		<div
 			className="connectWalletButton"
 			style={{ padding: "1rem 2rem" }}
