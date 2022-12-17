@@ -21,9 +21,10 @@ export const Navbar = () => {
 							<span>getStarkpilled</span>
 							<Image
 								src="/landingPage.png"
-								width={65}
-								height={65}
+								width={60}
+								height={60}
 								alt=""
+								style={{ marginTop: "5px" }}
 							></Image>{" "}
 						</div>
 					</Link>
