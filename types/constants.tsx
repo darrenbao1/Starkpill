@@ -7,18 +7,18 @@ export const STARKETH_CONTRACT_ADDRESS =
 export const PAGES: Page[] = [
 	{
 		title: "about",
-		link: "/about",
-		isActive: false,
+		link: "",
+		isActive: true,
 	},
 	{
 		title: "faq",
-		link: "/faq",
-		isActive: false,
+		link: "",
+		isActive: true,
 	},
 	{
 		title: "cabinet",
-		link: "/cabinet",
-		isActive: false,
+		link: "",
+		isActive: true,
 	},
 ];
 const LINK_HASH = "68YBNIVVS8fj5gs9oiA3ff0nQm70SHBWj7_dtwAKsSw";

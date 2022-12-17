@@ -88,8 +88,9 @@ export const MintModal = (props: {
 						marginTop: "30px",
 						alignSelf: "center",
 					}}
-					onClick={() => {
+					onClick={async () => {
 						mintPill();
+						props.close();
 					}}
 				>
 					mint

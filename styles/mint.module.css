@@ -78,3 +78,15 @@
     color:grey;
     border-color: grey;
 }
+.companyLogo {
+    position: fixed;
+    bottom: 0px;
+    left:0px;
+    margin: 14px;
+}
+@media screen and (max-width: 750px) {
+    
+    .companyLogo {
+        visibility: hidden;
+    }
+  }

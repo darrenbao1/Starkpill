@@ -146,6 +146,13 @@ const Mint = () => {
 						backgroundId={selectedBackgroundId}
 					/>
 				)}
+				<Image
+					src="/companyLogo.png"
+					height={40}
+					width={136}
+					alt="seraphLabs"
+					className={styles.companyLogo}
+				></Image>
 			</div>
 		</div>
 	);
