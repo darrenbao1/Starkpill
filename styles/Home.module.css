@@ -31,8 +31,8 @@
 .link {
     display:flex;
 }
-.content h2:hover{
-    color:grey;
+.content h1:hover{
+    color:#FF4F0A;
 }
 
 .container footer{
