@@ -74,7 +74,9 @@ const Mint = () => {
 	const mintButton = !showMintModal && (
 		<div
 			className="connectWalletButton"
-			style={{ padding: "1rem 2rem" }}
+			style={{
+				padding: "1rem 2rem",
+			}}
 			onClick={() => {
 				closeAllModals();
 				setShowMintModal(true);

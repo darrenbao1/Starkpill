@@ -107,6 +107,7 @@
     }
     .selectionContainer2{
       padding-bottom: 10vh;
+      overflow: overlay;
   }
   }
   @keyframes toast-in-right {

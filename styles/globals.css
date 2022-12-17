@@ -23,6 +23,7 @@ a {
   padding-top: 13px;
   cursor: pointer;
   background-color: #FF4F0A;
+  border: 1px solid rgba(228, 228, 228, 0.6);
 }
 .connectWalletButton:hover {
   background-color: #fe7641;
