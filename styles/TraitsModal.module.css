@@ -58,6 +58,9 @@
   grid-template-columns: 1fr 1fr;
   grid-gap: 2rem;
   padding:1rem;
+  overflow: hidden;
+}
+.selectionContainer2:hover {
   overflow: overlay;
 }
 .selectionIcon {
@@ -123,4 +126,18 @@
 
 .selectionIconActive .traitName {
   border-radius: 0;
+}
+.selectionContainer2::-webkit-scrollbar {
+  width: 8px;
+}
+
+.selectionContainer2::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.selectionContainer2::-webkit-scrollbar-thumb {
+  border-width: 4px;
+  border-style: solid;
+  border-color: #FF4F0A;
+  border-radius: 4px;
 }

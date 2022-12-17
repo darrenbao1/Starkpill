@@ -121,7 +121,7 @@ const Mint = () => {
 				</div>
 				{showFaceModal && (
 					<TraitsModal
-						traitName="face trait"
+						traitName="ingredient #1"
 						trait={FACE_TRAITS}
 						selectedId={selectedFaceId}
 						close={() => setShowFaceModal(false)}
@@ -130,7 +130,7 @@ const Mint = () => {
 				)}
 				{showBackgroundModal && (
 					<TraitsModal
-						traitName="background"
+						traitName="ingredient #2"
 						trait={BACKGROUND}
 						selectedId={selectedBackgroundId}
 						close={() => setShowBackgroundModal(false)}
