@@ -66,16 +66,16 @@
     width:100px;
     display: flex;
     flex-direction: column;
-    background-color: #F5F5F5;
+    background-color: #FF4F0A;
     font-family: inherit;
-    color:#FF4F0A;
+    color:#F5F5F5;
     margin: 0 40px;
 }
 .mintPrice {
-    color: #FF4F0A;
+    color: #F5F5F5;
     font-size: 25px;
     font-weight: 700;
-    background-color: #F5F5F5;
+    background-color: #FF4F0A;
     text-align: center;
     border: transparent;
     -moz-appearance: textfield;
