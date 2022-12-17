@@ -18,7 +18,7 @@ export const Navbar = () => {
 				<div className={styles.navbar}>
 					<Link href="/mint" onClick={() => setShowModal(false)}>
 						<div className={styles.logo}>
-							<span>getStarkpilled</span>
+							<span>getstarkpilled</span>
 							<Image
 								src="/landingPage.png"
 								width={60}
