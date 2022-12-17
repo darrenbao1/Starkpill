@@ -1,10 +1,15 @@
 .modalContainer{
     width: 100%;
     overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.75);
+    background: rgba(41, 41, 110, 0.9);
+    border: 1px solid #E4E4E4;
+    border-radius: 5px;
     color:white;
+    margin: 80px auto;
     display: flex;
     flex-direction: column;
+    transition: transform .6s ease-in-out;
+    animation: toast-in-right .7s;
 }
 .closeButton {
     float:right;
@@ -92,9 +97,19 @@
         position: fixed;
         top:100px;
         width:100%;
-        height:calc(100vh - 100px);
+        height: calc(100vh - 150px);
+        margin: 20px auto;
     }
     .text {
         padding: 0 2rem;
+    }
+  }
+  @keyframes toast-in-right {
+    from {
+      transform: translateX(100%);
+      
+    }
+    to {
+      transform: translateX(0);
     }
   }
