@@ -32,20 +32,22 @@ export const TraitsModal = (props: {
 						}
 						key={index}
 					>
-						<Image
-							src={trait.link}
-							width={200}
-							height={200}
-							alt={trait.name}
-							onClick={() => {
-								props.select(trait.id);
-							}}
-							className={
-								props.traitName == "face trait"
-									? styles.centreTrait
-									: styles.centreTraitBackground
-							}
-						></Image>
+						<div className={styles.imageContainer}>
+							<Image
+								src={trait.link}
+								width={200}
+								height={200}
+								alt={trait.name}
+								onClick={() => {
+									props.select(trait.id);
+								}}
+								className={
+									props.traitName == "face trait"
+										? styles.centreTrait
+										: styles.centreTraitBackground
+								}
+							></Image>
+						</div>
 						<div className={styles.tooltiptext}>{trait.name}</div>
 					</div>
 				))}

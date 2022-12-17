@@ -100,8 +100,16 @@
   }
   .centreTrait {
     position: relative;
+    width:150px;
+    height:150px;
+    bottom:5px;
+    right:35px;
+    object-fit: cover;
+  }
+  .imageContainer{
     width:90px;
-    height:90px;
+    height: 90px;
+    overflow: hidden;
   }
   @media screen and (max-width: 750px) {
     .modalContainer {
