@@ -2,7 +2,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "../../styles/LinksModal.module.css";
 import { PAGES } from "../../types/constants";
-import { ConnectWalletButton } from "../ConnectWalletButton";
 export const LinksModal = (props: { close: any }) => {
 	const router = useRouter();
 	return (
@@ -26,9 +25,6 @@ export const LinksModal = (props: { close: any }) => {
 							</li>
 						)
 				)}
-				<li style={{ width: "120px" }}>
-					<ConnectWalletButton />
-				</li>
 			</ul>
 		</div>
 	);
