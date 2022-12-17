@@ -80,6 +80,9 @@
   border-radius:  5px 5px  0 0;
 
 }
+.selectionIconActive .centreTraitBackground {
+  border-radius: 0;
+}
   .centreTraitBackground {
     position: relative;
     width:170px;
