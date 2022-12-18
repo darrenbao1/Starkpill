@@ -21,7 +21,7 @@ export const PAGES: Page[] = [
 		isActive: true,
 	},
 ];
-const LINK_HASH = "68YBNIVVS8fj5gs9oiA3ff0nQm70SHBWj7_dtwAKsSw";
+const LINK_HASH = "YUOO4tIjNdw82NlYv3reVJ4pQJw7uZFkm0LKKVdLSEA";
 const FACE_TRAIT_LINK = "https://arweave.net/" + LINK_HASH + "/PillIngredient/";
 export const FACE_TRAITS: Trait[] = [
 	{
@@ -58,6 +58,26 @@ export const FACE_TRAITS: Trait[] = [
 		id: 6,
 		name: "Kitsune Mask",
 		link: FACE_TRAIT_LINK + "ing_006.png",
+	},
+	{
+		id: 7,
+		name: "Wassie Face",
+		link: FACE_TRAIT_LINK + "ing_007.png",
+	},
+	{
+		id: 8,
+		name: "Wassie Cone",
+		link: FACE_TRAIT_LINK + "ing_008.png",
+	},
+	{
+		id: 9,
+		name: "Kabuto Helmet",
+		link: FACE_TRAIT_LINK + "ing_009.png",
+	},
+	{
+		id: 10,
+		name: "Cairo Cap",
+		link: FACE_TRAIT_LINK + "ing_010.png",
 	},
 ];
 const BACKGROUND_LINK =
@@ -97,6 +117,41 @@ export const BACKGROUND: Trait[] = [
 		id: 6,
 		name: "Aquarius Sky Vaporwave",
 		link: BACKGROUND_LINK + "006.png",
+	},
+	{
+		id: 7,
+		name: "Galaxy Oil Painting",
+		link: BACKGROUND_LINK + "007.png",
+	},
+	{
+		id: 8,
+		name: "Rocket",
+		link: BACKGROUND_LINK + "008.png",
+	},
+	{
+		id: 9,
+		name: "Cloudy Kingdom",
+		link: BACKGROUND_LINK + "009.png",
+	},
+	{
+		id: 10,
+		name: "Training Grounds",
+		link: BACKGROUND_LINK + "010.png",
+	},
+	{
+		id: 11,
+		name: "Medicine Cabinet",
+		link: BACKGROUND_LINK + "011.png",
+	},
+	{
+		id: 12,
+		name: "Night Sky",
+		link: BACKGROUND_LINK + "012.png",
+	},
+	{
+		id: 13,
+		name: "Violet Swirl",
+		link: BACKGROUND_LINK + "013.png",
 	},
 ];
 
