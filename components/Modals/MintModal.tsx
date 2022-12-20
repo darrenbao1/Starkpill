@@ -41,6 +41,7 @@ export const MintModal = (props: {
 					hash: response.transaction_hash,
 					metadata: { transactionName: "Approve and Mint Pill" },
 				});
+				props.close();
 			} catch (e) {
 				console.log(e);
 			}
@@ -90,7 +91,6 @@ export const MintModal = (props: {
 					}}
 					onClick={async () => {
 						mintPill();
-						props.close();
 					}}
 				>
 					mint

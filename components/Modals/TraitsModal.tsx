@@ -47,7 +47,15 @@ export const TraitsModal = (props: {
 								}
 							></Image>
 						</div>
-						<div className={styles.traitName}>{trait.name}</div>
+						<div
+							className={
+								index == props.selectedId
+									? styles.traitNameActive
+									: styles.traitName
+							}
+						>
+							{trait.name}
+						</div>
 					</div>
 				))}
 			</div>
