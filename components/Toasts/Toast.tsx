@@ -32,19 +32,19 @@ const ToastObj = (props: { hash: string }) => {
 				setIsShown(true);
 				setTxStatus("Pending");
 				setStatusColor("yellow");
-				setTimeout(() => setIsShown(false), 3000);
+				setTimeout(() => setIsShown(false), 7000);
 			}
 			if (status == "ACCEPTED_ON_L2") {
 				setIsShown(true);
 				setTxStatus("Success");
 				setStatusColor("green");
-				setTimeout(() => setIsShown(false), 3000);
+				setTimeout(() => setIsShown(false), 7000);
 			}
 			if (status == "REJECTED") {
 				setIsShown(true);
 				setTxStatus("Failed");
 				setStatusColor("red");
-				setTimeout(() => setIsShown(false), 3000);
+				setTimeout(() => setIsShown(false), 7000);
 			}
 		}
 	};
