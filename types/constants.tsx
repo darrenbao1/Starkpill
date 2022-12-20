@@ -20,6 +20,11 @@ export const PAGES: Page[] = [
 		link: "",
 		isActive: true,
 	},
+	{
+		title: "testing",
+		link: "/testing",
+		isActive: true,
+	},
 ];
 const LINK_HASH = "YUOO4tIjNdw82NlYv3reVJ4pQJw7uZFkm0LKKVdLSEA";
 const FACE_TRAIT_LINK = "https://arweave.net/" + LINK_HASH + "/PillIngredient/";
