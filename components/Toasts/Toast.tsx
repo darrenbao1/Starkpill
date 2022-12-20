@@ -21,7 +21,7 @@ export const Toast = () => {
 	);
 };
 const ToastObj = (props: { hash: string }) => {
-	const { data } = useTransactionReceipt({ hash: props.hash });
+	const { data } = useTransactionReceipt({ hash: props.hash, watch: true });
 	const [isShown, setIsShown] = useState(false);
 	const [txStatus, setTxStatus] = useState("");
 	const [statusColor, setStatusColor] = useState("yellow");
