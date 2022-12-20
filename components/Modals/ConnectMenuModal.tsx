@@ -2,15 +2,32 @@ import { useConnectors } from "@starknet-react/core";
 import styles from "../../styles/ConnectMenuModal.module.css";
 import Cross from "../../public/svgs/cross.svg";
 import { NoInstalledWalletModal } from "./NoInstalledWalletModal";
+import { useEffect, useRef } from "react";
 function ConnectMenuModal(props: { connectors: any; close: any }) {
 	const { connect } = useConnectors();
 	let loginWallet = async (connector: any) => {
 		connect(connector);
 		props.close();
 	};
+	function useOutsideAlerter(ref: any) {
+		useEffect(() => {
+			function handleClickOutside(event: any) {
+				if (ref.current && !ref.current.contains(event.target)) {
+					props.close();
+				}
+			}
+
+			document.addEventListener("mousedown", handleClickOutside);
+			return () => {
+				document.removeEventListener("mousedown", handleClickOutside);
+			};
+		}, [ref]);
+	}
+	const wrapperRef = useRef(null);
+	useOutsideAlerter(wrapperRef);
 	return (
 		<div className={styles.modal}>
-			<div className={styles.menu}>
+			<div className={styles.menu} ref={wrapperRef}>
 				{props.close && (
 					<button
 						className={styles.menu_close}

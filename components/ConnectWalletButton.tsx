@@ -1,5 +1,5 @@
 import { useAccount, useConnectors } from "@starknet-react/core";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { shortAddressForModal, shortenAddress } from "../types/utils";
 import ConnectMenuModal from "./Modals/ConnectMenuModal";
 import styles from "../styles/ConnectWalletButton.module.css";
@@ -38,6 +38,22 @@ export const ConnectWalletButton = () => {
 };
 
 const ConnectedButton = (props: { address: string; disconnect: any }) => {
+	function useOutsideAlerter(ref: any) {
+		useEffect(() => {
+			function handleClickOutside(event: any) {
+				if (ref.current && !ref.current.contains(event.target)) {
+					setShowDropDown(false);
+				}
+			}
+
+			document.addEventListener("mousedown", handleClickOutside);
+			return () => {
+				document.removeEventListener("mousedown", handleClickOutside);
+			};
+		}, [ref]);
+	}
+	const wrapperRef = useRef(null);
+	useOutsideAlerter(wrapperRef);
 	const [showDropDown, setShowDropDown] = useState(false);
 	const [showSnackBar, setShowSnackBar] = useState(false);
 	const CopyAddress = (walletAddress: string) => {
@@ -45,8 +61,9 @@ const ConnectedButton = (props: { address: string; disconnect: any }) => {
 		setShowSnackBar(true);
 		setTimeout(() => setShowSnackBar(false), 1000);
 	};
+
 	return (
-		<>
+		<div ref={wrapperRef}>
 			<div
 				className="connectWalletButton"
 				onClick={() => setShowDropDown(!showDropDown)}
@@ -95,6 +112,6 @@ const ConnectedButton = (props: { address: string; disconnect: any }) => {
 					</div>
 				</div>
 			)}
-		</>
+		</div>
 	);
 };
