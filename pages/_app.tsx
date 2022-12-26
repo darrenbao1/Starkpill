@@ -16,7 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
 	];
 	return (
 		<div style={{ position: "fixed" }}>
-			<StarknetConfig connectors={connectors}>
+			<StarknetConfig connectors={connectors} autoConnect={true}>
 				<Head>
 					<link rel="icon" href="/starkpill.PNG"></link>
 					<title>getStarkpilled</title>
