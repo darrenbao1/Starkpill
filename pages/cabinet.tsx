@@ -85,7 +85,6 @@ export default function Cabinet() {
 						setLoading(false);
 					});
 			}
-			setLoading(true);
 		}
 	};
 	return (
