@@ -14,7 +14,6 @@ export default function Cabinet() {
 	const [loadedAllPills, setIsLoadedAllPills] = useState(false);
 	async function fetchData() {
 		if (!loadedAllPills) {
-			console.log("api is run :" + offsetAmount);
 			await fetch(
 				MINTSQUARE_BASE_URL +
 					"nfts/" +
@@ -55,7 +54,8 @@ export default function Cabinet() {
 		if (bottom && !loading) {
 			setOffsetAmount(offsetAmount + offsetIncrement);
 			if (!loadedAllPills) {
-				console.log("api is run :" + offsetAmount + offsetIncrement);
+				setLoading(true);
+				//did this because updating the state isn't asynchronous
 				let i = offsetAmount + offsetIncrement;
 				fetch(
 					MINTSQUARE_BASE_URL +
