@@ -47,7 +47,7 @@ export default function Cabinet() {
 	}
 	useEffect(() => {
 		fetchData();
-	}, [loading]);
+	}, []);
 
 	const handleScroll = (e: any) => {
 		const bottom =
