@@ -10,9 +10,11 @@ export default function Cabinet() {
 	const [jsonArray, setJsonArry] = useState<any[]>([]);
 	const offsetIncrement = 100;
 	const [offsetAmount, setOffsetAmount] = useState(0);
-	const [isBottom, setIsBottom] = useState(false);
+	const [loading, setLoading] = useState(true);
+	const [loadedAllPills, setIsLoadedAllPills] = useState(false);
 	async function fetchData() {
-		try {
+		if (!loadedAllPills) {
+			console.log("api is run :" + offsetAmount);
 			await fetch(
 				MINTSQUARE_BASE_URL +
 					"nfts/" +
@@ -33,23 +35,28 @@ export default function Cabinet() {
 			)
 				.then((response) => response.json())
 				.then((data) => {
+					if (data.length <= 0) {
+						setIsLoadedAllPills(true);
+					}
 					setJsonArry((jsonArray) => [...jsonArray, ...data]);
-					setIsBottom(false);
+				})
+				.finally(() => {
+					setLoading(false);
 				});
-		} catch (e) {
-			console.log(e);
 		}
 	}
 	useEffect(() => {
 		fetchData();
-	}, [isBottom]);
+	}, [loading]);
 
 	const handleScroll = (e: any) => {
 		const bottom =
 			e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
-		if (bottom) {
+		if (bottom && !loading) {
 			setOffsetAmount(offsetAmount + offsetIncrement);
-			setIsBottom(true);
+			if (!loadedAllPills) {
+				setLoading(true);
+			}
 		}
 	};
 	return (
@@ -65,6 +72,7 @@ export default function Cabinet() {
 					))}
 				</div>
 			</div>
+			{loading && <div className="snackbar">loading</div>}
 		</div>
 	);
 }
