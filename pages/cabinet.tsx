@@ -56,6 +56,7 @@ export default function Cabinet() {
 			setOffsetAmount(offsetAmount + offsetIncrement);
 			if (!loadedAllPills) {
 				console.log("api is run :" + offsetAmount + offsetIncrement);
+				let i = offsetAmount + offsetIncrement;
 				fetch(
 					MINTSQUARE_BASE_URL +
 						"nfts/" +
@@ -65,8 +66,7 @@ export default function Cabinet() {
 						"&limit=" +
 						offsetIncrement +
 						"&offset=" +
-						offsetAmount +
-						offsetIncrement,
+						i,
 					{
 						method: "get",
 						mode: "cors",
