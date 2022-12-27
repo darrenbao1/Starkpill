@@ -11,18 +11,6 @@ export default function Cabinet() {
 	const offsetIncrement = 20;
 	const [offsetAmount, setOffsetAmount] = useState(0);
 	async function fetchData() {
-		console.log(
-			MINTSQUARE_BASE_URL +
-				"nfts/" +
-				NETWORK_FOR_API +
-				"?collection=" +
-				STARKPILL_CONTRACT_ADDRESS +
-				"&limit=" +
-				offsetIncrement +
-				"&offset=" +
-				offsetAmount
-		);
-		console.log("fetching");
 		await fetch(
 			MINTSQUARE_BASE_URL +
 				"nfts/" +
@@ -46,8 +34,7 @@ export default function Cabinet() {
 			});
 	}
 	useEffect(() => {
-		//fetchData();
-		console.log("testing");
+		fetchData();
 	}, []);
 
 	const handleScroll = (e: any) => {

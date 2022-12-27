@@ -13,7 +13,7 @@ export const PAGES: Page[] = [
 	},
 	{
 		title: "faq",
-		link: "",
+		link: "/faq",
 		isActive: true,
 	},
 	{
@@ -157,38 +157,38 @@ export const BACKGROUND: Trait[] = [
 ];
 export const FAQ_QUESTIONS: FAQ[] = [
 	{
-		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+		question: "What's Starkpilled?",
 		answer:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+			"Starkpilled is an SFT (Semi-Fungible Token) collection of digital avatars for people to celebrate to the StarkNet Ecosystem and participate in the SFT movement.",
 	},
 	{
-		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+		question: "What's the vision?",
 		answer:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+			"First, we want to showcase a better way to tokenize digital collectibles. Second, we’d like to offer a different perspective on valuing PFP collections - currently rarity is tied to the whole RNG’d PFP work of art eg. you value CryptoPunk#2391 as it is. With Starkpilled the idea is to value traits over the whole, so you can have a digital avatar that you can identify with more meaningfully.",
 	},
 	{
-		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+		question: "SFTs?",
 		answer:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+			"Compared to traditional NFT collections that are of the ERC-721 token standard, Starkpills are ERC-2114s’ a Seraph Labs tweak of the novel ERC-3525 developed by Solv Protocol. In short, SFTs are dynamic “NFTs” that are able to be programmed and “equip” other “NFTs”.",
 	},
 	{
-		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+		question: "What can I do with my Starkpills?",
 		answer:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+			"Think of Starkpills as your digital avatar that you can personalize to your liking with 2 points of customization - facial trait and background. We will continuously release new traits and partner with projects to offer limited edition traits.",
 	},
 	{
-		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+		question: "Can I trade my traits?",
 		answer:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+			"Yes, you can! Because Starkpills are ERC-2114 SFTs, think of the default Starkpill as the base image and the other 2 traits as NFTs that it equips. You will be able to unequip traits and equip new ones acquired through trading and special events.",
 	},
 	{
-		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+		question: "What’s the cabinet?",
 		answer:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+			"All minted Starkpills are displayed in our cabinet page as a neat collection for people to see all the unique Starkpills minted.",
 	},
 	{
-		question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit?",
+		question: "Can I add my own traits to the current offerings?",
 		answer:
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+			"Yes! But subject to certain terms and conditions. If you’re interested with working with us, please reach out to 211lp@seraphlabs.io or @211lp on Twitter.",
 	},
 ];
