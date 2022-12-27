@@ -41,7 +41,6 @@ a {
   background-image: url("/background.png");
   background-size:cover;
   background-repeat: no-repeat;
-  margin-right: 8px;
   overflow-y: overlay;
 }
 

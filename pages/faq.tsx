@@ -9,12 +9,12 @@ export default function faq() {
 		const [showAnswer, setShowAnswer] = useState(false);
 		return (
 			<div className={styles.questionContainer}>
-				<div className={styles.question}>
+				<div
+					className={styles.question}
+					onClick={() => setShowAnswer(!showAnswer)}
+				>
 					{props.faq.question}
-					<div
-						className={styles.button}
-						onClick={() => setShowAnswer(!showAnswer)}
-					>
+					<div className={styles.button}>
 						{showAnswer ? <Cross /> : <Plus />}
 					</div>
 				</div>

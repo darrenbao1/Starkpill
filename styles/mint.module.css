@@ -7,18 +7,20 @@
 }
 .backgroundFade {
     position: fixed;
-    width: 100vw;
+    width: calc(100vw + 5px);
     height:calc(100vh - 100px);
     background: linear-gradient(269.9deg, rgba(0, 0, 0, 0.792) 53.43%, rgba(0, 0, 0, 0.7755) 96.05%, rgba(0, 0, 0, 0.784406) 99.91%, rgba(0, 0, 0, 0) 99.92%);
     z-index: -1;
+    margin-left: -5px;
 }
 .imageContainer{
     aspect-ratio: 1/1;
-    min-width: 210px;
-    max-width: 375px;
+    min-width: 212px;
+    max-width: 377px;
     width:50%;
     position:relative;
-    
+    padding: 1px;
+    border: 1px solid rgba(228, 228, 228, 0.6);
     border-radius: 6px;
    margin-bottom: 1rem;
 }
