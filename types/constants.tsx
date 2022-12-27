@@ -8,8 +8,8 @@ export const NETWORK_FOR_API = "starknet-testnet";
 export const PAGES: Page[] = [
 	{
 		title: "about",
-		link: "",
-		isActive: true,
+		link: "/about",
+		isActive: false,
 	},
 	{
 		title: "faq",
@@ -18,7 +18,7 @@ export const PAGES: Page[] = [
 	},
 	{
 		title: "cabinet",
-		link: "",
+		link: "/cabinet",
 		isActive: true,
 	},
 ];
