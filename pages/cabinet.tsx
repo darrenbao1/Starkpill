@@ -55,8 +55,37 @@ export default function Cabinet() {
 		if (bottom && !loading) {
 			setOffsetAmount(offsetAmount + offsetIncrement);
 			if (!loadedAllPills) {
-				setLoading(true);
+				console.log("api is run :" + offsetAmount);
+				fetch(
+					MINTSQUARE_BASE_URL +
+						"nfts/" +
+						NETWORK_FOR_API +
+						"?collection=" +
+						STARKPILL_CONTRACT_ADDRESS +
+						"&limit=" +
+						offsetIncrement +
+						"&offset=" +
+						offsetAmount,
+					{
+						method: "get",
+						mode: "cors",
+						headers: {
+							"Access-Control-Allow-Origin": "*",
+						},
+					}
+				)
+					.then((response) => response.json())
+					.then((data) => {
+						if (data.length <= 0) {
+							setIsLoadedAllPills(true);
+						}
+						setJsonArry((jsonArray) => [...jsonArray, ...data]);
+					})
+					.finally(() => {
+						setLoading(false);
+					});
 			}
+			setLoading(true);
 		}
 	};
 	return (
