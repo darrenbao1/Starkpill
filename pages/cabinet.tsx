@@ -13,6 +13,17 @@ export default function Cabinet() {
 	const [loading, setLoading] = useState(true);
 	const [loadedAllPills, setIsLoadedAllPills] = useState(false);
 	async function fetchData() {
+		console.log(
+			MINTSQUARE_BASE_URL +
+				"nfts/" +
+				NETWORK_FOR_API +
+				"?collection=" +
+				STARKPILL_CONTRACT_ADDRESS +
+				"&limit=" +
+				offsetIncrement +
+				"&offset=" +
+				offsetAmount
+		);
 		if (!loadedAllPills) {
 			await fetch(
 				MINTSQUARE_BASE_URL +
