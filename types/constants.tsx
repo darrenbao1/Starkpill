@@ -1,9 +1,10 @@
 import { FAQ, Page, Trait } from "./interfaces";
-import { StarkPill } from "./interfaces";
 export const STARKPILL_CONTRACT_ADDRESS =
 	"0x05ef092a31619faa63bf317bbb636bfbba86baf8e0e3e8d384ee764f2904e5dd";
 export const STARKETH_CONTRACT_ADDRESS =
 	"0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7";
+export const MINTSQUARE_BASE_URL = "https://api.mintsquare.io/v0/";
+export const NETWORK_FOR_API = "starknet-testnet";
 export const PAGES: Page[] = [
 	{
 		title: "about",
@@ -152,114 +153,6 @@ export const BACKGROUND: Trait[] = [
 		id: 13,
 		name: "Violet Swirl",
 		link: BACKGROUND_LINK + "013.png",
-	},
-];
-
-export const SAMPLE_DATA: StarkPill[] = [
-	{
-		id: 1,
-		cost: 0,
-		owner: "0x0464F1765E2911F0743e24eAA81C40cbF27D2bbaE690c9A82F052FF96c68689c",
-	},
-	{
-		id: 1,
-		cost: 0,
-		owner: "0x0464F1765E2911F0743e24eAA81C40cbF27D2bbaE690c9A82F052FF96c68689c",
-	},
-	{
-		id: 1,
-		cost: 0,
-		owner: "0x0464F1765E2911F0743e24eAA81C40cbF27D2bbaE690c9A82F052FF96c68689c",
-	},
-	{
-		id: 1,
-		cost: 0,
-		owner: "0x0464F1765E2911F0743e24eAA81C40cbF27D2bbaE690c9A82F052FF96c68689c",
-	},
-	{
-		id: 1,
-		cost: 0,
-		owner: "0x0464F1765E2911F0743e24eAA81C40cbF27D2bbaE690c9A82F052FF96c68689c",
-	},
-	{
-		id: 1,
-		cost: 0,
-		owner: "0x0464F1765E2911F0743e24eAA81C40cbF27D2bbaE690c9A82F052FF96c68689c",
-	},
-	{
-		id: 1,
-		cost: 0,
-		owner: "0x0464F1765E2911F0743e24eAA81C40cbF27D2bbaE690c9A82F052FF96c68689c",
-	},
-	{
-		id: 1,
-		cost: 0,
-		owner: "0x0464F1765E2911F0743e24eAA81C40cbF27D2bbaE690c9A82F052FF96c68689c",
-	},
-	{
-		id: 1,
-		cost: 0,
-		owner: "0x0464F1765E2911F0743e24eAA81C40cbF27D2bbaE690c9A82F052FF96c68689c",
-	},
-	{
-		id: 1,
-		cost: 0,
-		owner: "0x0464F1765E2911F0743e24eAA81C40cbF27D2bbaE690c9A82F052FF96c68689c",
-	},
-	{
-		id: 1,
-		cost: 0,
-		owner: "0x0464F1765E2911F0743e24eAA81C40cbF27D2bbaE690c9A82F052FF96c68689c",
-	},
-	{
-		id: 1,
-		cost: 0,
-		owner: "0x0464F1765E2911F0743e24eAA81C40cbF27D2bbaE690c9A82F052FF96c68689c",
-	},
-	{
-		id: 1,
-		cost: 0,
-		owner: "0x0464F1765E2911F0743e24eAA81C40cbF27D2bbaE690c9A82F052FF96c68689c",
-	},
-	{
-		id: 1,
-		cost: 0,
-		owner: "0x0464F1765E2911F0743e24eAA81C40cbF27D2bbaE690c9A82F052FF96c68689c",
-	},
-	{
-		id: 1,
-		cost: 0,
-		owner: "0x0464F1765E2911F0743e24eAA81C40cbF27D2bbaE690c9A82F052FF96c68689c",
-	},
-	{
-		id: 1,
-		cost: 0,
-		owner: "0x0464F1765E2911F0743e24eAA81C40cbF27D2bbaE690c9A82F052FF96c68689c",
-	},
-	{
-		id: 1,
-		cost: 0,
-		owner: "0x0464F1765E2911F0743e24eAA81C40cbF27D2bbaE690c9A82F052FF96c68689c",
-	},
-	{
-		id: 1,
-		cost: 0,
-		owner: "0x0464F1765E2911F0743e24eAA81C40cbF27D2bbaE690c9A82F052FF96c68689c",
-	},
-	{
-		id: 1,
-		cost: 0,
-		owner: "0x0464F1765E2911F0743e24eAA81C40cbF27D2bbaE690c9A82F052FF96c68689c",
-	},
-	{
-		id: 1,
-		cost: 0,
-		owner: "0x0464F1765E2911F0743e24eAA81C40cbF27D2bbaE690c9A82F052FF96c68689c",
-	},
-	{
-		id: 1,
-		cost: 0,
-		owner: "0x0464F1765E2911F0743e24eAA81C40cbF27D2bbaE690c9A82F052FF96c68689c",
 	},
 ];
 export const FAQ_QUESTIONS: FAQ[] = [
