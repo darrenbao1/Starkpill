@@ -9,8 +9,8 @@ export default function about() {
 				<Image
 					src="/sampleBG/China_BG.png"
 					className={styles.image}
-					height={2000}
-					width={2000}
+					height={500}
+					width={500}
 					alt=""
 				></Image>
 

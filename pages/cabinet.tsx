@@ -92,6 +92,7 @@ export default function Cabinet() {
 		<div className="container" onScroll={(e) => handleScroll(e)}>
 			<div className={styles.backgroundFade}></div>
 			<div className="contentContainer">
+				<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>starkpills</h1>
 				<div className={styles.cardContainer}>
 					{jsonArray.map((jsonString, index) => (
 						<StarkPillCard
