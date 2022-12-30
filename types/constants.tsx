@@ -22,6 +22,14 @@ export const PAGES: Page[] = [
 		isActive: true,
 	},
 ];
+export const USERPAGES: Page[] = [
+	{
+		title: "pills",
+		link: "/mypills",
+		isActive: true,
+		paramName: "?walletAddress=",
+	},
+];
 const LINK_HASH = "YUOO4tIjNdw82NlYv3reVJ4pQJw7uZFkm0LKKVdLSEA";
 const FACE_TRAIT_LINK = "https://arweave.net/" + LINK_HASH + "/PillIngredient/";
 export const FACE_TRAITS: Trait[] = [

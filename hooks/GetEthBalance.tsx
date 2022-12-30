@@ -10,7 +10,7 @@ export function UserBalance() {
 		method: "balanceOf",
 		args: address ? [address] : undefined,
 		options: {
-			watch: true,
+			watch: false,
 		},
 	});
 	const ethBalance = useMemo(() => {

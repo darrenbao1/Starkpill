@@ -2,6 +2,7 @@ export interface Page {
 	title: string;
 	link: string;
 	isActive: boolean;
+	paramName?: string;
 }
 export interface Trait {
 	id: number;
