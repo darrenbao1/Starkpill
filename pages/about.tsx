@@ -22,7 +22,7 @@ export default function about() {
               target="_blank"
             >
               <u>Great memes</u>
-            </Link>{" "}
+            </Link>
             beget more memes, even if the resulting memes are mid.
             <br />
             <br />
