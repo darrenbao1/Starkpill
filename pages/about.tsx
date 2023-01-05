@@ -23,7 +23,7 @@ export default function about() {
             >
               <u>Great memes</u>
             </Link>
-            beget more memes, even if the resulting memes are mid.
+            &nbsp;beget more memes, even if the resulting memes are mid.
             <br />
             <br />
             Starkpills are NFTs built on the{" "}
@@ -55,6 +55,13 @@ export default function about() {
             fully live.
             <br />
             <br />
+            <Link
+              className="connectWalletButton"
+              style={{ width: "fit-content", color: "white", padding: "15px" }}
+              href="/mint"
+            >
+              Start Minting!
+            </Link>
           </div>
         </div>
       </div>
