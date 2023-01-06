@@ -17,7 +17,7 @@ export default function faq() {
 						setShowAnswer(!showAnswer);
 					}}
 				>
-					{props.faq.question}
+					<span>{props.faq.question}</span>
 					<div className={styles.button}>
 						{showAnswer ? <Cross /> : <Plus />}
 					</div>

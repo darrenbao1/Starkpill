@@ -76,7 +76,10 @@
     font-size:xx-large;
   }
   .button {
-    margin-left: 20px;
+    float: right;
+  }
+  .questionContainer span{
+    max-width: 250px;
   }
 }
 
