@@ -1,3 +1,14 @@
+.globalContainer {
+  position:fixed;
+  left:0;
+  width:100vw;
+  top:100px;
+  height:calc(100vh - 100px);
+  align-content: center;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    #29296e;
+  overflow-y: overlay;
+}
 .container {
   position: relative;
   margin: 0 auto;
@@ -9,6 +20,7 @@
   padding: 24px;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
     #29296e;
+    color:black;
 }
 .container ul {
   background: transparent;
@@ -28,18 +40,12 @@
   display: flex;
   align-items: center;
 }
-.questionContainer:hover {
+.question:hover {
   text-decoration: underline;
-  cursor: pointer;
 }
-
-.questionContainer:active:hover {
-  color: #ff4f0a;
-}
-
 .divider {
-  background: rgba(205, 214, 218, 0.25);
-  height: 5px;
+  background: rgba(0, 0, 0, 0.25);
+  height: 2px;
   width: 100%;
 }
 .answer {
