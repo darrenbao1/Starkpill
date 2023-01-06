@@ -7,11 +7,15 @@ import { useState } from "react";
 export default function faq() {
 	const FaqItem = (props: { faq: FAQ }) => {
 		const [showAnswer, setShowAnswer] = useState(false);
+
 		return (
 			<div className={styles.questionContainer}>
 				<div
 					className={styles.question}
-					onClick={() => setShowAnswer(!showAnswer)}
+					style={showAnswer ? { color: "#ff4f0a" } : {}}
+					onClick={() => {
+						setShowAnswer(!showAnswer);
+					}}
 				>
 					{props.faq.question}
 					<div className={styles.button}>
@@ -29,12 +33,9 @@ export default function faq() {
 	};
 
 	return (
-		<div
-			className="container"
-			style={{ background: "white", color: "#000000" }}
-		>
+		<div className={styles.globalContainer}>
 			<div className={styles.container}>
-				<h1>frequently asked questions</h1>
+				<h1 style={{ color: "#FF4F0A" }}>frequently asked questions</h1>
 				<ul>
 					{FAQ_QUESTIONS.map((faq, index) => (
 						<FaqItem faq={faq} key={index} />
