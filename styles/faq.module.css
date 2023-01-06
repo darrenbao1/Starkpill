@@ -65,9 +65,15 @@
 .button:hover {
   stroke: grey;
 }
+.container h1{
+  font-size: 40px;
+}
 @media screen and (max-width: 750px) {
   .container {
     padding-bottom: 80px;
+  }
+  .container h1{
+    font-size:xx-large;
   }
   .button {
     margin-left: 20px;

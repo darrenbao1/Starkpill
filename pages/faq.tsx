@@ -35,9 +35,7 @@ export default function faq() {
 	return (
 		<div className={styles.globalContainer}>
 			<div className={styles.container}>
-				<h1 style={{ color: "#FF4F0A", fontSize: 40 }}>
-					frequently asked questions
-				</h1>
+				<h1 style={{ color: "#FF4F0A" }}>frequently asked questions</h1>
 				<ul>
 					{FAQ_QUESTIONS.map((faq, index) => (
 						<FaqItem faq={faq} key={index} />
