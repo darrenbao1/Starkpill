@@ -29,9 +29,12 @@
   align-items: center;
 }
 .questionContainer:hover {
-  color: #ff4f0a;
   text-decoration: underline;
   cursor: pointer;
+}
+
+.questionContainer:active:hover {
+  color: #ff4f0a;
 }
 
 .divider {

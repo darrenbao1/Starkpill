@@ -9,7 +9,9 @@ export default function faq() {
     const [showAnswer, setShowAnswer] = useState(false);
 
     return (
-      <div className={styles.questionContainer}>
+      <div
+        className={`${styles.questionContainer} ${!showAnswer ? "active" : ""}`}
+      >
         <div
           className={`${styles.question}`}
           onClick={() => {
