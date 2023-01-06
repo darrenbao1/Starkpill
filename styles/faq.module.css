@@ -1,60 +1,68 @@
 .container {
-    position: relative;
-    margin: 0 auto;
-    max-width: 1440px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding:24px;
+  position: relative;
+  margin: 0 auto;
+  max-width: 1440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 24px;
 }
-.container ul{
-    background:white;
-    width:100%;
-    list-style-type: none;
-    padding:0;
-    
+.container ul {
+  background: white;
+  width: 100%;
+  list-style-type: none;
+  padding: 0;
 }
-.questionContainer{
-    background:#f7f7f7;
-    margin-top: 10px;
+.questionContainer {
+  background: #f7f7f7;
+  margin-top: 10px;
 }
 .question {
-    padding: 16px 24px;
-    font-size: 25px;
-    font-weight: 700;
-    line-height: 120%;
-    display: flex;
-    align-items: center;
+  padding: 16px 24px;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 120%;
+  display: flex;
+  align-items: center;
 }
-.divider{
-    background:rgba(205, 214, 218, 0.25);
-    height:5px;
-    width:100%;
+.question:hover {
+  color: #ff4f0a;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.divider {
+  background: rgba(205, 214, 218, 0.25);
+  height: 5px;
+  width: 100%;
 }
 .answer {
-    padding: 16px 48px;
-    font-size: 22px;
-    font-weight: 400;
-    line-height: 140%;
-    color: rgba(60, 60, 67, 0.85);
+  padding: 16px 48px;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 140%;
+  color: rgba(60, 60, 67, 0.85);
 }
 .button {
-    width:30px;
-    height:30px;
-    stroke:black;
-    margin-right: 0;
-    margin-left: auto;
-
+  width: 30px;
+  height: 30px;
+  stroke: black;
+  margin-right: 0;
+  margin-left: auto;
 }
-.button:hover{
-    stroke:grey;
+.button:hover {
+  stroke: grey;
 }
 @media screen and (max-width: 750px) {
-    .container {
-        padding-bottom: 80px;
-    }
-    .button {
-        margin-left: 20px;
-    }
+  .container {
+    padding-bottom: 80px;
   }
+  .button {
+    margin-left: 20px;
+  }
+}
+
+.selectedQuestion {
+  color: #ff4f0a;
+}
