@@ -7,17 +7,13 @@ import { useState } from "react";
 export default function faq() {
   const FaqItem = (props: { faq: FAQ }) => {
     const [showAnswer, setShowAnswer] = useState(false);
-    const [selectedQuestion, setSelectedQuestion] = useState(false);
 
     return (
       <div className={styles.questionContainer}>
         <div
-          className={`${styles.question} ${
-            selectedQuestion === true ? styles.selectedQuestion : ""
-          }`}
+          className={`${styles.question}`}
           onClick={() => {
             setShowAnswer(!showAnswer);
-            setSelectedQuestion(!selectedQuestion);
           }}
         >
           {props.faq.question}
