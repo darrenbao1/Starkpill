@@ -9,7 +9,10 @@ const client = new ApolloClient({
               allTokens: {
                 keyArgs: false,
                 merge(existing = [], incoming) {
-                  return [...existing, ...incoming];
+                  const uniqueIncoming = incoming.filter(
+                    (token:any) => !existing.find((t:any) => t.__ref === token.__ref)
+                  );
+                  return [...existing, ...uniqueIncoming];
                 },
               }
             }
