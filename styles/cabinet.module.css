@@ -19,6 +19,16 @@
     margin-right: 8px;
     padding-bottom: 10vh;
 }
+.top3Container{
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+@media screen and (max-width: 750px) {
+  .top3Container{
+   flex-direction: column;
+  }
+}
 .backgroundFade {
   position: fixed;
   width: calc(100vw + 5px);

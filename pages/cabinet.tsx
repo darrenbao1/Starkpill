@@ -74,9 +74,24 @@ export default function Cabinet() {
 		<div className="container" onScroll={(e) => handleScroll(e)}>
 			<div className={styles.backgroundFade}></div>
 			<div className="contentContainer">
+				<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>
+					top 3 starkpills
+				</h1>
+				<div className={styles.top3Container}>
+					{tokenIds.slice(0, 3).map((token: any, index: number) => (
+						<StarkPillCard
+							tokenId={token.id}
+							ownerAddress={token.owner.address}
+							mintPrice={token.metadata.mintPrice}
+							imageUrl={token.metadata.imageUrl}
+							rank={index + 1}
+							key={index}
+						/>
+					))}
+				</div>
 				<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>starkpills</h1>
 				<div className={styles.cardContainer}>
-					{tokenIds.map((token: any, index: number) => (
+					{tokenIds.slice(3).map((token: any, index: number) => (
 						<StarkPillCard
 							tokenId={token.id}
 							ownerAddress={token.owner.address}
