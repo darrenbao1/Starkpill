@@ -9,6 +9,7 @@ import Cross from "../public/cross.svg";
 import { LinksModal } from "./Modals/LinksModal";
 import Image from "next/image";
 import { useAccount } from "@starknet-react/core";
+import { convertToStandardWalletAddress } from "../types/utils";
 export const Navbar = () => {
 	const router = useRouter();
 	const [showModal, setShowModal] = useState(false);
@@ -58,7 +59,9 @@ export const Navbar = () => {
 											}
 											href={
 												page.paramName
-													? page.link + page.paramName + address
+													? page.link +
+													  page.paramName +
+													  convertToStandardWalletAddress(address)
 													: page.link
 											}
 											key={index}

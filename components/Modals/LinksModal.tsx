@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import styles from "../../styles/LinksModal.module.css";
 import { PAGES, USERPAGES } from "../../types/constants";
 import { useAccount } from "@starknet-react/core";
+import { convertToStandardWalletAddress } from "../../types/utils";
 export const LinksModal = (props: { close: any }) => {
 	const router = useRouter();
 	const { address } = useAccount();
@@ -40,7 +41,9 @@ export const LinksModal = (props: { close: any }) => {
 										}
 										href={
 											page.paramName
-												? page.link + page.paramName + address
+												? page.link +
+												  page.paramName +
+												  convertToStandardWalletAddress(address)
 												: page.link
 										}
 										onClick={props.close}

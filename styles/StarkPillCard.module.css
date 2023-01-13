@@ -1,11 +1,11 @@
 .card {
-    width:250px;
+    width:200px;
     margin: auto;
     display: grid;
 }
 .image {
-   width: 250px;
-   height:250px;
+   width: 200px;
+   height:200px;
    background-color: white;
    border: 1px solid rgba(228, 228, 228, 0.6);
    border-radius: 6px 6px 0 0;
@@ -13,7 +13,7 @@
 .content {
     padding: 1rem;
     font-size: large;
-    width:250px;
+    width:200px;
     color:black;
     background-color: white;
     border: 1px solid rgba(228, 228, 228, 0.6);
