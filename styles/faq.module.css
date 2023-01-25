@@ -1,9 +1,9 @@
 .globalContainer {
-  position:fixed;
-  left:0;
-  width:100vw;
-  top:100px;
-  height:calc(100vh - 100px);
+  position: relative;
+  left: 0;
+  width: 100vw;
+  top: 100px;
+  height: calc(100vh - 100px);
   align-content: center;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
     #29296e;
@@ -20,7 +20,7 @@
   padding: 24px;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
     #29296e;
-    color:black;
+  color: black;
 }
 .container ul {
   background: transparent;
@@ -65,20 +65,20 @@
 .button:hover {
   stroke: grey;
 }
-.container h1{
+.container h1 {
   font-size: 40px;
 }
 @media screen and (max-width: 750px) {
   .container {
     padding-bottom: 80px;
   }
-  .container h1{
-    font-size:xx-large;
+  .container h1 {
+    font-size: xx-large;
   }
   .button {
     float: right;
   }
-  .questionContainer span{
+  .questionContainer span {
     max-width: 250px;
   }
 }

@@ -1,11 +1,14 @@
 .contentContainer {
   position: relative;
   margin: auto;
-  max-width: 1440px;
+  max-width: 100%;
   overflow: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
+
   height: 100%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    #29296e;
 }
 .text {
   margin: auto;
@@ -14,25 +17,26 @@
   font-weight: 400;
   font-size: 1.2rem;
   line-height: 150%;
-  padding: 2rem 4rem;
-  color: black;
+  padding-right: 10%;
+  padding-top: 98.28px;
+  padding-bottom: 98px;
+  padding-left: 10%;
+  height: 100%;
+  color: white;
   overflow: auto;
 }
 .image {
   margin: auto;
-  max-width: 375px;
-  max-height: 375px;
+  max-width: 558px;
+  max-height: 558px;
   width: 100%;
   height: 100%;
+  padding: 0px;
 }
 .aboutTextShift {
-  text-align: center;
   display: none;
   justify-content: center;
-  font-family: "Patrick Hand";
-  font-style: normal;
-  color: black;
-  margin-top: 20px;
+  color: #ff4f0a;
 }
 
 @media screen and (max-width: 750px) {
@@ -54,13 +58,14 @@
   .image {
     max-width: 222px;
     max-height: 222px;
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
   }
   .aboutTextShift {
     display: flex;
     visibility: visible;
     width: 100%;
+    padding-top: 10%;
   }
   .entireBox {
     display: flex;
