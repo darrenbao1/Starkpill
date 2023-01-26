@@ -3,9 +3,9 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Patrick Hand ,Helvetica Neue, sans-serif;
-    background-color: black;
-    color: white;
+  font-family: Patrick Hand, Helvetica Neue, sans-serif;
+  background-color: black;
+  color: white;
 }
 
 a {
@@ -18,11 +18,11 @@ a {
 }
 .connectWalletButton {
   border-radius: 6px;
-  height:50px;
+  height: 50px;
   padding: 0 0.7rem;
   padding-top: 13px;
   cursor: pointer;
-  background-color: #FF4F0A;
+  background-color: #ff4f0a;
   border: 1px solid rgba(228, 228, 228, 0.6);
 }
 .connectWalletButton:hover {
@@ -32,14 +32,14 @@ a {
   z-index: -1;
 }
 .container {
-  position:fixed;
-  left:0;
-  width:100vw;
-  top:100px;
-  height:calc(100vh - 100px);
+  position: fixed;
+  left: 0;
+  width: 100vw;
+  top: 100px;
+  height: calc(100vh - 100px);
   align-content: center;
   background-image: url("/background.png");
-  background-size:cover;
+  background-size: cover;
   background-repeat: no-repeat;
   overflow-y: overlay;
 }
@@ -55,7 +55,7 @@ a {
 .container::-webkit-scrollbar-thumb {
   border-width: 4px;
   border-style: solid;
-  border-color: #FF4F0A;
+  border-color: #ff4f0a;
   border-radius: 4px;
 }
 .contentContainer {
@@ -70,8 +70,8 @@ a {
   align-items: center;
   min-width: 250px;
   height: 50px;
-  background: #29296E;
-  color:white;
+  background: #29296e;
+  color: white;
   z-index: 3;
   left: calc(50vw - 125px);
   top: calc(100vh - 70px);
@@ -82,6 +82,6 @@ a {
 }
 @media screen and (max-width: 750px) {
   .snackbar {
-      top:85vh;
+    top: 85vh;
   }
 }
