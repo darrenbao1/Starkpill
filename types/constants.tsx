@@ -12,11 +12,6 @@ export const PAGES: Page[] = [
 		isActive: true,
 	},
 	{
-		title: "faq",
-		link: "/faq",
-		isActive: true,
-	},
-	{
 		title: "cabinet",
 		link: "/cabinet",
 		isActive: true,
