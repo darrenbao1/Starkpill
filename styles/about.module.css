@@ -1,7 +1,7 @@
 .contentContainer {
   position: relative;
   margin: auto;
-  max-width: 100%;
+  max-width: 1440px;
   overflow: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
