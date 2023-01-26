@@ -94,10 +94,10 @@
   @media screen and (max-width: 750px) {
     .modalContainer {
         position: fixed;
-        top:100px;
         width:100%;
         height: calc(100vh - 150px);
         margin: 20px auto;
+        z-index: 3;
     }
     .selectionContainer{
         padding-bottom: 10vh;

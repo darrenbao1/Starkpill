@@ -2,6 +2,7 @@
     width:200px;
     margin: auto;
     display: grid;
+    cursor: pointer;
 }
 .image {
    width: 200px;

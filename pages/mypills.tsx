@@ -13,6 +13,8 @@ export default function Mypills() {
 			user(address: $address) {
 				tokens {
 					id
+					ingredient
+					background
 					owner {
 						address
 					}
@@ -46,6 +48,7 @@ export default function Mypills() {
 			{address ? (
 				<div className="container">
 					<div className={styles.backgroundFade}></div>
+
 					<div className="contentContainer">
 						<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>
 							my pills
@@ -62,9 +65,12 @@ export default function Mypills() {
 							{tokenIds.map((token: any, index: number) => (
 								<StarkPillCard
 									tokenId={token.id}
+									ingId={token.ingredient}
+									bgId={token.background}
 									ownerAddress={token.owner.address}
 									mintPrice={token.metadata.mintPrice}
 									imageUrl={token.metadata.imageUrl}
+									isOwner={true} //true because at pills page.
 									key={index}
 								/>
 							))}

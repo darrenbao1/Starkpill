@@ -1,0 +1,99 @@
+.backgroundFade {
+    position: fixed;
+    top:100px;
+    left:0px;
+    width: calc(100vw + 5px);
+    height:calc(100vh - 100px);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2.5px);
+    z-index: 1;
+    margin-left: -5px;
+  }
+  .contentContainer {
+    position: relative;
+    margin: auto;
+    max-width: 1440px;
+    display:flex;
+    height:calc(100vh - 100px);
+    z-index: 2;
+}
+.traitsContainer {
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+    z-index: 2;
+}
+.imageContainer{
+    aspect-ratio: 1/1;
+    min-width: 212px;
+    max-width: 377px;
+    width:50%;
+    position:relative;
+    padding: 1px;
+    border: 1px solid rgba(228, 228, 228, 0.6);
+    border-radius: 6px;
+   margin-bottom: 1rem;
+   z-index: 2;
+}
+.traitsContainer .editButton {
+    background: #262626;
+    color:white;
+    max-width: 375px;
+    min-width: 210px;
+    width:50%;
+    border: 1px solid rgba(228, 228, 228, 0.6);
+    box-shadow: 0px 4px 4px rgba(50, 50, 71, 0.08), 0px 4px 8px rgba(50, 50, 71, 0.06);
+    border-radius: 6px;
+    font-size: 25px;
+    cursor: pointer;
+    padding: 11px 15px;
+    margin-bottom: 1rem;
+    display:flex;
+    z-index: 2;
+}
+.traitsContainer .editButton:hover {
+    color:grey;
+    border-color: grey;
+}
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 22px;
+    max-width: 375px;
+    min-width: 210px;
+    width:50%;
+}
+.resetButton {
+    color: #FF4F0A;
+    font-family: 'Patrick Hand';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 100%;
+    padding: 11px 15px;
+    background-color: white;
+    width: 100%;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid white;
+}
+.saveButton {
+    color: #FFFFFF;
+    font-family: 'Patrick Hand';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 100%;
+    padding: 11px 15px;
+    background-color: #FF4F0A;
+    width: 100%;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid white;
+}

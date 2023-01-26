@@ -11,18 +11,38 @@ import { bnToUint256 } from "starknet/dist/utils/uint256";
 
 export default function Test() {
 	const { addTransaction } = useTransactionManager();
-	const { address } = useAccount();
+	//const { address } = useAccount();
 	const calls = [
 		{
 			contractAddress: STARKPILL_CONTRACT_ADDRESS,
-			entrypoint: "scalarRemoveFrom",
-			calldata: [510, 0, 351, 0],
-		},
-		{
-			contractAddress: STARKPILL_CONTRACT_ADDRESS,
 			entrypoint: "scalarTransferFrom",
-			calldata: [address, 511, 0, 510, 0],
+			calldata: [0, 351, 0, 350, 0],
 		},
+		// {
+		// 	contractAddress: STARKPILL_CONTRACT_ADDRESS,
+		// 	entrypoint: "scalarTransferFrom",
+		// 	calldata: [address, 327, 0, 510, 0],
+		// },
+		// {
+		// 	contractAddress: STARKPILL_CONTRACT_ADDRESS,
+		// 	entrypoint: "scalarRemoveFrom",
+		// 	calldata: [105, 0, 511, 0],
+		// },
+		// {
+		// 	contractAddress: STARKPILL_CONTRACT_ADDRESS,
+		// 	entrypoint: "scalarTransferFrom",
+		// 	calldata: [address, 106, 0, 105, 0],
+		// },
+		// {
+		// 	contractAddress: STARKPILL_CONTRACT_ADDRESS,
+		// 	entrypoint: "scalarTransferFrom",
+		// 	calldata: [address, 107, 0, 105, 0],
+		// },
+		// {
+		// 	contractAddress: STARKPILL_CONTRACT_ADDRESS,
+		// 	entrypoint: "scalarRemoveFrom",
+		// 	calldata: [510, 0, 512, 0],
+		// },
 	];
 	const { execute } = useStarknetExecute({
 		calls: calls,
