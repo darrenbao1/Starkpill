@@ -7,6 +7,7 @@ import { TraitsModal } from "./TraitsModal";
 import { useEffect, useState } from "react";
 import { getUserBackPack } from "../../types/utils";
 import { Trait } from "../../types/interfaces";
+import { ExitModal } from "./ExitModal";
 interface Props {
 	tokenId: number;
 	ingId?: number;
@@ -31,6 +32,8 @@ export const EditPillModal = (props: Props) => {
 	const [faceTraitArray, setFaceTraitArrays] = useState<Trait[]>([faceTrait]);
 	const [selectedIng, setSelectedIng] = useState(0);
 	const [selectedBackgroundId, setBackgroundId] = useState(0);
+	const [showExitModal, setShowExitModal] = useState(false);
+	const [showSaveModal, setShowSaveModal] = useState(false);
 	useEffect(() => {
 		async function fetchData() {
 			if (address) {
@@ -41,10 +44,26 @@ export const EditPillModal = (props: Props) => {
 		}
 		fetchData();
 	}, [address]);
-
+	const [hasChanges, setHasChanges] = useState(false);
+	//use effect funtion that checks if there are changes
+	useEffect(() => {
+		if (
+			ingId == faceTraitArray[selectedIng].tokenId &&
+			bgId == backgroundArray[selectedBackgroundId].tokenId
+		) {
+			setHasChanges(false);
+		} else {
+			setHasChanges(true);
+		}
+	}, [selectedIng, selectedBackgroundId]);
 	const closeAllModals = () => {
 		setShowFaceModal(false);
 		setShowBackgroundModal(false);
+	};
+	const resetToInitial = (e: any) => {
+		handleClick(e);
+		setSelectedIng(0);
+		setBackgroundId(0);
 	};
 
 	const selectBackgroundButton = (
@@ -56,7 +75,7 @@ export const EditPillModal = (props: Props) => {
 				setShowBackgroundModal(true);
 			}}
 		>
-			{BACKGROUND[bgImageId].name}
+			{backgroundArray[selectedBackgroundId].name}
 			<div
 				style={{
 					marginRight: "0",
@@ -76,7 +95,7 @@ export const EditPillModal = (props: Props) => {
 				setShowFaceModal(true);
 			}}
 		>
-			{FACE_TRAITS[ingImageId].name}
+			{faceTraitArray[selectedIng].name}
 			<div
 				style={{
 					marginRight: "0",
@@ -87,10 +106,12 @@ export const EditPillModal = (props: Props) => {
 			</div>
 		</div>
 	);
-
 	return (
 		<>
-			<div className={styles.backgroundFade} onClick={() => props.close()}>
+			<div
+				className={styles.backgroundFade}
+				onClick={hasChanges ? () => setShowExitModal(true) : props.close}
+			>
 				<div className={styles.contentContainer}>
 					<div className={styles.traitsContainer}>
 						<div className={styles.imageContainer} onClick={handleClick}>
@@ -121,11 +142,24 @@ export const EditPillModal = (props: Props) => {
 						</div>
 						{selectFaceButton}
 						{selectBackgroundButton}
+
 						<div className={styles.buttonContainer}>
-							<div className={styles.resetButton}>reset</div>
+							<div
+								className={styles.resetButton}
+								onClick={(e) => resetToInitial(e)}
+							>
+								reset
+							</div>
 							<div className={styles.saveButton}>save</div>
 						</div>
 					</div>
+					{showExitModal && (
+						<ExitModal
+							leaveWithoutSaving={props.close}
+							closeModal={() => setShowExitModal(false)}
+							handleClick={handleClick}
+						/>
+					)}
 					{showFaceModal && (
 						<TraitsModal
 							traitName="ingredient #1"
