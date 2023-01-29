@@ -1,17 +1,23 @@
-import { useAccount } from "@starknet-react/core";
+import {
+	useAccount,
+	useStarknetExecute,
+	useTransactionManager,
+} from "@starknet-react/core";
 import styles from "../../styles/EditPillModal.module.css";
 import Image from "next/image";
 import EditIcon from "../../public/svgs/Edit.svg";
 import { BACKGROUND, FACE_TRAITS } from "../../types/constants";
 import { TraitsModal } from "./TraitsModal";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getUserBackPack } from "../../types/utils";
 import { Trait } from "../../types/interfaces";
 import { ExitModal } from "./ExitModal";
+import { SaveModal } from "./SaveModal";
+import { getEquipCalls, getUnequipCalls } from "../../hooks/StarkPillContract";
 interface Props {
 	tokenId: number;
-	ingId?: number;
-	bgId?: number;
+	ingId: number;
+	bgId: number;
 	ingImageId: number;
 	bgImageId: number;
 	close: () => void;
@@ -21,15 +27,32 @@ export const EditPillModal = (props: Props) => {
 		event.stopPropagation();
 	}
 	const { address } = useAccount();
+	const { addTransaction } = useTransactionManager();
 	const { tokenId, ingId, bgId, ingImageId, bgImageId } = props;
 	const [showBackgroundModal, setShowBackgroundModal] = useState(false);
 	const [showFaceModal, setShowFaceModal] = useState(false);
+	//get users current equip item and add it to the array
+	//pill is equipping an attribute will add a empty attribute to the array
+	let bgArray = [];
 	let bgTrait: Trait = BACKGROUND[Number(bgImageId)];
 	bgTrait.tokenId = bgId;
-	const [backgroundArray, setBackgroundArray] = useState<Trait[]>([bgTrait]);
-	let faceTrait: Trait = FACE_TRAITS[Number(ingImageId)];
-	faceTrait.tokenId = ingId;
-	const [faceTraitArray, setFaceTraitArrays] = useState<Trait[]>([faceTrait]);
+	bgArray.push(bgTrait);
+	if (bgId != 0) {
+		let blankBg = BACKGROUND[0];
+		blankBg.tokenId = 0;
+		bgArray.push(blankBg);
+	}
+	let ingArray = [];
+	let ingTrait: Trait = FACE_TRAITS[Number(ingImageId)];
+	ingTrait.tokenId = ingId;
+	ingArray.push(ingTrait);
+	if (ingId != 0) {
+		let blankIng = FACE_TRAITS[0];
+		blankIng.tokenId = 0;
+		ingArray.push(blankIng);
+	}
+	const [backgroundArray, setBackgroundArray] = useState<Trait[]>(bgArray);
+	const [faceTraitArray, setFaceTraitArrays] = useState<Trait[]>(ingArray);
 	const [selectedIng, setSelectedIng] = useState(0);
 	const [selectedBackgroundId, setBackgroundId] = useState(0);
 	const [showExitModal, setShowExitModal] = useState(false);
@@ -38,6 +61,8 @@ export const EditPillModal = (props: Props) => {
 		async function fetchData() {
 			if (address) {
 				const res = await getUserBackPack(address);
+				console.log(res.backgroundArray);
+				console.log(res.ingredientArray);
 				setBackgroundArray([...backgroundArray, ...res.backgroundArray]);
 				setFaceTraitArrays([...faceTraitArray, ...res.ingredientArray]);
 			}
@@ -45,6 +70,52 @@ export const EditPillModal = (props: Props) => {
 		fetchData();
 	}, [address]);
 	const [hasChanges, setHasChanges] = useState(false);
+	//function that compare the changes and set the state
+	const getChanges = () => {
+		if (hasChanges) {
+			let equipArray: number[] = [];
+			let unEquipArray: number[] = [];
+			//currently equipping ingredient
+			if (ingId != 0 && ingId != faceTraitArray[selectedIng].tokenId) {
+				//push ingId into unEquipArray
+				unEquipArray.push(ingId);
+				equipArray.push(faceTraitArray[selectedIng].tokenId!);
+			}
+			//currenly not equipping ingredient
+			if (ingId == 0 && ingId != faceTraitArray[selectedIng].tokenId) {
+				equipArray.push(faceTraitArray[selectedIng].tokenId!);
+			}
+			//currently equipping  background
+			if (bgId != 0 && bgId != backgroundArray[selectedBackgroundId].tokenId) {
+				//push bgId into unEquipArray
+				unEquipArray.push(bgId);
+				equipArray.push(backgroundArray[selectedBackgroundId].tokenId!);
+			}
+			if (bgId == 0 && bgId != backgroundArray[selectedBackgroundId].tokenId) {
+				equipArray.push(backgroundArray[selectedBackgroundId].tokenId!);
+			}
+			let unEqCalls = getUnequipCalls(unEquipArray, tokenId);
+			let eqCalls = getEquipCalls(equipArray, address!, tokenId);
+			console.log([...unEqCalls, ...eqCalls]);
+			return [...unEqCalls, ...eqCalls];
+		} else return [];
+	};
+	const { execute } = useStarknetExecute({
+		calls: getChanges(),
+	});
+	const saveChanges = async () => {
+		try {
+			const response = await execute();
+			addTransaction({
+				hash: response.transaction_hash,
+				metadata: { transactionName: "Unequip and Equip Invokes." },
+			});
+			props.close();
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
 	//use effect funtion that checks if there are changes
 	useEffect(() => {
 		if (
@@ -150,9 +221,23 @@ export const EditPillModal = (props: Props) => {
 							>
 								reset
 							</div>
-							<div className={styles.saveButton}>save</div>
+							<div
+								className={styles.saveButton}
+								onClick={(e) => {
+									handleClick(e);
+									saveChanges();
+								}}
+							>
+								save
+							</div>
 						</div>
 					</div>
+					{showSaveModal && (
+						<SaveModal
+							close={() => setShowSaveModal(false)}
+							handleClick={handleClick}
+						/>
+					)}
 					{showExitModal && (
 						<ExitModal
 							leaveWithoutSaving={props.close}
