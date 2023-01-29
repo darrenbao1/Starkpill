@@ -61,8 +61,6 @@ export const EditPillModal = (props: Props) => {
 		async function fetchData() {
 			if (address) {
 				const res = await getUserBackPack(address);
-				console.log(res.backgroundArray);
-				console.log(res.ingredientArray);
 				setBackgroundArray([...backgroundArray, ...res.backgroundArray]);
 				setFaceTraitArrays([...faceTraitArray, ...res.ingredientArray]);
 			}
@@ -70,38 +68,40 @@ export const EditPillModal = (props: Props) => {
 		fetchData();
 	}, [address]);
 	const [hasChanges, setHasChanges] = useState(false);
-	//function that compare the changes and set the state
+	//new getChanges funtion that gets Trait array instead of number array
 	const getChanges = () => {
+		let equipArray: Trait[] = [];
+		let unEquipArray: Trait[] = [];
 		if (hasChanges) {
-			let equipArray: number[] = [];
-			let unEquipArray: number[] = [];
 			//currently equipping ingredient
 			if (ingId != 0 && ingId != faceTraitArray[selectedIng].tokenId) {
 				//push ingId into unEquipArray
-				unEquipArray.push(ingId);
-				equipArray.push(faceTraitArray[selectedIng].tokenId!);
+				unEquipArray.push(faceTraitArray[0]);
+				equipArray.push(faceTraitArray[selectedIng]);
 			}
 			//currenly not equipping ingredient
 			if (ingId == 0 && ingId != faceTraitArray[selectedIng].tokenId) {
-				equipArray.push(faceTraitArray[selectedIng].tokenId!);
+				equipArray.push(faceTraitArray[selectedIng]);
 			}
 			//currently equipping  background
 			if (bgId != 0 && bgId != backgroundArray[selectedBackgroundId].tokenId) {
 				//push bgId into unEquipArray
-				unEquipArray.push(bgId);
-				equipArray.push(backgroundArray[selectedBackgroundId].tokenId!);
+				unEquipArray.push(backgroundArray[0]);
+				equipArray.push(backgroundArray[selectedBackgroundId]);
 			}
 			if (bgId == 0 && bgId != backgroundArray[selectedBackgroundId].tokenId) {
-				equipArray.push(backgroundArray[selectedBackgroundId].tokenId!);
+				equipArray.push(backgroundArray[selectedBackgroundId]);
 			}
-			let unEqCalls = getUnequipCalls(unEquipArray, tokenId);
-			let eqCalls = getEquipCalls(equipArray, address!, tokenId);
-			console.log([...unEqCalls, ...eqCalls]);
-			return [...unEqCalls, ...eqCalls];
-		} else return [];
+		}
+		return { equipArray, unEquipArray };
+	};
+	const getCalls = (equipArray: Trait[], unEquipArray: Trait[]) => {
+		let equipCalls = getEquipCalls(equipArray, address!, tokenId);
+		let unEquipCalls = getUnequipCalls(unEquipArray, tokenId);
+		return [...unEquipCalls, ...equipCalls];
 	};
 	const { execute } = useStarknetExecute({
-		calls: getChanges(),
+		calls: getCalls(getChanges().equipArray, getChanges().unEquipArray),
 	});
 	const saveChanges = async () => {
 		try {
@@ -130,6 +130,7 @@ export const EditPillModal = (props: Props) => {
 	const closeAllModals = () => {
 		setShowFaceModal(false);
 		setShowBackgroundModal(false);
+		setShowSaveModal(false);
 	};
 	const resetToInitial = (e: any) => {
 		handleClick(e);
@@ -225,7 +226,11 @@ export const EditPillModal = (props: Props) => {
 								className={styles.saveButton}
 								onClick={(e) => {
 									handleClick(e);
-									saveChanges();
+									closeAllModals();
+									setShowSaveModal(true);
+									//getChanges();
+									//console.log(getChanges2());
+									//saveChanges();
 								}}
 							>
 								save
@@ -236,6 +241,10 @@ export const EditPillModal = (props: Props) => {
 						<SaveModal
 							close={() => setShowSaveModal(false)}
 							handleClick={handleClick}
+							saveChanges={saveChanges}
+							unEquipArray={getChanges().unEquipArray}
+							equipArray={getChanges().equipArray}
+							tokenId={tokenId}
 						/>
 					)}
 					{showExitModal && (
