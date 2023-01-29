@@ -82,8 +82,8 @@ export const StarkPillCard = (props: Props) => {
 			{showModal && (
 				<EditPillModal
 					tokenId={Number(tokenId)}
-					ingId={ingId}
-					bgId={bgId}
+					ingId={ingId!}
+					bgId={bgId!}
 					ingImageId={ingImageId}
 					bgImageId={bgImageId}
 					close={() => setShowModal(false)}

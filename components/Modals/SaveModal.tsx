@@ -21,14 +21,18 @@ export const SaveModal = (props: {
 			</div>
 			<div className={styles.content}>
 				<h2>Starkpill #{tokenId}</h2>
-				<h2>Remove: </h2>
-				<ul>
-					{unEquipArray.map((trait) => (
-						<li key={trait.tokenId}>
-							- &nbsp; {trait.name} #{trait.tokenId}
-						</li>
-					))}
-				</ul>
+				{unEquipArray.length > 0 && (
+					<>
+						<h2>Remove: </h2>
+						<ul>
+							{unEquipArray.map((trait) => (
+								<li key={trait.tokenId}>
+									- &nbsp; {trait.name} #{trait.tokenId}
+								</li>
+							))}
+						</ul>
+					</>
+				)}
 				<h2>Equip: </h2>
 				<ul>
 					{equipArray.map((trait) => (
