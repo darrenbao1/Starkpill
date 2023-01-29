@@ -8,9 +8,10 @@ export const TraitsModal = (props: {
 	selectedId: number;
 	close: any;
 	select: any;
+	handleClick?: (e: any) => void;
 }) => {
 	return (
-		<div className={styles.modalContainer}>
+		<div className={styles.modalContainer} onClick={props.handleClick}>
 			<div className={styles.header}>
 				<span>select {props.traitName}</span>
 				<button
@@ -38,7 +39,7 @@ export const TraitsModal = (props: {
 								layout="fill"
 								objectFit="contain"
 								onClick={() => {
-									props.select(trait.id);
+									props.select(index);
 								}}
 								className={
 									props.traitName == "face trait"
