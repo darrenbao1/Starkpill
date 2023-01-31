@@ -7,7 +7,7 @@ import {
 	useStarknetExecute,
 	useTransactionManager,
 } from "@starknet-react/core";
-import { getMintVariables } from "../../hooks/MintFunction";
+import { getMintVariables } from "../../hooks/StarkPillContract";
 export const MintModal = (props: {
 	close: any;
 	faceId: number;
