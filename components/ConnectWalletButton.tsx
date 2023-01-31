@@ -4,7 +4,7 @@ import { shortAddressForModal, shortenAddress } from "../types/utils";
 import ConnectMenuModal from "./Modals/ConnectMenuModal";
 import styles from "../styles/ConnectWalletButton.module.css";
 import { TransactionList } from "./TransactionList";
-import { UserBalance } from "../hooks/GetEthBalance";
+import { UserBalance } from "../hooks/StarkEthContract";
 export const ConnectWalletButton = () => {
 	const { account, address } = useAccount();
 	const { available, refresh, disconnect } = useConnectors();

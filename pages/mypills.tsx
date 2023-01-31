@@ -26,7 +26,7 @@ export default function Mypills() {
 			}
 		}
 	`;
-	const { data, loading } = useQuery(GET_USER_TOKENS, {
+	const { data, loading, refetch } = useQuery(GET_USER_TOKENS, {
 		variables: {
 			address: walletAddress,
 		},

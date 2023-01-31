@@ -8,7 +8,7 @@ import Image from "next/image";
 import EditIcon from "../../public/svgs/Edit.svg";
 import { BACKGROUND, FACE_TRAITS } from "../../types/constants";
 import { TraitsModal } from "./TraitsModal";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { getUserBackPack } from "../../types/utils";
 import { Trait } from "../../types/interfaces";
 import { ExitModal } from "./ExitModal";
@@ -228,9 +228,6 @@ export const EditPillModal = (props: Props) => {
 									handleClick(e);
 									closeAllModals();
 									setShowSaveModal(true);
-									//getChanges();
-									//console.log(getChanges2());
-									//saveChanges();
 								}}
 							>
 								save
