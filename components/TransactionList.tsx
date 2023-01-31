@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import styles from "../styles/TransactionList.module.css";
 import { shortAddressForModal } from "../types/utils";
+
 export const TransactionList = () => {
 	const { hashes } = useTransactionManager();
 
@@ -35,7 +36,6 @@ function TransactionItem({ transactionHash }: { transactionHash: string }) {
 	const { data, loading } = useTransactionReceipt({
 		hash: transactionHash,
 	});
-
 	const getStatusColor = useCallback(() => {
 		if (data?.status != undefined) {
 			switch (data.status) {

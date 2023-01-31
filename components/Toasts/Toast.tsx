@@ -8,6 +8,8 @@ import { shortenAddress } from "../../types/utils";
 import Completed from "../../public/svgs/Completed.svg";
 import Pending from "../../public/svgs/Pending.svg";
 import Failed from "../../public/svgs/Failed.svg";
+import { useDispatch } from "react-redux";
+import { increment } from "../../features/refetch";
 export const Toast = () => {
 	const { hashes } = useTransactionManager();
 	return (
@@ -21,6 +23,7 @@ export const Toast = () => {
 	);
 };
 const ToastObj = (props: { hash: string }) => {
+	const dispatch = useDispatch();
 	const { data } = useTransactionReceipt({ hash: props.hash, watch: true });
 	const [isShown, setIsShown] = useState(false);
 	const [txStatus, setTxStatus] = useState("");
@@ -38,6 +41,7 @@ const ToastObj = (props: { hash: string }) => {
 				setIsShown(true);
 				setTxStatus("Success");
 				setStatusColor("green");
+				dispatch(increment());
 				setTimeout(() => setIsShown(false), 7000);
 			}
 			if (status == "REJECTED") {

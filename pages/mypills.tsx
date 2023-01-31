@@ -3,8 +3,11 @@ import { useRouter } from "next/router";
 import { useQuery, gql } from "@apollo/client";
 import styles from "../styles/cabinet.module.css";
 import { StarkPillCard } from "../components/StarkPillCard";
+import { useSelector } from "react-redux";
 import Link from "next/link";
+import { useEffect } from "react";
 export default function Mypills() {
+	const refetchState = useSelector((state: any) => state.refetch);
 	const { address } = useAccount();
 	const router = useRouter();
 	const { walletAddress } = router.query;
@@ -31,6 +34,12 @@ export default function Mypills() {
 			address: walletAddress,
 		},
 	});
+	useEffect(() => {
+		setTimeout(() => {
+			refetch();
+			console.log(data);
+		}, 3000);
+	}, [refetchState.value]);
 	if (loading) {
 		return (
 			<div className="container">
@@ -71,7 +80,7 @@ export default function Mypills() {
 									mintPrice={token.metadata.mintPrice}
 									imageUrl={token.metadata.imageUrl}
 									isOwner={true} //true because at pills page.
-									key={index}
+									key={token.id}
 								/>
 							))}
 						</div>
