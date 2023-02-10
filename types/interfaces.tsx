@@ -9,6 +9,7 @@ export interface Trait {
 	name: string;
 	link: string;
 	tokenId?: number;
+	premiumPrice?: number;
 }
 export interface FAQ {
 	question: string;
