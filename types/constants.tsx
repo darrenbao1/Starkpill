@@ -27,7 +27,7 @@ export const USERPAGES: Page[] = [
 ];
 const STARKPILL_API_ENDPOINT =
 	"https://orca-app-c3df4.ondigitalocean.app/starkpill-api2/graphql";
-const LINK_HASH = "YUOO4tIjNdw82NlYv3reVJ4pQJw7uZFkm0LKKVdLSEA";
+const LINK_HASH = "6BsKItfD6T7gwhbVtnypTdwjAWHQNKvR-GymMmpSyxI";
 const FACE_TRAIT_LINK = "https://arweave.net/" + LINK_HASH + "/PillIngredient/";
 export const FACE_TRAITS: Trait[] = [
 	{
@@ -84,6 +84,12 @@ export const FACE_TRAITS: Trait[] = [
 		id: 10,
 		name: "Cairo Cap",
 		link: FACE_TRAIT_LINK + "ing_010.png",
+	},
+	{
+		id: 11,
+		name: "Bunny Plush",
+		link: FACE_TRAIT_LINK + "ing_011.png",
+		premiumPrice: 0.001,
 	},
 ];
 const BACKGROUND_LINK =
@@ -158,6 +164,12 @@ export const BACKGROUND: Trait[] = [
 		id: 13,
 		name: "Violet Swirl",
 		link: BACKGROUND_LINK + "013.png",
+	},
+	{
+		id: 14,
+		name: "Train Tracks",
+		link: BACKGROUND_LINK + "014.png",
+		premiumPrice: 0.001,
 	},
 ];
 export const FAQ_QUESTIONS: FAQ[] = [

@@ -1,5 +1,6 @@
 import Cross from "../../public/svgs/cross.svg";
 import styles from "../../styles/MintModal.module.css";
+import InformationIcon from "../../public/svgs/information.svg";
 import SubtractIcon from "../../public/svgs/subtractIcon.svg";
 import AdditionIcon from "../../public/svgs/additionIcon.svg";
 import { createRef, useState } from "react";
@@ -8,17 +9,27 @@ import {
 	useTransactionManager,
 } from "@starknet-react/core";
 import { getMintVariables } from "../../hooks/StarkPillContract";
+import { BACKGROUND, FACE_TRAITS } from "../../types/constants";
 export const MintModal = (props: {
 	close: any;
 	faceId: number;
 	backgroundId: number;
 }) => {
 	const inputRef = createRef<HTMLInputElement>();
-	const Stepper = () => {
-		const [mintPrice, setMintPrice] = useState(0.001);
+	const SubTotal = () => {
+		const ingPrice = FACE_TRAITS[props.faceId].premiumPrice
+			? FACE_TRAITS[props.faceId].premiumPrice!
+			: 0;
+		const bgPrice = BACKGROUND[props.backgroundId].premiumPrice
+			? BACKGROUND[props.backgroundId].premiumPrice!
+			: 0;
+		//base mint price here
+		const baseMint: number = 0.001;
+		const [mintPrice, setMintPrice] = useState(0.0);
+		const [hover, setHover] = useState(false);
 		const { addTransaction } = useTransactionManager();
 		const handleChange = (e: any) => {
-			setMintPrice(handleDecimalsOnValue(e.target.value));
+			setMintPrice(Number(handleDecimalsOnValue(e.target.value)));
 		};
 		//set to limit to 3 decimal place
 		function handleDecimalsOnValue(value: any) {
@@ -29,7 +40,7 @@ export const MintModal = (props: {
 		const mintVariables = getMintVariables(
 			props.faceId,
 			props.backgroundId,
-			mintPrice
+			mintPrice + ingPrice + bgPrice + baseMint
 		);
 		const { execute: mintExecute } = useStarknetExecute({
 			calls: mintVariables,
@@ -46,74 +57,132 @@ export const MintModal = (props: {
 				console.log(e);
 			}
 		};
-
 		return (
-			<>
-				<div className={styles.stepper}>
-					<button
-						onClick={() => {
-							inputRef.current?.stepDown();
-							setMintPrice(Number(inputRef.current?.value));
+			<div className={styles.stepper}>
+				<div
+					className={styles.hoverTip}
+					style={hover ? { visibility: "visible" } : { visibility: "hidden" }}
+				>
+					If you wish to support our efforts,
+					<br /> you can choose to pay for your
+					<br /> Starkpill in any amount of ETH.
+				</div>
+				<div className={styles.tipContainer}>
+					<div
+						className={styles.itemName}
+						style={{
+							display: "flex",
+							justifyContent: "center",
+							alignItems: "center",
 						}}
-						disabled={mintPrice == 0.001}
 					>
-						<SubtractIcon />
-					</button>
-					<div className={styles.inputContainer}>
+						Tip&nbsp;
+						<InformationIcon
+							style={
+								hover ? { background: "#FF4F0A", borderRadius: "7px" } : {}
+							}
+							onMouseEnter={() => setHover(true)}
+							onMouseLeave={() => setHover(false)}
+						/>
+					</div>
+					<div className={styles.stepperButtonContainer}>
+						<div
+							className={styles.stepperButton}
+							onClick={() => {
+								inputRef.current?.stepUp();
+								setMintPrice(Number(inputRef.current?.value));
+							}}
+						>
+							<SubtractIcon />
+						</div>
+						<div
+							onClick={() => {
+								inputRef.current?.stepDown();
+								setMintPrice(Number(inputRef.current?.value));
+							}}
+						>
+							<SubtractIcon style={{ transform: "scaleY(-1)" }} />
+						</div>
+					</div>
+					<div className={styles.stepperContainer}>
 						<input
 							type="number"
-							min={0.001}
+							min={0}
 							step={0.001}
 							value={mintPrice}
 							onChange={(e) => handleChange(e)}
-							className={styles.mintPrice}
-							placeholder="mint price"
+							className={styles.textField}
+							placeholder="tip"
 							ref={inputRef}
-						/>
-						<span className={styles.unitOfMeasurement}>eth</span>
+						></input>
+						ETH
 					</div>
-					<button
-						onClick={() => {
-							inputRef.current?.stepUp();
-							setMintPrice(Number(inputRef.current?.value));
+				</div>
+				<div className={styles.receiptContainer}>
+					<div>
+						Subtotal{" "}
+						<span style={{ float: "right" }}>{ingPrice + bgPrice} ETH</span>
+					</div>
+					<div style={{ marginTop: "12px" }}>
+						Base Mint <span style={{ float: "right" }}>{baseMint} ETH</span>
+					</div>
+					<div className={styles.total}>
+						Total{" "}
+						<span style={{ float: "right" }}>
+							{(mintPrice + ingPrice + bgPrice + baseMint).toFixed(3)} ETH
+						</span>
+					</div>
+					<div
+						className={styles.mintButton}
+						onClick={async () => {
+							mintPill();
 						}}
 					>
-						<AdditionIcon />
-					</button>
+						mint
+					</div>
 				</div>
-				<div
-					className="connectWalletButton"
-					style={{
-						width: "fit-content",
-						padding: "1rem 2rem",
-						marginTop: "30px",
-						alignSelf: "center",
-					}}
-					onClick={async () => {
-						mintPill();
-					}}
-				>
-					mint
-				</div>
-			</>
+			</div>
 		);
 	};
 	return (
 		<div className={styles.modalContainer}>
 			<div className={styles.header}>
-				<span>mint</span>
+				<span>mint summary</span>
 				<button className={styles.closeButton} onClick={props.close}>
 					<Cross />
 				</button>
 			</div>
-			<div className={styles.text}>
-				if you wish to support our efforts you can choose pay for your Starkpill
-				in any amount of ETH.
-				<br />
-				<br />
-				All minted Starkpills will be listed as a collection in our cabinet.
+			<div className={styles.label}>Items</div>
+			<div className={styles.itemsContainer}>
+				<div className={styles.title}>Ingredient</div>
+				<div className={styles.item}>
+					<div className={styles.itemName}>
+						{FACE_TRAITS[props.faceId].name}
+					</div>
+					<div className={styles.itemPrice}>
+						{FACE_TRAITS[props.faceId].premiumPrice
+							? FACE_TRAITS[props.faceId].premiumPrice + " ETH"
+							: " - ETH"}
+					</div>
+				</div>
 			</div>
-			<Stepper />
+			<div className={styles.itemsContainer}>
+				<div className={styles.title}>Background</div>
+				<div className={styles.item}>
+					<div className={styles.itemName}>
+						{BACKGROUND[props.backgroundId].name}
+					</div>
+					<div className={styles.itemPrice}>
+						{BACKGROUND[props.backgroundId].premiumPrice
+							? BACKGROUND[props.backgroundId].premiumPrice + " ETH"
+							: " - ETH"}
+					</div>
+				</div>
+			</div>
+			<div className={styles.information}>
+				All minted Starkpills will be listed as a collection in our cabinet
+			</div>
+			<SubTotal />
 		</div>
 	);
 };
