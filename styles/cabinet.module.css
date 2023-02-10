@@ -1,39 +1,46 @@
-.cardContainer{
-    display: grid;
-    --grid-layout-gap: 10px;
-    --grid-column-count: 6;
-    --grid-item--min-width: 200px;
-    --gap-count: calc(var(--grid-column-count) - 1);
-    --total-gap-width: calc(var(--gap-count) * var(--grid-layout-gap));
-    --grid-item--max-width: calc(
-      (100% - var(--total-gap-width)) / var(--grid-column-count)
-    );
-    grid-template-columns: repeat(
-      auto-fill,
-      minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr)
-    );
-    grid-template-rows: max-content;
-    grid-gap: 2rem;
-    height: 100%;
-    padding:2rem;
-    margin-right: 8px;
-    padding-bottom: 10vh;
+.cardContainer {
+  display: grid;
+  --grid-layout-gap: 10px;
+  --grid-column-count: 6;
+  --grid-item--min-width: 200px;
+  --gap-count: calc(var(--grid-column-count) - 1);
+  --total-gap-width: calc(var(--gap-count) * var(--grid-layout-gap));
+  --grid-item--max-width: calc(
+    (100% - var(--total-gap-width)) / var(--grid-column-count)
+  );
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr)
+  );
+  grid-template-rows: max-content;
+  grid-gap: 2rem;
+  height: 100%;
+  padding: 2rem;
+  margin-right: 8px;
+  padding-bottom: 10vh;
 }
-.top3Container{
+
+.top3Container {
   display: flex;
   justify-content: center;
   gap: 2rem;
 }
 @media screen and (max-width: 750px) {
-  .top3Container{
-   flex-direction: column;
+  .top3Container {
+    flex-direction: column;
   }
 }
 .backgroundFade {
   position: fixed;
   width: calc(100vw + 5px);
-  height:calc(100vh - 100px);
-  background: linear-gradient(269.9deg, rgba(0, 0, 0, 0.792) 53.43%, rgba(0, 0, 0, 0.7755) 96.05%, rgba(0, 0, 0, 0.784406) 99.91%, rgba(0, 0, 0, 0) 99.92%);
+  height: calc(100vh - 100px);
+  background: linear-gradient(
+    269.9deg,
+    rgba(0, 0, 0, 0.792) 53.43%,
+    rgba(0, 0, 0, 0.7755) 96.05%,
+    rgba(0, 0, 0, 0.784406) 99.91%,
+    rgba(0, 0, 0, 0) 99.92%
+  );
   z-index: -1;
   margin-left: -5px;
 }

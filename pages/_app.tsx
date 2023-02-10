@@ -9,30 +9,31 @@ import client from "../apollo-client";
 import { Provider } from "react-redux";
 import { store } from "../features/store";
 export default function App({ Component, pageProps }: AppProps) {
-	//starknet wallet options
-	const connectors = [
-		new InjectedConnector({
-			options: { id: "braavos" },
-		}),
-		new InjectedConnector({
-			options: { id: "argentX" },
-		}),
-	];
-	return (
-		<div style={{ position: "fixed" }}>
-			<Provider store={store}>
-				<StarknetConfig connectors={connectors} autoConnect={true}>
-					<ApolloProvider client={client}>
-						<Head>
-							<link rel="icon" href="/starkpill.PNG"></link>
-							<title>getStarkpilled</title>
-						</Head>
-						<Navbar />
-						<Component {...pageProps} />
-						<Toast />
-					</ApolloProvider>
-				</StarknetConfig>
-			</Provider>
-		</div>
-	);
+  //starknet wallet options
+  const connectors = [
+    new InjectedConnector({
+      options: { id: "braavos" },
+    }),
+    new InjectedConnector({
+      options: { id: "argentX" },
+    }),
+  ];
+  return (
+    <div style={{ position: "fixed" }}>
+      <Provider store={store}>
+        <StarknetConfig connectors={connectors} autoConnect={true}>
+          <ApolloProvider client={client}>
+            <Head>
+              <link rel="icon" href="/starkpill.PNG"></link>
+
+              <title> getStarkpilled </title>
+            </Head>
+            <Navbar />
+            <Component {...pageProps} />
+            <Toast />
+          </ApolloProvider>
+        </StarknetConfig>
+      </Provider>
+    </div>
+  );
 }
