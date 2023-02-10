@@ -47,27 +47,24 @@ export function getMintVariables(
 	backgroundId: number,
 	mintPrice: number
 ) {
+	const Decimal = require("decimal.js");
+	let number = new Decimal(mintPrice.toFixed(3));
+	let decimalPlaces = 18;
+	number = number.mul(Decimal.pow(10, decimalPlaces));
+	number = number.round();
+	let hexadecimal = number.toHexadecimal();
 	const mintTransactionVariables = [
 		//Approve starkEth tokens call
 		{
 			contractAddress: STARKETH_CONTRACT_ADDRESS,
 			entrypoint: "approve",
-			calldata: [
-				STARKPILL_CONTRACT_ADDRESS,
-				"0x" + (mintPrice * Math.pow(10, 18)).toString(16),
-				0,
-			],
+			calldata: [STARKPILL_CONTRACT_ADDRESS, hexadecimal, 0],
 		},
 		//Mint token call
 		{
 			contractAddress: STARKPILL_CONTRACT_ADDRESS,
 			entrypoint: "mint",
-			calldata: [
-				faceId,
-				backgroundId,
-				"0x" + (mintPrice * Math.pow(10, 18)).toString(16),
-				0,
-			],
+			calldata: [faceId, backgroundId, hexadecimal, 0],
 		},
 	];
 
