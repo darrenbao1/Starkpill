@@ -25,9 +25,12 @@ export const USERPAGES: Page[] = [
 		paramName: "?walletAddress=",
 	},
 ];
+
 const STARKPILL_API_ENDPOINT =
 	"https://orca-app-c3df4.ondigitalocean.app/starkpill-api2/graphql";
 const LINK_HASH = "6BsKItfD6T7gwhbVtnypTdwjAWHQNKvR-GymMmpSyxI";
+export const IMAGE_ENDPOINT =
+	"https://arweave.net/" + LINK_HASH + "/TestPill/pill_";
 const FACE_TRAIT_LINK = "https://arweave.net/" + LINK_HASH + "/PillIngredient/";
 export const FACE_TRAITS: Trait[] = [
 	{

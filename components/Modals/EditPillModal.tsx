@@ -20,6 +20,7 @@ interface Props {
 	bgId: number;
 	ingImageId: number;
 	bgImageId: number;
+	oldImage: string;
 	close: () => void;
 }
 export const EditPillModal = (props: Props) => {
@@ -28,7 +29,7 @@ export const EditPillModal = (props: Props) => {
 	}
 	const { address } = useAccount();
 	const { addTransaction } = useTransactionManager();
-	const { tokenId, ingId, bgId, ingImageId, bgImageId } = props;
+	const { tokenId, ingId, bgId, ingImageId, bgImageId, oldImage } = props;
 	const [showBackgroundModal, setShowBackgroundModal] = useState(false);
 	const [showFaceModal, setShowFaceModal] = useState(false);
 	//get users current equip item and add it to the array
@@ -145,15 +146,13 @@ export const EditPillModal = (props: Props) => {
 				handleClick(e);
 				closeAllModals();
 				setShowBackgroundModal(true);
-			}}
-		>
+			}}>
 			{backgroundArray[selectedBackgroundId].name}
 			<div
 				style={{
 					marginRight: "0",
 					marginLeft: "auto",
-				}}
-			>
+				}}>
 				<EditIcon />
 			</div>
 		</div>
@@ -165,15 +164,13 @@ export const EditPillModal = (props: Props) => {
 				handleClick(e);
 				closeAllModals();
 				setShowFaceModal(true);
-			}}
-		>
+			}}>
 			{faceTraitArray[selectedIng].name}
 			<div
 				style={{
 					marginRight: "0",
 					marginLeft: "auto",
-				}}
-			>
+				}}>
 				<EditIcon />
 			</div>
 		</div>
@@ -182,8 +179,7 @@ export const EditPillModal = (props: Props) => {
 		<>
 			<div
 				className={styles.backgroundFade}
-				onClick={hasChanges ? () => setShowExitModal(true) : props.close}
-			>
+				onClick={hasChanges ? () => setShowExitModal(true) : props.close}>
 				<div className={styles.contentContainer}>
 					<div className={styles.traitsContainer}>
 						<div className={styles.imageContainer} onClick={handleClick}>
@@ -193,46 +189,42 @@ export const EditPillModal = (props: Props) => {
 								alt=""
 								fill
 								sizes="100%"
-								className={styles.imageLayer}
-							></Image>
+								className={styles.imageLayer}></Image>
 							{/* base pill */}
 							<Image
 								src="/Base_StarkPill.PNG"
 								alt=""
 								fill
 								sizes="100%"
-								className={styles.imageLayer}
-							></Image>
+								className={styles.imageLayer}></Image>
 							{/* face trait */}
 							<Image
 								src={faceTraitArray[selectedIng].link}
 								alt=""
 								fill
 								sizes="100%"
-								className={styles.imageLayer}
-							></Image>
+								className={styles.imageLayer}></Image>
 						</div>
 						{selectFaceButton}
 						{selectBackgroundButton}
-
-						<div className={styles.buttonContainer}>
-							<div
-								className={styles.resetButton}
-								onClick={(e) => resetToInitial(e)}
-							>
-								reset
+						{(selectedIng != 0 || selectedBackgroundId != 0) && (
+							<div className={styles.buttonContainer}>
+								<div
+									className={styles.resetButton}
+									onClick={(e) => resetToInitial(e)}>
+									reset
+								</div>
+								<div
+									className={styles.saveButton}
+									onClick={(e) => {
+										handleClick(e);
+										closeAllModals();
+										setShowSaveModal(true);
+									}}>
+									save
+								</div>
 							</div>
-							<div
-								className={styles.saveButton}
-								onClick={(e) => {
-									handleClick(e);
-									closeAllModals();
-									setShowSaveModal(true);
-								}}
-							>
-								save
-							</div>
-						</div>
+						)}
 					</div>
 					{showSaveModal && (
 						<SaveModal
@@ -242,6 +234,11 @@ export const EditPillModal = (props: Props) => {
 							unEquipArray={getChanges().unEquipArray}
 							equipArray={getChanges().equipArray}
 							tokenId={tokenId}
+							oldImage={oldImage}
+							oldBg={bgImageId}
+							oldIng={ingImageId}
+							newIng={faceTraitArray[selectedIng].id}
+							newBg={backgroundArray[selectedBackgroundId].id}
 						/>
 					)}
 					{showExitModal && (

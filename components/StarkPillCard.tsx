@@ -27,8 +27,6 @@ export const StarkPillCard = (props: Props) => {
 
 	const openNewTab = () => {
 		if (isOwner) {
-			console.log(ingId);
-			console.log(bgId);
 			setShowModal(true);
 		} else {
 			window.open(
@@ -71,7 +69,7 @@ export const StarkPillCard = (props: Props) => {
 							)}
 						</div>
 						<div>{Number(mintPrice) / Math.pow(10, 18)} ETH</div>
-						<div>Owned By: {shortenAddress(ownerAddress)}</div>
+						{!isOwner && <div>Owned By: {shortenAddress(ownerAddress)}</div>}
 					</div>
 				</div>
 			</div>
@@ -83,6 +81,7 @@ export const StarkPillCard = (props: Props) => {
 					ingImageId={ingImageId}
 					bgImageId={bgImageId}
 					close={() => setShowModal(false)}
+					oldImage={imageUrl}
 				/>
 			)}
 		</>
