@@ -1,46 +1,66 @@
 .card {
-    width:200px;
-    margin: auto;
-    display: grid;
-    cursor: pointer;
+	width: 200px;
+	margin: auto;
+	display: grid;
+	cursor: pointer;
+	transition: border-color 0s ease-in-out;
+}
+.card:hover {
+	outline: 2px solid #ff4f0a;
+	border-radius: 6px;
 }
 .image {
-   width: 200px;
-   height:200px;
-   background-color: white;
-   border: 1px solid rgba(228, 228, 228, 0.6);
-   border-radius: 6px 6px 0 0;
+	width: 200px;
+	height: 200px;
+	background-color: white;
+	border: 1px solid rgba(228, 228, 228, 0.6);
+	border-radius: 6px 6px 0 0;
 }
 .content {
-    padding: 1rem;
-    font-size: large;
-    width:200px;
-    color:black;
-    background-color: white;
-    border: 1px solid rgba(228, 228, 228, 0.6);
-    border-top: none;
-    border-radius: 0 0 6px 6px;
+	padding: 1rem;
+	font-size: large;
+	width: 200px;
+	color: black;
+	background-color: white;
+	border: 1px solid rgba(228, 228, 228, 0.6);
+	border-top: none;
+	border-radius: 0 0 6px 6px;
 }
+
 .cardRank {
-    width:300px;
-    margin: auto;
-    display: grid;
+	width: 300px;
+	margin: auto;
+	display: grid;
+}
+.cardRank:hover {
+	outline: 2px solid #ff4f0a;
+	border-radius: 6px;
 }
 .imageRank {
-   width: 300px;
-   height:300px;
-   background-color: white;
-   border: 5px solid white;
-   border-bottom: none;
-   border-radius: 6px 6px 0 0;
+	width: 300px;
+	height: 300px;
+	background-color: white;
+	border: 5px solid white;
+	border-bottom: none;
+	border-radius: 6px 6px 0 0;
 }
 .contentRank {
-    padding: 1rem;
-    font-size: large;
-    width:300px;
-    color:black;
-    background-color: white;
-    border: 5px solid white;
-    border-top: none;
-    border-radius: 0 0 6px 6px;
+	padding: 1rem;
+	font-size: large;
+	width: 300px;
+	color: black;
+	background-color: white;
+	border: 5px solid white;
+	border-top: none;
+	border-radius: 0 0 6px 6px;
+}
+.contentRankTitle {
+	color: #ff4f0a;
+}
+
+.card:hover .contentRankTitle {
+	text-decoration: underline;
+}
+.cardRank:hover .contentRankTitle {
+	text-decoration: underline;
 }

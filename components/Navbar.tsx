@@ -26,8 +26,7 @@ export const Navbar = () => {
 								width={60}
 								height={60}
 								alt=""
-								style={{ marginTop: "5px" }}
-							></Image>{" "}
+								style={{ marginTop: "5px" }}></Image>{" "}
 						</div>
 					</Link>
 					<div className={styles.links}>
@@ -41,8 +40,7 @@ export const Navbar = () => {
 												: styles.link
 										}
 										href={page.link}
-										key={index}
-									>
+										key={index}>
 										{page.title}
 									</Link>
 								)
@@ -64,8 +62,7 @@ export const Navbar = () => {
 													  convertToStandardWalletAddress(address)
 													: page.link
 											}
-											key={index}
-										>
+											key={index}>
 											{page.title}
 										</Link>
 									)
@@ -77,15 +74,13 @@ export const Navbar = () => {
 					{showModal ? (
 						<div
 							className={styles.hamburger_menu}
-							onClick={() => setShowModal(false)}
-						>
+							onClick={() => setShowModal(false)}>
 							<Cross />
 						</div>
 					) : (
 						<div
 							className={styles.hamburger_menu}
-							onClick={() => setShowModal(true)}
-						>
+							onClick={() => setShowModal(true)}>
 							<Hamburger />
 						</div>
 					)}

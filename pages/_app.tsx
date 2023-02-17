@@ -25,7 +25,8 @@ export default function App({ Component, pageProps }: AppProps) {
 					<ApolloProvider client={client}>
 						<Head>
 							<link rel="icon" href="/starkpill.PNG"></link>
-							<title>getStarkpilled</title>
+
+							<title> getStarkpilled </title>
 						</Head>
 						<Navbar />
 						<Component {...pageProps} />

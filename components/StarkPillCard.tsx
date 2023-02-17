@@ -48,21 +48,18 @@ export const StarkPillCard = (props: Props) => {
 			<div>
 				<div
 					className={props.rank ? styles.cardRank : styles.card}
-					onClick={openNewTab}
-				>
+					onClick={openNewTab}>
 					<Image
 						src={imageUrl}
 						className={props.rank ? styles.imageRank : styles.image}
 						style={props.rank ? { borderColor: borderColor } : {}}
 						width={300}
 						height={300}
-						alt=""
-					></Image>
+						alt=""></Image>
 					<div
 						className={props.rank ? styles.contentRank : styles.content}
-						style={props.rank ? { borderColor: borderColor } : {}}
-					>
-						<div style={{ color: "#FF4F0A" }}>
+						style={props.rank ? { borderColor: borderColor } : {}}>
+						<div className={styles.contentRankTitle}>
 							TestPill #{tokenId}{" "}
 							{props.rank && (
 								<Image
@@ -70,8 +67,7 @@ export const StarkPillCard = (props: Props) => {
 									alt=""
 									width={50}
 									height={50}
-									style={{ float: "right" }}
-								></Image>
+									style={{ float: "right" }}></Image>
 							)}
 						</div>
 						<div>{Number(mintPrice) / Math.pow(10, 18)} ETH</div>
