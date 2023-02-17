@@ -11,87 +11,82 @@ import Image from "next/image";
 import { useAccount } from "@starknet-react/core";
 import { convertToStandardWalletAddress } from "../types/utils";
 export const Navbar = () => {
-  const router = useRouter();
-  const [showModal, setShowModal] = useState(false);
-  const { address } = useAccount();
-  return (
-    <>
-      <div className={styles.container}>
-        <div className={styles.navbar}>
-          <Link href="/mint" onClick={() => setShowModal(false)}>
-            <div className={styles.logo}>
-              <span>getstarkpilled</span>
-              <Image
-                src="/landingPage.png"
-                width={60}
-                height={60}
-                alt=""
-                style={{ marginTop: "5px" }}
-              ></Image>{" "}
-            </div>
-          </Link>
-          <div className={styles.links}>
-            {PAGES.map(
-              (page, index) =>
-                page.isActive && (
-                  <Link
-                    className={
-                      router.pathname == page.link
-                        ? styles.link_active
-                        : styles.link
-                    }
-                    href={page.link}
-                    key={index}
-                  >
-                    {page.title}
-                  </Link>
-                )
-            )}
-            {address &&
-              USERPAGES.map(
-                (page, index) =>
-                  page.isActive && (
-                    <Link
-                      className={
-                        router.pathname == page.link
-                          ? styles.link_active
-                          : styles.link
-                      }
-                      href={
-                        page.paramName
-                          ? page.link +
-                            page.paramName +
-                            convertToStandardWalletAddress(address)
-                          : page.link
-                      }
-                      key={index}
-                    >
-                      {page.title}
-                    </Link>
-                  )
-              )}
-          </div>
-          <div className={styles.buttonContainer}>
-            <ConnectWalletButton />
-          </div>
-          {showModal ? (
-            <div
-              className={styles.hamburger_menu}
-              onClick={() => setShowModal(false)}
-            >
-              <Cross />
-            </div>
-          ) : (
-            <div
-              className={styles.hamburger_menu}
-              onClick={() => setShowModal(true)}
-            >
-              <Hamburger />
-            </div>
-          )}
-        </div>
-      </div>
-      {showModal && <LinksModal close={() => setShowModal(false)} />}
-    </>
-  );
+	const router = useRouter();
+	const [showModal, setShowModal] = useState(false);
+	const { address } = useAccount();
+	return (
+		<>
+			<div className={styles.container}>
+				<div className={styles.navbar}>
+					<Link href="/mint" onClick={() => setShowModal(false)}>
+						<div className={styles.logo}>
+							<span>getstarkpilled</span>
+							<Image
+								src="/landingPage.png"
+								width={60}
+								height={60}
+								alt=""
+								style={{ marginTop: "5px" }}></Image>{" "}
+						</div>
+					</Link>
+					<div className={styles.links}>
+						{PAGES.map(
+							(page, index) =>
+								page.isActive && (
+									<Link
+										className={
+											router.pathname == page.link
+												? styles.link_active
+												: styles.link
+										}
+										href={page.link}
+										key={index}>
+										{page.title}
+									</Link>
+								)
+						)}
+						{address &&
+							USERPAGES.map(
+								(page, index) =>
+									page.isActive && (
+										<Link
+											className={
+												router.pathname == page.link
+													? styles.link_active
+													: styles.link
+											}
+											href={
+												page.paramName
+													? page.link +
+													  page.paramName +
+													  convertToStandardWalletAddress(address)
+													: page.link
+											}
+											key={index}>
+											{page.title}
+										</Link>
+									)
+							)}
+					</div>
+					<div className={styles.buttonContainer}>
+						<ConnectWalletButton />
+					</div>
+					{showModal ? (
+						<div
+							className={styles.hamburger_menu}
+							onClick={() => setShowModal(false)}>
+							<Cross />
+						</div>
+					) : (
+						<div
+							className={styles.hamburger_menu}
+							onClick={() => setShowModal(true)}>
+							<Hamburger />
+						</div>
+					)}
+				</div>
+			</div>
+			{showModal && <LinksModal close={() => setShowModal(false)} />}
+		</>
+	);
 };
