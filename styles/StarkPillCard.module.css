@@ -64,3 +64,23 @@
 .cardRank:hover .contentRankTitle {
 	text-decoration: underline;
 }
+.hoverLabel {
+	background-color: #ff4f0a;
+	color: white;
+	margin: 0 -1rem -1rem -1rem;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	border-radius: 0 0 6px 6px;
+	display: flex;
+}
+.editButton {
+	width: 80%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.moreButton {
+	width: 20%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

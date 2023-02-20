@@ -4,6 +4,7 @@ import { STARKPILL_CONTRACT_ADDRESS } from "../types/constants";
 import { shortenAddress } from "../types/utils";
 import { useState } from "react";
 import { EditPillModal } from "./Modals/EditPillModal";
+import TripleDot from "../public/svgs/tripleDot.svg";
 interface Props {
 	ownerAddress: string;
 	imageUrl: string;
@@ -17,6 +18,7 @@ interface Props {
 export const StarkPillCard = (props: Props) => {
 	const { ownerAddress, imageUrl, mintPrice, tokenId, isOwner, ingId, bgId } =
 		props;
+	const [isHover, setHover] = useState(false);
 	const [showModal, setShowModal] = useState(false);
 	const value = imageUrl.substring(
 		imageUrl.lastIndexOf("_") + 1,
@@ -38,15 +40,26 @@ export const StarkPillCard = (props: Props) => {
 			);
 		}
 	};
+	const openLink = () => {
+		window.open(
+			"https://mintsquare.io/asset/starknet-testnet/" +
+				STARKPILL_CONTRACT_ADDRESS +
+				"/" +
+				tokenId,
+			"_blank"
+		);
+	};
 	const borderColor =
 		props.rank === 1 ? "#FFC107" : props.rank === 2 ? "#E0E0E0" : "#FF9838";
 
 	return (
 		<>
-			<div>
+			<div
+				onMouseEnter={() => setHover(true)}
+				onMouseLeave={() => setHover(false)}>
 				<div
 					className={props.rank ? styles.cardRank : styles.card}
-					onClick={openNewTab}>
+					onClick={!isOwner ? openNewTab : () => console.log()}>
 					<Image
 						src={imageUrl}
 						className={props.rank ? styles.imageRank : styles.image}
@@ -68,7 +81,19 @@ export const StarkPillCard = (props: Props) => {
 									style={{ float: "right" }}></Image>
 							)}
 						</div>
-						<div>{Number(mintPrice) / Math.pow(10, 18)} ETH</div>
+
+						{isOwner && isHover ? (
+							<div className={styles.hoverLabel}>
+								<div onClick={openNewTab} className={styles.editButton}>
+									edit pill
+								</div>
+								<div className={styles.moreButton} onClick={openLink}>
+									<TripleDot />
+								</div>
+							</div>
+						) : (
+							<div>{Number(mintPrice) / Math.pow(10, 18)} ETH</div>
+						)}
 						{!isOwner && <div>Owned By: {shortenAddress(ownerAddress)}</div>}
 					</div>
 				</div>

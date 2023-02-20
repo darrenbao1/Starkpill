@@ -2,7 +2,6 @@ import Cross from "../../public/svgs/cross.svg";
 import styles from "../../styles/MintModal.module.css";
 import InformationIcon from "../../public/svgs/information.svg";
 import SubtractIcon from "../../public/svgs/subtractIcon.svg";
-import AdditionIcon from "../../public/svgs/additionIcon.svg";
 import { createRef, useState } from "react";
 import {
 	useStarknetExecute,
@@ -61,8 +60,7 @@ export const MintModal = (props: {
 			<div className={styles.stepper}>
 				<div
 					className={styles.hoverTip}
-					style={hover ? { visibility: "visible" } : { visibility: "hidden" }}
-				>
+					style={hover ? { visibility: "visible" } : { visibility: "hidden" }}>
 					If you wish to support our efforts,
 					<br /> you can choose to pay for your
 					<br /> Starkpill in any amount of ETH.
@@ -74,8 +72,7 @@ export const MintModal = (props: {
 							display: "flex",
 							justifyContent: "center",
 							alignItems: "center",
-						}}
-					>
+						}}>
 						Tip&nbsp;
 						<InformationIcon
 							style={
@@ -91,16 +88,14 @@ export const MintModal = (props: {
 							onClick={() => {
 								inputRef.current?.stepUp();
 								setMintPrice(Number(inputRef.current?.value));
-							}}
-						>
+							}}>
 							<SubtractIcon />
 						</div>
 						<div
 							onClick={() => {
 								inputRef.current?.stepDown();
 								setMintPrice(Number(inputRef.current?.value));
-							}}
-						>
+							}}>
 							<SubtractIcon style={{ transform: "scaleY(-1)" }} />
 						</div>
 					</div>
@@ -113,8 +108,7 @@ export const MintModal = (props: {
 							onChange={(e) => handleChange(e)}
 							className={styles.textField}
 							placeholder="tip"
-							ref={inputRef}
-						></input>
+							ref={inputRef}></input>
 						ETH
 					</div>
 				</div>
@@ -136,8 +130,7 @@ export const MintModal = (props: {
 						className={styles.mintButton}
 						onClick={async () => {
 							mintPill();
-						}}
-					>
+						}}>
 						mint
 					</div>
 				</div>
