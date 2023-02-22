@@ -81,6 +81,7 @@ export default function Mypills() {
 									imageUrl={token.metadata.imageUrl}
 									isOwner={true} //true because at pills page.
 									key={token.id}
+									rank={0}
 								/>
 							))}
 						</div>

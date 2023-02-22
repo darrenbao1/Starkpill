@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import styles from "../styles/TransactionList.module.css";
 import { shortAddressForModal } from "../types/utils";
+import Href from "../public/hrefIcon.svg";
 
 export const TransactionList = () => {
 	const { hashes } = useTransactionManager();
@@ -81,10 +82,9 @@ function TransactionItem({ transactionHash }: { transactionHash: string }) {
 			</div>
 			<Link
 				href={`https://testnet.starkscan.co/tx/${transactionHash}`}
-				target="_blank"
-			>
+				target="_blank">
 				<picture className={styles.icon}>
-					<img src="/hrefIcon.svg" alt=""></img>
+					<Href style={{ color: "#FFFFFF" }} />
 				</picture>
 			</Link>
 			<picture className={styles.icon}>
@@ -92,8 +92,7 @@ function TransactionItem({ transactionHash }: { transactionHash: string }) {
 					src="/copyIcon.svg"
 					onClick={() => copyTxAddress(transactionHash)}
 					style={{ cursor: "pointer" }}
-					alt=""
-				></img>
+					alt=""></img>
 			</picture>
 			{showSnackBar && (
 				<div className="snackbar">transaction address copied</div>

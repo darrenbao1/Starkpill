@@ -98,6 +98,7 @@ export default function Cabinet() {
 							mintPrice={token.metadata.mintPrice}
 							imageUrl={token.metadata.imageUrl}
 							key={index}
+							rank={index + 4}
 						/>
 					))}
 				</div>

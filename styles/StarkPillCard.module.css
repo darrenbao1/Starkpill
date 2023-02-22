@@ -3,7 +3,6 @@
 	margin: auto;
 	display: grid;
 	cursor: pointer;
-	transition: border-color 0s ease-in-out;
 }
 .card:hover {
 	outline: 2px solid #ff4f0a;
@@ -14,7 +13,6 @@
 	height: 200px;
 	background-color: white;
 	border: 1px solid rgba(228, 228, 228, 0.6);
-	border-radius: 6px 6px 0 0;
 }
 .content {
 	padding: 1rem;
@@ -36,13 +34,17 @@
 	outline: 2px solid #ff4f0a;
 	border-radius: 6px;
 }
+.buttonContainer {
+	background-color: white;
+	border-radius: 6px 6px 0 0;
+	padding: 10px;
+}
 .imageRank {
 	width: 300px;
 	height: 300px;
 	background-color: white;
-	border: 5px solid white;
+	/* border: 5px solid white; */
 	border-bottom: none;
-	border-radius: 6px 6px 0 0;
 }
 .contentRank {
 	padding: 1rem;
@@ -50,7 +52,7 @@
 	width: 300px;
 	color: black;
 	background-color: white;
-	border: 5px solid white;
+	/* border: 5px solid white; */
 	border-top: none;
 	border-radius: 0 0 6px 6px;
 }
@@ -83,4 +85,8 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+.image:hover,
+.imageRank:hover {
+	opacity: 0.7;
 }
