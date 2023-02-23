@@ -1,188 +1,186 @@
-.modalContainer{
-    width: 100%;
-    height: fit-content;
-    overflow: scroll;
-    background: rgba(41, 41, 110, 0.9);
-    font-weight: 400;
-    border: 1px solid #E4E4E4;
-    border-radius: 5px;
-    color:white;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    transition: transform .6s ease-in-out;
-    animation: toast-in-right .7s;
-    padding: 24px;
+.modalContainer {
+	width: 100%;
+	height: fit-content;
+	overflow: overlay;
+	background: rgba(41, 41, 110, 0.9);
+	font-weight: 400;
+	border: 1px solid #e4e4e4;
+	border-radius: 5px;
+	color: white;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	transition: transform 0.6s ease-in-out;
+	animation: toast-in-right 0.7s;
+	padding: 24px;
 }
 .closeButton {
-    float:right;
-    width:48px;
-    stroke: white;
-    cursor: pointer;
-    transition: 0.3s;
-    background-color: #FF4F0A;
-    border: none;
-    border-radius: 5px;
+	float: right;
+	width: 48px;
+	stroke: white;
+	cursor: pointer;
+	transition: 0.3s;
+	background-color: #ff4f0a;
+	border: none;
+	border-radius: 5px;
 }
-.closeButton:hover{
-    stroke:grey;
+.closeButton:hover {
+	stroke: grey;
 }
-.header{
-    text-align: center;
-    font-size: 28px;
-    white-space: nowrap;
-    padding-left: 48px;
-    padding-bottom: 18px;
-    border-bottom: 3px solid #FFFFFF;
+.header {
+	text-align: center;
+	font-size: 28px;
+	white-space: nowrap;
+	padding-left: 48px;
+	padding-bottom: 18px;
+	border-bottom: 3px solid #ffffff;
 }
 .label {
-    font-size: 30px;
-    line-height: 110%;
-    padding-top: 20px;
-    padding-bottom: 12px;
+	font-size: 30px;
+	line-height: 110%;
+	padding-top: 20px;
+	padding-bottom: 12px;
 }
 .itemsContainer {
-    background-color: #35358F;
-    padding:13px;
-    margin-top: 2px;
-    border-radius: 5px;
+	background-color: #35358f;
+	padding: 13px;
+	margin-top: 2px;
+	border-radius: 5px;
 }
-.itemsContainer .title{
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 110%;
-    letter-spacing: -0.02em;
+.itemsContainer .title {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 110%;
+	letter-spacing: -0.02em;
 }
 .item {
-    display: flex;
+	display: flex;
 }
 .itemName {
-    font-size: 24px;
-    line-height: 100%;
+	font-size: 24px;
+	line-height: 100%;
 }
 .itemPrice {
-    font-size: 24px;
-    line-height: 100%;
-    margin-left: auto;
+	font-size: 24px;
+	line-height: 100%;
+	margin-left: auto;
 }
 .information {
-font-size: 14px;
-line-height: 120%;
-text-align: center;
-padding-top: 12px;
+	font-size: 14px;
+	line-height: 120%;
+	text-align: center;
+	padding-top: 12px;
 }
 .tipContainer {
-    display: flex;
-    border-bottom: 3px solid #FFFFFF;
-    padding-bottom: 18px;
+	display: flex;
+	border-bottom: 3px solid #ffffff;
+	padding-bottom: 18px;
 }
-.textField{
-    background: #4545B1;
-    border: 2px solid #35358F;
-    mix-blend-mode: normal;
-    border-radius: 5px;
-    width:111px;
-    height:60px;
-    font-size: 24px;
-    padding: 5px;
-    text-align: end;
-    color:white;
-    -moz-appearance: textfield;
+.textField {
+	background: #4545b1;
+	border: 2px solid #35358f;
+	mix-blend-mode: normal;
+	border-radius: 5px;
+	width: 111px;
+	height: 60px;
+	font-size: 24px;
+	padding: 5px;
+	text-align: end;
+	color: white;
+	-moz-appearance: textfield;
 }
 .textField::-webkit-outer-spin-button,
 .textField::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+	-webkit-appearance: none;
+	margin: 0;
 }
 .stepperContainer {
-    background: #35358F;
-    border-radius: 5px;
-    margin-right: 0;
-    padding-right: 13px;
-    font-size: 24px;
+	background: #35358f;
+	border-radius: 5px;
+	margin-right: 0;
+	padding-right: 13px;
+	font-size: 24px;
 }
-.stepperButtonContainer{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-left: auto;
-    margin-right: 4px;
-    background: #4545B1;
-    border-radius: 5px;
+.stepperButtonContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-left: auto;
+	margin-right: 4px;
+	background: #4545b1;
+	border-radius: 5px;
 }
 .stepperButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding:9px;
-    border-bottom: #35358F 2px solid;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 9px;
+	border-bottom: #35358f 2px solid;
 }
 .mintButton {
-    font-size: 24px;
-    width:100%;
-    background-color: #FF4F0A;
-    border-radius: 5px;
-    text-align: center;
-    padding: 9px;
-    margin-top: 24px;
-    border-radius: 5px;
-    border: 2px solid #FFFFFF;
+	font-size: 24px;
+	width: 100%;
+	background-color: #ff4f0a;
+	border-radius: 5px;
+	text-align: center;
+	padding: 9px;
+	margin-top: 24px;
+	border-radius: 5px;
+	border: 2px solid #ffffff;
 }
 .hoverTip {
-    width: fit-content;
-    font-size: 10px;
-    line-height: 120%;
-    padding:4px;
-    margin-left: 10px;
-    border: 0.5px solid white;
-    border-radius: 5px;
-    visibility: hidden;
+	width: fit-content;
+	font-size: 10px;
+	line-height: 120%;
+	padding: 4px;
+	margin-left: 10px;
+	border: 0.5px solid white;
+	border-radius: 5px;
+	visibility: hidden;
 }
 .stepper {
-    padding-left: 13px;
+	padding-left: 13px;
 }
 .total {
-    font-size: 28px;
-    padding-top: 16px;
+	font-size: 28px;
+	padding-top: 16px;
 }
 .inputContainer {
-    width:100px;
-    display: flex;
-    flex-direction: column;
-    background-color: #FF4F0A;
-    font-family: inherit;
-    color:#F5F5F5;
-    margin: 0 40px;
-    border-radius: 5px;
-    
+	width: 100px;
+	display: flex;
+	flex-direction: column;
+	background-color: #ff4f0a;
+	font-family: inherit;
+	color: #f5f5f5;
+	margin: 0 40px;
+	border-radius: 5px;
 }
 .receiptContainer {
-    display: flex;
-    flex-direction: column;
-    color: #E0E0E0;
-    padding-top: 12px;
-    padding-right:13px;
+	display: flex;
+	flex-direction: column;
+	color: #e0e0e0;
+	padding-top: 12px;
+	padding-right: 13px;
 }
 
 @media screen and (max-width: 750px) {
-    .modalContainer {
-        position: fixed;
-        top:100px;
-        width:100%;
-        height: calc(100vh - 150px);
-        margin: 20px auto;
-    }
-    .text {
-        padding: 0 2rem;
-    }
-  }
-  @keyframes toast-in-right {
-    from {
-      transform: translateX(100%);
-      
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
+	.modalContainer {
+		position: fixed;
+		top: 100px;
+		width: 100%;
+		height: calc(100vh - 150px);
+		margin: 20px auto;
+	}
+	.text {
+		padding: 0 2rem;
+	}
+}
+@keyframes toast-in-right {
+	from {
+		transform: translateX(100%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
