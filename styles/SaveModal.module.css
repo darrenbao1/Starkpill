@@ -1,6 +1,6 @@
 .modalContainer {
 	width: 100%;
-	overflow: scroll;
+	overflow: overlay;
 	background: rgba(41, 41, 110, 0.9);
 	border: 1px solid #e4e4e4;
 	border-radius: 5px;
