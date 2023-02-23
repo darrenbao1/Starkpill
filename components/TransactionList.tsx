@@ -7,7 +7,7 @@ import { useCallback, useEffect, useState } from "react";
 import styles from "../styles/TransactionList.module.css";
 import { shortAddressForModal } from "../types/utils";
 import Href from "../public/hrefIcon.svg";
-
+import { IS_TESTNET } from "../types/constants";
 export const TransactionList = () => {
 	const { hashes } = useTransactionManager();
 
@@ -81,7 +81,9 @@ function TransactionItem({ transactionHash }: { transactionHash: string }) {
 				<u>{shortAddressForModal(transactionHash)} </u>
 			</div>
 			<Link
-				href={`https://testnet.starkscan.co/tx/${transactionHash}`}
+				href={`https://${
+					IS_TESTNET ? "testnet." : ""
+				}starkscan.co/tx/${transactionHash}`}
 				target="_blank">
 				<picture className={styles.icon}>
 					<Href style={{ color: "#FFFFFF" }} />

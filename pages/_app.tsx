@@ -9,7 +9,6 @@ import client from "../apollo-client";
 import { Provider } from "react-redux";
 import { store } from "../features/store";
 export default function App({ Component, pageProps }: AppProps) {
-	//starknet wallet options
 	const connectors = [
 		new InjectedConnector({
 			options: { id: "braavos" },
@@ -25,7 +24,6 @@ export default function App({ Component, pageProps }: AppProps) {
 					<ApolloProvider client={client}>
 						<Head>
 							<link rel="icon" href="/starkpill.PNG"></link>
-
 							<title> getStarkpilled </title>
 						</Head>
 						<Navbar />

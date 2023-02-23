@@ -1,6 +1,6 @@
 import styles from "../styles/StarkPillCard.module.css";
 import Image from "next/image";
-import { STARKPILL_CONTRACT_ADDRESS } from "../types/constants";
+import { NETWORK_FOR_API, STARKPILL_CONTRACT_ADDRESS } from "../types/constants";
 import { shortenAddress } from "../types/utils";
 import { useState } from "react";
 import { EditPillModal } from "./Modals/EditPillModal";
@@ -37,7 +37,7 @@ export const StarkPillCard = (props: Props) => {
 	const bgImageId = parseInt(value.substring(3));
 	const openMintSquareLink = () => {
 		window.open(
-			"https://mintsquare.io/asset/starknet-testnet/" +
+			`https://mintsquare.io/asset/${NETWORK_FOR_API}/` +
 				STARKPILL_CONTRACT_ADDRESS +
 				"/" +
 				tokenId,

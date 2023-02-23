@@ -1,10 +1,13 @@
 import { FAQ, Page, Trait } from "./interfaces";
+export const IS_TESTNET = true;
 export const STARKPILL_CONTRACT_ADDRESS =
 	"0x05ef092a31619faa63bf317bbb636bfbba86baf8e0e3e8d384ee764f2904e5dd";
 export const STARKETH_CONTRACT_ADDRESS =
 	"0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7";
 export const MINTSQUARE_BASE_URL = "https://api.mintsquare.io/v0/";
-export const NETWORK_FOR_API = "starknet-testnet";
+export const NETWORK_FOR_API = IS_TESTNET
+	? "starknet-testnet"
+	: "starknet-mainnet";
 export const PAGES: Page[] = [
 	{
 		title: "about",

@@ -10,6 +10,7 @@ import Pending from "../../public/svgs/Pending.svg";
 import Failed from "../../public/svgs/Failed.svg";
 import { useDispatch } from "react-redux";
 import { increment } from "../../features/refetch";
+import { IS_TESTNET } from "../../types/constants";
 export const Toast = () => {
 	const { hashes } = useTransactionManager();
 	return (
@@ -61,8 +62,7 @@ const ToastObj = (props: { hash: string }) => {
 			{isShown && data && (
 				<div
 					className={styles.toast}
-					style={{ borderLeft: "3px solid " + statusColor }}
-				>
+					style={{ borderLeft: "3px solid " + statusColor }}>
 					<div className={styles.image}>
 						{txStatus == "Success" && <Completed />}
 						{txStatus == "Pending" && <Pending />}
@@ -74,17 +74,18 @@ const ToastObj = (props: { hash: string }) => {
 					</div>
 					<div className={styles.message}>
 						<a
-							href={"https://testnet.starkscan.co/tx/" + props.hash}
+							href={
+								`https://${IS_TESTNET ? "testnet." : ""}starkscan.co/tx/` +
+								props.hash
+							}
 							target="_blank"
-							rel="noreferrer"
-						>
+							rel="noreferrer">
 							<u>View Transaction</u>
 						</a>
 					</div>
 					<button
 						onClick={() => setIsShown(false)}
-						style={{ marginLeft: "15px" }}
-					>
+						style={{ marginLeft: "15px" }}>
 						X
 					</button>
 				</div>
