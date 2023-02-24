@@ -104,10 +104,9 @@ export const MintModal = (props: {
 							type="number"
 							min={0}
 							step={0.001}
-							value={mintPrice}
 							onChange={(e) => handleChange(e)}
 							className={styles.textField}
-							placeholder="tip"
+							placeholder="0"
 							ref={inputRef}></input>
 						ETH
 					</div>
