@@ -97,7 +97,7 @@ function TransactionItem({ transactionHash }: { transactionHash: string }) {
 					alt=""></img>
 			</picture>
 			{showSnackBar && (
-				<div className="snackbar">transaction address copied</div>
+				<div className="snackbar">Transaction address copied</div>
 			)}
 		</div>
 	);

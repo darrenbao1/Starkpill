@@ -61,7 +61,7 @@ export default function Cabinet() {
 				<div className={styles.backgroundFade}></div>
 				<div className="contentContainer">
 					<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>
-						starkpills
+						Starkpills
 					</h1>
 					<div className={styles.cardContainer}>Loading</div>
 				</div>
@@ -75,7 +75,7 @@ export default function Cabinet() {
 			<div className={styles.backgroundFade}></div>
 			<div className="contentContainer">
 				<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>
-					top 3 starkpills
+					Top 3 Starkpills
 				</h1>
 				<div className={styles.top3Container}>
 					{tokenIds.slice(0, 3).map((token: any, index: number) => (
@@ -89,7 +89,7 @@ export default function Cabinet() {
 						/>
 					))}
 				</div>
-				<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>starkpills</h1>
+				<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>Starkpills</h1>
 				<div className={styles.cardContainer}>
 					{tokenIds.slice(3).map((token: any, index: number) => (
 						<StarkPillCard
@@ -103,7 +103,7 @@ export default function Cabinet() {
 					))}
 				</div>
 			</div>
-			{loading && <div className="snackbar">loading</div>}
+			{loading && <div className="snackbar">Loading</div>}
 		</div>
 	);
 }

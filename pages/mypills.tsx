@@ -60,7 +60,7 @@ export default function Mypills() {
 
 					<div className="contentContainer">
 						<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>
-							my pills
+							My Pills
 						</h1>
 						{tokenIds.length == 0 && !loading && (
 							<div style={{ textAlign: "center", width: "100%" }}>
@@ -88,7 +88,7 @@ export default function Mypills() {
 					</div>
 				</div>
 			) : (
-				<h1 style={{ textAlign: "center" }}>account disconnected</h1>
+				<h1 style={{ textAlign: "center" }}>Account Disconnected</h1>
 			)}
 		</>
 	);

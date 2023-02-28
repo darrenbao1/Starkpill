@@ -18,10 +18,10 @@ export const ExitModal = (props: {
 				</p>
 				<div className={styles.buttonContainer}>
 					<div className={styles.exitButton} onClick={props.leaveWithoutSaving}>
-						<u>leave without saving</u>
+						<u>Leave without saving</u>
 					</div>
 					<div className={styles.cancelButton} onClick={closeModal}>
-						cancel
+						Cancel
 					</div>
 				</div>
 			</div>

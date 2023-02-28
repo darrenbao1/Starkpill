@@ -30,16 +30,14 @@ const Mint = () => {
 				}
 				closeAllModals();
 				setShowFaceModal(true);
-			}}
-		>
-			{hasEditedFace ? FACE_TRAITS[selectedFaceId].name : "ingredient #1"}
+			}}>
+			{hasEditedFace ? FACE_TRAITS[selectedFaceId].name : "Ingredient #1"}
 			{hasEditedFace && (
 				<div
 					style={{
 						marginRight: "0",
 						marginLeft: "auto",
-					}}
-				>
+					}}>
 					<EditIcon />
 				</div>
 			)}
@@ -54,18 +52,16 @@ const Mint = () => {
 				}
 				closeAllModals();
 				setShowBackgroundModal(true);
-			}}
-		>
+			}}>
 			{hasEditedBackground
 				? BACKGROUND[selectedBackgroundId].name
-				: "ingredient #2"}
+				: "Ingredient #2"}
 			{hasEditedBackground && (
 				<div
 					style={{
 						marginRight: "0",
 						marginLeft: "auto",
-					}}
-				>
+					}}>
 					<EditIcon />
 				</div>
 			)}
@@ -80,9 +76,8 @@ const Mint = () => {
 			onClick={() => {
 				closeAllModals();
 				setShowMintModal(true);
-			}}
-		>
-			mint
+			}}>
+			Mint
 		</div>
 	);
 
@@ -98,24 +93,21 @@ const Mint = () => {
 							alt=""
 							fill
 							sizes="100%"
-							className={styles.imageLayer}
-						></Image>
+							className={styles.imageLayer}></Image>
 						{/* base pill */}
 						<Image
 							src="/Base_StarkPill.PNG"
 							alt=""
 							fill
 							sizes="100%"
-							className={styles.imageLayer}
-						></Image>
+							className={styles.imageLayer}></Image>
 						{/* face trait */}
 						<Image
 							src={FACE_TRAITS[selectedFaceId].link}
 							alt=""
 							fill
 							sizes="100%"
-							className={styles.imageLayer}
-						></Image>
+							className={styles.imageLayer}></Image>
 					</div>
 					{selectFaceButton}
 					{selectBackgroundButton}
@@ -123,7 +115,7 @@ const Mint = () => {
 				</div>
 				{showFaceModal && (
 					<TraitsModal
-						traitName="ingredient #1"
+						traitName="Ingredient #1"
 						trait={FACE_TRAITS}
 						selectedId={selectedFaceId}
 						close={() => setShowFaceModal(false)}
@@ -132,7 +124,7 @@ const Mint = () => {
 				)}
 				{showBackgroundModal && (
 					<TraitsModal
-						traitName="ingredient #2"
+						traitName="Ingredient #2"
 						trait={BACKGROUND}
 						selectedId={selectedBackgroundId}
 						close={() => setShowBackgroundModal(false)}
@@ -151,8 +143,7 @@ const Mint = () => {
 					height={40}
 					width={136}
 					alt="seraphLabs"
-					className={styles.companyLogo}
-				></Image>
+					className={styles.companyLogo}></Image>
 			</div>
 		</div>
 	);

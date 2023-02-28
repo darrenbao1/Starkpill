@@ -130,7 +130,7 @@ export const MintModal = (props: {
 						onClick={async () => {
 							mintPill();
 						}}>
-						mint
+						Mint
 					</div>
 				</div>
 			</div>
@@ -139,7 +139,7 @@ export const MintModal = (props: {
 	return (
 		<div className={styles.modalContainer}>
 			<div className={styles.header}>
-				<span>mint summary</span>
+				<span>Mint Summary</span>
 				<button className={styles.closeButton} onClick={props.close}>
 					<Cross />
 				</button>
