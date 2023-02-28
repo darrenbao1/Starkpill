@@ -13,13 +13,12 @@ export const TraitsModal = (props: {
 	return (
 		<div className={styles.modalContainer} onClick={props.handleClick}>
 			<div className={styles.header}>
-				<span>select {props.traitName}</span>
+				<span>Select {props.traitName}</span>
 				<button
 					className={styles.closeButton}
 					onClick={() => {
 						props.close();
-					}}
-				>
+					}}>
 					<Cross />
 				</button>
 			</div>
@@ -31,8 +30,7 @@ export const TraitsModal = (props: {
 								index == props.selectedId
 									? styles.selectionIconActive
 									: styles.selectionIcon
-							}
-						>
+							}>
 							<Image
 								src={trait.link}
 								alt={trait.name}
@@ -45,16 +43,14 @@ export const TraitsModal = (props: {
 									props.traitName == "face trait"
 										? styles.centreTrait
 										: styles.centreTraitBackground
-								}
-							></Image>
+								}></Image>
 						</div>
 						<div
 							className={
 								index == props.selectedId
 									? styles.traitNameActive
 									: styles.traitName
-							}
-						>
+							}>
 							{trait.name}
 						</div>
 					</div>

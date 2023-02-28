@@ -24,7 +24,7 @@ export const SaveModal = (props: {
 	return (
 		<div className={styles.modalContainer} onClick={handleClick}>
 			<div className={styles.header}>
-				<span>edit summary </span>
+				<span>Edit Summary </span>
 				<button className={styles.closeButton} onClick={close}>
 					<Cross />
 				</button>
@@ -80,7 +80,7 @@ export const SaveModal = (props: {
 						handleClick;
 						saveChanges();
 					}}>
-					confirm all edits
+					Confirm all edits
 				</div>
 			</div>
 		</div>

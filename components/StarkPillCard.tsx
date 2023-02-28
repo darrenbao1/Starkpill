@@ -1,6 +1,9 @@
 import styles from "../styles/StarkPillCard.module.css";
 import Image from "next/image";
-import { NETWORK_FOR_API, STARKPILL_CONTRACT_ADDRESS } from "../types/constants";
+import {
+	NETWORK_FOR_API,
+	STARKPILL_CONTRACT_ADDRESS,
+} from "../types/constants";
 import { shortenAddress } from "../types/utils";
 import { useState } from "react";
 import { EditPillModal } from "./Modals/EditPillModal";
@@ -99,7 +102,7 @@ export const StarkPillCard = (props: Props) => {
 									onClick={() => {
 										setShowModal(true);
 									}}>
-									edit pill
+									Edit Pill
 								</div>
 							)}
 						</div>

@@ -20,8 +20,7 @@ export const ConnectWalletButton = () => {
 			{!account ? (
 				<div
 					className="connectWalletButton"
-					onClick={() => setShowConnectMenuModal(true)}
-				>
+					onClick={() => setShowConnectMenuModal(true)}>
 					connect wallet
 				</div>
 			) : (
@@ -66,48 +65,44 @@ const ConnectedButton = (props: { address: string; disconnect: any }) => {
 		<div ref={wrapperRef}>
 			<div
 				className="connectWalletButton"
-				onClick={() => setShowDropDown(!showDropDown)}
-			>
+				onClick={() => setShowDropDown(!showDropDown)}>
 				{shortenAddress(props.address)} &nbsp;{" "}
 				<picture>
 					<img
 						src="/downArrow.svg"
 						alt=""
-						style={showDropDown ? { transform: "rotateX(180deg)" } : {}}
-					></img>
+						style={showDropDown ? { transform: "rotateX(180deg)" } : {}}></img>
 				</picture>
 			</div>
 			{showDropDown && (
 				<div className={styles.container}>
 					<div className={styles.dropdownContainer}>
 						<div className={styles.dropdown}>
-							<h1>my wallet</h1>
-							<span>address</span>
+							<h1>My Wallet</h1>
+							<span>Address</span>
 							<div className={styles.addressContainer}>
 								<div>{shortAddressForModal(props.address)}</div>
 								<picture
 									className={styles.copyIcon}
-									onClick={() => CopyAddress(props.address)}
-								>
+									onClick={() => CopyAddress(props.address)}>
 									<img src="/copyIcon.svg" alt=""></img>
 								</picture>
 							</div>
 							<TransactionList />
 							<div
 								className={styles.addressContainer}
-								style={{ marginBottom: "20px" }}
-							>
-								<div>eth balance</div>
+								style={{ marginBottom: "20px" }}>
+								<div>Eth Balance</div>
 								<div className={styles.copyIcon}>
 									{UserBalance && <UserBalance />}
 								</div>
 							</div>
 							<div className={styles.disconnect} onClick={props.disconnect}>
-								disconnect wallet
+								Disconnect Wallet
 							</div>
 						</div>
 						{showSnackBar && (
-							<div className="snackbar">wallet address copied</div>
+							<div className="snackbar">Wallet address copied</div>
 						)}
 					</div>
 				</div>

@@ -212,7 +212,7 @@ export const EditPillModal = (props: Props) => {
 								<div
 									className={styles.resetButton}
 									onClick={(e) => resetToInitial(e)}>
-									reset
+									Reset
 								</div>
 								<div
 									className={styles.saveButton}
@@ -221,7 +221,7 @@ export const EditPillModal = (props: Props) => {
 										closeAllModals();
 										setShowSaveModal(true);
 									}}>
-									save
+									Save
 								</div>
 							</div>
 						)}
@@ -250,7 +250,7 @@ export const EditPillModal = (props: Props) => {
 					)}
 					{showFaceModal && (
 						<TraitsModal
-							traitName="ingredient #1"
+							traitName="Ingredient #1"
 							trait={faceTraitArray}
 							selectedId={selectedIng}
 							close={() => setShowFaceModal(false)}
@@ -260,7 +260,7 @@ export const EditPillModal = (props: Props) => {
 					)}
 					{showBackgroundModal && (
 						<TraitsModal
-							traitName="ingredient #2"
+							traitName="Ingredient #2"
 							trait={backgroundArray}
 							selectedId={selectedBackgroundId}
 							close={() => setShowBackgroundModal(false)}

@@ -10,19 +10,19 @@ export const NETWORK_FOR_API = IS_TESTNET
 	: "starknet-mainnet";
 export const PAGES: Page[] = [
 	{
-		title: "about",
+		title: "About",
 		link: "/about",
 		isActive: true,
 	},
 	{
-		title: "cabinet",
+		title: "Cabinet",
 		link: "/cabinet",
 		isActive: true,
 	},
 ];
 export const USERPAGES: Page[] = [
 	{
-		title: "pills",
+		title: "Pills",
 		link: "/mypills",
 		isActive: true,
 		paramName: "?walletAddress=",
