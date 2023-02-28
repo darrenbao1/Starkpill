@@ -13,7 +13,7 @@ export default function about() {
 			<div className={aboutStyles.entireBox}>
 				<div className={aboutStyles.contentContainer}>
 					<h1 className={aboutStyles.aboutTextShift}>About</h1>
-					<img
+					<Image
 						src="/About.gif"
 						className={aboutStyles.image}
 						height={558}
