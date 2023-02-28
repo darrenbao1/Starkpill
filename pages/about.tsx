@@ -14,11 +14,12 @@ export default function about() {
 				<div className={aboutStyles.contentContainer}>
 					<h1 className={aboutStyles.aboutTextShift}>About</h1>
 					<Image
-						src="https://arweave.net/YUOO4tIjNdw82NlYv3reVJ4pQJw7uZFkm0LKKVdLSEA/TestPill/pill_004012.png"
+						src="/About.gif"
 						className={aboutStyles.image}
 						height={558}
 						width={558}
-						alt=""></Image>
+						alt="gif"
+					/>
 					<div className={aboutStyles.text}>
 						<h1 className={aboutStyles.headerText} style={{ color: "#FF4F0A" }}>
 							About
