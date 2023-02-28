@@ -289,21 +289,6 @@ export const BACKGROUND: Trait[] = [
 ];
 export const FAQ_QUESTIONS: FAQ[] = [
 	{
-		question: "What's Starkpilled?",
-		answer:
-			"Starkpilled is an SFT (Semi-Fungible Token) collection of digital avatars for people to celebrate to the StarkNet Ecosystem and participate in the SFT movement.",
-	},
-	{
-		question: "What's the vision?",
-		answer:
-			"First, we want to showcase a better way to tokenize digital collectibles. Second, we’d like to offer a different perspective on valuing PFP collections - currently rarity is tied to the whole RNG’d PFP work of art eg. you value CryptoPunk#2391 as it is. With Starkpilled the idea is to value traits over the whole, so you can have a digital avatar that you can identify with more meaningfully.",
-	},
-	{
-		question: "SFTs?",
-		answer:
-			"Compared to traditional NFT collections that are of the ERC-721 token standard, Starkpills are ERC-2114s’ a Seraph Labs tweak of the novel ERC-3525 developed by Solv Protocol. In short, SFTs are dynamic “NFTs” that are able to be programmed and “equip” other “NFTs”.",
-	},
-	{
 		question: "What can I do with my Starkpills?",
 		answer:
 			"Think of Starkpills as your digital avatar that you can personalize to your liking with 2 points of customization - facial trait and background. We will continuously release new traits and partner with projects to offer limited edition traits.",
