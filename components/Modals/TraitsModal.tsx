@@ -52,7 +52,7 @@ export const TraitsModal = (props: {
 											? styles.flagSelected
 											: styles.flag
 									}>
-									<span style={{ marginRight: "4px", marginLeft: "auto" }}>
+									<span style={{ marginRight: "4px", marginLeft: "auto",letterSpacing:"0px" }}>
 										{trait.premiumPrice}
 									</span>
 									<ETHLogo />
