@@ -57,8 +57,12 @@ export default function Cabinet() {
 	});
 	if (loadingInit) {
 		return (
-			<div className="container">
-				<div className={styles.backgroundFade}></div>
+			<div
+				className="container"
+				style={{
+					background: `linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #29296e`,
+				}}>
+				{/* <div className={styles.backgroundFade}></div> */}
 				<div className="contentContainer">
 					<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>
 						Starkpills
@@ -71,8 +75,13 @@ export default function Cabinet() {
 	const tokenIds = data.allTokens;
 
 	return (
-		<div className="container" onScroll={(e) => handleScroll(e)}>
-			<div className={styles.backgroundFade}></div>
+		<div
+			className="container"
+			onScroll={(e) => handleScroll(e)}
+			style={{
+				background: `linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #29296e`,
+			}}>
+			{/* <div className={styles.backgroundFade}></div> */}
 			<div className="contentContainer">
 				<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>
 					Top 3 Starkpills

@@ -44,8 +44,12 @@ export default function Mypills() {
 	}, [refetchState.value]);
 	if (loading) {
 		return (
-			<div className="container">
-				<div className={styles.backgroundFade}></div>
+			<div
+				className="container"
+				style={{
+					background: `linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #29296e`,
+				}}>
+				{/* <div className={styles.backgroundFade}></div> */}
 				<div className="contentContainer">
 					<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>my pills</h1>
 					<div className={styles.cardContainer}>Loading</div>
@@ -57,12 +61,16 @@ export default function Mypills() {
 	return (
 		<>
 			{address && walletAddress == convertToStandardWalletAddress(address) ? (
-				<div className="container">
-					<div className={styles.backgroundFade}></div>
+				<div
+					className="container"
+					style={{
+						background: `linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #29296e`,
+					}}>
+					{/* <div className={styles.backgroundFade}></div> */}
 
 					<div className="contentContainer">
 						<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>
-							My Pills
+							My Prescription
 						</h1>
 						{tokenIds.length == 0 && !loading && (
 							<div style={{ textAlign: "center", width: "100%" }}>
