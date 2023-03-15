@@ -6,6 +6,8 @@ import { StarkPillCard } from "../components/StarkPillCard";
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import { useEffect } from "react";
+import { convertToStandardWalletAddress } from "../types/utils";
+import { Disconnect } from "../components/Disconnect";
 export default function Mypills() {
 	const refetchState = useSelector((state: any) => state.refetch);
 	const { address } = useAccount();
@@ -54,7 +56,7 @@ export default function Mypills() {
 	const tokenIds = data.user.tokens;
 	return (
 		<>
-			{address ? (
+			{address && walletAddress == convertToStandardWalletAddress(address) ? (
 				<div className="container">
 					<div className={styles.backgroundFade}></div>
 
@@ -87,6 +89,9 @@ export default function Mypills() {
 						</div>
 					</div>
 				</div>
+			) : address &&
+			  walletAddress != convertToStandardWalletAddress(address!) ? (
+				<Disconnect address={convertToStandardWalletAddress(address!)} />
 			) : (
 				<h1 style={{ textAlign: "center" }}>Account Disconnected</h1>
 			)}

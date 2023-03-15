@@ -15,14 +15,14 @@ export const PAGES: Page[] = [
 		isActive: true,
 	},
 	{
-		title: "Cabinet",
+		title: "Leaderboard",
 		link: "/cabinet",
 		isActive: true,
 	},
 ];
 export const USERPAGES: Page[] = [
 	{
-		title: "Pills",
+		title: "Cabinet",
 		link: "/mypills",
 		isActive: true,
 		paramName: "?walletAddress=",
