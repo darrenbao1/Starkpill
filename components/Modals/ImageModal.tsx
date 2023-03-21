@@ -1,5 +1,6 @@
 import styles from "../../styles/ImageModal.module.css";
 import Image from "next/image";
+import Cross from "../../public/svgs/cross2.svg";
 import { BACKGROUND, FACE_TRAITS } from "../../types/constants";
 interface Props {
 	imageUrl: string;
@@ -11,11 +12,9 @@ interface Props {
 }
 export const ImageModal = (props: Props) => {
 	const { imageUrl, tokenId, close, ingImageId, bgImageId, rank } = props;
+	const isTop3 = rank <= 3 && rank > 0;
 	return (
-		<div className={styles.modal} onClick={close}>
-			<span className={styles.close} onClick={close}>
-				&times;
-			</span>
+		<div className={styles.modal}>
 			<div className={styles.container}>
 				<Image
 					src={imageUrl}
@@ -28,14 +27,59 @@ export const ImageModal = (props: Props) => {
 					placeholder="blur"
 				/>
 				<div className={styles.caption}>
-					TestPill #{tokenId} <br />
-					{rank != 0 && (
-						<>
-							Cabinet Ranking #{rank} <br />
-						</>
-					)}
-					Ingredient: {FACE_TRAITS[ingImageId].name} <br />
-					Background: {BACKGROUND[bgImageId].name}
+					<div className={styles.captionContainer}>
+						<div className={styles.pillHeader}>
+							TestPill #{tokenId}
+							{isTop3 && (
+								<Image
+									src={"/svgs/medal" + props.rank + ".svg"}
+									alt=""
+									width={40}
+									height={40}
+									style={{ marginLeft: "12px" }}></Image>
+							)}
+						</div>
+						{/* rank container */}
+						{rank != 0 && (
+							<div className={styles.captionBox}>
+								<div className={styles.contentHeader}>Cabinet ranking</div>
+								<div className={styles.contentValue}>#{rank}</div>
+							</div>
+						)}
+						{/* ingredient container */}
+						<div className={styles.captionBox}>
+							<div className={styles.contentHeader}>Ingredient</div>
+							<div className={styles.contentValue}>
+								{FACE_TRAITS[ingImageId].name}
+							</div>
+						</div>
+						{/* background container */}
+						<div className={styles.captionBox}>
+							<div className={styles.contentHeader}>Background</div>
+							<div className={styles.contentValue}>
+								{BACKGROUND[bgImageId].name}
+							</div>
+						</div>
+						{/* TODO yet to implement fame */}
+						{/* <div className={styles.captionBox}>
+							<div className={styles.contentHeader}>Fame</div>
+							<div className={styles.contentValue}>-12</div>
+						</div> */}
+					</div>
+					{/* TODO FAME BUTTONS */}
+					{/* <div className={styles.fameContainer}>
+						<div>
+							<span style={{ fontSize: "24px" }}>Your balance:</span>
+							<span className={styles.remainderFame}>4</span>
+						</div>
+						<div className={styles.buttonContainer}>
+							<div className={styles.defameButton}> - Defame </div>
+							<div className={styles.fameButton}> + Fame </div>
+						</div>
+					</div> */}
+				</div>
+				<div className={styles.close} onClick={close}>
+					<Cross />
 				</div>
 			</div>
 		</div>

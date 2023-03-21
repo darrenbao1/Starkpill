@@ -16,7 +16,13 @@
 }
 /* Modal Content (image) */
 .container {
-	display: block;
+	position: absolute;
+	display: flex;
+	height: fit-content;
+	background-color: #ffffff;
+	padding: 30px;
+	border-radius: 12px;
+	overflow: scroll;
 }
 .modal_content {
 	margin: auto;
@@ -24,18 +30,43 @@
 	width: 100%;
 	max-width: 500px;
 }
-.caption {
-	margin: auto;
+.captionContainer {
 	display: block;
-	width: 80%;
-	max-width: 700px;
+}
+.captionBox {
+	margin-top: 8px;
+	display: flex;
+	min-width: 391px;
+	background: #f5f5f5;
+	border-radius: 14px;
+	font-size: 24px;
+	padding: 6px 22px 6px 22px;
+}
+.caption {
+	display: block;
+	width: 100%;
+	margin-left: 31px;
 	text-align: center;
-	color: #ccc;
-	padding: 10px 0;
-	height: 150px;
+	color: #262626;
+	margin-top: 35px;
+	position: relative;
+}
+.pillHeader {
+	color: #ff4f0a;
+	font-size: 48px;
+	text-align: left;
+}
+.contentHeader {
+	float: left;
+}
+.contentValue {
+	color: #ff4f0a;
+	margin-right: 0;
+	margin-left: auto;
 }
 .modal_content,
-.caption {
+.caption,
+.container {
 	-webkit-animation-name: zoom;
 	-webkit-animation-duration: 0.6s;
 	animation-name: zoom;
@@ -61,12 +92,19 @@
 
 .close {
 	position: absolute;
-	top: 15px;
-	right: 35px;
-	color: #f1f1f1;
+	display: flex;
+	top: 16px;
+	right: 16px;
+	height: fit-content;
+	align-items: center;
+	justify-content: center;
+	background-color: #ff4f0a;
+	color: white;
+	padding: 10px;
 	font-size: 40px;
 	font-weight: bold;
 	transition: 0.3s;
+	border-radius: 6px;
 }
 .close:hover,
 .close:focus {
@@ -74,13 +112,69 @@
 	text-decoration: none;
 	cursor: pointer;
 }
+.fameContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 100%;
+	padding: 0px;
+	gap: 16px;
+	font-weight: 400;
+	position: absolute;
+	bottom: 0;
+}
 /* 100% Image Width on Smaller Screens */
 @media only screen and (max-width: 700px) {
 	.modal_content {
 		width: 70%;
 		height: auto;
 	}
-	.close {
-		top: 100px;
+	.captionBox {
+		min-width: 0px;
 	}
+	.caption {
+		margin-left: 0px;
+	}
+	.container {
+		display: block;
+	}
+	.fameContainer {
+		position: relative;
+		margin-top: 24px;
+	}
+}
+
+.defameButton {
+	color: #ff4f0a;
+	background: #ffffff;
+	border: 2px solid #ff4f0a;
+	border-radius: 3px;
+	font-size: 24px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	width: 50%;
+}
+.fameButton {
+	color: #ffffff;
+	background: #ff4f0a;
+	border: 2px solid #ff4f0a;
+	border-radius: 3px;
+	font-size: 24px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	width: 50%;
+}
+.buttonContainer {
+	display: flex;
+	gap: 24px;
+	width: 100%;
+}
+.remainderFame {
+	background: #f5f5f5;
+	border-radius: 12px;
+	padding: 4px 19px 4px 19px;
+	font-weight: 400;
+	font-size: 24px;
+	margin-left: 8px;
+	color: #ff4f0a;
 }
