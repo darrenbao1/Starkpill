@@ -2,6 +2,7 @@ import styles from "../../styles/ImageModal.module.css";
 import Image from "next/image";
 import Cross from "../../public/svgs/cross2.svg";
 import { BACKGROUND, FACE_TRAITS } from "../../types/constants";
+import { useRef, useEffect } from "react";
 interface Props {
 	imageUrl: string;
 	tokenId: string;
@@ -13,8 +14,20 @@ interface Props {
 export const ImageModal = (props: Props) => {
 	const { imageUrl, tokenId, close, ingImageId, bgImageId, rank } = props;
 	const isTop3 = rank <= 3 && rank > 0;
+	const modalRef = useRef<HTMLDivElement>(null);
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (modalRef.current && event.target === modalRef.current) {
+				close();
+			}
+		};
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, [close]);
 	return (
-		<div className={styles.modal}>
+		<div ref={modalRef} className={styles.modal}>
 			<div className={styles.container}>
 				<Image
 					src={imageUrl}

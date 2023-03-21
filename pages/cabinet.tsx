@@ -72,7 +72,7 @@ export default function Cabinet() {
 			</div>
 		);
 	}
-	const tokenIds = data.allTokens;
+	const tokenIds = data?.allTokens;
 
 	return (
 		<div
