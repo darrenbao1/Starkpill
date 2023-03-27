@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { convertToStandardWalletAddress } from "../types/utils";
 import { Disconnect } from "../components/Disconnect";
+import sharedBackgroundStyles from "../styles/sharedBackground.module.css";
 export default function Mypills() {
 	const refetchState = useSelector((state: any) => state.refetch);
 	const { address } = useAccount();
@@ -44,12 +45,7 @@ export default function Mypills() {
 	}, [refetchState.value]);
 	if (loading) {
 		return (
-			<div
-				className="container"
-				style={{
-					background: `linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #29296e`,
-				}}>
-				{/* <div className={styles.backgroundFade}></div> */}
+			<div className={`container ${sharedBackgroundStyles.extendedBackground}`}>
 				<div className="contentContainer">
 					<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>my pills</h1>
 					<div className={styles.cardContainer}>Loading</div>
@@ -62,12 +58,7 @@ export default function Mypills() {
 		<>
 			{address && walletAddress == convertToStandardWalletAddress(address) ? (
 				<div
-					className="container"
-					style={{
-						background: `linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #29296e`,
-					}}>
-					{/* <div className={styles.backgroundFade}></div> */}
-
+					className={`container ${sharedBackgroundStyles.extendedBackground}`}>
 					<div className="contentContainer">
 						<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>
 							My Prescription

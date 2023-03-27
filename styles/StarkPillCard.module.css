@@ -3,6 +3,7 @@
 	margin: auto;
 	display: grid;
 	cursor: pointer;
+	position: relative;
 }
 .card:hover {
 	outline: 2px solid #ff4f0a;
@@ -13,6 +14,7 @@
 	height: 200px;
 	background-color: white;
 	border: 1px solid rgba(228, 228, 228, 0.6);
+	border-radius: 6px 6px 0 0;
 }
 .content {
 	padding: 1rem;
@@ -29,6 +31,7 @@
 	width: 300px;
 	margin: auto;
 	display: grid;
+	position: relative;
 }
 .cardRank:hover {
 	outline: 2px solid #ff4f0a;
@@ -89,4 +92,57 @@
 .image:hover,
 .imageRank:hover {
 	opacity: 0.7;
+}
+
+.menuOptions {
+	position: absolute;
+	top: 55px;
+	right: 0;
+	background-color: white;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	color: #262626;
+	border: 1px solid #ccc;
+	border-radius: 16px;
+	padding: 8px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.menuOptions::before {
+	content: "";
+	position: absolute;
+	top: -8px;
+	right: 14px;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-bottom: 8px solid white;
+}
+
+.menuItem {
+	padding: 12px 16px;
+	cursor: pointer;
+}
+
+.menuItem:hover {
+	background-color: #f1f1f1;
+}
+
+.kebabIcon {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	cursor: pointer;
+	z-index: 1;
+	width: 40px;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.menuItem:not(:last-child) {
+	/* Add the border to the bottom */
+	border-bottom: 1px solid #ccc;
 }
