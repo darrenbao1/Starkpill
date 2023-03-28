@@ -71,7 +71,7 @@ export const StarkPillCard = (props: Props) => {
 		});
 	};
 
-	const handleClickOutside = (event) => {
+	const handleClickOutside = (event: any) => {
 		if (
 			event.target.closest(".menuOptions") ||
 			event.target.closest("." + styles.kebabIcon)
@@ -81,7 +81,7 @@ export const StarkPillCard = (props: Props) => {
 		setMenuId(null);
 	};
 
-	const handleMenuToggle = (event) => {
+	const handleMenuToggle = (event: any) => {
 		if (event.detail !== tokenId) {
 			setMenuId(null);
 		}
