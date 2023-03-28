@@ -2,7 +2,7 @@ import { useState } from "react";
 import { StarkPillCard } from "../components/StarkPillCard";
 import styles from "../styles/cabinet.module.css";
 import { useQuery, gql } from "@apollo/client";
-
+import sharedBackgroundStyles from "../styles/sharedBackground.module.css";
 export default function Cabinet() {
 	const offsetIncrement = 20;
 	const [offsetAmount, setOffsetAmount] = useState(0);
@@ -57,12 +57,7 @@ export default function Cabinet() {
 	});
 	if (loadingInit) {
 		return (
-			<div
-				className="container"
-				style={{
-					background: `linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #29296e`,
-				}}>
-				{/* <div className={styles.backgroundFade}></div> */}
+			<div className={`container ${sharedBackgroundStyles.sharedBackground}`}>
 				<div className="contentContainer">
 					<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>
 						Starkpills
@@ -72,16 +67,12 @@ export default function Cabinet() {
 			</div>
 		);
 	}
-	const tokenIds = data?.allTokens;
+	const tokenIds = data.allTokens;
 
 	return (
 		<div
-			className="container"
-			onScroll={(e) => handleScroll(e)}
-			style={{
-				background: `linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #29296e`,
-			}}>
-			{/* <div className={styles.backgroundFade}></div> */}
+			className={`container ${sharedBackgroundStyles.extendedBackground}`}
+			onScroll={(e) => handleScroll(e)}>
 			<div className="contentContainer">
 				<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>
 					Top 3 Starkpills

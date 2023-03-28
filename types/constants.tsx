@@ -287,6 +287,7 @@ export const BACKGROUND: Trait[] = [
 		link: BACKGROUND_LINK + "018.png",
 	},
 ];
+export const isBrightArray = [0, 1, 6];
 export const FAQ_QUESTIONS: FAQ[] = [
 	{
 		question: "What can I do with my Starkpills?",
