@@ -19,7 +19,7 @@ export const ConnectWalletButton = () => {
 		<>
 			{!account ? (
 				<div
-					className="connectWalletButton"
+					className={styles.connectWalletText}
 					onClick={() => setShowConnectMenuModal(true)}>
 					connect wallet
 				</div>

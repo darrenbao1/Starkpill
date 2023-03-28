@@ -1,69 +1,81 @@
-
 .container {
-    position:fixed;
-    top:110px;
-    align-content: center;
-    align-items: center;
-    z-index: 3;
-    margin-left: -265px;
+	position: fixed;
+	top: 110px;
+	align-content: center;
+	align-items: center;
+	z-index: 3;
+	margin-left: -265px;
 }
-.dropdownContainer{
-    max-width: 1440px;
-    overflow:hidden;
+.dropdownContainer {
+	max-width: 1440px;
+	overflow: hidden;
 }
 .dropdown {
-    padding: 1rem 1rem;
-    height:fit-content;
-    width:380px;
-    float:right;
-    background-color: #29296E;
-    z-index: 3;
-    border-radius: 8px;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-
+	padding: 1rem 1rem;
+	height: fit-content;
+	width: 380px;
+	float: right;
+	background-color: #29296e;
+	z-index: 3;
+	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 @media screen and (max-width: 750px) {
-    .dropdown {
-        float: none;
-        display:flex;
-        margin: auto;
-    }
+	.dropdown {
+		float: none;
+		display: flex;
+		margin: auto;
+	}
 }
-.dropdown h1{
-    margin: 0;
-    width:100%;
-    text-align: center;
+.dropdown h1 {
+	margin: 0;
+	width: 100%;
+	text-align: center;
 }
-.dropdown span{
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    margin-left: 0;
-    margin-right: auto;
+.dropdown span {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	margin-left: 0;
+	margin-right: auto;
 }
-.disconnect{
-    width:100%;
-    text-align: center;
-    color:#FF4F0A;
-    font-size: 25px;
-    border: 1px solid #FF4F0A;
-    border-radius: 5px;
-    cursor: pointer;
+.disconnect {
+	width: 100%;
+	text-align: center;
+	color: #ff4f0a;
+	font-size: 25px;
+	border: 1px solid #ff4f0a;
+	border-radius: 5px;
+	cursor: pointer;
 }
 .disconnect:hover {
-    color:#fe7641;
-    border-color: #fe7641;
+	color: #fe7641;
+	border-color: #fe7641;
 }
-.addressContainer{
-    width:100%;
-    background-color: #3d3d91;
-    display:flex;
-    padding:1rem 1rem;
+.addressContainer {
+	width: 100%;
+	background-color: #3d3d91;
+	display: flex;
+	padding: 1rem 1rem;
 }
 .copyIcon {
-    margin-right: 0;
-    margin-left: auto;
-    cursor: pointer;
+	margin-right: 0;
+	margin-left: auto;
+	cursor: pointer;
+}
+
+.connectWalletText {
+	border-radius: 6px;
+	height: 51px;
+	padding: 0 0.7rem;
+	padding-top: 13px;
+	cursor: pointer;
+	background-color: #ff4f0a;
+	border: 1px solid rgba(228, 228, 228, 0.6);
+	width: 200px;
+	text-align: center;
+	font-size: 32px;
+	line-height: 75%;
 }

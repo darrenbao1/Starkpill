@@ -8,6 +8,7 @@ import Hamburger from "../public/hamburger.svg";
 import Cross from "../public/cross.svg";
 import { LinksModal } from "./Modals/LinksModal";
 import Image from "next/image";
+import Logo from "../public/logo.png";
 import { useAccount } from "@starknet-react/core";
 import { convertToStandardWalletAddress } from "../types/utils";
 export const Navbar = () => {
@@ -20,13 +21,13 @@ export const Navbar = () => {
 				<div className={styles.navbar}>
 					<Link href="/mint" onClick={() => setShowModal(false)}>
 						<div className={styles.logo}>
-							<span>getstarkpilled</span>
 							<Image
-								src="/landingPage.png"
-								width={60}
-								height={60}
+								src="/logo.png"
+								width={267}
+								height={83}
 								alt=""
-								style={{ marginTop: "5px" }}></Image>{" "}
+								style={{ marginTop: "10px" }}
+							/>
 						</div>
 					</Link>
 					<div className={styles.links}>
