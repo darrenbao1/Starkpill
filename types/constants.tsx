@@ -10,19 +10,19 @@ export const NETWORK_FOR_API = IS_TESTNET
 	: "starknet-mainnet";
 export const PAGES: Page[] = [
 	{
-		title: "about",
+		title: "About",
 		link: "/about",
 		isActive: true,
 	},
 	{
-		title: "leaderboard",
+		title: "Leaderboard",
 		link: "/cabinet",
 		isActive: true,
 	},
 ];
 export const USERPAGES: Page[] = [
 	{
-		title: "cabinet",
+		title: "Cabinet",
 		link: "/mypills",
 		isActive: true,
 		paramName: "?walletAddress=",
@@ -300,9 +300,9 @@ export const FAQ_QUESTIONS: FAQ[] = [
 			"Yes, you can! Because Starkpills are ERC-2114 SFTs, think of the default Starkpill as the base image and the other 2 traits as NFTs that it equips. You will be able to unequip traits and equip new ones acquired through trading and special events.",
 	},
 	{
-		question: "What’s the cabinet?",
+		question: "What is Leaderboard?",
 		answer:
-			"All minted Starkpills are displayed in our cabinet page as a neat collection for people to see all the unique Starkpills minted.",
+			"All minted Starkpills are displayed in our leaderboard page as a neat collection for people to see all the unique Starkpills minted.",
 	},
 	{
 		question: "Can I add my own traits to the current offerings?",

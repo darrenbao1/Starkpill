@@ -1,4 +1,4 @@
-import Cross from "../../public/svgs/cross.svg";
+import Cross from "../../public/svgs/MintCross.svg";
 import styles from "../../styles/MintModal.module.css";
 import InformationIcon from "../../public/svgs/information.svg";
 import SubtractIcon from "../../public/svgs/subtractIcon.svg";
@@ -108,7 +108,7 @@ export const MintModal = (props: {
 							className={styles.textField}
 							placeholder="0"
 							ref={inputRef}></input>
-						ETH
+						&nbsp; ETH
 					</div>
 				</div>
 				<div className={styles.receiptContainer}>
@@ -172,7 +172,7 @@ export const MintModal = (props: {
 				</div>
 			</div>
 			<div className={styles.information}>
-				All minted Starkpills will be listed as a collection in our cabinet
+				All minted Starkpills will be listed and ranked on our leaderboard
 			</div>
 			<SubTotal />
 		</div>

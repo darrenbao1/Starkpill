@@ -30,11 +30,11 @@ export default function about() {
 							<u>Great memes</u>
 						</Link>
 						&nbsp;beget more memes
-						<br />
-						Starkpilled is an SFT (Semi-Fungible Token) collection of digital
-						avatars for people to celebrate to the StarkNet Ecosystem and
-						participate in the SFT movement.
-						<br />
+						<p className="custom-paragraph">
+							Starkpilled is an SFT (Semi-Fungible Token) collection of digital
+							avatars for people to celebrate to the StarkNet Ecosystem and
+							participate in the SFT movement.{" "}
+						</p>
 						Compared to traditional NFT collections that are of the ERC-721
 						token standard, Starkpills are ERC-2114s’ a Seraph Labs tweak of the
 						novel ERC-3525 developed by Solv Protocol. In short, SFTs are

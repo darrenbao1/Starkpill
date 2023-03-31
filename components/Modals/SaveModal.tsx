@@ -1,5 +1,5 @@
 import styles from "../../styles/SaveModal.module.css";
-import Cross from "../../public/svgs/cross.svg";
+import Cross from "../../public/svgs/saveModalCross.svg";
 import { Trait } from "../../types/interfaces";
 import Image from "next/image";
 import { BACKGROUND, FACE_TRAITS, IMAGE_ENDPOINT } from "../../types/constants";
@@ -80,7 +80,7 @@ export const SaveModal = (props: {
 						handleClick;
 						saveChanges();
 					}}>
-					Confirm all edits
+					Confirm Edits
 				</div>
 			</div>
 		</div>
