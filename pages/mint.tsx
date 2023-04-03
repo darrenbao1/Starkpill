@@ -71,7 +71,8 @@ const Mint = () => {
 		<div
 			className="connectWalletButton"
 			style={{
-				padding: "1rem 2rem",
+				padding: "1rem 4rem",
+				fontSize: "32px",
 			}}
 			onClick={() => {
 				closeAllModals();

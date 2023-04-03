@@ -18,12 +18,16 @@ a {
 }
 .connectWalletButton {
 	border-radius: 6px;
-	height: 50px;
+	height: 60px;
+
 	padding: 0 0.7rem;
 	padding-top: 13px;
 	cursor: pointer;
 	background-color: #ff4f0a;
 	border: 1px solid rgba(228, 228, 228, 0.6);
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .connectWalletButton:hover {
 	background-color: #fe7641;

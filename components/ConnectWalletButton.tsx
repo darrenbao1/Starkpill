@@ -21,7 +21,7 @@ export const ConnectWalletButton = () => {
 				<div
 					className={styles.connectWalletText}
 					onClick={() => setShowConnectMenuModal(true)}>
-					connect wallet
+					Connect Wallet
 				</div>
 			) : (
 				<ConnectedButton address={address!} disconnect={disconnect} />
@@ -64,13 +64,14 @@ const ConnectedButton = (props: { address: string; disconnect: any }) => {
 	return (
 		<div ref={wrapperRef}>
 			<div
-				className="connectWalletButton"
+				className={styles.connectWalletText}
 				onClick={() => setShowDropDown(!showDropDown)}>
 				{shortenAddress(props.address)} &nbsp;{" "}
 				<picture>
 					<img
 						src="/downArrow.svg"
 						alt=""
+						width={20}
 						style={showDropDown ? { transform: "rotateX(180deg)" } : {}}></img>
 				</picture>
 			</div>

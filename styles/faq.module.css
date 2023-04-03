@@ -1,83 +1,84 @@
 .globalContainer {
-  position: relative;
-  left: 0;
-  width: 100vw;
-  padding-bottom: 100px;
-  align-content: center;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    #29296e;
+	position: relative;
+	left: 0;
+	width: 100vw;
+	padding-bottom: 100px;
+	align-content: center;
+	background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+		#29296e;
 }
 .container {
-  position: relative;
-  margin: 0 auto;
-  max-width: 1440px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 24px;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    #29296e;
-  color: black;
+	position: relative;
+	margin: 0 auto;
+	max-width: 1440px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 24px;
+	background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+		#29296e;
+	color: black;
 }
 .container ul {
-  background: transparent;
-  width: 100%;
-  list-style-type: none;
-  padding: 0;
+	background: transparent;
+	width: 100%;
+	list-style-type: none;
+	padding: 0;
 }
 .questionContainer {
-  background: #f7f7f7;
-  margin-top: 10px;
+	background: #f7f7f7;
+	margin-top: 10px;
 }
 .question {
-  padding: 16px 24px;
-  font-size: 25px;
-  font-weight: 700;
-  line-height: 120%;
-  display: flex;
-  align-items: center;
+	padding: 16px 24px;
+	font-size: 25px;
+	font-weight: 700;
+	line-height: 120%;
+	display: flex;
+	align-items: center;
+	color: black;
 }
 .question:hover {
-  text-decoration: underline;
+	text-decoration: underline;
 }
 .divider {
-  background: rgba(0, 0, 0, 0.25);
-  height: 2px;
-  width: 100%;
+	background: rgba(0, 0, 0, 0.25);
+	height: 2px;
+	width: 100%;
 }
 .answer {
-  padding: 16px 48px;
-  font-size: 22px;
-  font-weight: 400;
-  line-height: 140%;
-  color: rgba(60, 60, 67, 0.85);
+	padding: 16px 48px;
+	font-size: 22px;
+	font-weight: 400;
+	line-height: 140%;
+	color: rgba(60, 60, 67, 0.85);
 }
 .button {
-  width: 30px;
-  height: 30px;
-  stroke: black;
-  margin-right: 0;
-  margin-left: auto;
+	width: 30px;
+	height: 30px;
+	stroke: black;
+	margin-right: 0;
+	margin-left: auto;
 }
 .button:hover {
-  stroke: grey;
+	stroke: grey;
 }
 .container h1 {
-  font-size: 40px;
+	font-size: 40px;
 }
 @media screen and (max-width: 750px) {
-  .container h1 {
-    font-size: xx-large;
-  }
-  .button {
-    float: right;
-  }
-  .questionContainer span {
-    max-width: 250px;
-  }
+	.container h1 {
+		font-size: xx-large;
+	}
+	.button {
+		float: right;
+	}
+	.questionContainer span {
+		max-width: 250px;
+	}
 }
 
 .selectedQuestion {
-  color: #ff4f0a;
+	color: #ff4f0a;
 }

@@ -1,73 +1,76 @@
 .contentContainer {
-  position: relative;
-  margin: auto;
-  max-width: 1440px;
-  overflow: auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+	position: relative;
+	margin: auto;
+	max-width: 1440px;
+	overflow: auto;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 
-  height: 100%;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    #29296e;
+	height: 100%;
+	background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+		#29296e;
 }
 .text {
-  margin: auto;
-  width: 100%;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1.2rem;
-  line-height: 150%;
-  padding-right: 10%;
-  padding-top: 98.28px;
-  padding-bottom: 98px;
-  padding-left: 10%;
-  height: 100%;
-  color: white;
-  overflow: auto;
+	margin: auto;
+	width: 100%;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.2rem;
+	line-height: 150%;
+	padding-right: 10%;
+	padding-top: 98.28px;
+	padding-bottom: 98px;
+	padding-left: 10%;
+	height: 100%;
+	color: white;
+	overflow: auto;
 }
 .image {
-  margin: auto;
-  max-width: 558px;
-  max-height: 558px;
-  width: 100%;
-  height: 100%;
-  padding: 0px;
+	margin: auto;
+	max-width: 558px;
+	max-height: 558px;
+	width: 100%;
+	height: 100%;
+	padding: 0px;
 }
 .aboutTextShift {
-  display: none;
-  justify-content: center;
-  color: #ff4f0a;
+	display: none;
+	justify-content: center;
+	color: #ff4f0a;
 }
 
 @media screen and (max-width: 750px) {
-  .contentContainer {
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
-  }
-  .headerText {
-    display: none;
-    width: 107px;
-    height: 38px;
-    font-family: "Patrick Hand";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 32px;
-    line-height: 120%;
-  }
-  .image {
-    max-width: 222px;
-    max-height: 222px;
-    width: 100%;
-    height: 100%;
-  }
-  .aboutTextShift {
-    display: flex;
-    visibility: visible;
-    width: 100%;
-    padding-top: 10%;
-  }
-  .entireBox {
-    display: flex;
-  }
+	.contentContainer {
+		display: flex;
+		flex-direction: column;
+		overflow: auto;
+	}
+	.headerText {
+		display: none;
+		width: 107px;
+		height: 38px;
+		font-family: "Patrick Hand";
+		font-style: normal;
+		font-weight: 400;
+		font-size: 32px;
+		line-height: 120%;
+	}
+	.image {
+		max-width: 222px;
+		max-height: 222px;
+		width: 100%;
+		height: 100%;
+	}
+	.aboutTextShift {
+		display: flex;
+		visibility: visible;
+		width: 100%;
+		padding-top: 10%;
+	}
+	.entireBox {
+		display: flex;
+	}
+}
+.custom-paragraph {
+	margin-bottom: 1.5rem; /* Adjust this value to control the space between paragraphs */
 }

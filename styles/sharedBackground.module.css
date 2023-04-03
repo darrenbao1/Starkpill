@@ -10,7 +10,6 @@
 	background-size: cover;
 	background-attachment: fixed;
 	background-color: #1d1d1d;
-	transform: matrix(-1, 0, 0, 1, 0, 0);
 }
 
 .extendedBackground {

@@ -1,94 +1,101 @@
 .contentContainer {
-    position: relative;
-    margin: auto;
-    max-width: 1440px;
-    display:flex;
-    height:calc(100vh - 100px);
+	position: relative;
+	margin: auto;
+	max-width: 1440px;
+	display: flex;
+	height: calc(100vh - 100px);
 }
 .backgroundFade {
-    position: fixed;
-    width: calc(100vw + 5px);
-    height:calc(100vh - 100px);
-    background: linear-gradient(269.9deg, rgba(0, 0, 0, 0.792) 53.43%, rgba(0, 0, 0, 0.7755) 96.05%, rgba(0, 0, 0, 0.784406) 99.91%, rgba(0, 0, 0, 0) 99.92%);
-    z-index: -1;
-    margin-left: -5px;
+	position: fixed;
+	width: calc(100vw + 5px);
+	height: calc(100vh - 100px);
+	background: linear-gradient(
+		269.9deg,
+		rgba(0, 0, 0, 0.792) 53.43%,
+		rgba(0, 0, 0, 0.7755) 96.05%,
+		rgba(0, 0, 0, 0.784406) 99.91%,
+		rgba(0, 0, 0, 0) 99.92%
+	);
+	z-index: -1;
+	margin-left: -5px;
 }
-.imageContainer{
-    aspect-ratio: 1/1;
-    min-width: 212px;
-    max-width: 377px;
-    width:50%;
-    position:relative;
-    padding: 1px;
-    border: 1px solid rgba(228, 228, 228, 0.6);
-    border-radius: 6px;
-   margin-bottom: 1rem;
+.imageContainer {
+	aspect-ratio: 1/1;
+	min-width: 212px;
+	max-width: 377px;
+	width: 50%;
+	position: relative;
+	padding: 1px;
+	border: 1px solid rgba(228, 228, 228, 0.6);
+	border-radius: 6px;
+	margin-bottom: 1rem;
 }
-.imageLayer{
-    position:absolute;
-    top:0;
-    left:0;
-    max-width: 375px;
-    min-width: 210px;
-    width:100%;
-    object-fit: contain;
-    border-radius: 3px;
+.imageLayer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	max-width: 375px;
+	min-width: 210px;
+	width: 100%;
+	object-fit: contain;
+	border-radius: 3px;
 }
 .traitsContainer {
-    width:100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin: auto;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	margin: auto;
 }
-.traitsContainer .button{
-    cursor: pointer;
-    color:white;
-    max-width: 375px;
-    min-width: 210px;
-    width:50%;
-    font-family: inherit;
-    font-size: 25px;
-    background: #FF4F0A;
-    margin-bottom: 1rem;
-    border: 1px solid rgba(228, 228, 228, 0.6);
-    box-shadow: 0px 4px 4px rgba(50, 50, 71, 0.08), 0px 4px 8px rgba(50, 50, 71, 0.06);
-    border-radius: 6px;
-    text-align: center;
-    padding: 11px 15px;
+.traitsContainer .button {
+	cursor: pointer;
+	color: white;
+	max-width: 375px;
+	min-width: 210px;
+	width: 50%;
+	font-family: inherit;
+	font-size: 32px;
+	background: #ff4f0a;
+	margin-bottom: 1rem;
+	border: 1px solid rgba(228, 228, 228, 0.6);
+	box-shadow: 0px 4px 4px rgba(50, 50, 71, 0.08),
+		0px 4px 8px rgba(50, 50, 71, 0.06);
+	border-radius: 6px;
+	text-align: center;
+	padding: 11px 15px;
 }
 .traitsContainer .button:hover {
-    background-color: #fe7641;
+	background-color: #fe7641;
 }
 .traitsContainer .editButton {
-    background: #262626;
-    color:white;
-    max-width: 375px;
-    min-width: 210px;
-    width:50%;
-    border: 1px solid rgba(228, 228, 228, 0.6);
-    box-shadow: 0px 4px 4px rgba(50, 50, 71, 0.08), 0px 4px 8px rgba(50, 50, 71, 0.06);
-    border-radius: 6px;
-    font-size: 25px;
-    cursor: pointer;
-    padding: 11px 15px;
-    margin-bottom: 1rem;
-    display:flex;
+	background: #29296e;
+	color: white;
+	max-width: 375px;
+	min-width: 210px;
+	width: 50%;
+	border: 1px solid rgba(228, 228, 228, 0.6);
+	box-shadow: 0px 4px 4px rgba(50, 50, 71, 0.08),
+		0px 4px 8px rgba(50, 50, 71, 0.06);
+	border-radius: 6px;
+	font-size: 32px;
+	cursor: pointer;
+	padding: 11px 15px;
+	margin-bottom: 1rem;
+	display: flex;
 }
 .traitsContainer .editButton:hover {
-    color:grey;
-    border-color: grey;
+	color: grey;
+	border-color: grey;
 }
 .companyLogo {
-    position: fixed;
-    bottom: 0px;
-    left:0px;
-    margin: 14px;
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	margin: 14px;
 }
 @media screen and (max-width: 750px) {
-    
-    .companyLogo {
-        visibility: hidden;
-    }
-  }
+	.companyLogo {
+		visibility: hidden;
+	}
+}
