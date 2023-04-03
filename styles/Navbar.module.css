@@ -66,7 +66,7 @@
 	}
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 1050px) {
 	.links,
 	.link,
 	.buttonContainer {
@@ -80,5 +80,10 @@
 		right: 20px;
 	}
 	.logo {
+	}
+}
+@media screen and (min-width: 700px) {
+	.buttonContainer {
+		min-width: 200px;
 	}
 }
