@@ -256,6 +256,7 @@ export const EditPillModal = (props: Props) => {
 							close={() => setShowFaceModal(false)}
 							select={setSelectedIng}
 							handleClick={handleClick}
+							isMinting={false}
 						/>
 					)}
 					{showBackgroundModal && (
@@ -266,6 +267,7 @@ export const EditPillModal = (props: Props) => {
 							close={() => setShowBackgroundModal(false)}
 							select={setBackgroundId}
 							handleClick={handleClick}
+							isMinting={false}
 						/>
 					)}
 				</div>

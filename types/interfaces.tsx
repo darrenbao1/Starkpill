@@ -10,6 +10,7 @@ export interface Trait {
 	link: string;
 	tokenId?: number;
 	premiumPrice?: number;
+	quantityLeft?: number;
 }
 export interface FAQ {
 	question: string;

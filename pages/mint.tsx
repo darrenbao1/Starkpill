@@ -121,6 +121,7 @@ const Mint = () => {
 						selectedId={selectedFaceId}
 						close={() => setShowFaceModal(false)}
 						select={setSelectedFaceId}
+						isMinting={true}
 					/>
 				)}
 				{showBackgroundModal && (
@@ -130,6 +131,7 @@ const Mint = () => {
 						selectedId={selectedBackgroundId}
 						close={() => setShowBackgroundModal(false)}
 						select={setBackgroundId}
+						isMinting={true}
 					/>
 				)}
 				{showMintModal && (

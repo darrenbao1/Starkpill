@@ -27,6 +27,8 @@ export default function Mypills() {
 					metadata {
 						imageUrl
 						mintPrice
+						fame
+						defame
 					}
 				}
 			}
@@ -83,6 +85,7 @@ export default function Mypills() {
 									isOwner={true} //true because at pills page.
 									key={token.id}
 									rank={0}
+									fame={token.metadata.fame - token.metadata.defame}
 								/>
 							))}
 						</div>

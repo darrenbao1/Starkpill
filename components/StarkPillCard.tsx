@@ -23,6 +23,7 @@ interface Props {
 	bgId?: number;
 	rank: number;
 	isOwner?: boolean;
+	fame: number;
 }
 export const StarkPillCard = (props: Props) => {
 	const {
@@ -34,6 +35,7 @@ export const StarkPillCard = (props: Props) => {
 		ingId,
 		bgId,
 		rank,
+		fame,
 	} = props;
 	const [showModal, setShowModal] = useState(false);
 	const [showImageModal, setShowImageModal] = useState(false);
@@ -157,6 +159,7 @@ export const StarkPillCard = (props: Props) => {
 							)}
 						</div>
 						<div>{Number(mintPrice) / Math.pow(10, 18)} ETH</div>
+						<div>{fame} Fame</div>
 						{!isOwner && <div>Owned By: {shortenAddress(ownerAddress)}</div>}
 					</div>
 				</div>

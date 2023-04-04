@@ -2,7 +2,6 @@ import { gql, useQuery } from "@apollo/client";
 import {
 	BACKGROUND,
 	FACE_TRAITS,
-	MINTSQUARE_BASE_URL,
 	NETWORK_FOR_API,
 	STARKPILL_CONTRACT_ADDRESS,
 } from "./constants";
@@ -76,6 +75,26 @@ export function convertToStandardWalletAddress(walletAddress: string) {
 // 			};
 // 		});
 // }
+export async function getPharmacyData() {
+	const GET_PHARMACY_DATA = gql`
+		query GetPharmacyData {
+			getPharmacyData {
+				amount_left
+				index
+				startAmount
+				typeIndex
+			}
+		}
+	`;
+	try {
+		const result = await client.query({
+			query: GET_PHARMACY_DATA,
+		});
+		return result.data.getPharmacyData;
+	} catch (error) {
+		console.error(error);
+	}
+}
 export async function getUserBackPack(walletAddress: String) {
 	const walletAddressForAPI = convertToStandardWalletAddress(
 		walletAddress.toString()

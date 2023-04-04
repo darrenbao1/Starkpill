@@ -41,6 +41,8 @@ export default function Cabinet() {
 				metadata {
 					mintPrice
 					imageUrl
+					fame
+					defame
 				}
 			}
 		}
@@ -86,6 +88,7 @@ export default function Cabinet() {
 							imageUrl={token.metadata.imageUrl}
 							rank={index + 1}
 							key={index}
+							fame={token.metadata.fame - token.metadata.defame}
 						/>
 					))}
 				</div>
@@ -99,6 +102,7 @@ export default function Cabinet() {
 							imageUrl={token.metadata.imageUrl}
 							key={index}
 							rank={index + 4}
+							fame={token.metadata.fame - token.metadata.defame}
 						/>
 					))}
 				</div>

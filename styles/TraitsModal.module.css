@@ -217,3 +217,23 @@
 	border-bottom: 16px solid transparent;
 	border-left: 6px transparent;
 }
+
+.unitsLeftContainer {
+	position: absolute;
+	bottom: 5px;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+}
+.unitsLeft {
+	position: relative;
+	width: 96px;
+	bottom: 5px;
+
+	border: 1px solid white;
+	border-radius: 20px;
+	text-align: center;
+	font-size: 14px;
+	padding: 5px 10px;
+}
