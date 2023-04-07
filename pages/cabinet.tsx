@@ -3,6 +3,7 @@ import { StarkPillCard } from "../components/StarkPillCard";
 import styles from "../styles/cabinet.module.css";
 import { useQuery, gql } from "@apollo/client";
 import sharedBackgroundStyles from "../styles/sharedBackground.module.css";
+import { GET_ALL_TOKENS } from "../types/constants";
 export default function Cabinet() {
 	const offsetIncrement = 20;
 	const [offsetAmount, setOffsetAmount] = useState(0);
@@ -31,22 +32,6 @@ export default function Cabinet() {
 		}
 	};
 
-	const GET_ALL_TOKENS = gql`
-		query AllTokens($skip: Int, $first: Int) {
-			allTokens(skip: $skip, first: $first) {
-				id
-				owner {
-					address
-				}
-				metadata {
-					mintPrice
-					imageUrl
-					fame
-					defame
-				}
-			}
-		}
-	`;
 	const {
 		data,
 		loading: loadingInit,
@@ -88,7 +73,7 @@ export default function Cabinet() {
 							imageUrl={token.metadata.imageUrl}
 							rank={index + 1}
 							key={index}
-							fame={token.metadata.fame - token.metadata.defame}
+							fame={token.metadata.fame}
 						/>
 					))}
 				</div>
@@ -102,7 +87,7 @@ export default function Cabinet() {
 							imageUrl={token.metadata.imageUrl}
 							key={index}
 							rank={index + 4}
-							fame={token.metadata.fame - token.metadata.defame}
+							fame={token.metadata.fame}
 						/>
 					))}
 				</div>

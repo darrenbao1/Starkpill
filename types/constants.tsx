@@ -1,4 +1,5 @@
 import { FAQ, Page, Trait } from "./interfaces";
+import { gql, useQuery } from "@apollo/client";
 export const IS_TESTNET = true;
 export const STARKPILL_CONTRACT_ADDRESS =
 	"0x05ef092a31619faa63bf317bbb636bfbba86baf8e0e3e8d384ee764f2904e5dd";
@@ -310,3 +311,20 @@ export const FAQ_QUESTIONS: FAQ[] = [
 			"Yes! But subject to certain terms and conditions. If you’re interested with working with us, please reach out to 211lp@seraphlabs.io or @211lp on Twitter.",
 	},
 ];
+
+export const GET_ALL_TOKENS = gql`
+	query AllTokens($skip: Int, $first: Int) {
+		allTokens(skip: $skip, first: $first) {
+			id
+			owner {
+				address
+			}
+			metadata {
+				mintPrice
+				imageUrl
+				fame
+				defame
+			}
+		}
+	}
+`;
