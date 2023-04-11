@@ -1,85 +1,80 @@
 .notificationContainer {
-	font-size: 14px;
+	font-size: 20px;
+	color: #000000;
 	box-sizing: border-box;
 	position: fixed;
 	z-index: 999999;
-    bottom: 12px;
+	top: 112px;
 	right: 12px;
-	transition: transform .6s ease-in-out;
-	animation: toast-in-right .7s;
+	transition: transform 0.6s ease-in-out;
+	animation: toast-in-right 0.7s;
 }
 .toast {
-    display:flex;
+	display: flex;
+	flex-direction: row;
 	align-items: center;
-    background: #fff;
-	transition: transform .6s ease-in-out;
-	animation: toast-in-right .7s;
+	padding: 12px 16px;
+	gap: 16px;
 	position: relative;
-	width: 334px;
-	height: 105px;
-	padding: 24px;
-	border: 1px solid black;
-	border-radius: 5px;
+	background: #fff;
+	transition: transform 0.6s ease-in-out;
+	animation: toast-in-right 0.7s;
+	position: relative;
+	max-width: 364px;
+	min-width: 200px;
+	width: auto;
+	border-radius: 4px;
 	background: #27272a;
 	color: #ffffff;
-	border-left: 3px solid #ff7a00;
 	border-radius: 6px;
 	margin: 5px;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3), 0px 12px 24px rgba(0, 0, 0, 0.2);
+	border-radius: 4px;
 }
 
 .notification:hover {
 	box-shadow: 0 0 12px #fff;
 	opacity: 1;
-	cursor: pointer
+	cursor: pointer;
 }
 
 .toast .title {
-	display:block;
+	display: block;
 	font-weight: 700;
 	font-size: 16px;
 	text-align: left;
 	margin-top: 0;
-    width: 300px;
+	width: 200px;
+	color: #000000;
 }
 
 .toast .message {
-    height: 18px;
-    white-space: nowrap;
+	height: 18px;
+	white-space: nowrap;
 }
 
 .toast .image {
-    float: left;
-    margin-right: 15px;
+	float: left;
+	margin-right: 15px;
+	margin-top: 5px;
 }
 
 .toast .image img {
-    width: 30px;
-    height: 30px;
+	width: 30px;
+	height: 30px;
 }
 
 .notificationContainer button {
-	position: relative;
-	float: right;
-	font-weight: 700;
-	color: white;
-	outline: none;
-	border: none;
-	text-shadow: 0 1px 0 #fff;
-	opacity: .8;
-	line-height: 1;
-	font-size: 16px;
-	padding: 0;
 	cursor: pointer;
 	background: 0 0;
-	border: 0
+	border: 0;
 }
 
 @keyframes toast-in-right {
 	from {
-	  transform: translateX(100%);
-	  
+		transform: translateX(100%);
 	}
 	to {
-	  transform: translateX(0);
+		transform: translateX(0);
 	}
 }

@@ -77,9 +77,27 @@ export default function Cabinet() {
 								onClick={() => setShowDropbox(!showDropbox)}>
 								<SortIcon /> Sort ({DROPDOWN_MENU_ITEMS[sortOption].label})
 							</button>
+
 							{showDropbox && (
 								<div className={styles.dropdownMenu}>
-									<label htmlFor="option1">
+									{DROPDOWN_MENU_ITEMS.map((item, index) => (
+										<label
+											htmlFor={`option${index}`}
+											className={styles.radioLabel}
+											key={index}>
+											<input
+												className={styles.radioInput}
+												type="radio"
+												id={`option${index}`}
+												value={index}
+												checked={sortOption == index}
+												onChange={handleOptionChange}
+											/>
+											<span className={styles.customRadio} />
+											{item.label}
+										</label>
+									))}
+									{/* <label htmlFor="option1">
 										<input
 											type="radio"
 											id="option1"
@@ -108,7 +126,7 @@ export default function Cabinet() {
 											onChange={handleOptionChange}
 										/>
 										{DROPDOWN_MENU_ITEMS[2].label}
-									</label>
+									</label> */}
 								</div>
 							)}
 						</div>

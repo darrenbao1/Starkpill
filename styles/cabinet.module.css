@@ -110,8 +110,6 @@
 }
 .dropdownMenu {
 	position: absolute;
-	display: none;
-
 	right: 0px;
 	top: 100%;
 	margin-top: 16px;
@@ -141,19 +139,6 @@
 	opacity: 0;
 }
 
-.dropdownMenu label::before {
-	content: "";
-	display: block;
-	position: absolute;
-	left: 15px;
-	top: 50%;
-	transform: translateY(-50%);
-	width: 16px;
-	height: 16px;
-	border-radius: 50%;
-	border: 2px solid;
-	border-color: #ff4f0a;
-}
 .dropdownMenu input[type="radio"]:checked {
 	background-color: #ff4f0a;
 	border-color: #ff4f0a;
@@ -194,4 +179,38 @@
 		overflow-y: auto;
 		border-radius: 8px 8px 0 0; /* Add border-radius to the top */
 	}
+}
+.radioInput {
+	visibility: hidden;
+}
+.radioInput:checked + span {
+	border: 2px solid #ff4f0a;
+}
+
+.radioInput:checked + span:after {
+	opacity: 1;
+}
+.customRadio {
+	cursor: pointer;
+	width: 20px;
+	height: 20px;
+	border: 2px solid #ff4f0a;
+	border-radius: 50%;
+	display: inline-block;
+	position: relative;
+}
+
+/* for inner filled circle */
+.customRadio::after {
+	content: "";
+	width: 10px;
+	height: 10px;
+	background: #ff4f0a;
+	position: absolute;
+	border-radius: 50%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	opacity: 0;
+	transition: opacity 0.2s;
 }
