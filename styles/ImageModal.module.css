@@ -177,3 +177,92 @@
 	margin-left: 8px;
 	color: #ff4f0a;
 }
+.fameRadioButtonContainer {
+	display: flex;
+	align-items: flex-start;
+	width: 205px;
+	height: 35px;
+	padding-top: 15px;
+	flex-direction: row;
+	font-size: 24px;
+	gap: 8px;
+	padding-bottom: 37px;
+}
+
+.fameRadioButtonContainer input[type="radio"] {
+	border-color: #ff4f0a;
+	color: #ff4f0a;
+}
+.addFameButtonContainer {
+	display: flex;
+	justify-content: right;
+	align-items: center;
+	width: 100%;
+	position: relative;
+}
+.textField {
+	width: 49px;
+	border-radius: 8px;
+	height: 37px;
+	text-align: center;
+	font-size: 24px;
+	border: 0.5px solid#C4C4C4;
+}
+.stepperButton {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	font-size: 24px;
+
+	background-color: transparent;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+	position: absolute;
+}
+.stepperButton:first-child {
+	right: 40px;
+	color: #8f1310;
+	font-size: 35px;
+}
+
+.stepperButton:last-child {
+	right: -30px;
+	color: rgb(3, 79, 3);
+}
+/* Chrome, Safari, Edge, Opera */
+.textField[type="number"]::-webkit-inner-spin-button,
+.textField[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+.textField[type="number"] {
+	-moz-appearance: textfield;
+}
+
+.yourBalance {
+	display: flex;
+
+	font-size: 22px;
+	height: 35px;
+	padding-top: 15px;
+}
+.confirmButton {
+	font-size: 24px;
+	padding: 8px 56px 8px 57px;
+	width: 207px;
+	height: 40px;
+	color: #ffffff;
+	background: #ff4f0a;
+	border-radius: 3px;
+	border: 2px solid #ff4f0a;
+}
+.buttonWrapper {
+	display: flex;
+	justify-content: flex-end;
+	width: 400px;
+	padding-top: 40px;
+}

@@ -51,7 +51,7 @@
 }
 .contentRank {
 	padding: 1rem;
-	font-size: large;
+	font-size: 20.0544px;
 	width: 300px;
 	color: black;
 	background-color: white;
@@ -61,6 +61,7 @@
 }
 .contentRankTitle {
 	color: #ff4f0a;
+	font-size: 24px;
 }
 
 .card:hover .contentRankTitle {
@@ -96,7 +97,7 @@
 
 .menuOptions {
 	position: absolute;
-	top: 55px;
+	bottom: 20px;
 	right: 0;
 	background-color: white;
 	font-style: normal;
@@ -132,7 +133,7 @@
 
 .kebabIcon {
 	position: absolute;
-	top: 0px;
+	bottom: 85px;
 	right: 0px;
 	cursor: pointer;
 	z-index: 1;
@@ -145,4 +146,31 @@
 .menuItem:not(:last-child) {
 	/* Add the border to the bottom */
 	border-bottom: 1px solid #ccc;
+}
+.kebabIconMyPills {
+	position: absolute;
+	bottom: 60px;
+	right: 0px;
+	cursor: pointer;
+	z-index: 1;
+	width: 40px;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.menuOptionsMyPills {
+	position: absolute;
+	bottom: -50px;
+	right: 0;
+	background-color: white;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	color: #262626;
+	border: 1px solid #ccc;
+	border-radius: 16px;
+	padding: 8px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }

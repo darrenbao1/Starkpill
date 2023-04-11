@@ -1,7 +1,6 @@
 import styles from "../styles/StarkPillCard.module.css";
 import Image from "next/image";
 import {
-	isBrightArray,
 	NETWORK_FOR_API,
 	STARKPILL_CONTRACT_ADDRESS,
 } from "../types/constants";
@@ -46,7 +45,6 @@ export const StarkPillCard = (props: Props) => {
 	);
 	const ingImageId = parseInt(value.substring(0, 3));
 	const bgImageId = parseInt(value.substring(3));
-	const isWhiteBg = isBrightArray.includes(bgImageId) ? true : false;
 	const openMintSquareLink = () => {
 		window.open(
 			`https://mintsquare.io/asset/${NETWORK_FOR_API}/` +
@@ -111,16 +109,21 @@ export const StarkPillCard = (props: Props) => {
 						: {}
 				}>
 				<div className={isTop3 ? styles.cardRank : styles.card}>
-					<div className={styles.kebabIcon} onClick={toggleMenu}>
-						<KebabIcon
-							style={isWhiteBg ? { color: "#35358F" } : { color: "#FFFFFF" }}
-						/>
+					<div
+						className={`${styles.kebabIcon} ${
+							isOwner ? `${styles.kebabIconMyPills} ` : ""
+						}`}
+						onClick={toggleMenu}>
+						<KebabIcon style={{ color: "#FF4F0A" }} />
 					</div>
+
 					{menuId === tokenId && (
-						<div className={styles.menuOptions}>
+						<div
+							className={`${styles.menuOptions} ${
+								isOwner ? styles.menuOptionsMyPills : ""
+							}`}>
 							<div className={styles.menuItem} onClick={openMintSquareLink}>
-								<ExternalLinksIcon style={{ marginRight: "8px" }} /> External
-								Links
+								<ExternalLinksIcon style={{ marginRight: "8px" }} /> Mint Square
 							</div>
 							{isOwner && (
 								<div
@@ -147,17 +150,7 @@ export const StarkPillCard = (props: Props) => {
 					<div
 						className={isTop3 ? styles.contentRank : styles.content}
 						style={isTop3 ? { borderColor: borderColor } : {}}>
-						<div className={styles.contentRankTitle}>
-							TestPill #{tokenId}
-							{isTop3 && (
-								<Image
-									src={"/svgs/medal" + props.rank + ".svg"}
-									alt=""
-									width={50}
-									height={50}
-									style={{ float: "right" }}></Image>
-							)}
-						</div>
+						<div className={styles.contentRankTitle}>TestPill #{tokenId}</div>
 						<div>{Number(mintPrice) / Math.pow(10, 18)} ETH</div>
 						<div>{fame} Fame</div>
 						{!isOwner && <div>Owned By: {shortenAddress(ownerAddress)}</div>}
@@ -181,8 +174,9 @@ export const StarkPillCard = (props: Props) => {
 					tokenId={tokenId}
 					ingImageId={ingImageId}
 					bgImageId={bgImageId}
-					rank={rank}
 					close={() => setShowImageModal(false)}
+					fame={fame}
+					ownerAddress={ownerAddress}
 				/>
 			)}
 		</>
