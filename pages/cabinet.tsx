@@ -94,7 +94,7 @@ export default function Cabinet() {
 												onChange={handleOptionChange}
 											/>
 											<span className={styles.customRadio} />
-											{item.label}
+											<span style={{ marginLeft: "16px" }}>{item.label}</span>
 										</label>
 									))}
 									{/* <label htmlFor="option1">
