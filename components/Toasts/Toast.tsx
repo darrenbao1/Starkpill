@@ -4,10 +4,10 @@ import {
 } from "@starknet-react/core";
 import styles from "./Toast.module.css";
 import { useEffect, useState } from "react";
-import { shortenAddress } from "../../types/utils";
 import Completed from "../../public/svgs/Completed.svg";
 import Pending from "../../public/svgs/Pending.svg";
 import Failed from "../../public/svgs/Failed.svg";
+import Cross from "../../public/svgs/cross3.svg";
 import { useDispatch } from "react-redux";
 import { increment } from "../../features/refetch";
 import { IS_TESTNET } from "../../types/constants";
@@ -28,27 +28,33 @@ const ToastObj = (props: { hash: string }) => {
 	const { data } = useTransactionReceipt({ hash: props.hash, watch: true });
 	const [isShown, setIsShown] = useState(false);
 	const [txStatus, setTxStatus] = useState("");
-	const [statusColor, setStatusColor] = useState("yellow");
+	const [statusText, setStatusText] = useState("");
+	const [statusColor, setStatusColor] = useState("#FFFBEF");
 	const changeState = (status: string | undefined) => {
 		if (status == undefined) {
 		} else {
 			if (status == "RECEIVED") {
 				setIsShown(true);
 				setTxStatus("Pending");
-				setStatusColor("yellow");
+				setStatusText("Pending wallet transaction");
+				setStatusColor("#FFFBEF");
 				setTimeout(() => setIsShown(false), 7000);
 			}
 			if (status == "ACCEPTED_ON_L2") {
 				setIsShown(true);
 				setTxStatus("Success");
-				setStatusColor("green");
+				setStatusColor("#EFFFFB");
+				setStatusText("Invoked successfully");
 				dispatch(increment());
 				setTimeout(() => setIsShown(false), 7000);
 			}
 			if (status == "REJECTED") {
 				setIsShown(true);
 				setTxStatus("Failed");
-				setStatusColor("red");
+				setStatusColor("#FFEFEF");
+				setStatusText(
+					"Sorry, we are unable to proceed with your request, please try again later."
+				);
 				setTimeout(() => setIsShown(false), 7000);
 			}
 		}
@@ -60,33 +66,31 @@ const ToastObj = (props: { hash: string }) => {
 	return (
 		<>
 			{isShown && data && (
-				<div
-					className={styles.toast}
-					style={{ borderLeft: "3px solid " + statusColor }}>
+				<div className={styles.toast} style={{ background: statusColor }}>
 					<div className={styles.image}>
 						{txStatus == "Success" && <Completed />}
 						{txStatus == "Pending" && <Pending />}
 						{txStatus == "Failed" && <Failed />}
 					</div>
 					<div className={styles.title}>
-						<div>{txStatus}</div>
-						<div>{shortenAddress(props.hash)}</div>
+						<div>{statusText}</div>
+						{txStatus == "Pending" && (
+							<div className={styles.message}>
+								<a
+									href={
+										`https://${IS_TESTNET ? "testnet." : ""}starkscan.co/tx/` +
+										props.hash
+									}
+									target="_blank"
+									rel="noreferrer">
+									<u>View Transaction</u>
+								</a>
+							</div>
+						)}
 					</div>
-					<div className={styles.message}>
-						<a
-							href={
-								`https://${IS_TESTNET ? "testnet." : ""}starkscan.co/tx/` +
-								props.hash
-							}
-							target="_blank"
-							rel="noreferrer">
-							<u>View Transaction</u>
-						</a>
-					</div>
-					<button
-						onClick={() => setIsShown(false)}
-						style={{ marginLeft: "15px" }}>
-						X
+
+					<button onClick={() => setIsShown(false)}>
+						<Cross />
 					</button>
 				</div>
 			)}
