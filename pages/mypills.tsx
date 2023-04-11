@@ -85,6 +85,7 @@ export default function Mypills() {
 									key={token.id}
 									rank={0}
 									fame={token.metadata.fame}
+									view="mypills"
 								/>
 							))}
 						</div>

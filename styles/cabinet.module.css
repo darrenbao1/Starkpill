@@ -44,3 +44,151 @@
 	z-index: -1;
 	margin-left: -5px;
 }
+.sortWrapper {
+	display: flex;
+	justify-content: flex-end;
+	padding-right: 20px;
+}
+
+.sortContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+
+	gap: 8px;
+
+	margin-top: 40px;
+	width: 100%;
+	max-width: 242px;
+
+	height: 48px;
+	left: 1158px;
+	top: 130px;
+
+	background: #12124a;
+	border: 1px solid #bfbfbf;
+	border-radius: 8px;
+}
+.sortContainer:hover {
+	background: #242424;
+	cursor: pointer;
+}
+.sortContainer:focus {
+	background: #111111;
+}
+.sortButton {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	gap: 8px;
+	font-size: 24px;
+	letter-spacing: -0.25px;
+	width: 242px;
+	border: none;
+	background-color: transparent;
+	color: #ffffff;
+	font-family: Patrick hand;
+}
+.sortButton.selected {
+	background: pink;
+}
+
+@media screen and (max-width: 800px) {
+	.sortWrapper {
+		justify-content: center;
+		padding-right: 0;
+	}
+	.sortContainer {
+		width: 100%;
+
+		max-width: 300px;
+	}
+	.dropdownWrapper {
+		width: 100%;
+	}
+}
+.dropdownMenu {
+	position: absolute;
+	display: none;
+
+	right: 0px;
+	top: 100%;
+	margin-top: 16px;
+	width: 242px;
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+	z-index: 4;
+	display: flex;
+	flex-direction: column;
+}
+
+.dropdownMenu label {
+	display: block;
+	position: relative;
+	padding: 16px 16px 16px 48px;
+	border-color: 1px solid black;
+	font-weight: bold;
+	cursor: pointer;
+	border: 1px solid #e9e9e9;
+
+	background-color: #ffffff;
+	color: #262626;
+	font-size: 24px;
+}
+
+.dropdownMenu input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+}
+
+.dropdownMenu label::before {
+	content: "";
+	display: block;
+	position: absolute;
+	left: 15px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	border: 2px solid;
+	border-color: #ff4f0a;
+}
+
+.dropdownMenu input[type="radio"]:checked + label::before {
+	background-color: #ff4f0a;
+	border-color: #ff4f0a;
+}
+
+.dropdownMenu label:hover {
+	background-color: #f1f1f1;
+}
+
+.dropdownMenu label:focus {
+	outline: none;
+	box-shadow: 0 0 0 3px rgba(18, 18, 74, 0.5);
+}
+.dropdownWrapper {
+	position: relative;
+}
+.dropdownMenu label:first-child {
+	border-radius: 8px 8px 0px 0px;
+}
+
+.dropdownMenu label:last-child {
+	border-radius: 0px 0px 8px 8px;
+}
+@media screen and (max-width: 768px) {
+	.dropdownMenu {
+		position: fixed;
+		width: 100%;
+		height: auto; /* Change the height to auto */
+		max-height: 80%; /* Set a maximum height for the menu */
+		top: auto; /* Remove the top positioning */
+		bottom: 0; /* Position the drawer at the bottom */
+		left: 0;
+		margin-top: 0;
+		overflow-y: auto;
+		border-radius: 8px 8px 0 0; /* Add border-radius to the top */
+	}
+}

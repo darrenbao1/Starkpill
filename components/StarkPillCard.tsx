@@ -59,7 +59,11 @@ export const StarkPillCard = (props: Props) => {
 	const [showMenu, setShowMenu] = useState(false);
 
 	const borderColor =
-		props.rank === 1 ? "#FFC107" : props.rank === 2 ? "#E0E0E0" : "#FF9838";
+		props.rank === 1
+			? "#FFC107 transform: matrix(0, 1, -1, 0, 0, 0);"
+			: props.rank === 2
+			? "#E0E0E0"
+			: "#FF9838";
 	const isTop3 = props.rank <= 3 && props.rank > 0;
 
 	const toggleMenu = () => {
@@ -111,16 +115,21 @@ export const StarkPillCard = (props: Props) => {
 						: {}
 				}>
 				<div className={isTop3 ? styles.cardRank : styles.card}>
-					<div className={styles.kebabIcon} onClick={toggleMenu}>
-						<KebabIcon
-							style={isWhiteBg ? { color: "#35358F" } : { color: "#FFFFFF" }}
-						/>
+					<div
+						className={`${styles.kebabIcon} ${
+							isOwner ? `${styles.kebabIconMyPills} ` : ""
+						}`}
+						onClick={toggleMenu}>
+						<KebabIcon style={{ color: "#FF4F0A" }} />
 					</div>
+
 					{menuId === tokenId && (
-						<div className={styles.menuOptions}>
+						<div
+							className={`${styles.menuOptions} ${
+								isOwner ? styles.menuOptionsMyPills : ""
+							}`}>
 							<div className={styles.menuItem} onClick={openMintSquareLink}>
-								<ExternalLinksIcon style={{ marginRight: "8px" }} /> External
-								Links
+								<ExternalLinksIcon style={{ marginRight: "8px" }} /> Mint Square
 							</div>
 							{isOwner && (
 								<div
@@ -147,17 +156,7 @@ export const StarkPillCard = (props: Props) => {
 					<div
 						className={isTop3 ? styles.contentRank : styles.content}
 						style={isTop3 ? { borderColor: borderColor } : {}}>
-						<div className={styles.contentRankTitle}>
-							TestPill #{tokenId}
-							{isTop3 && (
-								<Image
-									src={"/svgs/medal" + props.rank + ".svg"}
-									alt=""
-									width={50}
-									height={50}
-									style={{ float: "right" }}></Image>
-							)}
-						</div>
+						<div className={styles.contentRankTitle}>TestPill #{tokenId}</div>
 						<div>{Number(mintPrice) / Math.pow(10, 18)} ETH</div>
 						<div>{fame} Fame</div>
 						{!isOwner && <div>Owned By: {shortenAddress(ownerAddress)}</div>}

@@ -1,3 +1,4 @@
+import { gql } from "@apollo/client";
 import { FAQ, Page, Trait } from "./interfaces";
 export const IS_TESTNET = true;
 export const STARKPILL_CONTRACT_ADDRESS =
@@ -308,5 +309,75 @@ export const FAQ_QUESTIONS: FAQ[] = [
 		question: "Can I add my own traits to the current offerings?",
 		answer:
 			"Yes! But subject to certain terms and conditions. If you’re interested with working with us, please reach out to 211lp@seraphlabs.io or @211lp on Twitter.",
+	},
+];
+
+//query for getting VOTING POWER**
+export const GET_VOTING_POWER_QUERY = gql`
+	query User($address: String!) {
+		user(address: $address) {
+			getVotingPower
+		}
+	}
+`;
+
+//query for getting tokens by HIGHEST PRICE**
+export const GET_ALL_TOKENS_BY_PRICE = gql`
+	query AllTokens($skip: Int, $first: Int) {
+		allTokens(skip: $skip, first: $first) {
+			id
+			owner {
+				address
+			}
+			metadata {
+				mintPrice
+				imageUrl
+				fame
+			}
+		}
+	}
+`;
+
+//query for getting tokens by HIGHEST FAME
+export const GET_ALL_TOKENS_BY_FAME = gql`
+	query User {
+		allTokensByHighestFame {
+			metadata {
+				fame
+				imageUrl
+				mintPrice
+			}
+		}
+	}
+`;
+//query for getting tokens by LATEST
+export const GET_ALL_TOKENS_BY_LATEST = gql`
+	query User {
+		allTokensByLatest {
+			metadata {
+				imageUrl
+				fame
+				mintPrice
+			}
+		}
+	}
+`;
+
+//DROPBOX MENU FOR SORTING VARIABLES
+export const DROPDOWN_MENU_OPTIONS = [
+	{
+		id: 0,
+		label: "Highest Price",
+		query: GET_ALL_TOKENS_BY_PRICE,
+	},
+	{
+		id: 1,
+		label: "Highest Fame",
+		query: GET_ALL_TOKENS_BY_FAME,
+	},
+	{
+		id: 2,
+		label: "Latest",
+		query: GET_ALL_TOKENS_BY_LATEST,
 	},
 ];
