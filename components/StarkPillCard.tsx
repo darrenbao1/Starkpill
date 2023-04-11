@@ -1,7 +1,6 @@
 import styles from "../styles/StarkPillCard.module.css";
 import Image from "next/image";
 import {
-	isBrightArray,
 	NETWORK_FOR_API,
 	STARKPILL_CONTRACT_ADDRESS,
 } from "../types/constants";
@@ -46,7 +45,6 @@ export const StarkPillCard = (props: Props) => {
 	);
 	const ingImageId = parseInt(value.substring(0, 3));
 	const bgImageId = parseInt(value.substring(3));
-	const isWhiteBg = isBrightArray.includes(bgImageId) ? true : false;
 	const openMintSquareLink = () => {
 		window.open(
 			`https://mintsquare.io/asset/${NETWORK_FOR_API}/` +
@@ -59,11 +57,7 @@ export const StarkPillCard = (props: Props) => {
 	const [showMenu, setShowMenu] = useState(false);
 
 	const borderColor =
-		props.rank === 1
-			? "#FFC107 transform: matrix(0, 1, -1, 0, 0, 0);"
-			: props.rank === 2
-			? "#E0E0E0"
-			: "#FF9838";
+		props.rank === 1 ? "#FFC107" : props.rank === 2 ? "#E0E0E0" : "#FF9838";
 	const isTop3 = props.rank <= 3 && props.rank > 0;
 
 	const toggleMenu = () => {
@@ -180,8 +174,9 @@ export const StarkPillCard = (props: Props) => {
 					tokenId={tokenId}
 					ingImageId={ingImageId}
 					bgImageId={bgImageId}
-					rank={rank}
 					close={() => setShowImageModal(false)}
+					fame={fame}
+					ownerAddress={ownerAddress}
 				/>
 			)}
 		</>

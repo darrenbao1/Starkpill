@@ -154,7 +154,10 @@
 	border: 2px solid;
 	border-color: #ff4f0a;
 }
-
+.dropdownMenu input[type="radio"]:checked {
+	background-color: #ff4f0a;
+	border-color: #ff4f0a;
+}
 .dropdownMenu input[type="radio"]:checked + label::before {
 	background-color: #ff4f0a;
 	border-color: #ff4f0a;

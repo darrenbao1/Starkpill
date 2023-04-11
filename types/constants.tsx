@@ -288,7 +288,6 @@ export const BACKGROUND: Trait[] = [
 		link: BACKGROUND_LINK + "018.png",
 	},
 ];
-export const isBrightArray = [0, 1, 6];
 export const FAQ_QUESTIONS: FAQ[] = [
 	{
 		question: "What can I do with my Starkpills?",
@@ -321,8 +320,7 @@ export const GET_VOTING_POWER_QUERY = gql`
 	}
 `;
 
-//query for getting tokens by HIGHEST PRICE**
-export const GET_ALL_TOKENS_BY_PRICE = gql`
+const GET_ALL_TOKENS_HIGHEST_PRICE = gql`
 	query AllTokens($skip: Int, $first: Int) {
 		allTokens(skip: $skip, first: $first) {
 			id
@@ -337,47 +335,53 @@ export const GET_ALL_TOKENS_BY_PRICE = gql`
 		}
 	}
 `;
-
-//query for getting tokens by HIGHEST FAME
-export const GET_ALL_TOKENS_BY_FAME = gql`
-	query User {
-		allTokensByHighestFame {
+const GET_ALL_TOKENS_HIGHEST_FAME = gql`
+	query AllTokensByHighestFame($skip: Int, $first: Int) {
+		allTokensByHighestFame(skip: $skip, first: $first) {
+			id
+			owner {
+				address
+			}
 			metadata {
-				fame
-				imageUrl
 				mintPrice
+				imageUrl
+				fame
 			}
 		}
 	}
 `;
-//query for getting tokens by LATEST
-export const GET_ALL_TOKENS_BY_LATEST = gql`
-	query User {
-		allTokensByLatest {
+const GET_ALL_TOKENS_LATEST = gql`
+	query AllTokensByLatest($skip: Int, $first: Int) {
+		allTokensByLatest(skip: $skip, first: $first) {
+			id
+			owner {
+				address
+			}
 			metadata {
+				mintPrice
 				imageUrl
 				fame
-				mintPrice
 			}
 		}
 	}
 `;
-
-//DROPBOX MENU FOR SORTING VARIABLES
-export const DROPDOWN_MENU_OPTIONS = [
+export const DROPDOWN_MENU_ITEMS = [
 	{
 		id: 0,
 		label: "Highest Price",
-		query: GET_ALL_TOKENS_BY_PRICE,
+		query: GET_ALL_TOKENS_HIGHEST_PRICE,
+		keyName: "allTokens",
 	},
 	{
 		id: 1,
 		label: "Highest Fame",
-		query: GET_ALL_TOKENS_BY_FAME,
+		query: GET_ALL_TOKENS_HIGHEST_FAME,
+		keyName: "allTokensByHighestFame",
 	},
 	{
 		id: 2,
 		label: "Latest",
-		query: GET_ALL_TOKENS_BY_LATEST,
+		query: GET_ALL_TOKENS_LATEST,
+		keyName: "allTokensByLatest",
 	},
 ];
