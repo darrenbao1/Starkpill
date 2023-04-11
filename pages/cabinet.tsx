@@ -83,7 +83,8 @@ export default function Cabinet() {
 									{DROPDOWN_MENU_ITEMS.map((item, index) => (
 										<label
 											htmlFor={`option${index}`}
-											className={styles.radioLabel}>
+											className={styles.radioLabel}
+											key={index}>
 											<input
 												className={styles.radioInput}
 												type="radio"
