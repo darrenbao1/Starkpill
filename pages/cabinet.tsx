@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { StarkPillCard } from "../components/StarkPillCard";
 import styles from "../styles/cabinet.module.css";
 import { useQuery, gql } from "@apollo/client";
@@ -12,6 +12,42 @@ export default function Cabinet() {
 	const [loadedAllPills, setIsLoadedAllPills] = useState(false);
 	const [sortOption, setSortOption] = useState(0);
 	const [showDropbox, setShowDropbox] = useState(false);
+
+	//if sort dropdown is open, close it when user clicks outside of it
+	useEffect(() => {
+		const handleClickOutside = (event) => {
+			// Get the sort button and dropdown menu elements
+			const sortButton = document.querySelector(`.${styles.sortButton}`);
+			const dropdownMenu = document.querySelector(`.${styles.dropdownMenu}`);
+
+			//Check if dropdown menu is not open, if not open then it wont run the rest of the function
+			if (!dropdownMenu) {
+				return;
+			}
+
+			// Check if the click event target or its parent is a label element and is a child of the dropdown menu  "LABEL" refers to <label>
+			const isLabelChild =
+				(event.target.tagName === "LABEL" ||
+					event.target.parentElement.tagName === "LABEL") &&
+				dropdownMenu.contains(event.target);
+
+			// Check if the click event target is not the sort button, any of its children, the dropdown menu, any of its children, or a label child of the dropdown menu
+			if (
+				showDropbox &&
+				event.target !== sortButton &&
+				![...sortButton.children].includes(event.target) &&
+				event.target !== dropdownMenu &&
+				![...dropdownMenu.children].includes(event.target) &&
+				!isLabelChild
+			) {
+				setShowDropbox(false);
+			}
+		};
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, [showDropbox]);
 
 	const handleScroll = async (e: any) => {
 		const bottom =
@@ -97,36 +133,6 @@ export default function Cabinet() {
 											<span style={{ marginLeft: "16px" }}>{item.label}</span>
 										</label>
 									))}
-									{/* <label htmlFor="option1">
-										<input
-											type="radio"
-											id="option1"
-											value={0}
-											checked={sortOption == 0}
-											onChange={handleOptionChange}
-										/>
-										{DROPDOWN_MENU_ITEMS[0].label}
-									</label>
-									<label htmlFor="option2">
-										<input
-											type="radio"
-											id="option2"
-											value={1}
-											checked={sortOption === 1}
-											onChange={handleOptionChange}
-										/>
-										{DROPDOWN_MENU_ITEMS[1].label}
-									</label>
-									<label htmlFor="option3">
-										<input
-											type="radio"
-											id="option3"
-											value={2}
-											checked={sortOption === 2}
-											onChange={handleOptionChange}
-										/>
-										{DROPDOWN_MENU_ITEMS[2].label}
-									</label> */}
 								</div>
 							)}
 						</div>
