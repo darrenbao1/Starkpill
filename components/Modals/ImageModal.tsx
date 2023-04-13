@@ -94,8 +94,9 @@ export const ImageModal = (props: Props) => {
 						</div>
 					</div>
 					<div className={styles.fameRadioButtonContainer}>
-						<label>
+						<label className={styles.radioLabel}>
 							<input
+								className={styles.radioInput}
 								type="radio"
 								value={0}
 								name="fameradio"
@@ -103,10 +104,12 @@ export const ImageModal = (props: Props) => {
 								onChange={handleChange}
 								checked={selectedRadioButton === "fame"}
 							/>
+							<span className={styles.customRadio} />
 						</label>
 						Fame
 						<label>
 							<input
+								className={styles.radioInput}
 								type="radio"
 								value={0}
 								name="fameradio"
@@ -114,6 +117,7 @@ export const ImageModal = (props: Props) => {
 								onChange={handleChange}
 								checked={selectedRadioButton === "defame"}
 							/>
+							<span className={styles.customRadio} />
 						</label>
 						Defame
 					</div>
@@ -128,8 +132,7 @@ export const ImageModal = (props: Props) => {
 									</button>
 									<input
 										// max={props.getVotingPower}
-										max={4}
-										min={1}
+
 										type="number"
 										className={styles.textField}
 										value={fameValue}
