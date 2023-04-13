@@ -17,6 +17,8 @@ interface Props {
 }
 export const ImageModal = (props: Props) => {
 	const [fameValue, setFameValue] = useState(0);
+	const [radioButtonIsSelected, setRadioButtonIsSelected] = useState(false); // this is the state that will be used to determine whether the fame or defame radio button is selected
+	const [selectedRadioButton, setSelectedRadioButton] = useState(""); //this is the state that will be used to determine whether the fame or defame radio button is selected
 
 	const decrement = () => {
 		if (fameValue > 0) {
@@ -29,6 +31,8 @@ export const ImageModal = (props: Props) => {
 	};
 
 	const handleChange = (event: any) => {
+		setSelectedRadioButton(event.target.id);
+		setRadioButtonIsSelected(true);
 		setFameValue(parseInt(event.target.value));
 	};
 	const { imageUrl, tokenId, close, ingImageId, bgImageId } = props;
@@ -88,44 +92,69 @@ export const ImageModal = (props: Props) => {
 						</div>
 					</div>
 					<div className={styles.fameRadioButtonContainer}>
-						<label>
-							<input type="radio" value={0} />
+						<label className={styles.radioLabel}>
+							<input
+								className={styles.radioInput}
+								type="radio"
+								value={0}
+								name="fameradio"
+								id="fame"
+								onChange={handleChange}
+								checked={selectedRadioButton === "fame"}
+							/>
+							<span className={styles.customRadio} />
 						</label>
 						Fame
 						<label>
-							<input type="radio" value={0} />
+							<input
+								className={styles.radioInput}
+								type="radio"
+								value={0}
+								name="fameradio"
+								id="defame"
+								onChange={handleChange}
+								checked={selectedRadioButton === "defame"}
+							/>
+							<span className={styles.customRadio} />
 						</label>
 						Defame
 					</div>
-					<div className={styles.captionBox}>
-						<div className={styles.contentHeader}>Fame</div>
-						<div className={styles.addFameButtonContainer}>
-							<button className={styles.stepperButton} onClick={decrement}>
-								-
-							</button>
-							<input
-								type="number"
-								className={styles.textField}
-								value={fameValue}
-								onChange={handleChange}></input>
-							<button className={styles.stepperButton} onClick={increment}>
-								+
-							</button>
-						</div>
+					{radioButtonIsSelected ? (
+						<>
+							<div className={styles.captionBox}>
+								<div className={styles.contentHeader}></div>
+								{selectedRadioButton === "fame" ? "Fame" : "Defame"}
+								<div className={styles.addFameButtonContainer}>
+									<button className={styles.stepperButton} onClick={decrement}>
+										-
+									</button>
+									<input
+										// max={props.getVotingPower}
 
-						<div className={styles.contentValue}></div>
-					</div>
-					<div className={styles.yourBalance}>
-						<span style={{ fontSize: "24px" }}>Your balance:</span>
-						<span className={styles.remainderFame}>4</span>
-					</div>
-					<div className={styles.buttonWrapper}>
-						<button className={styles.confirmButton}>Confirm</button>
-					</div>
-				</div>
+										type="number"
+										className={styles.textField}
+										value={fameValue}
+										onChange={handleChange}></input>
 
-				<div className={styles.close} onClick={close}>
-					<Cross />
+									<button className={styles.stepperButton} onClick={increment}>
+										+
+									</button>
+								</div>
+								<div className={styles.contentValue}></div>
+							</div>
+							<div className={styles.yourBalance}>
+								<span style={{ fontSize: "24px" }}>Your balance:</span>
+								<span className={styles.remainderFame}></span>
+							</div>
+							<div className={styles.buttonWrapper}>
+								<button className={styles.confirmButton}>Confirm</button>
+							</div>
+						</>
+					) : null}
+
+					<div className={styles.close} onClick={close}>
+						<Cross />
+					</div>
 				</div>
 			</div>
 		</div>

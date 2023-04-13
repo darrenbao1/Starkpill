@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { StarkPillCard } from "../components/StarkPillCard";
 import styles from "../styles/cabinet.module.css";
 import { useQuery, gql } from "@apollo/client";
@@ -12,6 +12,30 @@ export default function Cabinet() {
 	const [loadedAllPills, setIsLoadedAllPills] = useState(false);
 	const [sortOption, setSortOption] = useState(0);
 	const [showDropbox, setShowDropbox] = useState(false);
+	const ref = useRef<HTMLDivElement>(null);
+
+	//check if sort dropdown is open, close it when user clicks outside of it
+
+	useOnClickOutside(ref, () => setShowDropbox(false));
+
+	//if sort dropdown is open, close it when user clicks outside of it
+
+	function useOnClickOutside(ref: any, handler: any) {
+		useEffect(() => {
+			const listener = (event: { target: any }) => {
+				if (!ref.current || ref.current.contains(event.target)) {
+					return;
+				}
+				handler(event);
+			};
+			document.addEventListener("mousedown", listener);
+			document.addEventListener("touchstart", listener);
+			return () => {
+				document.removeEventListener("mousedown", listener);
+				document.removeEventListener("touchstart", listener);
+			};
+		}, [ref, handler]);
+	}
 
 	const handleScroll = async (e: any) => {
 		const bottom =
@@ -79,7 +103,7 @@ export default function Cabinet() {
 							</button>
 
 							{showDropbox && (
-								<div className={styles.dropdownMenu}>
+								<div className={styles.dropdownMenu} ref={ref}>
 									{DROPDOWN_MENU_ITEMS.map((item, index) => (
 										<label
 											htmlFor={`option${index}`}
@@ -97,36 +121,6 @@ export default function Cabinet() {
 											<span style={{ marginLeft: "16px" }}>{item.label}</span>
 										</label>
 									))}
-									{/* <label htmlFor="option1">
-										<input
-											type="radio"
-											id="option1"
-											value={0}
-											checked={sortOption == 0}
-											onChange={handleOptionChange}
-										/>
-										{DROPDOWN_MENU_ITEMS[0].label}
-									</label>
-									<label htmlFor="option2">
-										<input
-											type="radio"
-											id="option2"
-											value={1}
-											checked={sortOption === 1}
-											onChange={handleOptionChange}
-										/>
-										{DROPDOWN_MENU_ITEMS[1].label}
-									</label>
-									<label htmlFor="option3">
-										<input
-											type="radio"
-											id="option3"
-											value={2}
-											checked={sortOption === 2}
-											onChange={handleOptionChange}
-										/>
-										{DROPDOWN_MENU_ITEMS[2].label}
-									</label> */}
 								</div>
 							)}
 						</div>
