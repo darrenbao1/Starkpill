@@ -67,7 +67,7 @@ export const TraitsModal = (props: {
 										: styles.selectionIcon
 								}>
 								<Image
-									src={trait.link}
+									src={trait.marketViewLink ? trait.marketViewLink : trait.link}
 									alt={trait.name}
 									layout="fill"
 									objectFit="contain"

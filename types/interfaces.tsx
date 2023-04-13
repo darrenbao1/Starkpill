@@ -11,6 +11,7 @@ export interface Trait {
 	tokenId?: number;
 	premiumPrice?: number;
 	quantityLeft?: number;
+	marketViewLink?: string;
 }
 export interface FAQ {
 	question: string;

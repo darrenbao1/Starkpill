@@ -2,6 +2,7 @@ import { gql, useQuery } from "@apollo/client";
 import {
 	BACKGROUND,
 	FACE_TRAITS,
+	GET_VOTING_POWER_QUERY,
 	NETWORK_FOR_API,
 	STARKPILL_CONTRACT_ADDRESS,
 } from "./constants";
@@ -152,4 +153,21 @@ export async function getUserBackPack(walletAddress: String) {
 		ingredientArray: ingredientArray,
 		backgroundArray: backgroundArray,
 	};
+}
+
+export async function getVotingPower(walletAddress: String) {
+	const query = GET_VOTING_POWER_QUERY;
+	let votingPower = 0;
+	const walletAddressForAPI = convertToStandardWalletAddress(
+		walletAddress.toString()
+	);
+	try {
+		const result = await client.query({
+			query,
+			variables: { address: walletAddressForAPI },
+		});
+		console.log(result.data.user.getVotingPower);
+		votingPower = result.data.user.getVotingPower;
+	} catch (error) {}
+	return votingPower;
 }

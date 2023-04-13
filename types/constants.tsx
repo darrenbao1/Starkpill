@@ -32,10 +32,12 @@ export const USERPAGES: Page[] = [
 
 const STARKPILL_API_ENDPOINT =
 	"https://orca-app-c3df4.ondigitalocean.app/starkpill-api2/graphql";
-const LINK_HASH = "AMMydFUcSQqFctiUlj565EKdGKXF2IiSkCKTQEHBVrY";
+const LINK_HASH = "v61bKgMreylGfDMjffAhrXvHv9TK-Fi18V4U8j-9Q5I";
 export const IMAGE_ENDPOINT =
 	"https://arweave.net/" + LINK_HASH + "/TestPill/pill_";
 const FACE_TRAIT_LINK = "https://arweave.net/" + LINK_HASH + "/PillIngredient/";
+const MKT_FACE_TRAIT_LINK =
+	"https://arweave.net/" + LINK_HASH + "/PillIngredient/MktView/";
 export const FACE_TRAITS: Trait[] = [
 	{
 		id: 0,
@@ -46,146 +48,175 @@ export const FACE_TRAITS: Trait[] = [
 		id: 1,
 		name: "Briq",
 		link: FACE_TRAIT_LINK + "ing_001.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_001.png",
 	},
 	{
 		id: 2,
 		name: "Braavos",
 		link: FACE_TRAIT_LINK + "ing_002.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_002.png",
 	},
 	{
 		id: 3,
 		name: "Orbiter",
 		link: FACE_TRAIT_LINK + "ing_003.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_003.png",
 	},
 	{
 		id: 4,
 		name: "ChainLink Cap",
 		link: FACE_TRAIT_LINK + "ing_004.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_004.png",
 	},
 	{
 		id: 5,
 		name: "Guthmann",
 		link: FACE_TRAIT_LINK + "ing_005.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_005.png",
 	},
 	{
 		id: 6,
 		name: "Kitsune Mask",
 		link: FACE_TRAIT_LINK + "ing_006.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_006.png",
 	},
 	{
 		id: 7,
 		name: "Wassie Face",
 		link: FACE_TRAIT_LINK + "ing_007.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_007.png",
 	},
 	{
 		id: 8,
 		name: "Wassie Cone",
 		link: FACE_TRAIT_LINK + "ing_008.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_008.png",
 	},
 	{
 		id: 9,
 		name: "Kabuto Helmet",
 		link: FACE_TRAIT_LINK + "ing_009.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_009.png",
 	},
 	{
 		id: 10,
 		name: "Cairo Cap",
 		link: FACE_TRAIT_LINK + "ing_010.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_010.png",
 	},
 	{
 		id: 11,
 		name: "Bunny Plush",
 		link: FACE_TRAIT_LINK + "ing_011.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_011.png",
+
 		premiumPrice: 0.001,
 	},
 	{
 		id: 12,
 		name: "Cartridge",
 		link: FACE_TRAIT_LINK + "ing_012.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_012.png",
 		premiumPrice: 0.002,
 	},
 	{
 		id: 13,
 		name: "Mfers",
 		link: FACE_TRAIT_LINK + "ing_013.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_013.png",
 	},
 	{
 		id: 14,
 		name: "Braavos Titan",
 		link: FACE_TRAIT_LINK + "ing_014.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_014.png",
 		premiumPrice: 0.002,
 	},
 	{
 		id: 15,
 		name: "Braavos Archer",
 		link: FACE_TRAIT_LINK + "ing_015.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_015.png",
 		premiumPrice: 0.002,
 	},
 	{
 		id: 16,
 		name: "Braavos Wizard",
 		link: FACE_TRAIT_LINK + "ing_016.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_016.png",
 		premiumPrice: 0.002,
 	},
 	{
 		id: 17,
 		name: "zkSnails",
 		link: FACE_TRAIT_LINK + "ing_017.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_017.png",
 	},
 	{
 		id: 18,
 		name: "(3,3)Face",
 		link: FACE_TRAIT_LINK + "ing_018.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_018.png",
 	},
 	{
 		id: 19,
 		name: "Aviators",
 		link: FACE_TRAIT_LINK + "ing_019.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_019.png",
 	},
 	{
 		id: 20,
 		name: "Banteg Hat",
 		link: FACE_TRAIT_LINK + "ing_020.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_020.png",
 	},
 	{
 		id: 21,
 		name: "Pepe",
 		link: FACE_TRAIT_LINK + "ing_021.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_021.png",
 	},
 	{
 		id: 22,
 		name: "Pepe Smile",
 		link: FACE_TRAIT_LINK + "ing_022.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_022.png",
 	},
 	{
 		id: 23,
 		name: "Pepe Smug",
 		link: FACE_TRAIT_LINK + "ing_023.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_023.png",
 	},
 	{
 		id: 24,
 		name: "Peepo Smile",
 		link: FACE_TRAIT_LINK + "ing_024.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_024.png",
 	},
 	{
 		id: 25,
 		name: "Wojak",
 		link: FACE_TRAIT_LINK + "ing_025.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_025.png",
 	},
 	{
 		id: 26,
 		name: "Wojak Big Brain",
 		link: FACE_TRAIT_LINK + "ing_026.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_026.png",
 	},
 	{
 		id: 27,
 		name: "Wojak Cope",
 		link: FACE_TRAIT_LINK + "ing_027.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_027.png",
 	},
 	{
 		id: 28,
 		name: "Wojak Doomer",
 		link: FACE_TRAIT_LINK + "ing_028.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_028.png",
 	},
 ];
 const BACKGROUND_LINK =

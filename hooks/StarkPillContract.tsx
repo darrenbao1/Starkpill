@@ -70,3 +70,26 @@ export function getMintVariables(
 
 	return mintTransactionVariables;
 }
+export function getFameOrDefameVariables(
+	fameOrDefame: string,
+	tokenId: number,
+	amount: number
+) {
+	const Decimal = require("decimal.js");
+	let tokenIdInHex = Decimal(tokenId).toHexadecimal();
+	const fameOrDefameTransactionVariables = [];
+	if (fameOrDefame === "fame") {
+		fameOrDefameTransactionVariables.push({
+			contractAddress: STARKPILL_CONTRACT_ADDRESS,
+			entrypoint: "famePill",
+			calldata: [tokenIdInHex, 0, amount],
+		});
+	} else if (fameOrDefame === "defame") {
+		fameOrDefameTransactionVariables.push({
+			contractAddress: STARKPILL_CONTRACT_ADDRESS,
+			entrypoint: "deFamePill",
+			calldata: [tokenIdInHex, 0, amount],
+		});
+	}
+	return fameOrDefameTransactionVariables;
+}
