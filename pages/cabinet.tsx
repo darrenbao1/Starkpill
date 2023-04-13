@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { StarkPillCard } from "../components/StarkPillCard";
 import styles from "../styles/cabinet.module.css";
 import { useQuery, gql } from "@apollo/client";
@@ -12,42 +12,30 @@ export default function Cabinet() {
 	const [loadedAllPills, setIsLoadedAllPills] = useState(false);
 	const [sortOption, setSortOption] = useState(0);
 	const [showDropbox, setShowDropbox] = useState(false);
+	const ref = useRef<HTMLDivElement>(null);
+
+	//check if sort dropdown is open, close it when user clicks outside of it
+
+	useOnClickOutside(ref, () => setShowDropbox(false));
 
 	//if sort dropdown is open, close it when user clicks outside of it
-	useEffect(() => {
-		const handleClickOutside = (event) => {
-			// Get the sort button and dropdown menu elements
-			const sortButton = document.querySelector(`.${styles.sortButton}`);
-			const dropdownMenu = document.querySelector(`.${styles.dropdownMenu}`);
 
-			//Check if dropdown menu is not open, if not open then it wont run the rest of the function
-			if (!dropdownMenu) {
-				return;
-			}
-
-			// Check if the click event target or its parent is a label element and is a child of the dropdown menu  "LABEL" refers to <label>
-			const isLabelChild =
-				(event.target.tagName === "LABEL" ||
-					event.target.parentElement.tagName === "LABEL") &&
-				dropdownMenu.contains(event.target);
-
-			// Check if the click event target is not the sort button, any of its children, the dropdown menu, any of its children, or a label child of the dropdown menu
-			if (
-				showDropbox &&
-				event.target !== sortButton &&
-				![...sortButton.children].includes(event.target) &&
-				event.target !== dropdownMenu &&
-				![...dropdownMenu.children].includes(event.target) &&
-				!isLabelChild
-			) {
-				setShowDropbox(false);
-			}
-		};
-		document.addEventListener("mousedown", handleClickOutside);
-		return () => {
-			document.removeEventListener("mousedown", handleClickOutside);
-		};
-	}, [showDropbox]);
+	function useOnClickOutside(ref: any, handler: any) {
+		useEffect(() => {
+			const listener = (event: { target: any }) => {
+				if (!ref.current || ref.current.contains(event.target)) {
+					return;
+				}
+				handler(event);
+			};
+			document.addEventListener("mousedown", listener);
+			document.addEventListener("touchstart", listener);
+			return () => {
+				document.removeEventListener("mousedown", listener);
+				document.removeEventListener("touchstart", listener);
+			};
+		}, [ref, handler]);
+	}
 
 	const handleScroll = async (e: any) => {
 		const bottom =
@@ -115,7 +103,7 @@ export default function Cabinet() {
 							</button>
 
 							{showDropbox && (
-								<div className={styles.dropdownMenu}>
+								<div className={styles.dropdownMenu} ref={ref}>
 									{DROPDOWN_MENU_ITEMS.map((item, index) => (
 										<label
 											htmlFor={`option${index}`}

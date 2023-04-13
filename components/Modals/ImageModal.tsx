@@ -14,14 +14,12 @@ interface Props {
 	bgImageId: number;
 	fame: number;
 	ownerAddress: string;
-	getVotingPower: number;
 }
 export const ImageModal = (props: Props) => {
 	const [fameValue, setFameValue] = useState(0);
 	const [radioButtonIsSelected, setRadioButtonIsSelected] = useState(false); // this is the state that will be used to determine whether the fame or defame radio button is selected
 	const [selectedRadioButton, setSelectedRadioButton] = useState(""); //this is the state that will be used to determine whether the fame or defame radio button is selected
 
-	let fameBalanceDisplay = props.getVotingPower - fameValue; //Display current fame balance left after - value in input box
 	const decrement = () => {
 		if (fameValue > 0) {
 			setFameValue((prevValue) => prevValue - 1);
@@ -146,9 +144,7 @@ export const ImageModal = (props: Props) => {
 							</div>
 							<div className={styles.yourBalance}>
 								<span style={{ fontSize: "24px" }}>Your balance:</span>
-								<span className={styles.remainderFame}>
-									{fameBalanceDisplay}
-								</span>
+								<span className={styles.remainderFame}></span>
 							</div>
 							<div className={styles.buttonWrapper}>
 								<button className={styles.confirmButton}>Confirm</button>
