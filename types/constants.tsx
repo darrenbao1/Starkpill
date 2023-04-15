@@ -396,6 +396,21 @@ const GET_ALL_TOKENS_LATEST = gql`
 		}
 	}
 `;
+const GET_ALL_TOKENS_LOWEST_FAME = gql`
+	query AllTokenByLowestFame($skip: Int, $first: Int) {
+		allTokenByLowestFame(skip: $skip, first: $first) {
+			id
+			owner {
+				address
+			}
+			metadata {
+				mintPrice
+				imageUrl
+				fame
+			}
+		}
+	}
+`;
 export const DROPDOWN_MENU_ITEMS = [
 	{
 		id: 0,
@@ -411,6 +426,12 @@ export const DROPDOWN_MENU_ITEMS = [
 	},
 	{
 		id: 2,
+		label: "Lowest Fame",
+		query: GET_ALL_TOKENS_LOWEST_FAME,
+		keyName: "allTokenByLowestFame",
+	},
+	{
+		id: 3,
 		label: "Latest",
 		query: GET_ALL_TOKENS_LATEST,
 		keyName: "allTokensByLatest",
