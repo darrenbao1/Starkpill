@@ -107,6 +107,9 @@ export const ImageModal = (props: Props) => {
 	return (
 		<div ref={modalRef} className={styles.modal}>
 			<div className={styles.container}>
+				<div className={styles.close} onClick={close}>
+					<Cross />
+				</div>
 				<Image
 					src={imageUrl}
 					className={styles.modal_content}
@@ -225,9 +228,9 @@ export const ImageModal = (props: Props) => {
 						</>
 					) : null}
 
-					<div className={styles.close} onClick={close}>
+					{/* <div className={styles.close} onClick={close}>
 						<Cross />
-					</div>
+					</div> */}
 					{showConnectMenuModal ? (
 						<ConnectMenuModal
 							connectors={available}
