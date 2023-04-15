@@ -137,7 +137,7 @@
 	}
 	.container {
 		display: block;
-		top: 0;
+		top: 100px;
 		margin: 20px;
 	}
 	.fameContainer {
