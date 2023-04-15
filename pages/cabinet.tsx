@@ -10,7 +10,7 @@ export default function Cabinet() {
 	const [offsetAmount, setOffsetAmount] = useState(0);
 	const [loading, setLoading] = useState(false);
 	const [loadedAllPills, setIsLoadedAllPills] = useState(false);
-	const [sortOption, setSortOption] = useState(0);
+	const [sortOption, setSortOption] = useState(0); // is the index of the DROPDOWN_MENU_ITEMS
 	const [showDropbox, setShowDropbox] = useState(false);
 	const ref = useRef<HTMLDivElement>(null);
 
@@ -126,33 +126,52 @@ export default function Cabinet() {
 						</div>
 					</div>
 				</div>
-				<h1 style={{ textAlign: "center" }}>Top 3 Starkpills</h1>
+				{sortOption != 3 && (
+					<h1 style={{ textAlign: "center" }}> Top 3 Starkpills</h1>
+				)}
 				<div className={styles.top3Container}>
-					{tokenIds.slice(0, 3).map((token: any, index: number) => (
-						<StarkPillCard
-							tokenId={token.id}
-							ownerAddress={token.owner.address}
-							mintPrice={token.metadata.mintPrice}
-							imageUrl={token.metadata.imageUrl}
-							rank={index + 1}
-							key={index}
-							fame={token.metadata.fame}
-						/>
-					))}
+					{sortOption != 3 &&
+						tokenIds
+							.slice(0, 3)
+							.map((token: any, index: number) => (
+								<StarkPillCard
+									tokenId={token.id}
+									ownerAddress={token.owner.address}
+									mintPrice={token.metadata.mintPrice}
+									imageUrl={token.metadata.imageUrl}
+									rank={index + 1}
+									key={index}
+									fame={token.metadata.fame}
+								/>
+							))}
 				</div>
 				<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>Starkpills</h1>
 				<div className={styles.cardContainer}>
-					{tokenIds.slice(3).map((token: any, index: number) => (
-						<StarkPillCard
-							tokenId={token.id}
-							ownerAddress={token.owner.address}
-							mintPrice={token.metadata.mintPrice}
-							imageUrl={token.metadata.imageUrl}
-							key={index}
-							rank={index + 4}
-							fame={token.metadata.fame}
-						/>
-					))}
+					{sortOption != 3
+						? tokenIds
+								.slice(3)
+								.map((token: any, index: number) => (
+									<StarkPillCard
+										tokenId={token.id}
+										ownerAddress={token.owner.address}
+										mintPrice={token.metadata.mintPrice}
+										imageUrl={token.metadata.imageUrl}
+										key={index}
+										rank={index + 4}
+										fame={token.metadata.fame}
+									/>
+								))
+						: tokenIds.map((token: any, index: number) => (
+								<StarkPillCard
+									tokenId={token.id}
+									ownerAddress={token.owner.address}
+									mintPrice={token.metadata.mintPrice}
+									imageUrl={token.metadata.imageUrl}
+									key={index}
+									rank={index + 4}
+									fame={token.metadata.fame}
+								/>
+						  ))}
 				</div>
 			</div>
 			{loading && <div className="snackbar">Loading</div>}
