@@ -12,30 +12,23 @@ export default function Cabinet() {
 	const [loadedAllPills, setIsLoadedAllPills] = useState(false);
 	const [sortOption, setSortOption] = useState(0); // is the index of the DROPDOWN_MENU_ITEMS
 	const [showDropbox, setShowDropbox] = useState(false);
-	const ref = useRef<HTMLDivElement>(null);
 
-	//check if sort dropdown is open, close it when user clicks outside of it
-
-	useOnClickOutside(ref, () => setShowDropbox(false));
-
-	//if sort dropdown is open, close it when user clicks outside of it
-
-	function useOnClickOutside(ref: any, handler: any) {
+	function useOutsideAlerter(ref: any) {
 		useEffect(() => {
-			const listener = (event: { target: any }) => {
-				if (!ref.current || ref.current.contains(event.target)) {
-					return;
+			function handleClickOutside(event: any) {
+				if (ref.current && !ref.current.contains(event.target)) {
+					setShowDropbox(false);
 				}
-				handler(event);
-			};
-			document.addEventListener("mousedown", listener);
-			document.addEventListener("touchstart", listener);
+			}
+
+			document.addEventListener("mousedown", handleClickOutside);
 			return () => {
-				document.removeEventListener("mousedown", listener);
-				document.removeEventListener("touchstart", listener);
+				document.removeEventListener("mousedown", handleClickOutside);
 			};
-		}, [ref, handler]);
+		}, [ref]);
 	}
+	const wrapperRef = useRef(null);
+	useOutsideAlerter(wrapperRef);
 
 	const handleScroll = async (e: any) => {
 		const bottom =
@@ -93,7 +86,7 @@ export default function Cabinet() {
 			className={`container ${sharedBackgroundStyles.extendedBackground}`}
 			onScroll={(e) => handleScroll(e)}>
 			<div className="contentContainer">
-				<div className={styles.sortWrapper}>
+				<div className={styles.sortWrapper} ref={wrapperRef}>
 					<div className={styles.sortContainer}>
 						<div className={styles.dropdownWrapper}>
 							<button
@@ -104,7 +97,7 @@ export default function Cabinet() {
 							</button>
 
 							{showDropbox && (
-								<div className={styles.dropdownMenu} ref={ref}>
+								<div className={styles.dropdownMenu}>
 									{DROPDOWN_MENU_ITEMS.map((item, index) => (
 										<label
 											htmlFor={`option${index}`}
