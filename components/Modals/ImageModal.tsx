@@ -227,10 +227,6 @@ export const ImageModal = (props: Props) => {
 							</div>
 						</>
 					) : null}
-
-					{/* <div className={styles.close} onClick={close}>
-						<Cross />
-					</div> */}
 					{showConnectMenuModal ? (
 						<ConnectMenuModal
 							connectors={available}
