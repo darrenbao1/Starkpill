@@ -55,17 +55,11 @@
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-
 	gap: 8px;
-
 	margin-top: 40px;
-	width: 100%;
-	max-width: 242px;
-
-	height: 48px;
-	left: 1158px;
-	top: 130px;
-
+	margin-right: 40px;
+	width: fit-content;
+	height: auto;
 	background: #12124a;
 	border: 1px solid #bfbfbf;
 	border-radius: 8px;
@@ -84,7 +78,8 @@
 	gap: 8px;
 	font-size: 24px;
 	letter-spacing: -0.25px;
-	width: 242px;
+	width: fit-content;
+	padding: 16px 12px;
 	border: none;
 	background-color: transparent;
 	color: #ffffff;
@@ -101,11 +96,7 @@
 	}
 	.sortContainer {
 		width: 100%;
-
-		max-width: 300px;
-	}
-	.dropdownWrapper {
-		width: 100%;
+		margin: 24px 30px;
 	}
 }
 .dropdownMenu {
@@ -157,6 +148,7 @@
 }
 .dropdownWrapper {
 	position: relative;
+	align-items: center;
 }
 .dropdownMenu label:first-child {
 	border-radius: 8px 8px 0px 0px;

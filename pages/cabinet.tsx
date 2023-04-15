@@ -99,7 +99,8 @@ export default function Cabinet() {
 							<button
 								className={styles.sortButton}
 								onClick={() => setShowDropbox(!showDropbox)}>
-								<SortIcon /> Sort ({DROPDOWN_MENU_ITEMS[sortOption].label})
+								<SortIcon style={{ margin: "auto" }} />
+								<span>Sort ({DROPDOWN_MENU_ITEMS[sortOption].label})</span>
 							</button>
 
 							{showDropbox && (
