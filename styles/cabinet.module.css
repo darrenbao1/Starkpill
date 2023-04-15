@@ -68,6 +68,7 @@
 	background: #242424;
 	cursor: pointer;
 }
+
 .sortContainer:focus {
 	background: #111111;
 }

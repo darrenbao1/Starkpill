@@ -97,7 +97,7 @@
 
 .menuOptions {
 	position: absolute;
-	bottom: 20px;
+	bottom: -35px;
 	right: 0;
 	background-color: white;
 	font-style: normal;
@@ -161,7 +161,7 @@
 }
 .menuOptionsMyPills {
 	position: absolute;
-	bottom: -50px;
+	bottom: -110px;
 	right: 0;
 	background-color: white;
 	font-style: normal;
