@@ -434,6 +434,6 @@ export const DROPDOWN_MENU_ITEMS = [
 		id: 3,
 		label: "Latest",
 		query: GET_ALL_TOKENS_LATEST,
-		keyName: "allTokensByLatest",
+		keyName: "allTokenByLatest",
 	},
 ];
