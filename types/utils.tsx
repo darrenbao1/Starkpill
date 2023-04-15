@@ -1,11 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import {
-	BACKGROUND,
-	FACE_TRAITS,
-	GET_VOTING_POWER_QUERY,
-	NETWORK_FOR_API,
-	STARKPILL_CONTRACT_ADDRESS,
-} from "./constants";
+import { BACKGROUND, FACE_TRAITS, GET_VOTING_POWER_QUERY } from "./constants";
 import { Trait } from "./interfaces";
 import client from "../apollo-client";
 export function shortenAddress(string: string) {
@@ -19,63 +13,6 @@ export function shortAddressForModal(string: string) {
 export function convertToStandardWalletAddress(walletAddress: string) {
 	return "0x" + walletAddress.substring(2).padStart(64, "0");
 }
-
-// export async function getUserBackPack(walletAddress: String) {
-// 	const ingredientArray: Trait[] = [];
-// 	const backgroundArray: Trait[] = [];
-// 	return await fetch(
-// 		MINTSQUARE_BASE_URL +
-// 			"nfts/" +
-// 			NETWORK_FOR_API +
-// 			"?collection=" +
-// 			STARKPILL_CONTRACT_ADDRESS +
-// 			"&owner_address=" +
-// 			walletAddress,
-// 		{
-// 			method: "get",
-// 			mode: "cors",
-// 			headers: {
-// 				"Access-Control-Allow-Origin": "*",
-// 			},
-// 		}
-// 	)
-// 		.then((response) => response.json())
-// 		.then((data) => {
-// 			data.map((token: any) => {
-// 				if (!token.metadata.name.startsWith("TestPill")) {
-// 					if (token.metadata.name.startsWith("PillBackground")) {
-// 						const value = token.metadata.image.substring(
-// 							token.metadata.image.lastIndexOf("_") + 1,
-// 							token.metadata.image.lastIndexOf(".")
-// 						);
-// 						const bgTrait: Trait = {
-// 							id: Number(value),
-// 							name: BACKGROUND[Number(value)].name,
-// 							link: BACKGROUND[Number(value)].link,
-// 							tokenId: token.token_id,
-// 						};
-// 						backgroundArray.push(bgTrait);
-// 					} else {
-// 						const value = token.metadata.image.substring(
-// 							token.metadata.image.lastIndexOf("_") + 1,
-// 							token.metadata.image.lastIndexOf(".")
-// 						);
-// 						const ingTrait: Trait = {
-// 							id: Number(value),
-// 							name: FACE_TRAITS[Number(value)].name,
-// 							link: FACE_TRAITS[Number(value)].link,
-// 							tokenId: token.token_id,
-// 						};
-// 						ingredientArray.push(ingTrait);
-// 					}
-// 				}
-// 			});
-// 			return {
-// 				ingredientArray: ingredientArray,
-// 				backgroundArray: backgroundArray,
-// 			};
-// 		});
-// }
 export async function getPharmacyData() {
 	const GET_PHARMACY_DATA = gql`
 		query GetPharmacyData {
@@ -166,8 +103,9 @@ export async function getVotingPower(walletAddress: String) {
 			query,
 			variables: { address: walletAddressForAPI },
 		});
-		console.log(result.data.user.getVotingPower);
 		votingPower = result.data.user.getVotingPower;
-	} catch (error) {}
+	} catch (error) {
+		console.log(error);
+	}
 	return votingPower;
 }

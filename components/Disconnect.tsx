@@ -11,7 +11,7 @@ export function Disconnect(props: { address: string }) {
 			router.push("/mypills?walletAddress=" + props.address);
 		}, 1);
 		return () => clearTimeout(timeoutId);
-	}, [router]);
+	}, [router, props.address]);
 
 	return (
 		<div>

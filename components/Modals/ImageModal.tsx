@@ -1,7 +1,7 @@
 import styles from "../../styles/ImageModal.module.css";
 import Image from "next/image";
 import Cross from "../../public/svgs/cross2.svg";
-import { createRef, useState } from "react";
+import { createRef, useCallback, useState } from "react";
 import { BACKGROUND, FACE_TRAITS } from "../../types/constants";
 import { useRef, useEffect } from "react";
 import { getVotingPower, shortenAddress } from "../../types/utils";
@@ -34,10 +34,11 @@ export const ImageModal = (props: Props) => {
 	const [votingPower, setVotingPower] = useState(0);
 	const isValidRadioButton =
 		selectedRadioButton === "fame" || selectedRadioButton === "defame";
-	async function fetchData() {
+	const fetchData = useCallback(async () => {
 		const res = await getVotingPower(address!);
 		setVotingPower(res);
-	}
+	}, [address]);
+
 	const handleChange = (event: any) => {
 		if (account) {
 			setSelectedRadioButton(event.target.id);
@@ -66,7 +67,7 @@ export const ImageModal = (props: Props) => {
 			setRadioButtonIsSelected(true);
 			fetchData();
 		}
-	}, [account]);
+	}, [account, isValidRadioButton, fetchData]);
 
 	const handleManualInput = (e: any) => {
 		const value = Number(handleDecimalsOnValue(e.target.value));

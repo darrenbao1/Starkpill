@@ -62,12 +62,19 @@ export const EditPillModal = (props: Props) => {
 		async function fetchData() {
 			if (address) {
 				const res = await getUserBackPack(address);
-				setBackgroundArray([...backgroundArray, ...res.backgroundArray]);
-				setFaceTraitArrays([...faceTraitArray, ...res.ingredientArray]);
+				setBackgroundArray((prevBackgroundArray) => [
+					...prevBackgroundArray,
+					...res.backgroundArray,
+				]);
+				setFaceTraitArrays((prevFaceTraitArray) => [
+					...prevFaceTraitArray,
+					...res.ingredientArray,
+				]);
 			}
 		}
 		fetchData();
-	}, [address]);
+	}, [address, setBackgroundArray, setFaceTraitArrays]);
+
 	const [hasChanges, setHasChanges] = useState(false);
 	//new getChanges funtion that gets Trait array instead of number array
 	const getChanges = () => {
@@ -127,7 +134,15 @@ export const EditPillModal = (props: Props) => {
 		} else {
 			setHasChanges(true);
 		}
-	}, [selectedIng, selectedBackgroundId]);
+	}, [
+		selectedIng,
+		selectedBackgroundId,
+		faceTraitArray,
+		backgroundArray,
+		ingId,
+		bgId,
+	]);
+
 	const closeAllModals = () => {
 		setShowFaceModal(false);
 		setShowBackgroundModal(false);

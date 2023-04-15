@@ -84,7 +84,6 @@ export default function Cabinet() {
 	}
 	const tokenIds = data[DROPDOWN_MENU_ITEMS[sortOption].keyName];
 	const handleOptionChange = (event: any) => {
-		console.log(Number(event.target.value));
 		setSortOption(Number(event.target.value));
 		setShowDropbox(false);
 	};

@@ -7,7 +7,6 @@ import { useState } from "react";
 export default function faq() {
 	const FaqItem = (props: { faq: FAQ }) => {
 		const [showAnswer, setShowAnswer] = useState(false);
-
 		return (
 			<div className={styles.questionContainer}>
 				<div

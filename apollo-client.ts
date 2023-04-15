@@ -1,7 +1,8 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { STARKPILL_API_ENDPOINT } from "./types/constants";
 
 const client = new ApolloClient({
-	uri: "https://orca-app-c3df4.ondigitalocean.app/starkpill-api2/graphql",
+	uri: STARKPILL_API_ENDPOINT,
 	cache: new InMemoryCache({
 		typePolicies: {
 			Query: {

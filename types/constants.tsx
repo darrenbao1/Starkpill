@@ -5,7 +5,6 @@ export const STARKPILL_CONTRACT_ADDRESS =
 	"0x05ef092a31619faa63bf317bbb636bfbba86baf8e0e3e8d384ee764f2904e5dd";
 export const STARKETH_CONTRACT_ADDRESS =
 	"0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7";
-export const MINTSQUARE_BASE_URL = "https://api.mintsquare.io/v0/";
 export const NETWORK_FOR_API = IS_TESTNET
 	? "starknet-testnet"
 	: "starknet-mainnet";
@@ -30,7 +29,7 @@ export const USERPAGES: Page[] = [
 	},
 ];
 
-const STARKPILL_API_ENDPOINT =
+export const STARKPILL_API_ENDPOINT =
 	"https://orca-app-c3df4.ondigitalocean.app/starkpill-api2/graphql";
 const LINK_HASH = "v61bKgMreylGfDMjffAhrXvHv9TK-Fi18V4U8j-9Q5I";
 export const IMAGE_ENDPOINT =
@@ -342,7 +341,7 @@ export const FAQ_QUESTIONS: FAQ[] = [
 	},
 ];
 
-//query for getting VOTING POWER**
+//gql queries
 export const GET_VOTING_POWER_QUERY = gql`
 	query User($address: String!) {
 		user(address: $address) {
@@ -407,6 +406,25 @@ const GET_ALL_TOKENS_LOWEST_FAME = gql`
 				mintPrice
 				imageUrl
 				fame
+			}
+		}
+	}
+`;
+export const GET_USER_TOKENS = gql`
+	query Tokens($address: String!) {
+		user(address: $address) {
+			tokens {
+				id
+				ingredient
+				background
+				owner {
+					address
+				}
+				metadata {
+					imageUrl
+					mintPrice
+					fame
+				}
 			}
 		}
 	}

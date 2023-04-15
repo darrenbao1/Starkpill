@@ -1,6 +1,6 @@
 import { useAccount } from "@starknet-react/core";
 import { useRouter } from "next/router";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import styles from "../styles/cabinet.module.css";
 import { StarkPillCard } from "../components/StarkPillCard";
 import { useSelector } from "react-redux";
@@ -9,30 +9,12 @@ import { useEffect } from "react";
 import { convertToStandardWalletAddress } from "../types/utils";
 import { Disconnect } from "../components/Disconnect";
 import sharedBackgroundStyles from "../styles/sharedBackground.module.css";
+import { GET_USER_TOKENS } from "../types/constants";
 export default function Mypills() {
 	const refetchState = useSelector((state: any) => state.refetch);
 	const { address } = useAccount();
 	const router = useRouter();
 	const { walletAddress } = router.query;
-	const GET_USER_TOKENS = gql`
-		query Tokens($address: String!) {
-			user(address: $address) {
-				tokens {
-					id
-					ingredient
-					background
-					owner {
-						address
-					}
-					metadata {
-						imageUrl
-						mintPrice
-						fame
-					}
-				}
-			}
-		}
-	`;
 	const { data, loading, refetch } = useQuery(GET_USER_TOKENS, {
 		variables: {
 			address: walletAddress,
@@ -43,7 +25,7 @@ export default function Mypills() {
 			refetch();
 			console.log(data);
 		}, 3000);
-	}, [refetchState.value]);
+	}, [refetchState.value, refetch, data]);
 	if (loading) {
 		return (
 			<div className={`container ${sharedBackgroundStyles.extendedBackground}`}>

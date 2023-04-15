@@ -35,9 +35,7 @@ export const TraitsModal = (props: {
 						props.trait[item.index].quantityLeft = item.amount_left;
 					}
 				});
-				console.table(props.trait);
 			} else if (props.traitName === "Ingredient #2") {
-				console.log("Ingredient #2");
 				data.getPharmacyData.map((item: any) => {
 					if (item.typeIndex === 2) {
 						props.trait[item.index].quantityLeft = item.amount_left;
