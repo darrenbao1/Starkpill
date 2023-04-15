@@ -62,7 +62,7 @@ export default function Mypills() {
 					className={`container ${sharedBackgroundStyles.extendedBackground}`}>
 					<div className="contentContainer">
 						<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>
-							My Prescription
+							My Prescriptions
 						</h1>
 						{tokenIds.length == 0 && !loading && (
 							<div style={{ textAlign: "center", width: "100%" }}>

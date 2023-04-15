@@ -183,15 +183,21 @@ export const ImageModal = (props: Props) => {
 					{radioButtonIsSelected ? (
 						<>
 							<div className={styles.captionBox}>
-								<div className={styles.contentHeader}></div>
-								{selectedRadioButton === "fame" ? "Fame" : "Defame"}
+								<div className={styles.contentHeader}>
+									{selectedRadioButton === "fame" ? "Fame" : "Defame"}
+								</div>
 								<div className={styles.addFameButtonContainer}>
 									<button
 										className={styles.stepperButton}
 										onClick={() => {
 											inputRef.current?.stepDown();
 											setFameValue(Number(inputRef.current?.value));
-										}}>
+										}}
+										style={
+											fameValue === 0
+												? { color: "#9B9B9B", cursor: "not-allowed" }
+												: { color: "#8F1310" }
+										}>
 										-
 									</button>
 									<input
@@ -210,18 +216,26 @@ export const ImageModal = (props: Props) => {
 										onClick={() => {
 											inputRef.current?.stepUp();
 											setFameValue(Number(inputRef.current?.value));
-										}}>
+										}}
+										style={
+											fameValue === votingPower
+												? { color: "#9B9B9B", cursor: "not-allowed" }
+												: { color: "#0A6160" }
+										}
+										disabled={fameValue === votingPower}>
 										+
 									</button>
 								</div>
-								<div className={styles.contentValue}></div>
 							</div>
 							<div className={styles.yourBalance}>
 								<span style={{ fontSize: "24px" }}>Your balance:</span>
 								<span className={styles.remainderFame}>{votingPower}</span>
 							</div>
 							<div className={styles.buttonWrapper}>
-								<button className={styles.confirmButton} onClick={fameOrDefame}>
+								<button
+									className={styles.confirmButton}
+									onClick={fameOrDefame}
+									disabled={fameValue === 0}>
 									Confirm
 								</button>
 							</div>

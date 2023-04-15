@@ -147,7 +147,7 @@
 		margin-top: 24px;
 	}
 	.confirmButton {
-		position: relative;
+		margin-right: auto !important;
 	}
 }
 
@@ -256,10 +256,9 @@
 
 .addFameButtonContainer {
 	display: flex;
-	justify-content: right;
 	align-items: center;
-	width: 100%;
-	position: relative;
+	margin-right: -20px;
+	margin-left: auto;
 }
 .textField {
 	width: 49px;
@@ -273,34 +272,14 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 40px;
-	height: 40px;
-	font-size: 24px;
-
+	font-size: 30px;
 	background-color: transparent;
 	border: none;
 	border-radius: 6px;
 	cursor: pointer;
 	transition: background-color 0.2s;
-	position: absolute;
 }
-.stepperButton:first-child {
-	right: 40px;
-	color: #8f1310;
-	font-size: 35px;
-}
-.stepperButton:first-child :disabled {
-	right: 40px;
-	color: #9b9b9b;
-	font-size: 35px;
-}
-
-.stepperButton:last-child {
-	right: -30px;
-	color: rgb(3, 79, 3);
-}
-.stepperButton:last-child :disabled {
-	right: -30px;
+.stepButton:disabled {
 	color: #9b9b9b;
 }
 
@@ -336,24 +315,25 @@
 	justify-content: center;
 	font-family: "Patrick Hand";
 	font-weight: 400;
+	color: #ffffff;
+	margin-right: 0;
+	margin-left: auto;
 }
 .confirmButton:hover {
 	background: #ba3400;
 	border: 2px solid #ba3400;
-	color: #ffffff;
 }
 .confirmButton:active {
 	background: linear-gradient(180deg, #ff4f0a 0%, rgba(255, 79, 10, 0.56) 100%);
 	border: 1px solid #ff7037;
-	color: #ffffff;
 }
 .confirmButton:disabled {
 	background: #9b9b9b;
-	color: #ffffff;
+	border-color: #9b9b9b;
+	cursor: not-allowed;
 }
 
 .buttonWrapper {
 	display: flex;
-	justify-content: center;
 	padding-top: 40px;
 }
