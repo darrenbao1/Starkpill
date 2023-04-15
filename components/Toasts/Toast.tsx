@@ -3,7 +3,7 @@ import {
 	useTransactionReceipt,
 } from "@starknet-react/core";
 import styles from "./Toast.module.css";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Completed from "../../public/svgs/Completed.svg";
 import Pending from "../../public/svgs/Pending.svg";
 import Failed from "../../public/svgs/Failed.svg";
@@ -30,38 +30,41 @@ const ToastObj = (props: { hash: string }) => {
 	const [txStatus, setTxStatus] = useState("");
 	const [statusText, setStatusText] = useState("");
 	const [statusColor, setStatusColor] = useState("#FFFBEF");
-	const changeState = (status: string | undefined) => {
-		if (status == undefined) {
-		} else {
-			if (status == "RECEIVED") {
-				setIsShown(true);
-				setTxStatus("Pending");
-				setStatusText("Pending wallet transaction");
-				setStatusColor("#FFFBEF");
-				setTimeout(() => setIsShown(false), 7000);
+	const changeState = useCallback(
+		(status: string | undefined) => {
+			if (status == undefined) {
+			} else {
+				if (status == "RECEIVED") {
+					setIsShown(true);
+					setTxStatus("Pending");
+					setStatusText("Pending wallet transaction");
+					setStatusColor("#FFFBEF");
+					setTimeout(() => setIsShown(false), 7000);
+				}
+				if (status == "ACCEPTED_ON_L2") {
+					setIsShown(true);
+					setTxStatus("Success");
+					setStatusColor("#EFFFFB");
+					setStatusText("Invoked successfully");
+					dispatch(increment());
+					setTimeout(() => setIsShown(false), 7000);
+				}
+				if (status == "REJECTED") {
+					setIsShown(true);
+					setTxStatus("Failed");
+					setStatusColor("#FFEFEF");
+					setStatusText(
+						"Sorry, we are unable to proceed with your request, please try again later."
+					);
+					setTimeout(() => setIsShown(false), 7000);
+				}
 			}
-			if (status == "ACCEPTED_ON_L2") {
-				setIsShown(true);
-				setTxStatus("Success");
-				setStatusColor("#EFFFFB");
-				setStatusText("Invoked successfully");
-				dispatch(increment());
-				setTimeout(() => setIsShown(false), 7000);
-			}
-			if (status == "REJECTED") {
-				setIsShown(true);
-				setTxStatus("Failed");
-				setStatusColor("#FFEFEF");
-				setStatusText(
-					"Sorry, we are unable to proceed with your request, please try again later."
-				);
-				setTimeout(() => setIsShown(false), 7000);
-			}
-		}
-	};
+		},
+		[dispatch, setIsShown, setTxStatus, setStatusColor, setStatusText]
+	);
 	useEffect(() => {
 		changeState(data?.status);
-	}, [data?.status]);
+	}, [data?.status, changeState]);
 
 	return (
 		<>

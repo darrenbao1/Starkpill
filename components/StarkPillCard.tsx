@@ -13,7 +13,7 @@ import KebabIcon from "../public/svgs/kebab.svg";
 import EditPillIcon from "../public/svgs/EditPillIcon.svg";
 import ExternalLinksIcon from "../public/svgs/ExternalLinks.svg";
 import PillDetailsIcon from "../public/svgs/PillDetailsIcon.svg";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 interface Props {
 	ownerAddress: string;
 	imageUrl: string;
@@ -87,11 +87,14 @@ export const StarkPillCard = (props: Props) => {
 		setMenuId(null);
 	};
 
-	const handleMenuToggle = (event: any) => {
-		if (event.detail !== tokenId) {
-			setMenuId(null);
-		}
-	};
+	const handleMenuToggle = useCallback(
+		(event: any) => {
+			if (event.detail !== tokenId) {
+				setMenuId(null);
+			}
+		},
+		[tokenId]
+	);
 
 	useEffect(() => {
 		document.addEventListener("click", handleClickOutside);
@@ -100,7 +103,7 @@ export const StarkPillCard = (props: Props) => {
 			document.removeEventListener("click", handleClickOutside);
 			window.removeEventListener("starkPillMenuToggle", handleMenuToggle);
 		};
-	}, []);
+	}, [handleMenuToggle]);
 	return (
 		<>
 			<div
