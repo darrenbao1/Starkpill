@@ -12,6 +12,7 @@ import { ImageModal } from "./Modals/ImageModal";
 import KebabIcon from "../public/svgs/kebab.svg";
 import EditPillIcon from "../public/svgs/EditPillIcon.svg";
 import ExternalLinksIcon from "../public/svgs/ExternalLinks.svg";
+import PillDetailsIcon from "../public/svgs/PillDetailsIcon.svg";
 import { useState, useEffect } from "react";
 interface Props {
 	ownerAddress: string;
@@ -54,6 +55,11 @@ export const StarkPillCard = (props: Props) => {
 			"_blank"
 		);
 	};
+	//display Image Modal when menu option Pill Details is clicked
+	const openImageModal = () => {
+		setShowImageModal(true);
+	};
+
 	const [showMenu, setShowMenu] = useState(false);
 
 	const borderColor =
@@ -122,9 +128,6 @@ export const StarkPillCard = (props: Props) => {
 							className={`${styles.menuOptions} ${
 								isOwner ? styles.menuOptionsMyPills : ""
 							}`}>
-							<div className={styles.menuItem} onClick={openMintSquareLink}>
-								<ExternalLinksIcon style={{ marginRight: "8px" }} /> Mint Square
-							</div>
 							{isOwner && (
 								<div
 									className={styles.menuItem}
@@ -135,6 +138,12 @@ export const StarkPillCard = (props: Props) => {
 									<EditPillIcon style={{ marginRight: "8px" }} /> Edit pill
 								</div>
 							)}
+							<div className={styles.menuItem} onClick={openImageModal}>
+								<PillDetailsIcon style={{ marginRight: "8px" }} /> Pill Details
+							</div>
+							<div className={styles.menuItem} onClick={openMintSquareLink}>
+								<ExternalLinksIcon style={{ marginRight: "8px" }} /> Mint Square
+							</div>
 						</div>
 					)}
 					<Image

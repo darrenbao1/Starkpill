@@ -83,7 +83,7 @@ const ToastObj = (props: { hash: string }) => {
 									}
 									target="_blank"
 									rel="noreferrer">
-									<u>View Transaction</u>
+									<u style={{ color: "#DD2839" }}>View Transaction</u>
 								</a>
 							</div>
 						)}
