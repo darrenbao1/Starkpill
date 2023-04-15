@@ -26,7 +26,7 @@ const client = new ApolloClient({
 							return [...existing, ...uniqueIncoming];
 						},
 					},
-					allTokensByLowestFame: {
+					allTokenByLowestFame: {
 						keyArgs: false,
 						merge(existing = [], incoming) {
 							const uniqueIncoming = incoming.filter(
