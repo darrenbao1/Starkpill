@@ -57,7 +57,12 @@ export const TraitsModal = (props: {
 				</div>
 				<div className={styles.selectionContainer2}>
 					{props.trait.map((trait, index) => (
-						<div key={index}>
+						<div
+							key={index}
+							className={styles.container}
+							style={
+								index == props.selectedId ? { outlineColor: "white" } : {}
+							}>
 							<div
 								className={
 									index == props.selectedId

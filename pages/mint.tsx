@@ -31,7 +31,7 @@ const Mint = () => {
 				closeAllModals();
 				setShowFaceModal(true);
 			}}>
-			{hasEditedFace ? FACE_TRAITS[selectedFaceId].name : "Ingredient"}
+			{hasEditedFace ? FACE_TRAITS[selectedFaceId].name : "Select Ingredient"}
 			{hasEditedFace && (
 				<div
 					style={{
@@ -55,7 +55,7 @@ const Mint = () => {
 			}}>
 			{hasEditedBackground
 				? BACKGROUND[selectedBackgroundId].name
-				: "Background"}
+				: "Select Background"}
 			{hasEditedBackground && (
 				<div
 					style={{
