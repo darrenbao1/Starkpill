@@ -104,6 +104,8 @@
 	.selectionContainer2 {
 		padding-bottom: 10vh;
 		overflow: overlay;
+		grid-gap: 1rem;
+		padding: 0.7rem;
 	}
 	/* .closeButton {
 		margin-right: 2%;
