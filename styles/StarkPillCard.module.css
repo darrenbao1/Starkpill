@@ -115,7 +115,7 @@
 	position: absolute;
 	border: 1px solid #ccc;
 	border-color: white transparent;
-	border-width: 0 13px 11px 13px;
+	border-width: 0 13px 12px 13px;
 	top: -10px;
 	left: 75%;
 }
@@ -123,7 +123,7 @@
 	content: "";
 	position: absolute;
 	border: 1px solid#ccc;
-	border-color: #999 transparent;
+	border-color: #ccc transparent;
 	border-width: 0 12.5px 11.5px 13px;
 	top: -11px;
 	left: 75%;
