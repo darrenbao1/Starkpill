@@ -138,14 +138,23 @@ export const StarkPillCard = (props: Props) => {
 										setShowModal(true);
 									}}>
 									{" "}
-									<EditPillIcon style={{ marginRight: "8px" }} /> Edit pill
+									<EditPillIcon
+										style={{ marginRight: "8px", marginBottom: "-4px" }}
+									/>{" "}
+									Edit pill
 								</div>
 							)}
 							<div className={styles.menuItem} onClick={openImageModal}>
-								<PillDetailsIcon style={{ marginRight: "8px" }} /> Pill Details
+								<PillDetailsIcon
+									style={{ marginRight: "8px", marginBottom: "-4px" }}
+								/>{" "}
+								Pill details
 							</div>
 							<div className={styles.menuItem} onClick={openMintSquareLink}>
-								<ExternalLinksIcon style={{ marginRight: "8px" }} /> Mint Square
+								<ExternalLinksIcon
+									style={{ marginRight: "8px", marginBottom: "-4px" }}
+								/>{" "}
+								Mint Square
 							</div>
 						</div>
 					)}
@@ -162,7 +171,11 @@ export const StarkPillCard = (props: Props) => {
 					<div
 						className={isTop3 ? styles.contentRank : styles.content}
 						style={isTop3 ? { borderColor: borderColor } : {}}>
-						<div className={styles.contentRankTitle}>TestPill #{tokenId}</div>
+						<div
+							className={styles.contentRankTitle}
+							onClick={() => setShowImageModal(true)}>
+							TestPill #{tokenId}
+						</div>
 						<div>{Number(mintPrice) / Math.pow(10, 18)} ETH</div>
 						<div>{fame} Fame</div>
 						{!isOwner && <div>Owned By: {shortenAddress(ownerAddress)}</div>}

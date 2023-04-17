@@ -69,6 +69,14 @@ export const ImageModal = (props: Props) => {
 		}
 	}, [account, isValidRadioButton, fetchData]);
 
+	//Links to owner address when clicked
+	const handleClickLink = () => {
+		window.open(
+			`https://starkscan.co/contract/${props.ownerAddress}`,
+			"_blank"
+		);
+	};
+
 	const handleManualInput = (e: any) => {
 		const value = Number(handleDecimalsOnValue(e.target.value));
 		if (value > votingPower) {
@@ -134,7 +142,7 @@ export const ImageModal = (props: Props) => {
 						{/* Owned by container */}
 						<div className={styles.captionBox}>
 							<div className={styles.contentHeader}>Owned by: </div>
-							<div className={styles.contentValue}>
+							<div className={styles.contentValue} onClick={handleClickLink}>
 								{shortenAddress(props.ownerAddress)}
 							</div>
 						</div>
