@@ -45,15 +45,15 @@ export const TraitsModal = (props: {
 		}
 		return (
 			<div className={styles.modalContainer} onClick={props.handleClick}>
+				<button
+					className={styles.closeButton}
+					onClick={() => {
+						props.close();
+					}}>
+					<Cross />
+				</button>
 				<div className={styles.header}>
 					<span>Select {props.traitName}</span>
-					<button
-						className={styles.closeButton}
-						onClick={() => {
-							props.close();
-						}}>
-						<Cross />
-					</button>
 				</div>
 				<div className={styles.selectionContainer2}>
 					{props.trait.map((trait, index) => (

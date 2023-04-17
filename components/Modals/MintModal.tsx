@@ -138,11 +138,11 @@ export const MintModal = (props: {
 	};
 	return (
 		<div className={styles.modalContainer}>
+			<button className={styles.closeButton} onClick={props.close}>
+				<Cross />
+			</button>
 			<div className={styles.header}>
 				<span>Mint Summary</span>
-				<button className={styles.closeButton} onClick={props.close}>
-					<Cross />
-				</button>
 			</div>
 			<div className={styles.label}>Items</div>
 			<div className={styles.itemsContainer}>
