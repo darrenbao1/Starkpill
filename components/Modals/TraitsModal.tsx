@@ -28,14 +28,14 @@ export const TraitsModal = (props: {
 	if (loading) return null;
 	else {
 		if (props.isMinting) {
-			if (props.traitName === "Ingredient #1") {
+			if (props.traitName === "Ingredient") {
 				//map through the data array and check the type index is equal to 1
 				data.getPharmacyData.map((item: any) => {
 					if (item.typeIndex === 1) {
 						props.trait[item.index].quantityLeft = item.amount_left;
 					}
 				});
-			} else if (props.traitName === "Ingredient #2") {
+			} else if (props.traitName === "Background") {
 				data.getPharmacyData.map((item: any) => {
 					if (item.typeIndex === 2) {
 						props.trait[item.index].quantityLeft = item.amount_left;

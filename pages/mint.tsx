@@ -31,7 +31,7 @@ const Mint = () => {
 				closeAllModals();
 				setShowFaceModal(true);
 			}}>
-			{hasEditedFace ? FACE_TRAITS[selectedFaceId].name : "Ingredient #1"}
+			{hasEditedFace ? FACE_TRAITS[selectedFaceId].name : "Ingredient"}
 			{hasEditedFace && (
 				<div
 					style={{
@@ -55,7 +55,7 @@ const Mint = () => {
 			}}>
 			{hasEditedBackground
 				? BACKGROUND[selectedBackgroundId].name
-				: "Ingredient #2"}
+				: "Background"}
 			{hasEditedBackground && (
 				<div
 					style={{
@@ -116,7 +116,7 @@ const Mint = () => {
 				</div>
 				{showFaceModal && (
 					<TraitsModal
-						traitName="Ingredient #1"
+						traitName="Ingredient "
 						trait={FACE_TRAITS}
 						selectedId={selectedFaceId}
 						close={() => setShowFaceModal(false)}
@@ -126,7 +126,7 @@ const Mint = () => {
 				)}
 				{showBackgroundModal && (
 					<TraitsModal
-						traitName="Ingredient #2"
+						traitName="Background"
 						trait={BACKGROUND}
 						selectedId={selectedBackgroundId}
 						close={() => setShowBackgroundModal(false)}
