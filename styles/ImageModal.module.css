@@ -65,6 +65,11 @@
 	margin-right: 0;
 	margin-left: auto;
 }
+.contentValue:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
 .modal_content,
 .caption,
 .container {

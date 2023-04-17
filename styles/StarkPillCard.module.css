@@ -64,11 +64,10 @@
 	font-size: 24px;
 }
 
-.card:hover .contentRankTitle {
-	text-decoration: underline;
-}
+.card:hover .contentRankTitle,
 .cardRank:hover .contentRankTitle {
 	text-decoration: underline;
+	cursor: pointer;
 }
 .hoverLabel {
 	background-color: #ff4f0a;
@@ -106,20 +105,30 @@
 	line-height: 24px;
 	color: #262626;
 	border: 1px solid #ccc;
-	border-radius: 16px;
+	border-radius: 8px;
 	padding: 8px;
+
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 	z-index: 1;
 }
 
+.menuOptions::after {
+	content: "";
+	position: absolute;
+	border: 1px solid #ccc;
+	border-color: white transparent;
+	border-width: 0 13px 11px 13px;
+	top: -10px;
+	left: 75%;
+}
 .menuOptions::before {
 	content: "";
 	position: absolute;
-	top: -8px;
-	right: 14px;
-	border-left: 8px solid transparent;
-	border-right: 8px solid transparent;
-	border-bottom: 8px solid white;
+	border: 1px solid#ccc;
+	border-color: #999 transparent;
+	border-width: 0 12.5px 11.5px 13px;
+	top: -11px;
+	left: 75%;
 }
 
 .menuItem {
