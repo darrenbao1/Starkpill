@@ -1,11 +1,10 @@
 .contentContainer {
 	position: relative;
 	margin: auto;
-	max-width: 1440px;
+	max-width: 1310px;
 	overflow: auto;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-
 	height: 100%;
 	background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
 		#29296e;
@@ -16,12 +15,11 @@
 	font-style: normal;
 	font-weight: 400;
 	font-size: 1.2rem;
-	line-height: 150%;
+	line-height: 120%;
 	padding-right: 10%;
-	padding-top: 98.28px;
-	padding-bottom: 98px;
-	padding-left: 10%;
-	height: 100%;
+	padding-top: 10%;
+	padding-bottom: 10%;
+	padding-left: 5%;
 	color: white;
 	overflow: auto;
 }
@@ -33,20 +31,26 @@
 	height: 100%;
 	padding: 0px;
 }
+.fixed-size-image {
+	width: 558px;
+	height: 558px;
+	object-fit: cover;
+}
 .aboutTextShift {
 	display: none;
 	justify-content: center;
 	color: #ff4f0a;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 1050px) {
 	.contentContainer {
+		padding-top: 10%;
 		display: flex;
 		flex-direction: column;
 		overflow: auto;
 	}
 	.headerText {
-		display: none;
+		display: flex;
 		width: 107px;
 		height: 38px;
 		font-family: "Patrick Hand";
@@ -61,16 +65,36 @@
 		width: 100%;
 		height: 100%;
 	}
-	.aboutTextShift {
-		display: flex;
-		visibility: visible;
-		width: 100%;
+	.text {
 		padding-top: 10%;
+		padding-bottom: 10%;
+		padding-left: 8%;
+		padding-right: 8%;
 	}
+
 	.entireBox {
 		display: flex;
 	}
 }
 .custom-paragraph {
-	margin-bottom: 1.5rem; /* Adjust this value to control the space between paragraphs */
+	margin-bottom: ; /* Adjust this value to control the space between paragraphs */
+}
+
+.custombreak1 {
+	margin-top: 0.8rem;
+	margin-bottom: 2rem;
+}
+.custombreak2 {
+	margin-top: 0.8rem;
+	/* Adjust the value according to your desired space */
+	margin-bottom: 0.5rem; /* Adjust the value according to your desired space */
+}
+.custombreak3 {
+	margin-top: -0.5rem;
+	/* Adjust the value according to your desired space */
+	margin-bottom: 0.8rem; /* Adjust the value according to your desired space */
+}
+.custombreak4 {
+	margin-top: -0.5rem;
+	margin-bottom: 1.3rem;
 }
