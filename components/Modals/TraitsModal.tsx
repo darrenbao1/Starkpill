@@ -1,5 +1,5 @@
 import styles from "../../styles/TraitsModal.module.css";
-import Cross from "../../public/svgs/cross.svg";
+import Cross from "../../public/svgs/cross2.svg";
 import Image from "next/image";
 import { Trait } from "../../types/interfaces";
 import ETHLogo from "../../public/svgs/ethLogo.svg";

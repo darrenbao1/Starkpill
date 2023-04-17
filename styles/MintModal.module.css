@@ -17,15 +17,11 @@
 }
 .closeButton {
 	position: absolute;
-	right: 1.7%;
-	margin-top: -0.3%;
-
+	right: 20px;
 	float: right;
-	width: 38px;
-	height: 38px;
+	padding: 11px;
 	stroke: white;
 	cursor: pointer;
-	transition: 0.3s;
 	background-color: #ff4f0a;
 	border: none;
 	border-radius: 5px;
@@ -181,10 +177,6 @@
 	}
 	.text {
 		padding: 0 2rem;
-	}
-	.closeButton {
-		margin-right: 4%;
-		margin-top: -0.4%;
 	}
 }
 @keyframes toast-in-right {

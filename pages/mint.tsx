@@ -116,7 +116,7 @@ const Mint = () => {
 				</div>
 				{showFaceModal && (
 					<TraitsModal
-						traitName="Ingredient "
+						traitName="Ingredient"
 						trait={FACE_TRAITS}
 						selectedId={selectedFaceId}
 						close={() => setShowFaceModal(false)}
