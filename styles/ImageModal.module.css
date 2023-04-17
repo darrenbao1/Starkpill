@@ -65,7 +65,7 @@
 	margin-right: 0;
 	margin-left: auto;
 }
-.contentValue:hover {
+.contentValue.ownerAddress:hover {
 	cursor: pointer;
 	text-decoration: underline;
 }
