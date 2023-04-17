@@ -66,6 +66,8 @@ export async function getUserBackPack(walletAddress: String) {
 					name: FACE_TRAITS[Number(value)].name,
 					link: FACE_TRAITS[Number(value)].link,
 					tokenId: token.id,
+					marketViewLink: FACE_TRAITS[Number(value)].marketViewLink,
+					premiumPrice: FACE_TRAITS[Number(value)].premiumPrice,
 				};
 				ingredientArray.push(ingTrait);
 			} else {
@@ -78,6 +80,8 @@ export async function getUserBackPack(walletAddress: String) {
 					name: BACKGROUND[Number(value)].name,
 					link: BACKGROUND[Number(value)].link,
 					tokenId: token.id,
+					marketViewLink: BACKGROUND[Number(value)].marketViewLink,
+					premiumPrice: BACKGROUND[Number(value)].premiumPrice,
 				};
 				backgroundArray.push(bgTrait);
 			}
