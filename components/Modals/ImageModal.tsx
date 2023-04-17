@@ -142,7 +142,9 @@ export const ImageModal = (props: Props) => {
 						{/* Owned by container */}
 						<div className={styles.captionBox}>
 							<div className={styles.contentHeader}>Owned by: </div>
-							<div className={styles.contentValue} onClick={handleClickLink}>
+							<div
+								className={`${styles.contentValue} ${styles.ownerAddress}`}
+								onClick={handleClickLink}>
 								{shortenAddress(props.ownerAddress)}
 							</div>
 						</div>

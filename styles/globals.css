@@ -103,3 +103,6 @@ a {
 	height: 56px;
 	border-radius: 100%;
 }
+.backToTopButton:hover {
+	cursor: pointer;
+}
