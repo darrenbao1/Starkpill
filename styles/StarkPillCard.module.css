@@ -113,7 +113,8 @@
 .menuOptions::after {
 	content: "";
 	position: absolute;
-	border: 1px solid #ccc;
+	border-width: 1px;
+	border-style: solid;
 	border-color: white transparent;
 	border-width: 0 13px 12px 13px;
 	top: -10px;
@@ -122,7 +123,8 @@
 .menuOptions::before {
 	content: "";
 	position: absolute;
-	border: 1px solid#ccc;
+	border-width: 1px;
+	border-style: solid;
 	border-color: #ccc transparent;
 	border-width: 0 12.5px 11.5px 13px;
 	top: -11px;
