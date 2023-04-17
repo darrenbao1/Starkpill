@@ -139,15 +139,6 @@ export const ImageModal = (props: Props) => {
 								{FACE_TRAITS[ingImageId].name}
 							</div>
 						</div>
-						{/* Owned by container */}
-						<div className={styles.captionBox}>
-							<div className={styles.contentHeader}>Owned by: </div>
-							<div
-								className={`${styles.contentValue} ${styles.ownerAddress}`}
-								onClick={handleClickLink}>
-								{shortenAddress(props.ownerAddress)}
-							</div>
-						</div>
 						{/* background container */}
 						<div className={styles.captionBox}>
 							<div className={styles.contentHeader}>Background</div>
@@ -155,6 +146,16 @@ export const ImageModal = (props: Props) => {
 								{BACKGROUND[bgImageId].name}
 							</div>
 						</div>
+						{/* Owned by container */}
+						<div className={styles.captionBox}>
+							<div className={styles.contentHeader}>Owner: </div>
+							<div
+								className={`${styles.contentValue} ${styles.ownerAddress}`}
+								onClick={handleClickLink}>
+								{shortenAddress(props.ownerAddress)}
+							</div>
+						</div>
+
 						{/*Fame Container */}
 						<div className={styles.captionBox}>
 							<div className={styles.contentHeader}>Fame</div>
