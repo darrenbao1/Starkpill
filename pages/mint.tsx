@@ -2,7 +2,7 @@ import styles from "../styles/mint.module.css";
 import Image from "next/image";
 import { useAccount } from "@starknet-react/core";
 import { ConnectWalletButton } from "../components/ConnectWalletButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FACE_TRAITS, BACKGROUND } from "../types/constants";
 import { TraitsModal } from "../components/Modals/TraitsModal";
 import EditIcon from "../public/svgs/Edit.svg";
@@ -21,6 +21,19 @@ const Mint = () => {
 		setShowBackgroundModal(false);
 		setShowMintModal(false);
 	};
+	const [width, setWidth] = useState<number>(window.innerWidth);
+
+	function handleWindowSizeChange() {
+		setWidth(window.innerWidth);
+	}
+	useEffect(() => {
+		window.addEventListener("resize", handleWindowSizeChange);
+		return () => {
+			window.removeEventListener("resize", handleWindowSizeChange);
+		};
+	}, []);
+
+	const isMobile = width <= 768;
 	const selectFaceButton = (
 		<div
 			className={hasEditedFace ? styles.editButton : styles.button}
@@ -31,7 +44,11 @@ const Mint = () => {
 				closeAllModals();
 				setShowFaceModal(true);
 			}}>
-			{hasEditedFace ? FACE_TRAITS[selectedFaceId].name : "Select Ingredient"}
+			{hasEditedFace
+				? FACE_TRAITS[selectedFaceId].name
+				: isMobile
+				? "Ingredient"
+				: "Select Ingredient"}
 			{hasEditedFace && (
 				<div
 					style={{
@@ -55,6 +72,8 @@ const Mint = () => {
 			}}>
 			{hasEditedBackground
 				? BACKGROUND[selectedBackgroundId].name
+				: isMobile
+				? "Background"
 				: "Select Background"}
 			{hasEditedBackground && (
 				<div
