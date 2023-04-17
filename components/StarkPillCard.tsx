@@ -5,9 +5,13 @@ import {
 	STARKPILL_CONTRACT_ADDRESS,
 } from "../types/constants";
 import { shortenAddress } from "../types/utils";
-
+import { useDispatch } from "react-redux";
 import { EditPillModal } from "./Modals/EditPillModal";
 import Href from "../public/hrefIcon.svg";
+import {
+	showImageModalRedux,
+	showEditPillModalRedux,
+} from "../features/refetch";
 import { ImageModal } from "./Modals/ImageModal";
 import KebabIcon from "../public/svgs/kebab.svg";
 import EditPillIcon from "../public/svgs/EditPillIcon.svg";
@@ -26,6 +30,7 @@ interface Props {
 	fame: number;
 }
 export const StarkPillCard = (props: Props) => {
+	const dispatch = useDispatch();
 	const {
 		ownerAddress,
 		imageUrl,
@@ -58,9 +63,8 @@ export const StarkPillCard = (props: Props) => {
 	//display Image Modal when menu option Pill Details is clicked
 	const openImageModal = () => {
 		setShowImageModal(true);
+		dispatch(showImageModalRedux(true));
 	};
-
-	const [showMenu, setShowMenu] = useState(false);
 
 	const borderColor =
 		props.rank === 1 ? "#FFC107" : props.rank === 2 ? "#E0E0E0" : "#FF9838";
@@ -104,6 +108,18 @@ export const StarkPillCard = (props: Props) => {
 			window.removeEventListener("starkPillMenuToggle", handleMenuToggle);
 		};
 	}, [handleMenuToggle]);
+	useEffect(() => {
+		dispatch(showImageModalRedux(showImageModal));
+		dispatch(showEditPillModalRedux(showModal));
+	}, [showModal, showImageModal]);
+	const closeImageModal = () => {
+		dispatch(showImageModalRedux(false));
+		setShowImageModal(false);
+	};
+	const closeEditModal = () => {
+		dispatch(showEditPillModalRedux(false));
+		setShowModal(false);
+	};
 	return (
 		<>
 			<div
@@ -136,8 +152,8 @@ export const StarkPillCard = (props: Props) => {
 									className={styles.menuItem}
 									onClick={() => {
 										setShowModal(true);
+										dispatch(showEditPillModalRedux(true));
 									}}>
-									{" "}
 									<EditPillIcon
 										style={{ marginRight: "8px", marginBottom: "-4px" }}
 									/>{" "}
@@ -189,7 +205,7 @@ export const StarkPillCard = (props: Props) => {
 					bgId={bgId!}
 					ingImageId={ingImageId}
 					bgImageId={bgImageId}
-					close={() => setShowModal(false)}
+					close={closeEditModal}
 					oldImage={imageUrl}
 				/>
 			)}
@@ -199,7 +215,7 @@ export const StarkPillCard = (props: Props) => {
 					tokenId={tokenId}
 					ingImageId={ingImageId}
 					bgImageId={bgImageId}
-					close={() => setShowImageModal(false)}
+					close={closeImageModal}
 					fame={fame}
 					ownerAddress={ownerAddress}
 				/>

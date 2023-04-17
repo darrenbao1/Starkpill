@@ -83,11 +83,13 @@ export default function Mypills() {
 							))}
 						</div>
 					</div>
-					{showButton && (
-						<BackToTopButton
-							scrollTopFunc={() => handleScrollToTop(scrollTopRef)}
-						/>
-					)}
+					{showButton &&
+						!refetchState.imageModalShown &&
+						!refetchState.editPillModalShown && (
+							<BackToTopButton
+								scrollTopFunc={() => handleScrollToTop(scrollTopRef)}
+							/>
+						)}
 				</div>
 			) : address &&
 			  walletAddress != convertToStandardWalletAddress(address!) ? (

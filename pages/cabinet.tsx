@@ -6,6 +6,7 @@ import sharedBackgroundStyles from "../styles/sharedBackground.module.css";
 import SortIcon from "../public/svgs/sortIcon.svg";
 import { DROPDOWN_MENU_ITEMS, handleScrollToTop } from "../types/constants";
 import { BackToTopButton } from "../components/BackToTopButton";
+import { useSelector } from "react-redux";
 export default function Cabinet() {
 	const offsetIncrement = 20; //number of pills per load
 	const [offsetAmount, setOffsetAmount] = useState(0);
@@ -15,6 +16,7 @@ export default function Cabinet() {
 	const [showDropbox, setShowDropbox] = useState(false);
 	const scrollTopRef = useRef<HTMLDivElement>(null);
 	const [showButton, setShowButton] = useState(false);
+	const reduxState = useSelector((state: any) => state.refetch);
 	function useOutsideAlerter(ref: any) {
 		useEffect(() => {
 			function handleClickOutside(event: any) {
@@ -173,11 +175,13 @@ export default function Cabinet() {
 						  ))}
 				</div>
 			</div>
-			{showButton && (
-				<BackToTopButton
-					scrollTopFunc={() => handleScrollToTop(scrollTopRef)}
-				/>
-			)}
+			{showButton &&
+				!reduxState.imageModalShown &&
+				!reduxState.editPillModalShown && (
+					<BackToTopButton
+						scrollTopFunc={() => handleScrollToTop(scrollTopRef)}
+					/>
+				)}
 			{loading && <div className="snackbar">Loading</div>}
 		</div>
 	);
