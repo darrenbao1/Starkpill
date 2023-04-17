@@ -98,4 +98,8 @@
 	.companyLogo {
 		visibility: hidden;
 	}
+	.contentContainer {
+		align-items: center;
+		justify-content: center;
+	}
 }

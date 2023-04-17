@@ -91,7 +91,7 @@
 @media screen and (max-width: 750px) {
 	.modalContainer {
 		position: fixed;
-		width: 100%;
+		width: 90%;
 		height: calc(100vh - 150px);
 		margin: 20px auto;
 		z-index: 3;
