@@ -276,7 +276,7 @@ export const EditPillModal = (props: Props) => {
 					)}
 					{showBackgroundModal && (
 						<TraitsModal
-							traitName="Ingredient #2"
+							traitName="Background"
 							trait={backgroundArray}
 							selectedId={selectedBackgroundId}
 							close={() => setShowBackgroundModal(false)}
