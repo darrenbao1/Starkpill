@@ -455,3 +455,12 @@ export const DROPDOWN_MENU_ITEMS = [
 		keyName: "allTokensByLatest",
 	},
 ];
+export const handleScrollToTop = (ref: React.RefObject<any>) => {
+	if (ref.current) {
+		ref.current.scrollTo({
+			top: 0,
+			left: 0,
+			behavior: "smooth",
+		});
+	}
+};

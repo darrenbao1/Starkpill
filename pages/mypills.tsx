@@ -5,15 +5,18 @@ import styles from "../styles/cabinet.module.css";
 import { StarkPillCard } from "../components/StarkPillCard";
 import { useSelector } from "react-redux";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { convertToStandardWalletAddress } from "../types/utils";
 import { Disconnect } from "../components/Disconnect";
 import sharedBackgroundStyles from "../styles/sharedBackground.module.css";
-import { GET_USER_TOKENS } from "../types/constants";
+import { GET_USER_TOKENS, handleScrollToTop } from "../types/constants";
+import { BackToTopButton } from "../components/BackToTopButton";
 export default function Mypills() {
 	const refetchState = useSelector((state: any) => state.refetch);
+	const scrollTopRef = useRef<HTMLDivElement>(null);
 	const { address } = useAccount();
 	const router = useRouter();
+	const [showButton, setShowButton] = useState(false);
 	const { walletAddress } = router.query;
 	const { data, loading, refetch } = useQuery(GET_USER_TOKENS, {
 		variables: {
@@ -37,11 +40,20 @@ export default function Mypills() {
 		);
 	}
 	const tokenIds = data.user.tokens;
+	const handleScroll = async (e: any) => {
+		if (e.target.scrollTop >= 300) {
+			setShowButton(true);
+		} else if (e.target.scrollTop < 300) {
+			setShowButton(false);
+		}
+	};
 	return (
 		<>
 			{address && walletAddress == convertToStandardWalletAddress(address) ? (
 				<div
-					className={`container ${sharedBackgroundStyles.extendedBackground}`}>
+					className={`container ${sharedBackgroundStyles.extendedBackground}`}
+					ref={scrollTopRef}
+					onScroll={(e) => handleScroll(e)}>
 					<div className="contentContainer">
 						<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>
 							My Prescriptions
@@ -71,6 +83,11 @@ export default function Mypills() {
 							))}
 						</div>
 					</div>
+					{showButton && (
+						<BackToTopButton
+							scrollTopFunc={() => handleScrollToTop(scrollTopRef)}
+						/>
+					)}
 				</div>
 			) : address &&
 			  walletAddress != convertToStandardWalletAddress(address!) ? (

@@ -4,7 +4,8 @@ import styles from "../styles/cabinet.module.css";
 import { useQuery, gql } from "@apollo/client";
 import sharedBackgroundStyles from "../styles/sharedBackground.module.css";
 import SortIcon from "../public/svgs/sortIcon.svg";
-import { DROPDOWN_MENU_ITEMS } from "../types/constants";
+import { DROPDOWN_MENU_ITEMS, handleScrollToTop } from "../types/constants";
+import { BackToTopButton } from "../components/BackToTopButton";
 export default function Cabinet() {
 	const offsetIncrement = 20; //number of pills per load
 	const [offsetAmount, setOffsetAmount] = useState(0);
@@ -12,7 +13,8 @@ export default function Cabinet() {
 	const [loadedAllPills, setIsLoadedAllPills] = useState(false);
 	const [sortOption, setSortOption] = useState(0); // is the index of the DROPDOWN_MENU_ITEMS
 	const [showDropbox, setShowDropbox] = useState(false);
-
+	const scrollTopRef = useRef<HTMLDivElement>(null);
+	const [showButton, setShowButton] = useState(false);
 	function useOutsideAlerter(ref: any) {
 		useEffect(() => {
 			function handleClickOutside(event: any) {
@@ -29,7 +31,6 @@ export default function Cabinet() {
 	}
 	const wrapperRef = useRef(null);
 	useOutsideAlerter(wrapperRef);
-
 	const handleScroll = async (e: any) => {
 		const bottom =
 			e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
@@ -50,6 +51,11 @@ export default function Cabinet() {
 					setLoading(false);
 				});
 		}
+		if (e.target.scrollTop >= 300) {
+			setShowButton(true);
+		} else if (e.target.scrollTop < 300) {
+			setShowButton(false);
+		}
 	};
 
 	const {
@@ -62,7 +68,6 @@ export default function Cabinet() {
 			first: offsetIncrement,
 		},
 	});
-
 	if (loadingInit) {
 		return (
 			<div className={`container ${sharedBackgroundStyles.sharedBackground}`}>
@@ -83,7 +88,8 @@ export default function Cabinet() {
 	return (
 		<div
 			className={`container ${sharedBackgroundStyles.extendedBackground}`}
-			onScroll={(e) => handleScroll(e)}>
+			onScroll={(e) => handleScroll(e)}
+			ref={scrollTopRef}>
 			<div className="contentContainer">
 				<div className={styles.sortWrapper} ref={wrapperRef}>
 					<div className={styles.sortContainer}>
@@ -167,6 +173,11 @@ export default function Cabinet() {
 						  ))}
 				</div>
 			</div>
+			{showButton && (
+				<BackToTopButton
+					scrollTopFunc={() => handleScrollToTop(scrollTopRef)}
+				/>
+			)}
 			{loading && <div className="snackbar">Loading</div>}
 		</div>
 	);
