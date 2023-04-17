@@ -21,6 +21,27 @@ const Mint = () => {
 		setShowBackgroundModal(false);
 		setShowMintModal(false);
 	};
+
+	const [width, setWidth] = useState<number>(0);
+
+	useEffect(() => {
+		if (typeof window !== "undefined") {
+			setWidth(window.innerWidth);
+			window.addEventListener("resize", handleWindowSizeChange);
+			return () => {
+				window.removeEventListener("resize", handleWindowSizeChange);
+			};
+		}
+	}, []);
+
+	function handleWindowSizeChange() {
+		if (typeof window !== "undefined") {
+			setWidth(window.innerWidth);
+		}
+	}
+
+	const isMobile = width <= 768;
+
 	const selectFaceButton = (
 		<div
 			className={hasEditedFace ? styles.editButton : styles.button}
@@ -31,7 +52,11 @@ const Mint = () => {
 				closeAllModals();
 				setShowFaceModal(true);
 			}}>
-			{hasEditedFace ? FACE_TRAITS[selectedFaceId].name : "Select Ingredient"}
+			{hasEditedFace
+				? FACE_TRAITS[selectedFaceId].name
+				: isMobile
+				? "Ingredient"
+				: "Select Ingredient"}
 			{hasEditedFace && (
 				<div
 					style={{
@@ -55,6 +80,8 @@ const Mint = () => {
 			}}>
 			{hasEditedBackground
 				? BACKGROUND[selectedBackgroundId].name
+				: isMobile
+				? "Background"
 				: "Select Background"}
 			{hasEditedBackground && (
 				<div
