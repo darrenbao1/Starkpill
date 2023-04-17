@@ -1,4 +1,4 @@
-import Cross from "../../public/svgs/MintCross.svg";
+import Cross from "../../public/svgs/cross2.svg";
 import styles from "../../styles/MintModal.module.css";
 import InformationIcon from "../../public/svgs/information.svg";
 import SubtractIcon from "../../public/svgs/subtractIcon.svg";
