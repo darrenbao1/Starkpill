@@ -23,7 +23,8 @@
 	background-color: #ff4f0a;
 	border: none;
 	border-radius: 5px;
-	right: 20px;
+	right: 32px;
+	margin-top: 20px;
 }
 .closeButton:hover {
 	stroke: grey;
