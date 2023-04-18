@@ -42,13 +42,17 @@
 	color: #ff4f0a;
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 750px) {
 	.contentContainer {
+		display: flex;
 		padding-top: 10%;
 		display: flex;
+		justify-content: center;
+		align-items: center;
 		flex-direction: column;
-		overflow: auto;
+		padding-left: 8%;
 	}
+
 	.headerText {
 		display: flex;
 		width: 107px;
@@ -58,12 +62,15 @@
 		font-weight: 400;
 		font-size: 32px;
 		line-height: 120%;
+		text-align: center;
+		padding-left: 30%;
 	}
 	.image {
 		max-width: 222px;
 		max-height: 222px;
 		width: 100%;
 		height: 100%;
+		padding-right: 10%;
 	}
 	.text {
 		padding-top: 10%;

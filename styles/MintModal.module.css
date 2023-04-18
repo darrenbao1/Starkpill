@@ -50,6 +50,7 @@
 	border-radius: 5px;
 }
 .itemsContainer .title {
+	color: #e0e0e0;
 	font-size: 22px;
 	font-weight: 400;
 	line-height: 110%;
@@ -69,7 +70,7 @@
 	margin-left: auto;
 }
 .information {
-	font-size: 14px;
+	font-size: 20px;
 	line-height: 120%;
 	text-align: center;
 	padding-top: 12px;
@@ -87,8 +88,12 @@
 	width: 111px;
 	height: 60px;
 	font-size: 28px;
-	padding: 5px;
+	padding-right: 5px;
+	padding-bottom: -20px;
+	padding-top: 10px;
+
 	text-align: end;
+
 	color: white;
 	-moz-appearance: textfield;
 }
@@ -118,8 +123,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 9px;
-	border-bottom: #35358f 2px solid;
+	padding: 8px 13px;
 }
 .mintButton {
 	font-size: 32px;
@@ -134,7 +138,7 @@
 }
 .hoverTip {
 	width: fit-content;
-	font-size: 10px;
+	font-size: 18px;
 	line-height: 120%;
 	padding: 4px;
 	margin-left: 10px;
@@ -146,8 +150,9 @@
 	padding-left: 13px;
 }
 .total {
-	font-size: 34px;
+	font-size: 40px;
 	padding-top: 16px;
+	font-weight: 400;
 }
 .inputContainer {
 	width: 100px;

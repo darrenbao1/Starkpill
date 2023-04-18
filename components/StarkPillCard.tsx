@@ -71,7 +71,7 @@ export const StarkPillCard = (props: Props) => {
 		props.rank === 1 ? "#FFC107" : props.rank === 2 ? "#E0E0E0" : "#FF9838";
 	const isTop3 = props.rank <= 3 && props.rank > 0;
 
-	const toggleMenu = () => {
+	const toggleMenu = (tokenId: any) => {
 		setMenuId((prevMenuId) => {
 			const newMenuId = prevMenuId === tokenId ? null : tokenId;
 			const event = new CustomEvent("starkPillMenuToggle", {
@@ -85,7 +85,8 @@ export const StarkPillCard = (props: Props) => {
 	const handleClickOutside = (event: any) => {
 		if (
 			event.target.closest(".menuOptions") ||
-			event.target.closest("." + styles.kebabIcon)
+			event.target.closest("." + styles.kebabIcon) ||
+			event.target.closest("." + styles.kebabIconRank)
 		) {
 			return;
 		}
@@ -137,15 +138,15 @@ export const StarkPillCard = (props: Props) => {
 				<div className={isTop3 ? styles.cardRank : styles.card}>
 					<div
 						className={isTop3 ? styles.kebabIconRank : styles.kebabIcon}
-						onClick={toggleMenu}>
+						onClick={() => toggleMenu(tokenId)}>
 						{isTop3 ? <KebabIcon /> : <KebabIconSmall />}
 					</div>
 
 					{menuId === tokenId && (
 						<div
-							className={`${styles.menuOptions} ${
-								isOwner ? styles.menuOptionsMyPills : ""
-							}`}>
+							className={`${
+								isTop3 ? styles.menuOptionsRank : styles.menuOptions
+							} ${isOwner ? styles.menuOptionsMyPills : ""}`}>
 							{isOwner && (
 								<div
 									className={styles.menuItem}
