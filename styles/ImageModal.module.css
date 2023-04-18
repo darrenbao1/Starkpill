@@ -42,7 +42,7 @@
 	border-radius: 14px;
 	font-size: 24px;
 	padding: 6px 24px 6px 24px;
-	width: 400px;
+	width: 550px;
 }
 .caption {
 	display: block;
@@ -130,15 +130,18 @@
 	bottom: 0;
 }
 /* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 1200px) {
+	.captionBox {
+		min-width: 0px;
+		width: 100%;
+	}
+}
 @media only screen and (max-width: 1000px) {
 	.modal_content {
 		width: 70%;
 		height: auto;
 	}
-	.captionBox {
-		min-width: 0px;
-		width: auto;
-	}
+
 	.caption {
 		margin-left: 0px;
 		margin-top: 15px;

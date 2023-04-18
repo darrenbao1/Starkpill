@@ -5,6 +5,8 @@ import { createRef, useCallback, useState } from "react";
 import { BACKGROUND, FACE_TRAITS } from "../../types/constants";
 import { useRef, useEffect } from "react";
 import { getVotingPower, shortenAddress } from "../../types/utils";
+import Minus from "../../public/svgs/defameButton.svg";
+import Plus from "../../public/svgs/fameButton.svg";
 import ConnectMenuModal from "./ConnectMenuModal";
 import {
 	useAccount,
@@ -162,7 +164,9 @@ export const ImageModal = (props: Props) => {
 							<div className={styles.contentValue}>{props.fame}</div>
 						</div>
 					</div>
-					<div className={styles.fameRadioButtonContainer}>
+					<div
+						className={styles.fameRadioButtonContainer}
+						style={{ marginTop: "24px" }}>
 						<label className={styles.radioLabel}>
 							<input
 								className={styles.radioInput}
@@ -210,7 +214,7 @@ export const ImageModal = (props: Props) => {
 												? { color: "#9B9B9B", cursor: "not-allowed" }
 												: { color: "#8F1310" }
 										}>
-										-
+										<Minus />
 									</button>
 									<input
 										max={votingPower}
@@ -235,7 +239,7 @@ export const ImageModal = (props: Props) => {
 												: { color: "#0A6160" }
 										}
 										disabled={fameValue === votingPower}>
-										+
+										<Plus />
 									</button>
 								</div>
 							</div>

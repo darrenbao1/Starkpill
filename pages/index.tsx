@@ -8,15 +8,14 @@ export default function Home() {
 		<div className={styles.container}>
 			<div className={styles.content}>
 				<Link href="/mint" className={styles.link}>
-					<h1>
-						getstarkpilled
+					<h1 className={styles.outline}>
+						<span style={{ marginTop: "-20px" }}>getstarkpilled</span>
 						<Image
 							src="/landingPage.png"
 							width={150}
 							height={150}
-							alt=""
-						></Image>
-						<ForwardIcon />
+							alt=""></Image>
+						<ForwardIcon style={{ marginTop: "-10px" }} />
 					</h1>
 				</Link>
 			</div>
@@ -26,8 +25,7 @@ export default function Home() {
 						src="/companyLogo.png"
 						height={40}
 						width={136}
-						alt="seraphLabs"
-					></Image>
+						alt="seraphLabs"></Image>
 				</a>
 			</footer>
 		</div>
