@@ -150,11 +150,11 @@ export default function Cabinet() {
 							))}
 				</div>
 				<h1
-					style={{
-						textAlign: "center",
-						marginTop: "5rem",
-						fontSize: "40px",
-					}}>
+					style={
+						sortOption === 3
+							? { textAlign: "center", marginTop: "-1rem", fontSize: "40px" }
+							: { textAlign: "center", marginTop: "5rem", fontSize: "40px" }
+					}>
 					Starkpills
 				</h1>
 				<div className={styles.cardContainer}>
