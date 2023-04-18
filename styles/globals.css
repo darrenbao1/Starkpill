@@ -4,6 +4,7 @@ body {
 	padding: 0;
 	margin: 0;
 	font-family: Patrick Hand;
+
 	background-color: black;
 	color: white;
 }
@@ -21,7 +22,6 @@ h1 {
 .connectWalletButton {
 	border-radius: 6px;
 	height: 60px;
-
 	padding: 0 0.7rem;
 	padding-top: 13px;
 	cursor: pointer;

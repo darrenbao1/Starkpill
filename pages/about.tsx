@@ -15,7 +15,7 @@ export default function about() {
 					<h1 className={aboutStyles.aboutTextShift}>About</h1>
 					<Image
 						src="/About.gif"
-						className={aboutStyles.image}
+						className={`${aboutStyles.image} ${aboutStyles.fixedSizeImage}`}
 						height={558}
 						width={558}
 						alt="gif"
@@ -24,41 +24,52 @@ export default function about() {
 						<h1 className={aboutStyles.headerText} style={{ color: "#FF4F0A" }}>
 							About
 						</h1>
-						<Link
-							href="https://twitter.com/GuthL/status/1594292390092750848?s=20&t=XaDDRn52fCJ5adU_GxeoHg"
-							target="_blank">
-							<u>Great memes</u>
-						</Link>
-						&nbsp;beget more memes
-						<p className="custom-paragraph">
-							Starkpilled is an SFT (Semi-Fungible Token) collection of digital
-							avatars for people to celebrate to the StarkNet Ecosystem and
-							participate in the SFT movement.{" "}
+						<p className={aboutStyles.custombreak3}>
+							<Link
+								href="https://twitter.com/GuthL/status/1594292390092750848?s=20&t=XaDDRn52fCJ5adU_GxeoHg"
+								target="_blank">
+								<u>Great memes</u>
+							</Link>
+							&nbsp;beget more memes
 						</p>
-						Compared to traditional NFT collections that are of the ERC-721
-						token standard, Starkpills are ERC-2114s’ a Seraph Labs tweak of the
-						novel ERC-3525 developed by Solv Protocol. In short, SFTs are
-						dynamic “NFTs” that are able to be programmed and “equip” other
-						“NFTs”.
-						<br />
+						<p className={aboutStyles.custombreak2}>
+							Starkpilled is an SFT (Semi-Fungible Token) collection of digital
+							avatars for <br />
+							people to celebrate to the StarkNet Ecosystem and participate in
+							the SFT movement.{" "}
+						</p>
+						<p className={aboutStyles.custombreak1}>
+							Compared to traditional NFT collections that are of the ERC-721
+							token <br />
+							standard, Starkpills are ERC-2114s’ a Seraph Labs tweak of the
+							novel
+							<br /> ERC-3525 developed by Solv Protocol. In short, SFTs are
+							dynamic “NFTs” that are able to be programmed and “equip” other
+							“NFTs”.
+						</p>
 						<h1 style={{ color: "#FF4F0A" }} className={aboutStyles.headerText}>
-							{" "}
 							Vision
 						</h1>
-						We want to showcase a better way to tokenize digital collectibles.
-						Second, we’d like to offer a different perspective on valuing PFP
-						collections - currently rarity is tied to the whole RNG’d PFP work
-						of art eg. you value CryptoPunk#2391 as it is. With Starkpilled the
-						idea is to value traits over the whole, so you can have a digital
-						avatar that you can identify with more meaningfully.
-						<br />
-						<br />
+						<p className={aboutStyles.custombreak4}>
+							We want to showcase a better way to tokenize digital collectibles.
+							Second, we’d <br />
+							like to offer a different perspective on valuing PFP collections -
+							currently <br />
+							rarity is tied to the whole RNG’d PFP work of art eg. you value{" "}
+							<br /> CryptoPunk#2391 as it is. With Starkpilled the idea is to
+							value traits over the
+							<br />
+							whole, so you can have a digital avatar that you can <br />
+							identify with more meaningfully.
+						</p>
+
 						<Link
 							className="connectWalletButton"
 							style={{
-								width: "fit-content",
+								width: "173px",
 								color: "white",
 								padding: "15px",
+								fontSize: "24px",
 							}}
 							href="/mint">
 							Start Minting!
