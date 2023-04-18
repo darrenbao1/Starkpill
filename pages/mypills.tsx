@@ -11,6 +11,8 @@ import { Disconnect } from "../components/Disconnect";
 import sharedBackgroundStyles from "../styles/sharedBackground.module.css";
 import { GET_USER_TOKENS, handleScrollToTop } from "../types/constants";
 import { BackToTopButton } from "../components/BackToTopButton";
+import Image from "next/image";
+import { ConnectWalletButton } from "../components/ConnectWalletButton";
 export default function Mypills() {
 	const refetchState = useSelector((state: any) => state.refetch);
 	const scrollTopRef = useRef<HTMLDivElement>(null);
@@ -95,7 +97,51 @@ export default function Mypills() {
 			  walletAddress != convertToStandardWalletAddress(address!) ? (
 				<Disconnect address={convertToStandardWalletAddress(address!)} />
 			) : (
-				<h1 style={{ textAlign: "center" }}>Account Disconnected</h1>
+				<div
+					className={`container ${sharedBackgroundStyles.extendedBackground}`}>
+					<div
+						className="contentContainer"
+						style={{
+							height: "calc(100vh - 217px)",
+							display: "flex",
+							alignItems: "center",
+							justifyContent: "center",
+						}}>
+						<div
+							style={{
+								display: "block",
+								alignItems: "center",
+								justifyContent: "center",
+								textAlign: "center",
+							}}>
+							<div style={{ fontSize: "32px" }}>
+								You have to connect your wallet before viewing your Starkpills
+							</div>
+							<div
+								style={{
+									marginTop: "40px",
+									width: "100%",
+									display: "flex",
+									alignItems: "center",
+									justifyContent: "center",
+								}}>
+								<ConnectWalletButton />
+							</div>
+						</div>
+					</div>
+					<footer className={styles.footer}>
+						<a
+							href="https://www.seraphlabs.io/"
+							target="_blank"
+							rel="noreferrer">
+							<Image
+								src="/companyLogo.png"
+								height={56}
+								width={210}
+								alt="seraphLabs"></Image>
+						</a>
+					</footer>
+				</div>
 			)}
 		</>
 	);

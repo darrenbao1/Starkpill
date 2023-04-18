@@ -25,12 +25,17 @@ export const SaveModal = (props: {
 		<div className={styles.modalContainer} onClick={handleClick}>
 			<div className={styles.header}>
 				<span>Edit Summary </span>
-				<button className={styles.closeButton} onClick={close}>
+				<button
+					className={styles.closeButton}
+					onClick={close}
+					style={{ marginTop: "5px" }}>
 					<Cross />
 				</button>
 			</div>
 			<div className={styles.content}>
-				<h2>Starkpill #{tokenId}</h2>
+				<div style={{ fontSize: "34px", marginBottom: "12px" }}>
+					Starkpill #{tokenId}
+				</div>
 				<div
 					className={styles.itemContainer}
 					style={{ borderBottom: "2px solid #29296E" }}>
@@ -46,8 +51,8 @@ export const SaveModal = (props: {
 
 					<div className={styles.itemStats}>
 						<div className={styles.itemTitle}>Old:</div>
-						<span> - {BACKGROUND[props.oldBg].name}</span>
 						<span> - {FACE_TRAITS[props.oldIng].name}</span>
+						<span> - {BACKGROUND[props.oldBg].name}</span>
 					</div>
 				</div>
 				<div className={styles.itemContainer} style={{ marginBottom: "15px" }}>
@@ -68,8 +73,8 @@ export const SaveModal = (props: {
 
 					<div className={styles.itemStats}>
 						<div className={styles.itemTitle}>New:</div>
-						<span> - {BACKGROUND[props.newBg].name}</span>
 						<span> - {FACE_TRAITS[props.newIng].name}</span>
+						<span> - {BACKGROUND[props.newBg].name}</span>
 					</div>
 				</div>
 			</div>

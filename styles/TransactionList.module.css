@@ -1,31 +1,31 @@
-.container{
-    width:100%;
-    margin: 1rem 0;
-    padding-right: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #FF4F0A;
-    border-top: 1px solid #FF4F0A;
+.container {
+	width: 100%;
+	margin: 1rem 0;
+	padding-right: 1rem;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid #ff4f0a;
+	border-top: 1px solid #ff4f0a;
 }
 .container span {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 .dot {
-    height: 8px;
-    width: 8px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-self: center;
+	height: 8px;
+	width: 8px;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-self: center;
 }
 .transactionItem {
-    display: flex;
+	display: flex;
 }
 .icon {
-    margin-left: 20px;
-    margin-right: 0px;
+	margin-left: 10px;
+	margin-right: 0px;
 }
 .txAddress {
-    margin-right: auto;
-    margin-left: 20px;
+	margin-right: auto;
+	margin-left: 20px;
 }

@@ -72,7 +72,11 @@ const ConnectedButton = (props: { address: string; disconnect: any }) => {
 						src="/downArrow.svg"
 						alt=""
 						width={20}
-						style={showDropDown ? { transform: "rotateX(180deg)" } : {}}></img>
+						style={
+							showDropDown
+								? { transform: "rotateX(180deg)", marginBottom: "4px" }
+								: { marginBottom: "4px" }
+						}></img>
 				</picture>
 			</div>
 			{showDropDown && (
@@ -80,19 +84,22 @@ const ConnectedButton = (props: { address: string; disconnect: any }) => {
 					<div className={styles.dropdownContainer}>
 						<div className={styles.dropdown}>
 							<h1>My Wallet</h1>
-							<span>Address</span>
+							<span style={{ fontSize: "1.5em", fontWeight: "400" }}>
+								Address
+							</span>
 							<div className={styles.addressContainer}>
 								<div>{shortAddressForModal(props.address)}</div>
 								<picture
 									className={styles.copyIcon}
-									onClick={() => CopyAddress(props.address)}>
+									onClick={() => CopyAddress(props.address)}
+									style={{ marginTop: "5px" }}>
 									<img src="/copyIcon.svg" alt=""></img>
 								</picture>
 							</div>
 							<TransactionList />
 							<div
 								className={styles.addressContainer}
-								style={{ marginBottom: "20px" }}>
+								style={{ marginBottom: "20px", fontSize: "20px" }}>
 								<div>Eth Balance</div>
 								<div className={styles.copyIcon}>
 									{UserBalance && <UserBalance />}

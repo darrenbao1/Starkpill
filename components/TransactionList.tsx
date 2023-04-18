@@ -14,8 +14,10 @@ export const TransactionList = () => {
 	if (hashes.length == 0) {
 		return (
 			<div className={styles.container}>
-				<h2>recent transactions</h2>
-				<span>You have no recent transactions</span>
+				<h2>Recent Transactions</h2>
+				<span style={{ fontSize: "20px" }}>
+					You have no recent transactions
+				</span>
 			</div>
 		);
 	}
@@ -77,7 +79,7 @@ function TransactionItem({ transactionHash }: { transactionHash: string }) {
 	return (
 		<div className={styles.transactionItem}>
 			<div className={styles.dot} style={{ background: statusColor }}></div>
-			<div className={styles.txAddress}>
+			<div className={styles.txAddress} style={{ fontSize: "19px" }}>
 				<u>{shortAddressForModal(transactionHash)} </u>
 			</div>
 			<Link
@@ -86,10 +88,10 @@ function TransactionItem({ transactionHash }: { transactionHash: string }) {
 				}starkscan.co/tx/${transactionHash}`}
 				target="_blank">
 				<picture className={styles.icon}>
-					<Href style={{ color: "#FFFFFF" }} />
+					<Href style={{ color: "#FFFFFF", marginTop: "6px" }} />
 				</picture>
 			</Link>
-			<picture className={styles.icon}>
+			<picture className={styles.icon} style={{ marginTop: "3px" }}>
 				<img
 					src="/copyIcon.svg"
 					onClick={() => copyTxAddress(transactionHash)}
