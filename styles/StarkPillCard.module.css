@@ -4,6 +4,7 @@
 	display: grid;
 	cursor: pointer;
 	position: relative;
+	font-size: 20px;
 }
 .card:hover {
 	outline: 2px solid #ff4f0a;
@@ -17,7 +18,7 @@
 	border-radius: 6px 6px 0 0;
 }
 .content {
-	padding: 1rem;
+	padding: 16px;
 	font-size: large;
 	width: 200px;
 	color: black;
@@ -32,6 +33,7 @@
 	margin: auto;
 	display: grid;
 	position: relative;
+	font-size: 26px;
 }
 .cardRank:hover {
 	outline: 2px solid #ff4f0a;
@@ -49,17 +51,23 @@
 	border-bottom: none;
 }
 .contentRank {
-	padding: 1rem;
-	font-size: 20.0544px;
 	width: 300px;
 	color: black;
 	background-color: white;
 	border-top: none;
 	border-radius: 0 0 6px 6px;
+	padding: 24px;
+	padding-bottom: 14px;
 }
 .contentRankTitle {
 	color: #ff4f0a;
+	font-size: 32px;
+	margin-bottom: 11px;
+}
+.contentTitle {
+	color: #ff4f0a;
 	font-size: 24px;
+	margin-bottom: 8px;
 }
 
 .card:hover .contentRankTitle,
@@ -142,7 +150,19 @@
 
 .kebabIcon {
 	position: absolute;
-	bottom: 85px;
+	top: 210px;
+	right: 0px;
+	cursor: pointer;
+	z-index: 1;
+	width: 40px;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.kebabIconRank {
+	position: absolute;
+	top: 322px;
 	right: 0px;
 	cursor: pointer;
 	z-index: 1;

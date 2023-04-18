@@ -14,6 +14,7 @@ import {
 } from "../features/refetch";
 import { ImageModal } from "./Modals/ImageModal";
 import KebabIcon from "../public/svgs/kebab.svg";
+import KebabIconSmall from "../public/svgs/kebabSmall.svg";
 import EditPillIcon from "../public/svgs/EditPillIcon.svg";
 import ExternalLinksIcon from "../public/svgs/ExternalLinks.svg";
 import PillDetailsIcon from "../public/svgs/PillDetailsIcon.svg";
@@ -135,11 +136,9 @@ export const StarkPillCard = (props: Props) => {
 				}>
 				<div className={isTop3 ? styles.cardRank : styles.card}>
 					<div
-						className={`${styles.kebabIcon} ${
-							isOwner ? `${styles.kebabIconMyPills} ` : ""
-						}`}
+						className={isTop3 ? styles.kebabIconRank : styles.kebabIcon}
 						onClick={toggleMenu}>
-						<KebabIcon style={{ color: "#FF4F0A" }} />
+						{isTop3 ? <KebabIcon /> : <KebabIconSmall />}
 					</div>
 
 					{menuId === tokenId && (
@@ -188,13 +187,13 @@ export const StarkPillCard = (props: Props) => {
 						className={isTop3 ? styles.contentRank : styles.content}
 						style={isTop3 ? { borderColor: borderColor } : {}}>
 						<div
-							className={styles.contentRankTitle}
+							className={isTop3 ? styles.contentRankTitle : styles.contentTitle}
 							onClick={() => setShowImageModal(true)}>
 							TestPill #{tokenId}
 						</div>
 						<div>{Number(mintPrice) / Math.pow(10, 18)} ETH</div>
 						<div>{fame} Fame</div>
-						{!isOwner && <div>Owned By: {shortenAddress(ownerAddress)}</div>}
+						{!isOwner && <div>Owner: {shortenAddress(ownerAddress)}</div>}
 					</div>
 				</div>
 			</div>
