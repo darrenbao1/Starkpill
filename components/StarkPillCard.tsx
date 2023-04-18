@@ -71,7 +71,7 @@ export const StarkPillCard = (props: Props) => {
 		props.rank === 1 ? "#FFC107" : props.rank === 2 ? "#E0E0E0" : "#FF9838";
 	const isTop3 = props.rank <= 3 && props.rank > 0;
 
-	const toggleMenu = (tokenId) => {
+	const toggleMenu = (tokenId: any) => {
 		setMenuId((prevMenuId) => {
 			const newMenuId = prevMenuId === tokenId ? null : tokenId;
 			const event = new CustomEvent("starkPillMenuToggle", {
