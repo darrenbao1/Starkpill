@@ -128,7 +128,10 @@ export default function Cabinet() {
 					</div>
 				</div>
 				{sortOption != 3 && (
-					<h1 style={{ textAlign: "center" }}> Top 3 Starkpills</h1>
+					<h1 style={{ textAlign: "center", fontSize: "40px" }}>
+						{" "}
+						Top 3 Starkpills
+					</h1>
 				)}
 				<div className={styles.top3Container}>
 					{sortOption != 3 &&
@@ -146,7 +149,14 @@ export default function Cabinet() {
 								/>
 							))}
 				</div>
-				<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>Starkpills</h1>
+				<h1
+					style={{
+						textAlign: "center",
+						marginTop: "5rem",
+						fontSize: "40px",
+					}}>
+					Starkpills
+				</h1>
 				<div className={styles.cardContainer}>
 					{sortOption != 3
 						? tokenIds

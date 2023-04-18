@@ -71,7 +71,12 @@
 	font-size: 40px;
 }
 @media screen and (max-width: 750px) {
+	.container {
+		padding-right: 10%;
+		padding-left: 10%;
+	}
 	.container h1 {
+		text-align: center;
 		font-size: xx-large;
 	}
 	.button {

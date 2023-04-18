@@ -76,7 +76,13 @@ export const MintModal = (props: {
 						Tip&nbsp;
 						<InformationIcon
 							style={
-								hover ? { background: "#FF4F0A", borderRadius: "7px" } : {}
+								hover
+									? {
+											background: "#FF4F0A",
+											borderRadius: "7px",
+											marginTop: "10px",
+									  }
+									: { marginTop: "10px" }
 							}
 							onMouseEnter={() => setHover(true)}
 							onMouseLeave={() => setHover(false)}
@@ -85,6 +91,7 @@ export const MintModal = (props: {
 					<div className={styles.stepperButtonContainer}>
 						<div
 							className={styles.stepperButton}
+							style={{ borderBottom: "1px solid #35358f" }}
 							onClick={() => {
 								inputRef.current?.stepUp();
 								setMintPrice(Number(inputRef.current?.value));
@@ -92,6 +99,8 @@ export const MintModal = (props: {
 							<SubtractIcon />
 						</div>
 						<div
+							className={styles.stepperButton}
+							style={{ borderTop: "1px solid #35358f" }}
 							onClick={() => {
 								inputRef.current?.stepDown();
 								setMintPrice(Number(inputRef.current?.value));
