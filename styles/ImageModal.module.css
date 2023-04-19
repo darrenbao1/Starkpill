@@ -110,7 +110,6 @@
 	font-size: 40px;
 	font-weight: bold;
 	border-radius: 6px;
-	z-index: 3;
 }
 .close:hover,
 .close:focus {
