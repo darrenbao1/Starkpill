@@ -141,10 +141,19 @@ export const ImageModal = (props: Props) => {
 		<div ref={modalRef} className={styles.modal}>
 			<div className={styles.container}>
 				<div
-					className={styles.close}
-					onClick={hasChanges ? () => setShowExitModal(true) : props.close}>
-					<Cross />
+					onClick={(event) => {
+						event.stopPropagation();
+						if (hasChanges) {
+							setShowExitModal(true);
+						} else {
+							props.close();
+						}
+					}}>
+					<div className={styles.close}>
+						<Cross />
+					</div>
 				</div>
+
 				<Image
 					src={imageUrl}
 					className={styles.modal_content}
