@@ -142,6 +142,24 @@ export const EditPillModal = (props: Props) => {
 		ingId,
 		bgId,
 	]);
+	const [backgroundHasChanges, setBackgroundHasChanges] = useState(false);
+	const [faceHasChanges, setFaceHasChanges] = useState(false);
+	//us effect function that checks if there a changes to the background only if so it will set to true
+	useEffect(() => {
+		if (bgId == backgroundArray[selectedBackgroundId].tokenId) {
+			setBackgroundHasChanges(false);
+		} else {
+			setBackgroundHasChanges(true);
+		}
+	}, [selectedBackgroundId, backgroundArray, bgId]);
+	//us effect function that checks if there a changes to the face only if so it will set to true
+	useEffect(() => {
+		if (ingId == faceTraitArray[selectedIng].tokenId) {
+			setFaceHasChanges(false);
+		} else {
+			setFaceHasChanges(true);
+		}
+	}, [selectedIng, faceTraitArray, ingId]);
 
 	const closeAllModals = () => {
 		setShowFaceModal(false);
@@ -161,7 +179,12 @@ export const EditPillModal = (props: Props) => {
 				handleClick(e);
 				closeAllModals();
 				setShowBackgroundModal(true);
-			}}>
+			}}
+			style={
+				backgroundHasChanges
+					? { backgroundColor: "#29296e" }
+					: { backgroundColor: " #262626" }
+			}>
 			{backgroundArray[selectedBackgroundId].name}
 			<div
 				style={{
@@ -179,7 +202,12 @@ export const EditPillModal = (props: Props) => {
 				handleClick(e);
 				closeAllModals();
 				setShowFaceModal(true);
-			}}>
+			}}
+			style={
+				faceHasChanges
+					? { backgroundColor: "#29296e" }
+					: { backgroundColor: " #262626" }
+			}>
 			{faceTraitArray[selectedIng].name}
 			<div
 				style={{
