@@ -2,7 +2,7 @@
 	width: 100%;
 	height: fit-content;
 	overflow: overlay;
-	background: rgba(41, 41, 110, 0.9);
+	background: rgba(41, 41, 110, 1);
 	font-weight: 400;
 	border: 1px solid #e4e4e4;
 	border-radius: 5px;
@@ -51,7 +51,7 @@
 }
 .itemsContainer .title {
 	color: #e0e0e0;
-	font-size: 22px;
+	font-size: 24px;
 	font-weight: 400;
 	line-height: 110%;
 	letter-spacing: -0.02em;
@@ -74,11 +74,13 @@
 	line-height: 120%;
 	text-align: center;
 	padding-top: 12px;
+	margin-bottom: 12px;
 }
 .tipContainer {
 	display: flex;
 	border-bottom: 3px solid #ffffff;
 	padding-bottom: 18px;
+	position: relative;
 }
 .textField {
 	background: #4545b1;
@@ -87,15 +89,17 @@
 	border-radius: 5px;
 	width: 111px;
 	height: 60px;
-	font-size: 28px;
+	font-size: 32px;
 	padding-right: 5px;
 	padding-bottom: -20px;
 	padding-top: 10px;
-
 	text-align: end;
-
+	font-family: "Patrick Hand";
 	color: white;
 	-moz-appearance: textfield;
+}
+.textField::placeholder {
+	color: #c5c5e7;
 }
 .textField::-webkit-outer-spin-button,
 .textField::-webkit-inner-spin-button {
@@ -134,22 +138,30 @@
 	padding: 9px;
 	margin-top: 24px;
 	border-radius: 5px;
+	color: #ffffff;
 	border: 2px solid #ffffff;
 }
+.hoverContainer {
+	position: relative;
+}
 .hoverTip {
-	width: fit-content;
+	width: 185px;
+	text-align: left;
+	position: absolute;
+	left: 60px;
+	bottom: 50px;
 	font-size: 18px;
 	line-height: 120%;
-	padding: 4px;
-	margin-left: 10px;
+	padding: 8px;
 	border: 0.5px solid white;
 	border-radius: 5px;
-	visibility: hidden;
+	background-color: #212158;
 }
 .stepper {
 	padding-left: 13px;
 }
 .total {
+	color: #ffffff;
 	font-size: 40px;
 	padding-top: 16px;
 	font-weight: 400;

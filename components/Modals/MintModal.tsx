@@ -2,7 +2,7 @@ import Cross from "../../public/svgs/cross2.svg";
 import styles from "../../styles/MintModal.module.css";
 import InformationIcon from "../../public/svgs/information.svg";
 import SubtractIcon from "../../public/svgs/subtractIcon.svg";
-import { createRef, useState } from "react";
+import { createRef, useEffect, useRef, useState } from "react";
 import {
 	useStarknetExecute,
 	useTransactionManager,
@@ -56,18 +56,41 @@ export const MintModal = (props: {
 				console.log(e);
 			}
 		};
+		const ref = useRef(null);
+		useOnClickOutside(ref, () => setHover(false));
+		// Hook
+		function useOnClickOutside(ref: any, handler: any) {
+			useEffect(
+				() => {
+					const listener = (event: any) => {
+						// Do nothing if clicking ref's element or descendent elements
+						if (!ref.current || ref.current.contains(event.target)) {
+							return;
+						}
+						handler(event);
+					};
+					document.addEventListener("mousedown", listener);
+					document.addEventListener("touchstart", listener);
+					return () => {
+						document.removeEventListener("mousedown", listener);
+						document.removeEventListener("touchstart", listener);
+					};
+				},
+				// Add ref and handler to effect dependencies
+				// It's worth noting that because passed in handler is a new ...
+				// ... function on every render that will cause this effect ...
+				// ... callback/cleanup to run every render. It's not a big deal ...
+				// ... but to optimize you can wrap handler in useCallback before ...
+				// ... passing it into this hook.
+				[ref, handler]
+			);
+		}
 		return (
 			<div className={styles.stepper}>
-				<div
-					className={styles.hoverTip}
-					style={hover ? { visibility: "visible" } : { visibility: "hidden" }}>
-					If you wish to support our efforts,
-					<br /> you can choose to pay for your
-					<br /> Starkpill in any amount of ETH.
-				</div>
 				<div className={styles.tipContainer}>
 					<div
 						className={styles.itemName}
+						ref={ref}
 						style={{
 							display: "flex",
 							justifyContent: "center",
@@ -84,9 +107,14 @@ export const MintModal = (props: {
 									  }
 									: { marginTop: "10px" }
 							}
-							onMouseEnter={() => setHover(true)}
-							onMouseLeave={() => setHover(false)}
+							onClick={() => setHover(!hover)}
 						/>
+						{hover && (
+							<div className={styles.hoverTip}>
+								If you wish to support our efforts, you can choose to pay for
+								your Starkpill in any amount of ETH.
+							</div>
+						)}
 					</div>
 					<div className={styles.stepperButtonContainer}>
 						<div
@@ -115,23 +143,32 @@ export const MintModal = (props: {
 							step={0.001}
 							onChange={(e) => handleChange(e)}
 							className={styles.textField}
-							placeholder="0"
+							placeholder="0.00"
 							ref={inputRef}></input>
-						&nbsp; ETH
+						<span style={{ marginLeft: "5px" }}>ETH</span>
 					</div>
 				</div>
 				<div className={styles.receiptContainer}>
-					<div>
-						Subtotal{" "}
-						<span style={{ float: "right" }}>{ingPrice + bgPrice} ETH</span>
-					</div>
-					<div style={{ marginTop: "12px" }}>
-						Base Mint <span style={{ float: "right" }}>{baseMint} ETH</span>
+					<div style={{ marginTop: "4px" }}>
+						<div>
+							Subtotal{" "}
+							<span style={{ float: "right", fontSize: "24px" }}>
+								{ingPrice + bgPrice}{" "}
+								<span style={{ fontSize: "20px" }}>ETH</span>
+							</span>
+						</div>
+						<div style={{ marginTop: "12px" }}>
+							Base Mint{" "}
+							<span style={{ float: "right", fontSize: "24px" }}>
+								{baseMint} <span style={{ fontSize: "20px" }}>ETH</span>
+							</span>
+						</div>
 					</div>
 					<div className={styles.total}>
-						Total{" "}
+						Total
 						<span style={{ float: "right" }}>
-							{(mintPrice + ingPrice + bgPrice + baseMint).toFixed(3)} ETH
+							{(mintPrice + ingPrice + bgPrice + baseMint).toFixed(3)}{" "}
+							<span style={{ fontSize: "28px" }}>ETH</span>
 						</span>
 					</div>
 					<div
@@ -160,10 +197,17 @@ export const MintModal = (props: {
 					<div className={styles.itemName}>
 						{FACE_TRAITS[props.faceId].name}
 					</div>
-					<div className={styles.itemPrice}>
-						{FACE_TRAITS[props.faceId].premiumPrice
-							? FACE_TRAITS[props.faceId].premiumPrice + " ETH"
-							: " - ETH"}
+					<div
+						className={styles.itemPrice}
+						style={{ display: "flex", alignItems: "flex-end" }}>
+						{FACE_TRAITS[props.faceId].premiumPrice ? (
+							<span style={{ fontSize: "32px" }}>
+								{FACE_TRAITS[props.faceId].premiumPrice}{" "}
+								<span style={{ fontSize: "24px" }}>ETH</span>
+							</span>
+						) : (
+							<span style={{ fontSize: "24px" }}>- ETH</span>
+						)}
 					</div>
 				</div>
 			</div>
@@ -173,10 +217,17 @@ export const MintModal = (props: {
 					<div className={styles.itemName}>
 						{BACKGROUND[props.backgroundId].name}
 					</div>
-					<div className={styles.itemPrice}>
-						{BACKGROUND[props.backgroundId].premiumPrice
-							? BACKGROUND[props.backgroundId].premiumPrice + " ETH"
-							: " - ETH"}
+					<div
+						className={styles.itemPrice}
+						style={{ display: "flex", alignItems: "flex-end" }}>
+						{BACKGROUND[props.backgroundId].premiumPrice ? (
+							<span style={{ fontSize: "32px" }}>
+								{BACKGROUND[props.backgroundId].premiumPrice}{" "}
+								<span style={{ fontSize: "24px" }}>ETH</span>
+							</span>
+						) : (
+							<span style={{ fontSize: "24px" }}>- ETH</span>
+						)}
 					</div>
 				</div>
 			</div>
