@@ -71,12 +71,8 @@ const ConnectedButton = (props: { address: string; disconnect: any }) => {
 					<img
 						src="/downArrow.svg"
 						alt=""
-						width={20}
-						style={
-							showDropDown
-								? { transform: "rotateX(180deg)", marginBottom: "4px" }
-								: { marginBottom: "4px" }
-						}></img>
+						style={showDropDown ? { transform: "rotateX(180deg)" } : {}}
+						className={styles.downArrow}></img>
 				</picture>
 			</div>
 			{showDropDown && (

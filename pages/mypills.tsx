@@ -57,7 +57,12 @@ export default function Mypills() {
 					ref={scrollTopRef}
 					onScroll={(e) => handleScroll(e)}>
 					<div className="contentContainer">
-						<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>
+						<h1
+							style={{
+								textAlign: "center",
+								paddingTop: "2rem",
+								fontSize: "40px",
+							}}>
 							My Prescriptions
 						</h1>
 						{tokenIds.length == 0 && !loading && (

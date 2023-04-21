@@ -176,7 +176,7 @@
 	margin-left: auto;
 	background: #ff4f0a;
 	color: white;
-	font-size: 18px;
+	font-size: 22px;
 	letter-spacing: 0.2em;
 	text-align: center;
 	border: 0.5px solid white;
@@ -201,7 +201,7 @@
 	border: 1px solid white;
 	border-radius: 20px;
 	text-align: center;
-	font-size: 14px;
+	font-size: 18px;
 	padding: 5px 10px;
 }
 .container {

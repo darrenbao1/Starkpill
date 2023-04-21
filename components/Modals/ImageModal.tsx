@@ -8,6 +8,7 @@ import { getVotingPower, shortenAddress } from "../../types/utils";
 import Minus from "../../public/svgs/defameButton.svg";
 import Plus from "../../public/svgs/fameButton.svg";
 import ConnectMenuModal from "./ConnectMenuModal";
+import { ExitModal } from "./ExitModal";
 import {
 	useAccount,
 	useConnectors,
@@ -26,6 +27,9 @@ interface Props {
 	ownerAddress: string;
 }
 export const ImageModal = (props: Props) => {
+	function handleClick(event: any) {
+		event.stopPropagation();
+	}
 	const inputRef = createRef<HTMLInputElement>();
 	const { account, address } = useAccount();
 	const { available } = useConnectors();
@@ -34,6 +38,8 @@ export const ImageModal = (props: Props) => {
 	const [radioButtonIsSelected, setRadioButtonIsSelected] = useState(false); // this is the state that will be used to determine whether the fame or defame radio button is selected
 	const [selectedRadioButton, setSelectedRadioButton] = useState(""); //this is the state that will be used to determine whether the fame or defame radio button is selected
 	const [votingPower, setVotingPower] = useState(0);
+	const [hasChanges, setHasChanges] = useState(false);
+	const [showExitModal, setShowExitModal] = useState(false);
 	const isValidRadioButton =
 		selectedRadioButton === "fame" || selectedRadioButton === "defame";
 	const fetchData = useCallback(async () => {
@@ -54,16 +60,21 @@ export const ImageModal = (props: Props) => {
 	const { imageUrl, tokenId, close, ingImageId, bgImageId } = props;
 	const modalRef = useRef<HTMLDivElement>(null);
 	useEffect(() => {
-		const handleClickOutside = (event: MouseEvent) => {
+		const handleClickOutside = (event: React.MouseEvent) => {
 			if (modalRef.current && event.target === modalRef.current) {
-				close();
+				if (hasChanges) {
+					setShowExitModal(true);
+				} else {
+					close();
+				}
 			}
 		};
-		document.addEventListener("mousedown", handleClickOutside);
+		modalRef.current?.addEventListener("click", handleClickOutside as any);
 		return () => {
-			document.removeEventListener("mousedown", handleClickOutside);
+			modalRef.current?.removeEventListener("click", handleClickOutside as any);
 		};
-	}, [close]);
+	}, [close, hasChanges]);
+
 	useEffect(() => {
 		if (account && isValidRadioButton) {
 			setRadioButtonIsSelected(true);
@@ -115,12 +126,34 @@ export const ImageModal = (props: Props) => {
 		}
 	};
 
+	//use effect function that checks if there are changes in the handleManualInput function
+	useEffect(() => {
+		if (fameValue > 0) {
+			setHasChanges(true);
+		} else {
+			setHasChanges(false);
+		}
+	}, [fameValue]);
+
+	//
+
 	return (
 		<div ref={modalRef} className={styles.modal}>
 			<div className={styles.container}>
-				<div className={styles.close} onClick={close}>
-					<Cross />
+				<div
+					onClick={(event) => {
+						event.stopPropagation();
+						if (hasChanges) {
+							setShowExitModal(true);
+						} else {
+							props.close();
+						}
+					}}>
+					<div className={styles.close}>
+						<Cross />
+					</div>
 				</div>
+
 				<Image
 					src={imageUrl}
 					className={styles.modal_content}
@@ -265,6 +298,13 @@ export const ImageModal = (props: Props) => {
 							}}
 						/>
 					) : null}
+					{showExitModal && (
+						<ExitModal
+							leaveWithoutSaving={props.close}
+							closeModal={() => setShowExitModal(false)}
+							handleClick={handleClick}
+						/>
+					)}
 				</div>
 			</div>
 		</div>
