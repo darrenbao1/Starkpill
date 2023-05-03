@@ -16,6 +16,7 @@
 	margin: 2.5rem 0;
 }
 .navbar_link {
+	position: relative;
 	text-decoration: none;
 	color: inherit;
 	padding-bottom: 0.8rem;
@@ -23,6 +24,7 @@
 	font-size: 1.6rem;
 }
 .navbar_link_active {
+	position: relative;
 	text-decoration: none;
 	padding-bottom: 0.8rem;
 	border-bottom: 1px solid #ff4f0a;
@@ -32,4 +34,16 @@
 .navbar_link:hover {
 	color: #ff4f0a;
 	border-color: #ff4f0a;
+}
+.navbar_link sup {
+	position: absolute;
+	top: -10px; /* adjust this value to position the beta symbol */
+	right: -30px;
+	font-size: 16px;
+}
+.navbar_link_active sup {
+	position: absolute;
+	top: -10px; /* adjust this value to position the beta symbol */
+	right: -30px;
+	font-size: 16px;
 }

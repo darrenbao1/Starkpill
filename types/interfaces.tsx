@@ -3,6 +3,7 @@ export interface Page {
 	link: string;
 	isActive: boolean;
 	paramName?: string;
+	isBeta?: boolean;
 }
 export interface Trait {
 	id: number;

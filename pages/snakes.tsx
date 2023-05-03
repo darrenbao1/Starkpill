@@ -1,5 +1,5 @@
 import Gameboy from "../components/Gameboy";
-export default function testing() {
+export default function snakes() {
 	return (
 		<div
 			style={{

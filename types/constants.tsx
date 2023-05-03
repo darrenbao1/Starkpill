@@ -19,6 +19,12 @@ export const PAGES: Page[] = [
 		link: "/cabinet",
 		isActive: true,
 	},
+	{
+		title: "Snakes",
+		link: "/snakes",
+		isActive: true,
+		isBeta: true,
+	},
 ];
 export const USERPAGES: Page[] = [
 	{

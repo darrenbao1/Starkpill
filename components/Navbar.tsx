@@ -42,7 +42,7 @@ export const Navbar = () => {
 										}
 										href={page.link}
 										key={index}>
-										{page.title}
+										{page.title} {page.isBeta && <sup>Beta</sup>}
 									</Link>
 								)
 						)}

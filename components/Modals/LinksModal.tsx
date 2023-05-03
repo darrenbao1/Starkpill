@@ -21,9 +21,8 @@ export const LinksModal = (props: { close: any }) => {
 											: styles.navbar_link
 									}
 									href={page.link}
-									onClick={props.close}
-								>
-									{page.title}
+									onClick={props.close}>
+									{page.title} {page.isBeta && <sup>Beta</sup>}
 								</Link>
 							</li>
 						)
@@ -46,8 +45,7 @@ export const LinksModal = (props: { close: any }) => {
 												  convertToStandardWalletAddress(address)
 												: page.link
 										}
-										onClick={props.close}
-									>
+										onClick={props.close}>
 										{page.title}
 									</Link>
 								</li>
