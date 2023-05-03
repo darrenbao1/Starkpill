@@ -422,10 +422,10 @@ export default function Gameboy() {
 					</div>
 					<div className={styles.middle}></div>
 				</div>
-				<div className={styles["a-b"]}>
+				{/* <div className={styles["a-b"]}>
 					<div className={styles.b}>B</div>
 					<div className={styles.a}>A</div>
-				</div>
+				</div> */}
 			</div>
 
 			<div className={styles["start-select"]}>
