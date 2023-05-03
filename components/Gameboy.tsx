@@ -404,7 +404,7 @@ export default function Gameboy() {
 				)}
 			</div>
 
-			<div className={styles.nintendo}>Seraph</div>
+			<div className={styles.nintendo}>Souk Games</div>
 
 			<div className={styles.controls}>
 				<div className={styles.dpad}>
