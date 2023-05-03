@@ -121,8 +121,8 @@ export default function Gameboy() {
 	};
 
 	const drawSnake = (ctx: CanvasRenderingContext2D) => {
-		ctx.fillStyle = "#0F380F";
-		ctx.strokeStyle = "#306230";
+		ctx.fillStyle = "#29296E";
+		ctx.strokeStyle = "#29296E";
 
 		fillRect(
 			ctx,
