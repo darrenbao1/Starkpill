@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import styles from "../styles/redemption.module.css";
 import sharedBackgroundStyles from "../styles/sharedBackground.module.css";
 import { NFTData } from "../types/interfaces";
+import { shortenAddress } from "../types/utils";
+
 export default function Redemption() {
 	const [nfts, setNfts] = useState<NFTData[]>([]);
 	const {
@@ -29,39 +31,63 @@ export default function Redemption() {
 			handleGetNfts();
 		}
 	}, [isAuthenticated]);
-	Image;
+
+	const nftsByCollection = nfts.reduce(
+		(acc: { [key: string]: NFTData[] }, nft) => {
+			if (!acc[nft.collectionName]) {
+				acc[nft.collectionName] = [];
+			}
+			acc[nft.collectionName].push(nft);
+			return acc;
+		},
+		{}
+	);
+
+	const nftCards = Object.entries(nftsByCollection).map(
+		([collectionName, nfts]) => (
+			<div key={collectionName} className={styles.collectionContainer}>
+				<h2>{collectionName}</h2>
+				<div className={styles.nftCardContainer}>
+					{nfts.map((nft: NFTData) => (
+						<div key={nft.collectionTokenId} className={styles.nftCard}>
+							<picture>
+								<img
+									className={styles.nftCardImage}
+									src={nft.imageUrl}
+									alt={nft.name}
+								/>
+							</picture>
+							<span>Name:</span>
+							<h1>{nft.name}</h1>
+						</div>
+					))}
+				</div>
+			</div>
+		)
+	);
+
 	return (
 		<div className={`container ${sharedBackgroundStyles.sharedBackground}`}>
 			<div className="contentContainer">
-				<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>Redemption</h1>
-				{!isAuthenticated ? (
-					<button onClick={connectWallet} className="connectWalletButton">
-						Connect Wallet
-					</button>
-				) : (
-					<button onClick={disconnect} className="connectWalletButton">
-						Disconnect Wallet:
-					</button>
-				)}
+				<h1
+					style={{ textAlign: "center", paddingTop: "2rem", display: "flex" }}>
+					Redemption
+					{!isAuthenticated ? (
+						<button onClick={connectWallet} className={styles.connectButton}>
+							Connect Wallet
+						</button>
+					) : (
+						<button onClick={disconnect} className={styles.connectButton}>
+							{address && shortenAddress(address)}
+						</button>
+					)}
+				</h1>
+
 				<div className={styles.container}>
 					{!isAuthenticated ? (
 						<p>Please connect wallet.</p>
 					) : nfts.length > 0 ? (
-						nfts.map((nft: NFTData, index) => (
-							<div key={index} className={styles.nftCard}>
-								<span>Collection:</span>
-								<h1>{nft.collectionName}</h1>
-								<picture>
-									<img
-										className={styles.nftCardImage}
-										src={nft.imageUrl}
-										alt={nft.name}
-									/>
-								</picture>
-								<span>Name:</span>
-								<h1>{nft.name}</h1>
-							</div>
-						))
+						nftCards
 					) : (
 						<p>You do not own any Stellar NFTs.</p>
 					)}

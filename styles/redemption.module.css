@@ -9,6 +9,12 @@
 	backdrop-filter: blur(5px);
 	border-radius: 16px;
 }
+.nftCardContainer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1rem;
+}
 .nftCard span {
 	font-family: "Raleway";
 	font-style: normal;
@@ -39,4 +45,45 @@
 	flex-wrap: wrap; /* wrap the cards onto new lines as needed */
 	justify-content: center; /* align the cards to the left */
 	gap: 20px; /* add some space between the cards */
+}
+.columnsContainer {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.column {
+	flex: 1;
+	margin-right: 1rem;
+	padding: 1rem;
+	background-color: #f9f9f9;
+	border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+	.columnsContainer {
+		flex-direction: column;
+	}
+
+	.column {
+		margin-right: 0;
+		margin-bottom: 1rem;
+	}
+}
+
+.collectionContainer {
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	align-items: flex-start;
+	margin-bottom: 2rem;
+}
+.connectButton {
+	margin-left: auto;
+	margin-right: 0;
+	border-radius: 6px;
+	background-color: #ff4f0a;
+	color: #ffffff;
+	border: 1px solid white;
 }
