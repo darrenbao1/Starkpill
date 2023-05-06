@@ -7,8 +7,9 @@ import {
 import { useEffect, useState } from "react";
 import styles from "../styles/redemption.module.css";
 import sharedBackgroundStyles from "../styles/sharedBackground.module.css";
+import { NFTData } from "../types/interfaces";
 export default function Redemption() {
-	const [nfts, setNfts] = useState([]);
+	const [nfts, setNfts] = useState<NFTData[]>([]);
 	const {
 		connectWallet,
 		disconnect,
@@ -42,25 +43,29 @@ export default function Redemption() {
 						Disconnect Wallet:
 					</button>
 				)}
-				{!isAuthenticated ? (
-					<p>Please connect wallet.</p>
-				) : nfts.length > 0 ? (
-					nfts.map((nft: any, index) => (
-						<div key={index} className={styles.nftCard}>
-							<picture>
-								<img
-									className={styles.nftCardImage}
-									src={nft.imageUrl}
-									alt={nft.name}
-								/>
-							</picture>
-							<h2>{nft.name}</h2>
-							<h2>token Id: {nft.collectionTokenId}</h2>
-						</div>
-					))
-				) : (
-					<p>You do not own any Stellar NFTs.</p>
-				)}
+				<div className={styles.container}>
+					{!isAuthenticated ? (
+						<p>Please connect wallet.</p>
+					) : nfts.length > 0 ? (
+						nfts.map((nft: NFTData, index) => (
+							<div key={index} className={styles.nftCard}>
+								<span>Collection:</span>
+								<h1>{nft.collectionName}</h1>
+								<picture>
+									<img
+										className={styles.nftCardImage}
+										src={nft.imageUrl}
+										alt={nft.name}
+									/>
+								</picture>
+								<span>Name:</span>
+								<h1>{nft.name}</h1>
+							</div>
+						))
+					) : (
+						<p>You do not own any Stellar NFTs.</p>
+					)}
+				</div>
 			</div>
 		</div>
 	);

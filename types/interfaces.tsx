@@ -18,3 +18,9 @@ export interface FAQ {
 	question: string;
 	answer: string;
 }
+export interface NFTData {
+	name: string;
+	imageUrl: string;
+	collectionName: string;
+	collectionTokenId: string;
+}

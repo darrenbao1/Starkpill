@@ -1,13 +1,42 @@
+
 .nftCard {
+	position: relative;
 	height: fit-content;
-	width: 220px;
+	width: 328px;
 	display: block;
-	padding: 10px;
-	border-radius: 6px;
-	background-color: white;
-	color: black;
+	padding: 20px;
+	margin: 5px;
+	border-radius: 5px;
+	background: rgba(255, 255, 255, 0.05);
+	backdrop-filter: blur(5px);
+	border-radius: 16px;
 }
+.nftCard span {
+	font-family: "Raleway";
+	font-style: normal;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 42px;
+	color: #f2f0ff;
+}
+.nftCard h1 {
+	all: unset;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 24px;
+	color: #15bffd;
+}
+
 .nftCardImage {
 	width: 100%;
 	aspect-ratio: 1/1;
+	border-radius: 6px;
+}
+
+.container {
+	display: flex;
+	flex-wrap: wrap; /* wrap the cards onto new lines as needed */
+	justify-content: center; /* align the cards to the left */
+	gap: 20px; /* add some space between the cards */
 }
