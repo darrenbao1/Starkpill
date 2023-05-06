@@ -30,7 +30,7 @@ export function UserBalance() {
 			return <span>...</span>;
 		}
 		if (data && data.length > 0) {
-			let value = uint256ToBN(data[0]);
+			let value = Number(uint256ToBN(data[0]));
 			value = value / Math.pow(10, 18);
 			return <span>{Number(value).toFixed(4).toString()}</span>;
 		} else {
