@@ -7,8 +7,8 @@ export const getNFTs = async (address: string) => {
 	);
 	const heads = await provider.send("qn_fetchNFTs", [
 		{
-			wallet: "0x0b4Fe29BB27b0C41aAB97237b796fb6D45aF4acd",
-			//wallet: { address },
+			//wallet: "0x0b4Fe29BB27b0C41aAB97237b796fb6D45aF4acd",
+			wallet: { address },
 			//contracts: ["0xf4A7C105CFdc6aaBe9AE65bDF2d0dF0A567A7aDE"],
 		},
 	]);
