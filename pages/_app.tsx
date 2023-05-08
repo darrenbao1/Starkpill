@@ -9,6 +9,8 @@ import client from "../apollo-client";
 import { Provider } from "react-redux";
 import { store } from "../features/store";
 import Web3ContextProvider from "../components/Web3Wallet/provider/Web3ContextProvider";
+import { StarkpillTheme } from "../types/appTheme";
+import { ThemeProvider } from "styled-components";
 export default function App({ Component, pageProps }: AppProps) {
 	const connectors = [
 		new InjectedConnector({
@@ -28,9 +30,11 @@ export default function App({ Component, pageProps }: AppProps) {
 								<link rel="icon" href="/starkpill.PNG"></link>
 								<title> getStarkpilled </title>
 							</Head>
-							<Navbar />
-							<Component {...pageProps} />
-							<Toast />
+							<ThemeProvider theme={StarkpillTheme}>
+								<Navbar />
+								<Component {...pageProps} />
+								<Toast />
+							</ThemeProvider>
 						</ApolloProvider>
 					</StarknetConfig>
 				</Web3ContextProvider>

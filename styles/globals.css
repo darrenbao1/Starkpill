@@ -36,6 +36,18 @@ h1 {
 .background {
 	z-index: -1;
 }
+.pageContainer {
+	position: fixed;
+	left: 0;
+	width: 100vw;
+	top: 100px;
+	height: calc(100vh - 100px);
+	align-content: center;
+	overflow-y: overlay;
+	background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+		#29296e;
+	padding: 20px;
+}
 .container {
 	position: fixed;
 	left: 0;
