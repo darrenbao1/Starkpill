@@ -19,6 +19,5 @@ export const getNFTs = async (address: string) => {
 		collectionName: asset.collectionName,
 		collectionTokenId: asset.collectionTokenId,
 	}));
-
 	return result;
 };
