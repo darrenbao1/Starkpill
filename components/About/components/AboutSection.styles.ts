@@ -8,8 +8,6 @@ export const AboutContainer = styled.div`
 	overflow: auto;
 	display: flex;
 	flex-wrap: wrap;
-	background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-		${(props) => props.theme.bgColor};
 	font-style: normal;
 	font-weight: 400;
 	font-size: 20px;

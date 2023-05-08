@@ -35,15 +35,6 @@ export const Answer = styled.div`
 	line-height: 140%;
 	color: rgba(60, 60, 67, 0.85);
 `;
-// export const FaqSectionContainer = styled.div`
-// 	position: relative;
-// 	left: 0;
-// 	width: 100vw;
-// 	padding-bottom: 100px;
-// 	align-content: center;
-// 	background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-// 		${(props) => props.theme.bgColor};
-// `;
 export const FaqSectionContainer = styled.div`
 	position: relative;
 	margin: 0 auto;
@@ -52,8 +43,6 @@ export const FaqSectionContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-		#29296e;
 	color: black;
 	ul {
 		background: transparent;
