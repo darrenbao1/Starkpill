@@ -17,6 +17,10 @@ export default function Gameboy() {
 	const [canvasWidth, setCanvasWidth] = useState(500);
 	const [canvasHeight, setCanvasHeight] = useState(500);
 	const [canvasGridSize, setCanvasGridSize] = useState(20);
+	//apple image
+	const appleImg = new Image();
+	appleImg.src = "/starkpill.png";
+
 	useEffect(() => {
 		if (canvasRef.current) {
 			const width = canvasRef.current?.width;
@@ -160,30 +164,39 @@ export default function Gameboy() {
 	};
 
 	const drawApple = (ctx: CanvasRenderingContext2D) => {
-		ctx.fillStyle = "#DC3030"; // '#38C172' // '#F4CA64'
-		ctx.strokeStyle = "#881A1B"; // '#187741' // '#8C6D1F
-
-		if (
-			apple &&
-			typeof apple.x !== "undefined" &&
-			typeof apple.y !== "undefined"
-		) {
-			fillRect(
-				ctx,
+		appleImg.onload = () => {
+			ctx.drawImage(
+				appleImg,
 				apple.x * canvasGridSize,
 				apple.y * canvasGridSize,
 				canvasGridSize,
 				canvasGridSize
 			);
+		};
+		// ctx.fillStyle = "#DC3030"; // '#38C172' // '#F4CA64'
+		// ctx.strokeStyle = "#881A1B"; // '#187741' // '#8C6D1F
 
-			strokeRect(
-				ctx,
-				apple.x * canvasGridSize,
-				apple.y * canvasGridSize,
-				canvasGridSize,
-				canvasGridSize
-			);
-		}
+		// if (
+		// 	apple &&
+		// 	typeof apple.x !== "undefined" &&
+		// 	typeof apple.y !== "undefined"
+		// ) {
+		// 	fillRect(
+		// 		ctx,
+		// 		apple.x * canvasGridSize,
+		// 		apple.y * canvasGridSize,
+		// 		canvasGridSize,
+		// 		canvasGridSize
+		// 	);
+
+		// 	strokeRect(
+		// 		ctx,
+		// 		apple.x * canvasGridSize,
+		// 		apple.y * canvasGridSize,
+		// 		canvasGridSize,
+		// 		canvasGridSize
+		// 	);
+		// }
 	};
 
 	// Update snake.head, snake.trail and apple positions. Check for collisions.

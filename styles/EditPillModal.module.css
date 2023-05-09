@@ -7,7 +7,6 @@
 	background: rgba(0, 0, 0, 0.5);
 	backdrop-filter: blur(2.5px);
 	z-index: 2;
-	margin-left: -5px;
 }
 .contentContainer {
 	position: relative;
@@ -16,7 +15,6 @@
 	display: flex;
 	height: calc(100vh - 100px);
 	z-index: 2;
-	padding: 20px;
 }
 .traitsContainer {
 	width: 100%;
@@ -24,7 +22,6 @@
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	padding-right: 5px;
 	margin: auto;
 	z-index: 2;
 }
@@ -110,4 +107,10 @@
 	text-align: center;
 	border-radius: 6px;
 	border: 1px solid white;
+}
+@media screen and (max-width: 750px) {
+	.contentContainer {
+		align-items: center;
+		justify-content: center;
+	}
 }

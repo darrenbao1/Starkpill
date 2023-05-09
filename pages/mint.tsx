@@ -4,9 +4,10 @@ import { useAccount } from "@starknet-react/core";
 import { ConnectWalletButton } from "../components/ConnectWalletButton";
 import { useEffect, useState } from "react";
 import { FACE_TRAITS, BACKGROUND } from "../types/constants";
-import { TraitsModal } from "../components/Modals/TraitsModal";
 import EditIcon from "../public/svgs/Edit.svg";
 import { MintModal } from "../components/Modals/MintModal";
+import { TraitModal } from "../components/TraitModal/components/TraitModal";
+import { TraitName } from "../types/interfaces";
 const Mint = () => {
 	const { account } = useAccount();
 	const [showFaceModal, setShowFaceModal] = useState(false);
@@ -141,26 +142,24 @@ const Mint = () => {
 					{selectBackgroundButton}
 					{!account ? <ConnectWalletButton /> : mintButton}
 				</div>
-				{showFaceModal && (
-					<TraitsModal
-						traitName="Ingredient"
-						trait={FACE_TRAITS}
-						selectedId={selectedFaceId}
-						close={() => setShowFaceModal(false)}
-						select={setSelectedFaceId}
-						isMinting={true}
-					/>
-				)}
-				{showBackgroundModal && (
-					<TraitsModal
-						traitName="Background"
-						trait={BACKGROUND}
-						selectedId={selectedBackgroundId}
-						close={() => setShowBackgroundModal(false)}
-						select={setBackgroundId}
-						isMinting={true}
-					/>
-				)}
+				<TraitModal
+					modalIsShown={showFaceModal}
+					traitName={TraitName.Ingredient}
+					traitArray={FACE_TRAITS}
+					selectedTraitId={selectedFaceId}
+					onClose={() => setShowFaceModal(false)}
+					onSelect={setSelectedFaceId}
+					isMintingPage={true}
+				/>
+				<TraitModal
+					modalIsShown={showBackgroundModal}
+					traitName={TraitName.Background}
+					traitArray={BACKGROUND}
+					selectedTraitId={selectedBackgroundId}
+					onClose={() => setShowBackgroundModal(false)}
+					onSelect={setBackgroundId}
+					isMintingPage={true}
+				/>
 				{showMintModal && (
 					<MintModal
 						close={() => setShowMintModal(false)}
