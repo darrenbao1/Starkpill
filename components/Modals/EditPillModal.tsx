@@ -7,13 +7,13 @@ import styles from "../../styles/EditPillModal.module.css";
 import Image from "next/image";
 import EditIcon from "../../public/svgs/Edit.svg";
 import { BACKGROUND, FACE_TRAITS } from "../../types/constants";
-import { TraitsModal } from "./TraitsModal";
 import { useEffect, useState } from "react";
 import { getUserBackPack } from "../../types/utils";
-import { Trait } from "../../types/interfaces";
+import { Trait, TraitName } from "../../types/interfaces";
 import { ExitModal } from "./ExitModal";
 import { SaveModal } from "./SaveModal";
 import { getEquipCalls, getUnequipCalls } from "../../hooks/StarkPillContract";
+import { TraitModal } from "../TraitModal/components/TraitModal";
 interface Props {
 	tokenId: number;
 	ingId: number;
@@ -269,6 +269,28 @@ export const EditPillModal = (props: Props) => {
 							</div>
 						)}
 					</div>
+
+					<TraitModal
+						traitName={TraitName.Ingredient}
+						traitArray={faceTraitArray}
+						selectedTraitId={selectedIng}
+						modalIsShown={showFaceModal}
+						onClose={() => setShowFaceModal(false)}
+						onSelect={setSelectedIng}
+						isMintingPage={false}
+						handleClick={handleClick}
+					/>
+					<TraitModal
+						traitName={TraitName.Background}
+						traitArray={backgroundArray}
+						selectedTraitId={selectedBackgroundId}
+						modalIsShown={showBackgroundModal}
+						onClose={() => setShowBackgroundModal(false)}
+						onSelect={setBackgroundId}
+						isMintingPage={false}
+						handleClick={handleClick}
+					/>
+
 					{showSaveModal && (
 						<SaveModal
 							close={() => setShowSaveModal(false)}
@@ -289,28 +311,6 @@ export const EditPillModal = (props: Props) => {
 							leaveWithoutSaving={props.close}
 							closeModal={() => setShowExitModal(false)}
 							handleClick={handleClick}
-						/>
-					)}
-					{showFaceModal && (
-						<TraitsModal
-							traitName="Ingredient #1"
-							trait={faceTraitArray}
-							selectedId={selectedIng}
-							close={() => setShowFaceModal(false)}
-							select={setSelectedIng}
-							handleClick={handleClick}
-							isMinting={false}
-						/>
-					)}
-					{showBackgroundModal && (
-						<TraitsModal
-							traitName="Background"
-							trait={backgroundArray}
-							selectedId={selectedBackgroundId}
-							close={() => setShowBackgroundModal(false)}
-							select={setBackgroundId}
-							handleClick={handleClick}
-							isMinting={false}
 						/>
 					)}
 				</div>

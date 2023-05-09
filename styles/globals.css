@@ -48,6 +48,21 @@ h1 {
 		#29296e;
 	padding: 20px;
 }
+.pageContainer::-webkit-scrollbar {
+	width: 8px;
+}
+
+.pageContainer::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+.pageContainer::-webkit-scrollbar-thumb {
+	border-width: 4px;
+	border-style: solid;
+	border-color: #ff4f0a;
+	border-radius: 4px;
+}
+
 .container {
 	position: fixed;
 	left: 0;
@@ -100,6 +115,9 @@ h1 {
 @media screen and (max-width: 750px) {
 	.snackbar {
 		top: 85vh;
+	}
+	.pageContainer {
+		padding-bottom: 100px;
 	}
 }
 .backToTopButton {

@@ -8,6 +8,7 @@ export interface AppTheme {
 	bgColor: string;
 	whiteBgColor: string;
 	blackText: string;
+	whiteText: string;
 }
 export const StarkpillTheme = {
 	name: "Starkpill theme",
@@ -16,4 +17,5 @@ export const StarkpillTheme = {
 	bgColor: "#29296E",
 	whiteBgColor: "#f7f7f7",
 	blackText: "black",
+	whiteText: "white",
 };

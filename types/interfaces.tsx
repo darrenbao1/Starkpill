@@ -24,3 +24,11 @@ export interface NFTData {
 	collectionName: string;
 	collectionTokenId: string;
 }
+export enum TraitName {
+	Ingredient = "Ingredient",
+	Background = "Background",
+}
+export const typeIndex: Record<TraitName, number> = {
+	[TraitName.Ingredient]: 1,
+	[TraitName.Background]: 2,
+};

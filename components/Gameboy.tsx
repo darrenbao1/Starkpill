@@ -17,6 +17,10 @@ export default function Gameboy() {
 	const [canvasWidth, setCanvasWidth] = useState(500);
 	const [canvasHeight, setCanvasHeight] = useState(500);
 	const [canvasGridSize, setCanvasGridSize] = useState(20);
+	//apple image
+	// const appleImg = new Image();
+	// appleImg.src = "/starkpill.png";
+
 	useEffect(() => {
 		if (canvasRef.current) {
 			const width = canvasRef.current?.width;
@@ -160,6 +164,15 @@ export default function Gameboy() {
 	};
 
 	const drawApple = (ctx: CanvasRenderingContext2D) => {
+		// appleImg.onload = () => {
+		// 	ctx.drawImage(
+		// 		appleImg,
+		// 		apple.x * canvasGridSize,
+		// 		apple.y * canvasGridSize,
+		// 		canvasGridSize,
+		// 		canvasGridSize
+		// 	);
+		// };
 		ctx.fillStyle = "#DC3030"; // '#38C172' // '#F4CA64'
 		ctx.strokeStyle = "#881A1B"; // '#187741' // '#8C6D1F
 
@@ -305,45 +318,53 @@ export default function Gameboy() {
 					"a",
 					"s",
 					"d",
+					"Enter",
 				].includes(e.key)
 			) {
-				let velocity = { dx: 0, dy: 0 };
+				if (e.key === "Enter") {
+					if (!running || isLost) {
+						startGame();
+					}
+					return;
+				} else {
+					let velocity = { dx: 0, dy: 0 };
 
-				switch (e.key) {
-					case "ArrowRight":
-						velocity = { dx: 1, dy: 0 };
-						break;
-					case "ArrowLeft":
-						velocity = { dx: -1, dy: 0 };
-						break;
-					case "ArrowDown":
-						velocity = { dx: 0, dy: 1 };
-						break;
-					case "ArrowUp":
-						velocity = { dx: 0, dy: -1 };
-						break;
-					case "d":
-						velocity = { dx: 1, dy: 0 };
-						break;
-					case "a":
-						velocity = { dx: -1, dy: 0 };
-						break;
-					case "s":
-						velocity = { dx: 0, dy: 1 };
-						break;
-					case "w":
-						velocity = { dx: 0, dy: -1 };
-						break;
-					default:
-						console.error("Error with handleKeyDown");
-				}
-				if (
-					!(
-						previousVelocity.dx + velocity.dx === 0 &&
-						previousVelocity.dy + velocity.dy === 0
-					)
-				) {
-					setVelocity(velocity);
+					switch (e.key) {
+						case "ArrowRight":
+							velocity = { dx: 1, dy: 0 };
+							break;
+						case "ArrowLeft":
+							velocity = { dx: -1, dy: 0 };
+							break;
+						case "ArrowDown":
+							velocity = { dx: 0, dy: 1 };
+							break;
+						case "ArrowUp":
+							velocity = { dx: 0, dy: -1 };
+							break;
+						case "d":
+							velocity = { dx: 1, dy: 0 };
+							break;
+						case "a":
+							velocity = { dx: -1, dy: 0 };
+							break;
+						case "s":
+							velocity = { dx: 0, dy: 1 };
+							break;
+						case "w":
+							velocity = { dx: 0, dy: -1 };
+							break;
+						default:
+							console.error("Error with handleKeyDown");
+					}
+					if (
+						!(
+							previousVelocity.dx + velocity.dx === 0 &&
+							previousVelocity.dy + velocity.dy === 0
+						)
+					) {
+						setVelocity(velocity);
+					}
 				}
 			}
 		};

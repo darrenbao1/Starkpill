@@ -435,6 +435,17 @@ export const GET_USER_TOKENS = gql`
 		}
 	}
 `;
+export const GET_PHARMACY_DATA = gql`
+	query GetPharmacyData {
+		getPharmacyData {
+			amount_left
+			index
+			startAmount
+			typeIndex
+		}
+	}
+`;
+
 export const DROPDOWN_MENU_ITEMS = [
 	{
 		id: 0,

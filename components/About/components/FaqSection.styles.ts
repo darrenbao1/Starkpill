@@ -1,6 +1,6 @@
 import styled from "styled-components";
 interface FaqItemProps {
-	showAnswer: boolean;
+	showanswer: boolean;
 }
 export const FaqItemContainer = styled.div`
 	background: ${(props) => props.theme.whiteBgColor};
@@ -14,7 +14,7 @@ export const FaqItemStyle = styled.div<FaqItemProps>`
 	display: flex;
 	align-items: center;
 	color: ${(props) =>
-		props.showAnswer ? props.theme.primaryColor : props.theme.blackText};
+		props.showanswer ? props.theme.primaryColor : props.theme.blackText};
 `;
 export const FaqItemButton = styled.div`
 	width: 30px;
