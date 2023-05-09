@@ -59,6 +59,7 @@ export const TraitModal = (props: {
 				<TraitCardContainer>
 					{traitArray.map((trait, index) => (
 						<TraitCard
+							key={index}
 							trait={trait}
 							index={index}
 							isSelected={index == selectedTraitId}

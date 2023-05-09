@@ -17,7 +17,7 @@ export const FaqSection = () => {
 		return (
 			<FaqItemContainer>
 				<FaqItemStyle
-					showAnswer={showAnswer}
+					showanswer={showAnswer}
 					onClick={() => setShowAnswer(!showAnswer)}>
 					<span>{props.faq.question}</span>
 					<FaqItemButton>{showAnswer ? <Cross /> : <Plus />}</FaqItemButton>
