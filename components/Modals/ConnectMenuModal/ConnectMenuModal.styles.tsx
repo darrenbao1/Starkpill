@@ -40,21 +40,7 @@ export const Menu = styled.div`
 	border-radius: 15px;
 `;
 
-export const MenuClose = styled.button`
-	position: absolute;
-	top: 15px;
-	right: 15px;
-	width: 30px;
-	stroke: white;
-	cursor: pointer;
-	transition: 0.3s;
-	background-color: transparent;
-	border: none;
-	&:hover {
-		stroke: #ff4f0a;
-	}
-`;
-
+//"Connect wallet" title ↓↓↓
 export const MenuTitle = styled.div`
 	display: flex;
 	flex-direction: row;
@@ -74,6 +60,7 @@ export const MenuTitle = styled.div`
 	}
 `;
 
+//WalletLinks wraps the buttons and disclosure text, p is for the disclosure text only. ↓↓↓
 export const WalletLinks = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -92,6 +79,7 @@ export const WalletLinks = styled.div`
 	}
 `;
 
+//Button wraps the text & icon, p is for the wallet name text only. ↓↓↓
 export const Button = styled.button`
 	all: unset;
 	color: #ffffff;
@@ -117,6 +105,13 @@ export const Button = styled.button`
 		background-color: #60557e;
 	}
 `;
+//ButtonIcon is for the wallet's icon only. ↓↓↓
+export const ButtonIcon = styled.img`
+	width: 32px;
+	height: 32px;
+	margin-top: 16px;
+`;
+//CloseButton is the Close button with the CrossIcon in it. ↓↓↓
 export const CloseButton = styled.button`
 	position: absolute;
 	top: 25px;
@@ -134,9 +129,4 @@ export const CloseButton = styled.button`
 export const CrossIcon = styled(Cross)`
 	width: 24px;
 	height: 24px;
-`;
-export const ButtonIcon = styled.img`
-	width: 32px;
-	height: 32px;
-	margin-top: 16px;
 `;

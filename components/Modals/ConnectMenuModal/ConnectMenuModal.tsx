@@ -51,7 +51,7 @@ function ConnectMenuModal(props: { connectors: any; close: any }) {
 				</MenuTitle>
 				<WalletLinks>
 					{props.connectors.map((connector: any, index: any) => (
-						<Button onClick={() => loginWallet(connector)}>
+						<Button onClick={() => loginWallet(connector)} key={index}>
 							<p>{connector._wallet.name}</p>
 							<picture>
 								<ButtonIcon
@@ -67,7 +67,8 @@ function ConnectMenuModal(props: { connectors: any; close: any }) {
 					))}
 
 					<p>
-						By connecting, I accept Starkpill's <text>Terms of Service</text>
+						By connecting, I accept Starkpill&apos;s{" "}
+						<text>Terms of Service</text>
 					</p>
 					{props.connectors.length === 0 && <NoInstalledWalletModal />}
 				</WalletLinks>
