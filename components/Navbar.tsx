@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import styles from "../styles/Navbar.module.css";
 import { PAGES, USERPAGES } from "../types/constants";
-import { ConnectWalletButton } from "./ConnectWalletButton";
+import { ConnectWalletButton } from "./ConnectWalletButton/ConnectWalletButton";
 import Hamburger from "../public/hamburger.svg";
 import Cross from "../public/cross.svg";
 import { LinksModal } from "./Modals/LinksModal";
