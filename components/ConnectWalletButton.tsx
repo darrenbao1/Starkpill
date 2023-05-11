@@ -1,7 +1,7 @@
 import { useAccount, useConnectors } from "@starknet-react/core";
 import { useEffect, useRef, useState } from "react";
 import { shortAddressForModal, shortenAddress } from "../types/utils";
-import ConnectMenuModal from "./Modals/ConnectMenuModal";
+import ConnectMenuModal from "./Modals/ConnectMenuModal/ConnectMenuModal";
 import styles from "../styles/ConnectWalletButton.module.css";
 import { TransactionList } from "./TransactionList";
 import { UserBalance } from "../hooks/StarkEthContract";
