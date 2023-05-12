@@ -2047,10 +2047,10 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-4.6.0.tgz#3c7c9c46e678feefe7a2e5bb609d3dbd665ffb3f"
   integrity sha512-t09vSN3MdfsyCHoFcTRCH/iUtG7OJ0CsjzB8cjAmKc/va/kIgeDI/TxsigdncE/4be734m0cvIYwNaV4i2XqAw==
 
-"@starknet-react/core@^0.14.6":
-  version "0.14.6"
-  resolved "https://registry.yarnpkg.com/@starknet-react/core/-/core-0.14.6.tgz#77c9e3e57babe197e05bc6aef11931697b1c29f3"
-  integrity sha512-3fXCyFxaNoBlXCv6hzRSw9y8r2O+jeAjVVxIRg7klgC22CTP/3bYq5+u9CeUxYwVtIl1SniOtCVTxuKsaY5BHA==
+"@starknet-react/core@0.14.8":
+  version "0.14.8"
+  resolved "https://registry.yarnpkg.com/@starknet-react/core/-/core-0.14.8.tgz#3e063e3d3d2832d76de44eda85b2879e93d069e0"
+  integrity sha512-PouT9Njd2Um+rbuh3thg+YGalR30uen2D9cnJsayQ+UbPwXs0W2Y1n0Kp/pSxi0z+D7wGXO8Vu3pi7jU5ZLjVg==
   dependencies:
     "@tanstack/react-query" "^4.3.4"
     immutable "^4.0.0"
