@@ -1,36 +1,22 @@
-import Image from "next/image";
 import { getNFTs } from "../components/Web3Wallet/api/getNFTs";
-import {
-	IWeb3Context,
-	useWeb3Context,
-} from "../components/Web3Wallet/provider/Web3ContextProvider";
 import { useEffect, useState } from "react";
 import styles from "../styles/redemption.module.css";
 import sharedBackgroundStyles from "../styles/sharedBackground.module.css";
 import { NFTData } from "../types/interfaces";
-import { shortenAddress } from "../types/utils";
-
+import { Web3Button } from "@web3modal/react";
+import { useAccount } from "wagmi";
 export default function Redemption() {
 	const [nfts, setNfts] = useState<NFTData[]>([]);
-	const {
-		connectWallet,
-		disconnect,
-		state: { isAuthenticated, address, currentChain, provider },
-	} = useWeb3Context() as IWeb3Context;
+	const wallet = useAccount();
 
 	const handleGetNfts = async () => {
 		try {
-			const fetchedNfts = await getNFTs(address!);
+			const fetchedNfts = await getNFTs(wallet.address!);
 			setNfts(fetchedNfts);
 		} catch (error) {
 			console.error(error);
 		}
 	};
-	useEffect(() => {
-		if (address) {
-			handleGetNfts();
-		}
-	}, [isAuthenticated]);
 
 	const nftsByCollection = nfts.reduce(
 		(acc: { [key: string]: NFTData[] }, nft) => {
@@ -42,7 +28,13 @@ export default function Redemption() {
 		},
 		{}
 	);
-
+	useEffect(() => {
+		if (wallet.address) {
+			handleGetNfts();
+		} else {
+			setNfts([]);
+		}
+	}, [wallet.isConnected, wallet.address]);
 	const nftCards = Object.entries(nftsByCollection).map(
 		([collectionName, nfts]) => (
 			<div key={collectionName} className={styles.collectionContainer}>
@@ -72,25 +64,13 @@ export default function Redemption() {
 				<h1
 					style={{ textAlign: "center", paddingTop: "2rem", display: "flex" }}>
 					Redemption
-					{!isAuthenticated ? (
-						<button onClick={connectWallet} className={styles.connectButton}>
-							Connect Wallet
-						</button>
-					) : (
-						<button onClick={disconnect} className={styles.connectButton}>
-							{address && shortenAddress(address)}
-						</button>
-					)}
+					<div className={styles.connectButton}>
+						<Web3Button />
+					</div>
 				</h1>
 
 				<div className={styles.container}>
-					{!isAuthenticated ? (
-						<p>Please connect wallet.</p>
-					) : nfts.length > 0 ? (
-						nftCards
-					) : (
-						<p>You do not own any Stellar NFTs.</p>
-					)}
+					{nfts.length > 0 ? nftCards : <p>You do not own any Stellar NFTs.</p>}
 				</div>
 			</div>
 		</div>
