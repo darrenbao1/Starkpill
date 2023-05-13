@@ -8,9 +8,26 @@ import { ApolloProvider } from "@apollo/client";
 import client from "../apollo-client";
 import { Provider } from "react-redux";
 import { store } from "../features/store";
-import Web3ContextProvider from "../components/Web3Wallet/provider/Web3ContextProvider";
 import { StarkpillTheme } from "../types/appTheme";
 import { ThemeProvider } from "styled-components";
+import {
+	EthereumClient,
+	w3mConnectors,
+	w3mProvider,
+} from "@web3modal/ethereum";
+import { Web3Modal } from "@web3modal/react";
+import { configureChains, createConfig, WagmiConfig } from "wagmi";
+import { arbitrum, mainnet, polygon } from "wagmi/chains";
+const chains = [arbitrum, mainnet, polygon];
+const projectId = "6e1e7c1603706f3687543b2cb255b86c";
+
+const { publicClient } = configureChains(chains, [w3mProvider({ projectId })]);
+const wagmiConfig = createConfig({
+	autoConnect: true,
+	connectors: w3mConnectors({ projectId, version: 1, chains }),
+	publicClient,
+});
+const ethereumClient = new EthereumClient(wagmiConfig, chains);
 export default function App({ Component, pageProps }: AppProps) {
 	const connectors = [
 		new InjectedConnector({
@@ -23,7 +40,7 @@ export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<div style={{ position: "fixed" }}>
 			<Provider store={store}>
-				<Web3ContextProvider>
+				<WagmiConfig config={wagmiConfig}>
 					<StarknetConfig connectors={connectors} autoConnect={true}>
 						<ApolloProvider client={client}>
 							<Head>
@@ -37,7 +54,8 @@ export default function App({ Component, pageProps }: AppProps) {
 							</ThemeProvider>
 						</ApolloProvider>
 					</StarknetConfig>
-				</Web3ContextProvider>
+				</WagmiConfig>
+				<Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
 			</Provider>
 		</div>
 	);
