@@ -23,7 +23,7 @@ export const TransactionList = () => {
 	if (hashes.length == 0) {
 		return (
 			<Container>
-				<h1>Recent Transactions</h1>
+				<h1>Recent transactions</h1>
 				<span>You have no recent transactions</span>
 			</Container>
 		);
