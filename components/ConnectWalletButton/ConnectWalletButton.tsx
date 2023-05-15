@@ -8,13 +8,20 @@ import {
 	DropdownContainer,
 	Disconnect,
 	EthBalanceContainer,
+	UserBalanceContainer,
+	HeaderContainer,
+	ContentWrapper,
+	DisconnectContainer,
+	AddressText,
+	TxCrossContainer,
 } from "./ConnectWalletButton.styles";
 import { useAccount, useConnectors } from "@starknet-react/core";
 import ConnectMenuModal from "../Modals/ConnectMenuModal/ConnectMenuModal";
 import { useEffect, useRef, useState } from "react";
 import { shortAddressForModal, shortenAddress } from "../../types/utils";
 import { UserBalance } from "../../hooks/StarkEthContract";
-import { TransactionList } from "../TransactionList";
+import { TransactionList } from "../TransactionList/TransactionList";
+import TxCross from "../../public/svgs/TxCross.svg";
 
 export const ConnectWalletButton = () => {
 	const { account, address } = useAccount();
@@ -46,6 +53,10 @@ export const ConnectWalletButton = () => {
 };
 
 const ConnectedButton = (props: { address: string; disconnect: any }) => {
+	//create a close function to close this modal
+	const close = () => {
+		setShowDropDown(false);
+	};
 	function useOutsideAlerter(ref: any) {
 		useEffect(() => {
 			function handleClickOutside(event: any) {
@@ -82,22 +93,35 @@ const ConnectedButton = (props: { address: string; disconnect: any }) => {
 				<Container>
 					<DropdownContainer>
 						<Dropdown>
-							<h1>My Wallet</h1>
-							<span>Address</span>
-							<AddressContainer>
-								<div>{shortAddressForModal(props.address)}</div>
-								<picture onClick={() => CopyAddress(props.address)}>
-									<img src="/copy.svg" alt="" />
-								</picture>
-							</AddressContainer>
-							<TransactionList />
-							<EthBalanceContainer>
-								<div>Eth Balance</div>
-								<Copy>{UserBalance && <UserBalance />}</Copy>
-							</EthBalanceContainer>
-							<Disconnect onClick={props.disconnect}>
-								Disconnect Wallet
-							</Disconnect>
+							<HeaderContainer>
+								<h1>My Wallet</h1>
+								<TxCrossContainer onClick={close}>
+									<TxCross />
+								</TxCrossContainer>
+							</HeaderContainer>
+
+							<ContentWrapper>
+								<AddressContainer>
+									<span>Address</span>
+									<AddressText>
+										{shortAddressForModal(props.address)}
+
+										<Copy onClick={() => CopyAddress(props.address)}></Copy>
+									</AddressText>
+								</AddressContainer>
+								<TransactionList />
+								<EthBalanceContainer>
+									<text>Eth balance</text>
+									<UserBalanceContainer>
+										{UserBalance && <UserBalance />}
+									</UserBalanceContainer>
+								</EthBalanceContainer>
+								<DisconnectContainer>
+									<Disconnect onClick={props.disconnect}>
+										Disconnect Wallet
+									</Disconnect>
+								</DisconnectContainer>
+							</ContentWrapper>
 						</Dropdown>
 						{showSnackBar && (
 							<div className="snackbar">Wallet address copied</div>
