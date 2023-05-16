@@ -1,8 +1,17 @@
+import {
+	ModalContainer,
+	Menu,
+	Button,
+	WalletLinks,
+	ButtonIcon,
+	CloseButton,
+	MenuTitle,
+	CrossIcon,
+} from "./ConnectMenuModal.styles";
 import { useConnectors } from "@starknet-react/core";
-import styles from "../../styles/ConnectMenuModal.module.css";
-import Cross from "../../public/svgs/cross.svg";
-import { NoInstalledWalletModal } from "./NoInstalledWalletModal";
+import { NoInstalledWalletModal } from "../NoInstalledWalletModal";
 import { useEffect, useRef } from "react";
+
 function ConnectMenuModal(props: { connectors: any; close: any }) {
 	const { connect } = useConnectors();
 	let loginWallet = async (connector: any) => {
@@ -25,28 +34,27 @@ function ConnectMenuModal(props: { connectors: any; close: any }) {
 	}
 	const wrapperRef = useRef(null);
 	useOutsideAlerter(wrapperRef);
+
 	return (
-		<div className={styles.modal}>
-			<div className={styles.menu} ref={wrapperRef}>
+		<ModalContainer>
+			<Menu ref={wrapperRef}>
 				{props.close && (
-					<button
-						className={styles.menu_close}
+					<CloseButton
 						onClick={() => {
 							props.close();
 						}}>
-						<Cross />
-					</button>
+						<CrossIcon />
+					</CloseButton>
 				)}
-				<p className={styles.menu_title}>Connect wallet</p>
-				<div className={styles.wallet_links} style={{ marginTop: "10px" }}>
+				<MenuTitle>
+					<p>Connect wallet</p>
+				</MenuTitle>
+				<WalletLinks>
 					{props.connectors.map((connector: any, index: any) => (
-						<button
-							key={index}
-							className={styles.button}
-							onClick={() => loginWallet(connector)}>
+						<Button onClick={() => loginWallet(connector)} key={index}>
+							<p>{connector._wallet.name}</p>
 							<picture>
-								<img
-									className={styles.button_icon}
+								<ButtonIcon
 									src={
 										connector._wallet.icon == ""
 											? "/argent-logo.png"
@@ -55,15 +63,17 @@ function ConnectMenuModal(props: { connectors: any; close: any }) {
 									alt=""
 								/>
 							</picture>
-							<p className={styles.button_text}>
-								Connect to {connector._wallet.name}
-							</p>
-						</button>
+						</Button>
 					))}
+
+					<p>
+						By connecting, I accept Starkpill&apos;s{" "}
+						<text>Terms of Service</text>
+					</p>
 					{props.connectors.length === 0 && <NoInstalledWalletModal />}
-				</div>
-			</div>
-		</div>
+				</WalletLinks>
+			</Menu>
+		</ModalContainer>
 	);
 }
 export default ConnectMenuModal;
