@@ -27,13 +27,11 @@ export const Menu = styled.div`
 	top: 50%;
 	transform: translate(-50%, -50%);
 	background-color: #262233;
-
 	z-index: 1;
-
 	width: 100%;
 	max-width: 400px;
 	height: 100%;
-	max-height: 288px;
+	max-height: 240px;
 	display: flex;
 	flex-direction: column;
 	color: white;

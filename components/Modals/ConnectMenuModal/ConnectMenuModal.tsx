@@ -66,10 +66,10 @@ function ConnectMenuModal(props: { connectors: any; close: any }) {
 						</Button>
 					))}
 
-					<p>
+					{/* <p>
 						By connecting, I accept Starkpill&apos;s{" "}
 						<text>Terms of Service</text>
-					</p>
+					</p> */}
 					{props.connectors.length === 0 && <NoInstalledWalletModal />}
 				</WalletLinks>
 			</Menu>

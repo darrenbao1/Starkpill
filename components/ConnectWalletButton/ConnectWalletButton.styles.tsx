@@ -17,6 +17,7 @@ export const Container = styled.div`
 export const DropdownContainer = styled.div`
 	max-width: 1440px;
 	overflow: hidden;
+	border-radius: 8px;
 `;
 
 export const Dropdown = styled.div`
