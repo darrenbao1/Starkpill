@@ -2,7 +2,8 @@ import { useAccount } from "@starknet-react/core";
 import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
 import styles from "../styles/cabinet.module.css";
-import { StarkPillCard } from "../components/StarkPillCard";
+// import { StarkPillCard } from "../components/StarkPillCard/"; <<Previous StarkPillCard
+import { StarkPillCard } from "../components/StarkPillCard/StarkPillCard";
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";

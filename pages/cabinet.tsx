@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { StarkPillCard } from "../components/StarkPillCard";
+// import { StarkPillCard } from "../components/StarkPillCard"; <<Previous StarkPillCard
+import { StarkPillCard } from "../components/StarkPillCard/StarkPillCard";
 import styles from "../styles/cabinet.module.css";
 import { useQuery, gql } from "@apollo/client";
 import sharedBackgroundStyles from "../styles/sharedBackground.module.css";

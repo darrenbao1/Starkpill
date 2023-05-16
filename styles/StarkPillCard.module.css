@@ -76,7 +76,7 @@
 	text-decoration: underline;
 	cursor: pointer;
 }
-.hoverLabel {
+/* .hoverLabel {
 	background-color: #ff4f0a;
 	color: white;
 	margin: 0 -1rem -1rem -1rem;
@@ -95,7 +95,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
+} */
 .image:hover,
 .imageRank:hover {
 	opacity: 0.7;
@@ -138,7 +138,17 @@
 .menuOptionsRank::after {
 	content: "";
 	position: absolute;
-	border-width: 1px;
+
+	border-style: solid;
+	border-color: white transparent;
+	border-width: 0 13px 12px 13px;
+	top: -10px;
+	left: 75%;
+}
+.menuOptions::after {
+	content: "";
+	position: absolute;
+
 	border-style: solid;
 	border-color: white transparent;
 	border-width: 0 13px 12px 13px;
@@ -148,27 +158,18 @@
 .menuOptionsRank::before {
 	content: "";
 	position: absolute;
-	border-width: 1px;
+
 	border-style: solid;
 	border-color: #ccc transparent;
 	border-width: 0 12.5px 11.5px 13px;
 	top: -11px;
 	left: 75%;
 }
-.menuOptions::after {
-	content: "";
-	position: absolute;
-	border-width: 1px;
-	border-style: solid;
-	border-color: white transparent;
-	border-width: 0 13px 12px 13px;
-	top: -10px;
-	left: 75%;
-}
+
 .menuOptions::before {
 	content: "";
 	position: absolute;
-	border-width: 1px;
+
 	border-style: solid;
 	border-color: #ccc transparent;
 	border-width: 0 12.5px 11.5px 13px;
@@ -213,7 +214,7 @@
 	/* Add the border to the bottom */
 	border-bottom: 1px solid #ccc;
 }
-.kebabIconMyPills {
+/* .kebabIconMyPills {
 	position: absolute;
 	bottom: 60px;
 	right: 0px;
@@ -224,7 +225,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
+} */
 .menuOptionsMyPills {
 	position: absolute;
 	bottom: -110px;
