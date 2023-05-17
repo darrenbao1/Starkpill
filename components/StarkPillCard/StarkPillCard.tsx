@@ -196,17 +196,26 @@ export const StarkPillCard = (props: Props) => {
 									onClick={() => {
 										setShowModal(true);
 										dispatch(showEditPillModalRedux(true));
+										setMenuId(null);
 									}}>
 									<EditIcon /> Edit Pill{" "}
 								</p>
 							)}
 							{/* Option to display Pill Details via Image Modal ↓↓ */}
 							{/* Wen clicked, showImageModal state changes to true and ImageModal will be displayed */}
-							<p onClick={openImageModal}>
+							<p
+								onClick={() => {
+									openImageModal();
+									setMenuId(null);
+								}}>
 								<PillDetailsIcon /> Pill Details{" "}
 							</p>
 							{/* Option to redirect user to Mint Square ↓↓ */}
-							<p onClick={openMintSquareLink}>
+							<p
+								onClick={() => {
+									openMintSquareLink();
+									setMenuId(null);
+								}}>
 								<ExternalLinksIcon /> Mint Square{" "}
 							</p>
 						</MenuOptions>
