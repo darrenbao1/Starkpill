@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { PAGES, USERPAGES } from "../../../types/constants";
-import { ConnectWalletButton } from "../../ConnectWalletButton";
+import { ConnectWalletButton } from "../../ConnectWalletButton/ConnectWalletButton";
 import Hamburger from "../../../../public/hamburger.svg";
 
 import { LinksModal } from "../../Modals/LinksModal";
