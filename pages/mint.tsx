@@ -5,7 +5,7 @@ import { ConnectWalletButton } from "../components/ConnectWalletButton";
 import { useEffect, useState } from "react";
 import { FACE_TRAITS, BACKGROUND } from "../types/constants";
 import EditIcon from "../public/svgs/Edit.svg";
-import { MintModal } from "../components/Modals/MintModal";
+import { MintModal } from "../components/Modals/MintModal/MintModal";
 import { TraitModal } from "../components/TraitModal/components/TraitModal";
 import { TraitName } from "../types/interfaces";
 const Mint = () => {
