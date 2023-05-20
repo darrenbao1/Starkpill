@@ -29,9 +29,9 @@ export const Menu = styled.div`
 	background-color: #262233;
 	z-index: 1;
 	width: 100%;
-	max-width: 400px;
+	max-width: 25rem;
 	height: 100%;
-	max-height: 240px;
+	max-height: 16.875rem;
 	display: flex;
 	flex-direction: column;
 	color: white;

@@ -1,4 +1,5 @@
 import MintPage from "../components/Mint/MintPage";
+
 const Mint = () => {
 	return (
 		<div className="container">
