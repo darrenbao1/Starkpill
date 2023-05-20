@@ -169,7 +169,7 @@ export const DropdownMenu = styled.div`
 	span {
 		margin-left: 16px;
 	}
-	}
+
 	@media screen and (max-width: 768px) {
 		position: fixed;
 		width: 100%;
@@ -188,7 +188,7 @@ export const MenuLabel = styled.label`
 	position: relative;
 	padding: 16px 16px 16px 0px;
 	border: 1px solid #e9e9e9;
-	font-weight: bold;
+	font-weight: 700;
 	cursor: pointer;
 	background-color: #ffffff;
 	color: #262626;
