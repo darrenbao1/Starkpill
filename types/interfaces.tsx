@@ -32,3 +32,9 @@ export const typeIndex: Record<TraitName, number> = {
 	[TraitName.Ingredient]: 1,
 	[TraitName.Background]: 2,
 };
+
+export interface CollabProject {
+	contract_address: string;
+	name: string;
+	imageUrl: string;
+}
