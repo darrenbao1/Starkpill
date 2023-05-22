@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { FAQ, Page, Trait } from "./interfaces";
+import { CollabProject, FAQ, Page, Trait } from "./interfaces";
 export const IS_TESTNET = true;
 export const STARKPILL_CONTRACT_ADDRESS =
 	"0x05ef092a31619faa63bf317bbb636bfbba86baf8e0e3e8d384ee764f2904e5dd";
@@ -445,6 +445,23 @@ export const GET_PHARMACY_DATA = gql`
 		}
 	}
 `;
+export const GET_TOKEN_BY_ID = gql`
+	query Token($tokenId: Int!) {
+		token(tokenId: $tokenId) {
+			id
+			ingredient
+			background
+			owner {
+				address
+			}
+			metadata {
+				imageUrl
+				mintPrice
+				fame
+			}
+		}
+	}
+`;
 
 export const DROPDOWN_MENU_ITEMS = [
 	{
@@ -470,6 +487,19 @@ export const DROPDOWN_MENU_ITEMS = [
 		label: "Latest",
 		query: GET_ALL_TOKENS_LATEST,
 		keyName: "allTokensByLatest",
+	},
+];
+
+export const COLLAB_PROJECTS: CollabProject[] = [
+	{
+		contract_address: "0xf4A7C105CFdc6aaBe9AE65bDF2d0dF0A567A7aDE",
+		name: "ARC Stellar",
+		imageUrl: "/png/arcImage.png",
+	},
+	{
+		contract_address: "0x1D20A51F088492A0f1C57f047A9e30c9aB5C07Ea",
+		name: "WASSIE",
+		imageUrl: "/png/wassies.png",
 	},
 ];
 export const handleScrollToTop = (ref: React.RefObject<any>) => {

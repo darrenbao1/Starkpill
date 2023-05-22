@@ -1,78 +1,65 @@
-import { getNFTs } from "../components/Web3Wallet/api/getNFTs";
-import { useEffect, useState } from "react";
-import styles from "../styles/redemption.module.css";
-import sharedBackgroundStyles from "../styles/sharedBackground.module.css";
-import { NFTData } from "../types/interfaces";
-import { Web3Button } from "@web3modal/react";
+import { CollabProject } from "../types/interfaces";
+import { Web3Button, useWeb3Modal } from "@web3modal/react";
 import { useAccount } from "wagmi";
+import { useAccount as useStarknetWallet } from "@starknet-react/core";
+import { COLLAB_PROJECTS } from "../types/constants";
+import { ProjectCard } from "../components/Redemption/ProjectCard.tsx/ProjectCard";
+import { useRouter } from "next/router";
+import {
+	ButtonContainer,
+	ContentContainer,
+	ContentText,
+	ContentWrapper,
+	HeaderContainer,
+	HeaderText,
+	RedemptionPageContainer,
+	CardContainer,
+} from "../styles/Redemption.styles";
+import { Disconnected } from "../components/DisconnectedPage.tsx/Disconnected";
 export default function Redemption() {
-	const [nfts, setNfts] = useState<NFTData[]>([]);
 	const wallet = useAccount();
-
-	const handleGetNfts = async () => {
-		try {
-			const fetchedNfts = await getNFTs(wallet.address!);
-			setNfts(fetchedNfts);
-		} catch (error) {
-			console.error(error);
+	const { address } = useStarknetWallet();
+	const { open } = useWeb3Modal();
+	const router = useRouter();
+	const selectProject = (project: CollabProject) => {
+		if (wallet.isConnected && wallet.address) {
+			router.push("/nftOwned?project=" + project.contract_address);
+		} else {
+			open();
 		}
 	};
-
-	const nftsByCollection = nfts.reduce(
-		(acc: { [key: string]: NFTData[] }, nft) => {
-			if (!acc[nft.collectionName]) {
-				acc[nft.collectionName] = [];
-			}
-			acc[nft.collectionName].push(nft);
-			return acc;
-		},
-		{}
-	);
-	useEffect(() => {
-		if (wallet.address) {
-			handleGetNfts();
-		} else {
-			setNfts([]);
-		}
-	}, [wallet.isConnected, wallet.address]);
-	const nftCards = Object.entries(nftsByCollection).map(
-		([collectionName, nfts]) => (
-			<div key={collectionName} className={styles.collectionContainer}>
-				<h2>{collectionName}</h2>
-				<div className={styles.nftCardContainer}>
-					{nfts.map((nft: NFTData) => (
-						<div key={nft.collectionTokenId} className={styles.nftCard}>
-							<picture>
-								<img
-									className={styles.nftCardImage}
-									src={nft.imageUrl}
-									alt={nft.name}
-								/>
-							</picture>
-							<span>Name:</span>
-							<h1>{nft.name}</h1>
-						</div>
-					))}
-				</div>
-			</div>
-		)
-	);
-
 	return (
-		<div className={`container ${sharedBackgroundStyles.sharedBackground}`}>
-			<div className="contentContainer">
-				<h1
-					style={{ textAlign: "center", paddingTop: "2rem", display: "flex" }}>
-					Redemption
-					<div className={styles.connectButton}>
-						<Web3Button />
-					</div>
-				</h1>
-
-				<div className={styles.container}>
-					{nfts.length > 0 ? nftCards : <p>You do not own any Stellar NFTs.</p>}
-				</div>
-			</div>
-		</div>
+		<RedemptionPageContainer>
+			{address ? (
+				<ContentContainer>
+					<ContentWrapper>
+						<HeaderContainer>
+							<HeaderText>Redemption</HeaderText>
+							<ContentText>
+								We are thrilled to present you with a unique opportunity to
+								redeem your NFT (Non-Fungible Token) and unlock exclusive
+								benefits. This page serves as your gateway to a world of
+								possibilities where you can convert your digital assets into
+								real-world rewards.
+							</ContentText>
+						</HeaderContainer>
+						<ButtonContainer>
+							<Web3Button />
+						</ButtonContainer>
+					</ContentWrapper>
+					<CardContainer>
+						{COLLAB_PROJECTS.map((project, index) => (
+							<ProjectCard
+								project={project}
+								key={index}
+								onClick={() => selectProject(project)}
+							/>
+						))}
+					</CardContainer>
+				</ContentContainer>
+			) : (
+				<Disconnected text="To access your redemptions, please link your wallet first." />
+			)}
+		</RedemptionPageContainer>
 	);
 }
