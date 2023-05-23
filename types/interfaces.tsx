@@ -37,4 +37,5 @@ export interface CollabProject {
 	contract_address: string;
 	name: string;
 	imageUrl: string;
+	redeemId: number;
 }

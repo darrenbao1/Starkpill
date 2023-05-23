@@ -24,13 +24,22 @@ import {
 import { RightArrow } from "../public/svgs/RightArrow";
 import { useAccount as useStarknetWallet } from "@starknet-react/core";
 import { Disconnected } from "../components/DisconnectedPage.tsx/Disconnected";
+import { RedemptionTraitModal } from "../components/Modals/RedemptionTraitModal/RedemptionTraitModal";
+import { COLLAB_PROJECTS } from "../types/constants";
 export default function NftOwned() {
 	const wallet = useAccount();
 	const starknetWallet = useStarknetWallet();
 	const router = useRouter();
 	const { project } = router.query;
+	const projectString = typeof project === "string" ? project : "";
+
+	const projectObj = COLLAB_PROJECTS.find(
+		(project) => project.contract_address === projectString
+	);
+
 	const [nfts, setNfts] = useState<NFTData[]>([]);
 	const [isLoading, setIsloading] = useState<boolean>(false);
+	const [showTraitModal, setShowTraitModal] = useState<boolean>(false);
 	const handleGetNfts = async () => {
 		if (wallet.address && project)
 			try {
@@ -58,56 +67,69 @@ export default function NftOwned() {
 		}
 	}, []);
 	return (
-		<NftOwnedPageContainer>
-			{starknetWallet.status == "connected" ? (
-				<ContentContainer>
-					<DirectoryContainer>
-						<DirectoryButton href={"/redemption"}>Redemption</DirectoryButton>
-						<DirectoryArrow>
-							<RightArrow />
-						</DirectoryArrow>
-						Your eligible NFT redemptions
-					</DirectoryContainer>
-					<ContentWrapper>
-						<HeaderContainer>
-							<HeaderText>Your eligible NFT redemptions</HeaderText>
-							<ContentText>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-								eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-								enim ad minim veniam
-							</ContentText>
-						</HeaderContainer>
-						<ButtonContainer>
-							<Web3Button />
-						</ButtonContainer>
-					</ContentWrapper>
-					{nfts.length > 0 ? (
-						<CardContainer>
-							{nfts.map((nft: NFTData, index) => (
-								<NftCard nftData={nft} key={index} />
-							))}
-						</CardContainer>
-					) : isLoading ? (
-						<NoNFTFoundContainer>
-							<NoNFTFoundText>Fetching NFTs . . .</NoNFTFoundText>
-						</NoNFTFoundContainer>
-					) : wallet.isConnected ? (
-						<NoNFTFoundContainer>
-							<NoNftIcon />
-							<NoNFTFoundText>
-								There are no NFTs available for redemption in your account.
-							</NoNFTFoundText>
-						</NoNFTFoundContainer>
-					) : (
-						<NoNFTFoundContainer>
-							<NoNftIcon />
-							<NoNFTFoundText>Wallet is not connected.</NoNFTFoundText>
-						</NoNFTFoundContainer>
-					)}
-				</ContentContainer>
-			) : (
-				<Disconnected text="To access your redemptions, please link your wallet first." />
+		<>
+			<NftOwnedPageContainer>
+				{starknetWallet.status == "connected" ? (
+					<ContentContainer>
+						<DirectoryContainer>
+							<DirectoryButton href={"/redemption"}>Redemption</DirectoryButton>
+							<DirectoryArrow>
+								<RightArrow />
+							</DirectoryArrow>
+							Your eligible NFT redemptions
+						</DirectoryContainer>
+						<ContentWrapper>
+							<HeaderContainer>
+								<HeaderText>Your eligible NFT redemptions</HeaderText>
+								<ContentText>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+									do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+									Ut enim ad minim veniam
+								</ContentText>
+							</HeaderContainer>
+							<ButtonContainer>
+								<Web3Button />
+							</ButtonContainer>
+						</ContentWrapper>
+						{nfts.length > 0 ? (
+							<CardContainer>
+								{nfts.map((nft: NFTData, index) => (
+									<NftCard
+										nftData={nft}
+										key={index}
+										onClick={() => setShowTraitModal(true)}
+									/>
+								))}
+							</CardContainer>
+						) : isLoading ? (
+							<NoNFTFoundContainer>
+								<NoNFTFoundText>Fetching NFTs . . .</NoNFTFoundText>
+							</NoNFTFoundContainer>
+						) : wallet.isConnected ? (
+							<NoNFTFoundContainer>
+								<NoNftIcon />
+								<NoNFTFoundText>
+									There are no NFTs available for redemption in your account.
+								</NoNFTFoundText>
+							</NoNFTFoundContainer>
+						) : (
+							<NoNFTFoundContainer>
+								<NoNftIcon />
+								<NoNFTFoundText>Wallet is not connected.</NoNFTFoundText>
+							</NoNFTFoundContainer>
+						)}
+					</ContentContainer>
+				) : (
+					<Disconnected text="To access your redemptions, please link your wallet first." />
+				)}
+			</NftOwnedPageContainer>
+			{showTraitModal && (
+				<RedemptionTraitModal
+					project={projectObj!}
+					showTraitModal={showTraitModal}
+					handleClose={() => setShowTraitModal(false)}
+				/>
 			)}
-		</NftOwnedPageContainer>
+		</>
 	);
 }

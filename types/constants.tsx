@@ -489,17 +489,19 @@ export const DROPDOWN_MENU_ITEMS = [
 		keyName: "allTokensByLatest",
 	},
 ];
-
+//TODO match redeemId to trait id
 export const COLLAB_PROJECTS: CollabProject[] = [
 	{
 		contract_address: "0xf4A7C105CFdc6aaBe9AE65bDF2d0dF0A567A7aDE",
 		name: "ARC Stellar",
 		imageUrl: "/png/arcImage.png",
+		redeemId: 2,
 	},
 	{
 		contract_address: "0x1D20A51F088492A0f1C57f047A9e30c9aB5C07Ea",
 		name: "WASSIE",
 		imageUrl: "/png/wassies.png",
+		redeemId: 3,
 	},
 ];
 export const handleScrollToTop = (ref: React.RefObject<any>) => {
