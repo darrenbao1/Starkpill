@@ -503,6 +503,18 @@ export const COLLAB_PROJECTS: CollabProject[] = [
 		imageUrl: "/png/wassies.png",
 		redeemId: 3,
 	},
+	{
+		contract_address: "0xABCDB5710B88f456fED1e99025379e2969F29610",
+		name: "Radbro",
+		imageUrl: "/png/Radbro.png",
+		redeemId: 4,
+	},
+	{
+		contract_address: "0x5Af0D9827E0c53E4799BB226655A1de152A425a5",
+		name: "Milady",
+		imageUrl: "/png/Milady.png",
+		redeemId: 5,
+	},
 ];
 export const handleScrollToTop = (ref: React.RefObject<any>) => {
 	if (ref.current) {
