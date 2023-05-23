@@ -20,11 +20,17 @@ export const PAGES: Page[] = [
 		isActive: true,
 	},
 	{
-		title: "Snakes",
-		link: "/snakes",
+		title: "Redeem",
+		link: "/redemption",
 		isActive: true,
 		isBeta: true,
 	},
+	// {
+	// 	title: "Snakes",
+	// 	link: "/snakes",
+	// 	isActive: true,
+	// 	isBeta: true,
+	// },
 ];
 export const USERPAGES: Page[] = [
 	{
