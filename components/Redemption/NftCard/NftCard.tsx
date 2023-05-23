@@ -6,9 +6,9 @@ import {
 	ImageContainer,
 } from "./NftCard.styles";
 
-export const NftCard = (props: { nftData: NFTData }) => {
+export const NftCard = (props: { nftData: NFTData; onClick: () => void }) => {
 	return (
-		<NftCardContainer>
+		<NftCardContainer onClick={props.onClick}>
 			<Header>{props.nftData.collectionName}</Header>
 			<TokenId>#{props.nftData.collectionTokenId}</TokenId>
 			<ImageContainer
