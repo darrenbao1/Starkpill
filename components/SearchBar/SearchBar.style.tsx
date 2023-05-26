@@ -78,10 +78,7 @@ export const SearchResultsContainer = styled.div`
 	bottom: 550px;
 	margin-top: -10rem;
 	width: 100%;
-	overflow: auto;
-	::-webkit-scrollbar-thumb {
-		background-color: orange;
-	}
+
 	justify-content: center;
 	align-items: center;
 
