@@ -93,6 +93,7 @@ export const SearchResultsContainer = styled.div`
 		bottom: 31px;
 	}
 	@media (max-width: 376px) {
+		overflow-y: scroll;
 		bottom: 0px;
 		top: 240px;
 		margin-top: 40px;
