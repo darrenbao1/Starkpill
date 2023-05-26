@@ -120,16 +120,23 @@ export async function getVotingPower(walletAddress: String) {
 	}
 	return votingPower;
 }
-
+export function getSecretKey() {
+	const secretKey = process.env.SECRET_KEY;
+	if (!secretKey) {
+		throw new Error("Secret key not found in environment variables");
+	}
+	return secretKey;
+}
 export async function getRedemptionSignature(
 	contract_address: string,
 	token_id: number
 ) {
+	const secret = getSecretKey();
 	//generate hash with NFT contract address, NFT token id, and secret
 	const hash = Web3.utils.soliditySha3(
 		{ t: "uint256", v: contract_address },
 		{ t: "uint256", v: new BN(token_id) },
-		{ t: "uint256", v: "0x2114" }
+		{ t: "uint256", v: secret }
 	);
 	const msg = {
 		domain: {
