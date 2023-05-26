@@ -8,6 +8,8 @@ import SortIcon from "../public/svgs/sortIcon.svg";
 import { DROPDOWN_MENU_ITEMS, handleScrollToTop } from "../types/constants";
 import { BackToTopButton } from "../components/BackToTopButton";
 import { useSelector } from "react-redux";
+import SearchBar from "../components/SearchBar/SearchBar";
+
 export default function Cabinet() {
 	const offsetIncrement = 20; //number of pills per load
 	const [offsetAmount, setOffsetAmount] = useState(0);
@@ -18,6 +20,15 @@ export default function Cabinet() {
 	const scrollTopRef = useRef<HTMLDivElement>(null);
 	const [showButton, setShowButton] = useState(false);
 	const reduxState = useSelector((state: any) => state.refetch);
+	const [showResults, setShowResults] = useState(false);
+	const handleSearchQuery = (query: number) => {
+		console.log("Search query:", query);
+		setShowResults(true);
+	};
+	const handleClearSearchQuery = () => {
+		setShowResults(false);
+	};
+
 	function useOutsideAlerter(ref: any) {
 		useEffect(() => {
 			function handleClickOutside(event: any) {
@@ -88,104 +99,138 @@ export default function Cabinet() {
 		setSortOption(Number(event.target.value));
 		setShowDropbox(false);
 	};
+
 	return (
 		<div
 			className={`container ${sharedBackgroundStyles.extendedBackground}`}
 			onScroll={(e) => handleScroll(e)}
 			ref={scrollTopRef}>
 			<div className="contentContainer">
-				<div className={styles.sortWrapper} ref={wrapperRef}>
-					<div className={styles.sortContainer}>
-						<div className={styles.dropdownWrapper}>
-							<button
-								className={styles.sortButton}
-								onClick={() => setShowDropbox(!showDropbox)}>
-								<SortIcon style={{ margin: "auto" }} />
-								<span>Sort ({DROPDOWN_MENU_ITEMS[sortOption].label})</span>
-							</button>
-
-							{showDropbox && (
-								<div className={styles.dropdownMenu}>
-									{DROPDOWN_MENU_ITEMS.map((item, index) => (
-										<label
-											htmlFor={`option${index}`}
-											className={styles.radioLabel}
-											key={index}>
-											<input
-												className={styles.radioInput}
-												type="radio"
-												id={`option${index}`}
-												value={index}
-												checked={sortOption == index}
-												onChange={handleOptionChange}
-											/>
-											<span className={styles.customRadio} />
-											<span style={{ marginLeft: "16px" }}>{item.label}</span>
-										</label>
-									))}
-								</div>
-							)}
+				<div>
+					<div className={styles.searchBarSortWrapper}>
+						<div
+							className={styles.searchBarSortContainer}
+							style={{ marginRight: showResults ? "30px" : "" }}>
+							<SearchBar
+								onSearchQuery={handleSearchQuery}
+								onClearSearchQuery={handleClearSearchQuery}
+								setShowResults={setShowResults}
+							/>
 						</div>
+						{!showResults && (
+							<div className={styles.sortWrapper} ref={wrapperRef}>
+								<div className={styles.sortContainer}>
+									<div className={styles.dropdownWrapper}>
+										<button
+											className={styles.sortButton}
+											onClick={() => setShowDropbox(!showDropbox)}>
+											<SortIcon style={{ margin: "auto" }} />
+											<span>
+												Sort ({DROPDOWN_MENU_ITEMS[sortOption].label})
+											</span>
+										</button>
+
+										{showDropbox && (
+											<div className={styles.dropdownMenu}>
+												{DROPDOWN_MENU_ITEMS.map((item, index) => (
+													<label
+														htmlFor={`option${index}`}
+														className={styles.radioLabel}
+														key={index}>
+														<input
+															className={styles.radioInput}
+															type="radio"
+															id={`option${index}`}
+															value={index}
+															checked={sortOption == index}
+															onChange={handleOptionChange}
+														/>
+														<span className={styles.customRadio} />
+														<span style={{ marginLeft: "16px" }}>
+															{item.label}
+														</span>
+													</label>
+												))}
+											</div>
+										)}
+									</div>
+								</div>
+							</div>
+						)}
 					</div>
 				</div>
-				{sortOption != 3 && (
-					<h1 style={{ textAlign: "center", fontSize: "40px" }}>
-						{" "}
-						Top 3 Starkpills
-					</h1>
+				{showResults ? null : (
+					<>
+						{sortOption != 3 && (
+							<h1
+								style={{
+									textAlign: "center",
+									fontSize: "40px",
+									marginTop: "-35px",
+								}}>
+								{" "}
+								Top 3 Starkpills
+							</h1>
+						)}
+						<div className={styles.top3Container}>
+							{sortOption != 3 &&
+								tokenIds
+									.slice(0, 3)
+									.map((token: any, index: number) => (
+										<StarkPillCard
+											tokenId={token.id}
+											ownerAddress={token.owner.address}
+											mintPrice={token.metadata.mintPrice}
+											imageUrl={token.metadata.imageUrl}
+											rank={index + 1}
+											key={index}
+											fame={token.metadata.fame}
+										/>
+									))}
+						</div>
+						<h1
+							style={
+								sortOption === 3
+									? {
+											textAlign: "center",
+											marginTop: "-1rem",
+											fontSize: "40px",
+									  }
+									: { textAlign: "center", marginTop: "5rem", fontSize: "40px" }
+							}>
+							Starkpills
+						</h1>
+						<div className={styles.cardContainer}>
+							{sortOption != 3
+								? tokenIds
+										.slice(3)
+										.map((token: any, index: number) => (
+											<StarkPillCard
+												tokenId={token.id}
+												ownerAddress={token.owner.address}
+												mintPrice={token.metadata.mintPrice}
+												imageUrl={token.metadata.imageUrl}
+												key={index}
+												rank={index + 4}
+												fame={token.metadata.fame}
+											/>
+										))
+								: tokenIds.map((token: any, index: number) => (
+										<StarkPillCard
+											tokenId={token.id}
+											ownerAddress={token.owner.address}
+											mintPrice={token.metadata.mintPrice}
+											imageUrl={token.metadata.imageUrl}
+											key={index}
+											rank={index + 4}
+											fame={token.metadata.fame}
+										/>
+								  ))}
+						</div>
+					</>
 				)}
-				<div className={styles.top3Container}>
-					{sortOption != 3 &&
-						tokenIds
-							.slice(0, 3)
-							.map((token: any, index: number) => (
-								<StarkPillCard
-									tokenId={token.id}
-									ownerAddress={token.owner.address}
-									mintPrice={token.metadata.mintPrice}
-									imageUrl={token.metadata.imageUrl}
-									rank={index + 1}
-									key={index}
-									fame={token.metadata.fame}
-								/>
-							))}
-				</div>
-				<h1
-					style={
-						sortOption === 3
-							? { textAlign: "center", marginTop: "-1rem", fontSize: "40px" }
-							: { textAlign: "center", marginTop: "5rem", fontSize: "40px" }
-					}>
-					Starkpills
-				</h1>
-				<div className={styles.cardContainer}>
-					{sortOption != 3
-						? tokenIds
-								.slice(3)
-								.map((token: any, index: number) => (
-									<StarkPillCard
-										tokenId={token.id}
-										ownerAddress={token.owner.address}
-										mintPrice={token.metadata.mintPrice}
-										imageUrl={token.metadata.imageUrl}
-										key={index}
-										rank={index + 4}
-										fame={token.metadata.fame}
-									/>
-								))
-						: tokenIds.map((token: any, index: number) => (
-								<StarkPillCard
-									tokenId={token.id}
-									ownerAddress={token.owner.address}
-									mintPrice={token.metadata.mintPrice}
-									imageUrl={token.metadata.imageUrl}
-									key={index}
-									rank={index + 4}
-									fame={token.metadata.fame}
-								/>
-						  ))}
-				</div>
 			</div>
+
 			{showButton &&
 				!reduxState.imageModalShown &&
 				!reduxState.editPillModalShown && (
