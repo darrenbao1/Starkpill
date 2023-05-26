@@ -126,7 +126,7 @@ export default function Cabinet() {
 											onClick={() => setShowDropbox(!showDropbox)}>
 											<SortIcon style={{ margin: "auto" }} />
 											<span>
-												Sort asdf({DROPDOWN_MENU_ITEMS[sortOption].label})
+												Sort ({DROPDOWN_MENU_ITEMS[sortOption].label})
 											</span>
 										</button>
 
