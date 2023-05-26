@@ -125,8 +125,6 @@ export async function getRedemptionSignature(
 	contract_address: string,
 	token_id: number
 ) {
-	console.log("contract address: ", contract_address);
-	console.log("token id: ", token_id);
 	//generate hash with NFT contract address, NFT token id, and secret
 	const hash = Web3.utils.soliditySha3(
 		{ t: "uint256", v: contract_address },
