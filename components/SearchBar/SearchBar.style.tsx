@@ -98,8 +98,8 @@ export const SearchResultsContainer = styled.div`
 	@media (max-width: 376px) {
 		overflow-y: scroll;
 		bottom: 0px;
-		top: 240px;
-		margin-top: 40px;
+		top: 96px;
+
 		height: fit-content;
 	}
 `;
@@ -122,6 +122,9 @@ export const Header = styled.div`
 	p {
 		font-size: 24px;
 		line-height: 32.5px;
+	}
+	@media (max-width: 376px) {
+		margin-top: 100px;
 	}
 `;
 
