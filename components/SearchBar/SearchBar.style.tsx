@@ -93,7 +93,7 @@ export const SearchResultsContainer = styled.div`
 
 	@media (max-width: 490px) {
 		margin-top: 100px;
-		bottom: 120px;
+		bottom: 31px;
 	}
 	@media (max-width: 376px) {
 		bottom: 0px;
