@@ -32,7 +32,7 @@ export default function NftOwned() {
 	const router = useRouter();
 	const { project } = router.query;
 	const projectString = typeof project === "string" ? project : "";
-
+	const [selectedTokenId, setSelectedTokenId] = useState(0);
 	const projectObj = COLLAB_PROJECTS.find(
 		(project) => project.contract_address === projectString
 	);
@@ -97,7 +97,10 @@ export default function NftOwned() {
 									<NftCard
 										nftData={nft}
 										key={index}
-										onClick={() => setShowTraitModal(true)}
+										onClick={() => {
+											setShowTraitModal(true);
+											setSelectedTokenId(Number(nft.collectionTokenId));
+										}}
 									/>
 								))}
 							</CardContainer>
@@ -128,6 +131,7 @@ export default function NftOwned() {
 					project={projectObj!}
 					showTraitModal={showTraitModal}
 					handleClose={() => setShowTraitModal(false)}
+					nftTokenId={selectedTokenId}
 				/>
 			)}
 		</>

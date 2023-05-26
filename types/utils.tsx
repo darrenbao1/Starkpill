@@ -1,7 +1,14 @@
 import { gql, useQuery } from "@apollo/client";
-import { BACKGROUND, FACE_TRAITS, GET_VOTING_POWER_QUERY } from "./constants";
+import {
+	BACKGROUND,
+	FACE_TRAITS,
+	GET_VOTING_POWER_QUERY,
+	STARKPILL_CONTRACT_ADDRESS,
+} from "./constants";
 import { Trait } from "./interfaces";
 import client from "../apollo-client";
+import Web3 from "web3";
+import BN from "bn.js";
 export function shortenAddress(string: string) {
 	if (string === undefined) return "unknown";
 	return string.substring(0, 4) + "..." + string.substring(string.length - 4);
@@ -112,4 +119,51 @@ export async function getVotingPower(walletAddress: String) {
 		console.log(error);
 	}
 	return votingPower;
+}
+
+export async function getRedemptionSignature(
+	contract_address: string,
+	token_id: number
+) {
+	console.log("contract address: ", contract_address);
+	console.log("token id: ", token_id);
+	//generate hash with NFT contract address, NFT token id, and secret
+	const hash = Web3.utils.soliditySha3(
+		{ t: "uint256", v: contract_address },
+		{ t: "uint256", v: new BN(token_id) },
+		{ t: "uint256", v: "0x2114" }
+	);
+	const msg = {
+		domain: {
+			name: "get testpilled",
+			version: "1",
+			verifyingContract: STARKPILL_CONTRACT_ADDRESS,
+		},
+		message: {
+			testPillClaimHash: hash,
+		},
+		primaryType: "Payload",
+		types: {
+			domain: [
+				{ name: "name", type: "string" },
+				{ name: "version", type: "string" },
+				{ name: "verifyingContract", type: "address" },
+			],
+			Payload: [{ name: "testPillClaimHash", type: "uint256" }],
+		},
+	};
+	try {
+		const accounts = await window.ethereum.request({
+			method: "eth_requestAccounts",
+		});
+		const signature = await window.ethereum.request({
+			method: "eth_signTypedData_v4",
+			from: accounts[0],
+			params: [accounts[0], JSON.stringify(msg)],
+		});
+		return signature;
+	} catch (error) {
+		console.log("signing error");
+		return "error";
+	}
 }

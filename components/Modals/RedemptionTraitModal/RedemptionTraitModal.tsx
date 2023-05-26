@@ -11,13 +11,15 @@ import {
 	HeaderText,
 } from "./RedemptionTraitModal.styles";
 import { CollabProject } from "../../../types/interfaces";
+import { getRedemptionSignature } from "../../../types/utils";
 
 export const RedemptionTraitModal = (props: {
 	project: CollabProject;
 	showTraitModal: boolean;
 	handleClose: () => void;
+	nftTokenId: number;
 }) => {
-	if (!props.showTraitModal) {
+	if (!props.showTraitModal || props.nftTokenId === 0) {
 		return null;
 	}
 
@@ -35,7 +37,15 @@ export const RedemptionTraitModal = (props: {
 					<img src={FACE_TRAITS[props.project.redeemId].marketViewLink} />
 				</ImageContainer>
 				{/* OnClick to redeem here  */}
-				<RedeemButton>Redeem</RedeemButton>
+				<RedeemButton
+					onClick={() =>
+						getRedemptionSignature(
+							props.project.contract_address,
+							props.nftTokenId
+						)
+					}>
+					Redeem
+				</RedeemButton>
 			</TraitModal>
 		</ModalContainer>
 	);
