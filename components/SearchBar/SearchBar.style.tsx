@@ -81,7 +81,7 @@ export const SearchResultsContainer = styled.div`
 
 	justify-content: center;
 	align-items: center;
-	overflow-y: scroll;
+	overflow: scroll;
 	background: none;
 	z-index: 3;
 	@media (max-width: 540px) {
