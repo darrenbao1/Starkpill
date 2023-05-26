@@ -70,7 +70,10 @@ export const Cross = styled(Image)<SearchBarProps>`
 		cursor: pointer;
 	}
 `;
-
+export const SearchResultsWrapper = styled.div`
+	display: flex;
+	overflow-y: scroll;
+`;
 export const SearchResultsContainer = styled.div`
 	display: flex;
 	position: fixed;

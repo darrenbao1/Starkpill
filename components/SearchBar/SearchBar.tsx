@@ -15,6 +15,7 @@ import {
 	SearchQueryText,
 	SearchResultsContainer,
 	SearchResultsModal,
+	SearchResultsWrapper,
 	StarkpillCardContainer,
 } from "./SearchBar.style";
 import SearchIcon from "../../public/png/SearchInputIcon.png";
@@ -86,37 +87,39 @@ const SearchBar: React.FC<SearchBarProps> = ({
 				/>
 			</SearchBarContainer>
 			{searchQuery !== 0 && (
-				<SearchResultsContainer>
-					<SearchResultsModal>
-						{loading && <p>Loading...</p>}
-						{data && data.token && (
-							<>
-								<Header>
-									<p>Search Results for &ldquo;{searchQuery}&ldquo;</p>
-								</Header>
-								<StarkpillCardContainer>
-									<StarkPillCard
-										ownerAddress={data.token.owner.address}
-										imageUrl={data.token.metadata.imageUrl}
-										mintPrice={data.token.metadata.mintPrice}
-										tokenId={data.token.id}
-										fame={data.token.metadata.fame}
-										rank={0}
-									/>
-								</StarkpillCardContainer>
-							</>
-						)}
-					</SearchResultsModal>
-					{!data && !loading && (
-						<NoResults>
-							<SadFace src={SadFaceIcon} alt=""></SadFace>
-							<p>Sorry, we could not find any results for</p>
+				<SearchResultsWrapper>
+					<SearchResultsContainer>
+						<SearchResultsModal>
+							{loading && <p>Loading...</p>}
+							{data && data.token && (
+								<>
+									<Header>
+										<p>Search Results for &ldquo;{searchQuery}&ldquo;</p>
+									</Header>
+									<StarkpillCardContainer>
+										<StarkPillCard
+											ownerAddress={data.token.owner.address}
+											imageUrl={data.token.metadata.imageUrl}
+											mintPrice={data.token.metadata.mintPrice}
+											tokenId={data.token.id}
+											fame={data.token.metadata.fame}
+											rank={0}
+										/>
+									</StarkpillCardContainer>
+								</>
+							)}
+						</SearchResultsModal>
+						{!data && !loading && (
+							<NoResults>
+								<SadFace src={SadFaceIcon} alt=""></SadFace>
+								<p>Sorry, we could not find any results for</p>
 
-							<SearchQueryText>&ldquo;{searchQuery}&ldquo;</SearchQueryText>
-							<p>Please try another search</p>
-						</NoResults>
-					)}
-				</SearchResultsContainer>
+								<SearchQueryText>&ldquo;{searchQuery}&ldquo;</SearchQueryText>
+								<p>Please try another search</p>
+							</NoResults>
+						)}
+					</SearchResultsContainer>
+				</SearchResultsWrapper>
 			)}
 		</>
 	);
