@@ -23,6 +23,10 @@ export const SearchBarContainer = styled.div`
 		justify-content: center;
 		padding-left: 92px;
 	}
+
+	@media (max-width: 390px) {
+		padding-left: 67px;
+	}
 `;
 
 export const SearchBarInput = styled.input`
@@ -74,20 +78,28 @@ export const SearchResultsContainer = styled.div`
 	bottom: 550px;
 	margin-top: -10rem;
 	width: 100%;
-	
+	overflow: auto;
+	::-webkit-scrollbar-thumb {
+		background-color: orange;
+	}
 	justify-content: center;
 	align-items: center;
-    
+
 	background: none;
 	z-index: 3;
-    @media (max-width: 540px) {
-	margin-top: 1rem;
-	
+	@media (max-width: 540px) {
+		margin-top: 1rem;
 	}
 
 	@media (max-width: 490px) {
 		margin-top: 100px;
-		bottom:120px;
+		bottom: 120px;
+	}
+	@media (max-width: 376px) {
+		bottom: 0px;
+		top: 156px;
+		margin-top: 40px;
+	}
 `;
 
 export const SearchResultsModal = styled.div``;
