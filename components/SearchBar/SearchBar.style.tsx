@@ -96,6 +96,7 @@ export const SearchResultsContainer = styled.div`
 		bottom: 0px;
 		top: 156px;
 		margin-top: 40px;
+		height: fit-content;
 	}
 `;
 
