@@ -163,3 +163,9 @@ export const StarkpillCardContainer = styled.div`
 	align-items: center;
 	width: 100%;
 `;
+export const TestingContainer = styled.div`
+	display: flex;
+	position: fixed;
+	top: 100px;
+	height: calc(100vh - 217px);
+`;

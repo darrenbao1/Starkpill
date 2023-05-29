@@ -17,6 +17,7 @@ import {
 	SearchResultsModal,
 	SearchResultsWrapper,
 	StarkpillCardContainer,
+	TestingContainer,
 } from "./SearchBar.style";
 import SearchIcon from "../../public/png/SearchInputIcon.png";
 import SearchCross from "../../public/png/SearchInputClose.png";
@@ -69,7 +70,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
 	useEffect(() => {}, [data]);
 
 	return (
-		<>
+		<TestingContainer>
 			<SearchBarContainer>
 				<Icon src={SearchIcon} alt="SearchIcon" />
 				<SearchBarInput
@@ -121,7 +122,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
 					</SearchResultsContainer>
 				</SearchResultsWrapper>
 			)}
-		</>
+		</TestingContainer>
 	);
 };
 
