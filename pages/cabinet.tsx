@@ -105,7 +105,7 @@ export default function Cabinet() {
 			className={`container ${sharedBackgroundStyles.extendedBackground}`}
 			onScroll={(e) => handleScroll(e)}
 			ref={scrollTopRef}
-			style={{ overflow: "scroll" }}>
+			style={{ overflowY: "scroll" }}>
 			<div className="contentContainer">
 				<div>
 					<div className={styles.searchBarSortWrapper}>
