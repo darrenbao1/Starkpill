@@ -169,7 +169,7 @@ export default function Cabinet() {
 									marginTop: "-35px",
 								}}>
 								{" "}
-								Top 3 Starkpills asd
+								Top 3 Starkpills
 							</h1>
 						)}
 						<div className={styles.top3Container}>
