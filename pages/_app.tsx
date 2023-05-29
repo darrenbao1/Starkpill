@@ -18,8 +18,10 @@ import {
 import { Web3Modal } from "@web3modal/react";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { arbitrum, mainnet, polygon } from "wagmi/chains";
+import { get } from "lodash";
+import { getWeb3ConnectId } from "../types/utils";
 const chains = [arbitrum, mainnet, polygon];
-const projectId = "6e1e7c1603706f3687543b2cb255b86c";
+const projectId = getWeb3ConnectId();
 
 const { publicClient } = configureChains(chains, [w3mProvider({ projectId })]);
 const wagmiConfig = createConfig({

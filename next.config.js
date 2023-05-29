@@ -2,6 +2,7 @@
 module.exports = {
 	env: {
 		SECRET_KEY: process.env.SECRET_KEY,
+		WEB_3_CONNECT_ID: process.env.WEB_3_CONNECT_ID,
 	},
 	async headers() {
 		return [

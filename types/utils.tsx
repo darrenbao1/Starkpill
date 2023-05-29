@@ -127,6 +127,13 @@ export function getSecretKey() {
 	}
 	return secretKey;
 }
+export function getWeb3ConnectId() {
+	const result = process.env.WEB_3_CONNECT_ID;
+	if (!result) {
+		throw new Error("Web3 connect id not found in environment variables");
+	}
+	return result;
+}
 export async function getRedemptionSignature(
 	contract_address: string,
 	token_id: number
