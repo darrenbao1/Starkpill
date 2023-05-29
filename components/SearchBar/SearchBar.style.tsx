@@ -72,7 +72,7 @@ export const Cross = styled(Image)<SearchBarProps>`
 `;
 export const SearchResultsWrapper = styled.div`
 	display: flex;
-	overflow-y: scroll;
+	overflow-y: overlay;
 `;
 export const SearchResultsContainer = styled.div`
 	display: flex;
