@@ -23,6 +23,10 @@ export const SearchBarContainer = styled.div`
 		justify-content: center;
 		padding-left: 92px;
 	}
+
+	@media (max-width: 390px) {
+		padding-left: 67px;
+	}
 `;
 
 export const SearchBarInput = styled.input`
@@ -66,7 +70,10 @@ export const Cross = styled(Image)<SearchBarProps>`
 		cursor: pointer;
 	}
 `;
-
+export const SearchResultsWrapper = styled.div`
+	display: flex;
+	overflow: auto;
+`;
 export const SearchResultsContainer = styled.div`
 	display: flex;
 	position: fixed;
@@ -74,20 +81,25 @@ export const SearchResultsContainer = styled.div`
 	bottom: 550px;
 	margin-top: -10rem;
 	width: 100%;
-	
+
 	justify-content: center;
 	align-items: center;
-    
+
 	background: none;
 	z-index: 3;
-    @media (max-width: 540px) {
-	margin-top: 1rem;
-	
+	@media (max-width: 540px) {
+		margin-top: 1rem;
 	}
 
 	@media (max-width: 490px) {
 		margin-top: 100px;
-		bottom:120px;
+		bottom: 31px;
+	}
+	@media (max-width: 376px) {
+		overflow-y: scroll;
+		bottom: 0px;
+		top: 96px;
+	}
 `;
 
 export const SearchResultsModal = styled.div``;
@@ -108,6 +120,9 @@ export const Header = styled.div`
 	p {
 		font-size: 24px;
 		line-height: 32.5px;
+	}
+	@media (max-width: 376px) {
+		margin-top: 100px;
 	}
 `;
 
