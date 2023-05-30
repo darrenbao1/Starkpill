@@ -15,7 +15,7 @@ export const SearchBarContainer = styled.div`
 	align-items: center;
 	padding: 8px 0 8px 12px;
 	margin-top: 1rem;
-	z-index: 3;
+	z-index: 1;
 	@media (max-width: 540px) {
 		width: 100%;
 		max-width: 100%;
