@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 // import { StarkPillCard } from "../components/StarkPillCard"; <<Previous StarkPillCard
 import { StarkPillCard } from "../components/StarkPillCard/StarkPillCard";
 import styles from "../styles/cabinet.module.css";
@@ -8,7 +8,21 @@ import SortIcon from "../public/svgs/sortIcon.svg";
 import { DROPDOWN_MENU_ITEMS, handleScrollToTop } from "../types/constants";
 import { BackToTopButton } from "../components/BackToTopButton";
 import { useSelector } from "react-redux";
-import SearchBar from "../components/SearchBar/SearchBar";
+import { debounce } from "lodash";
+import { useLazyQuery } from "@apollo/client";
+import { GET_TOKEN_BY_ID } from "../types/constants";
+import SearchBar2 from "../components/SearchBar2/SearchBar2";
+import SadFaceIcon from "../public/png/system-uicons_face-sad.png";
+import {
+	Header,
+	NoResults,
+	SadFace,
+	SearchQueryText,
+	SearchResultsContainer,
+	SearchResultsModal,
+	SearchResultsWrapper,
+	StarkpillCardContainer,
+} from "../components/SearchBar2/SearchBar2.styles";
 
 export default function Cabinet() {
 	const offsetIncrement = 20; //number of pills per load
@@ -21,6 +35,27 @@ export default function Cabinet() {
 	const [showButton, setShowButton] = useState(false);
 	const reduxState = useSelector((state: any) => state.refetch);
 	const [showResults, setShowResults] = useState(false);
+	const [searchQueryResult, setSearchQueryResult] = useState<any[]>([]); //array of tokenIds
+	const [searchQuery, setSearchQuery] = useState(0);
+	const [searchToken, { loading: searchLoading, data: searchData }] =
+		useLazyQuery(GET_TOKEN_BY_ID, {
+			variables: { tokenId: searchQuery },
+		});
+	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		console.log(event.target.value);
+		setSearchQuery(Number(event.target.value));
+		setShowResults(true);
+
+		searchToken({ variables: { tokenId: Number(event.target.value) } });
+
+		if (event.target.value === "") {
+			setShowResults(false);
+		}
+	};
+	const debouncedHandleInputChange = useCallback(
+		debounce(handleInputChange, 300),
+		[]
+	);
 	const handleSearchQuery = (query: number) => {
 		console.log("Search query:", query);
 		setShowResults(true);
@@ -48,7 +83,7 @@ export default function Cabinet() {
 	const handleScroll = async (e: any) => {
 		const bottom =
 			e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
-		if (bottom && !loading && !loadedAllPills) {
+		if (bottom && !loading && !loadedAllPills && !showResults) {
 			setLoading(true);
 			let i = offsetAmount + offsetIncrement;
 			await fetchMore({
@@ -111,10 +146,14 @@ export default function Cabinet() {
 						<div
 							className={styles.searchBarSortContainer}
 							style={{ marginRight: showResults ? "30px" : "" }}>
-							<SearchBar
+							<SearchBar2
 								onSearchQuery={handleSearchQuery}
 								onClearSearchQuery={handleClearSearchQuery}
 								setShowResults={setShowResults}
+								setSearchQueryResult={setSearchQueryResult}
+								onChange={debouncedHandleInputChange}
+								searchQuery={searchQuery}
+								setSearchQuery={setSearchQuery}
 							/>
 						</div>
 						{!showResults && (
@@ -159,7 +198,47 @@ export default function Cabinet() {
 						)}
 					</div>
 				</div>
-				{showResults ? null : (
+				{showResults ? (
+					<>
+						{searchQuery !== 0 && (
+							<SearchResultsWrapper>
+								<SearchResultsContainer>
+									<SearchResultsModal>
+										{searchLoading && <p>Loading...</p>}
+										{searchData && searchData.token && (
+											<>
+												<Header>
+													<p>Search Results for &ldquo;{searchQuery}&ldquo;</p>
+												</Header>
+												<StarkpillCardContainer>
+													<StarkPillCard
+														ownerAddress={searchData.token.owner.address}
+														imageUrl={searchData.token.metadata.imageUrl}
+														mintPrice={searchData.token.metadata.mintPrice}
+														tokenId={searchData.token.id}
+														fame={searchData.token.metadata.fame}
+														rank={0}
+													/>
+												</StarkpillCardContainer>
+											</>
+										)}
+									</SearchResultsModal>
+									{!searchData && !searchLoading && (
+										<NoResults>
+											<SadFace src={SadFaceIcon} alt="" />
+											<p>Sorry, we could not find any results for</p>
+
+											<SearchQueryText>
+												&ldquo;{searchQuery}&ldquo;
+											</SearchQueryText>
+											<p>Please try another search</p>
+										</NoResults>
+									)}
+								</SearchResultsContainer>
+							</SearchResultsWrapper>
+						)}
+					</>
+				) : (
 					<>
 						{sortOption != 3 && (
 							<h1
@@ -168,7 +247,6 @@ export default function Cabinet() {
 									fontSize: "40px",
 									marginTop: "-35px",
 								}}>
-								{" "}
 								Top 3 Starkpills
 							</h1>
 						)}
