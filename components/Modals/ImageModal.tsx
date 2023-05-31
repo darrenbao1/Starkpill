@@ -255,7 +255,6 @@ export const ImageModal = (props: Props) => {
 										step={1}
 										type="number"
 										className={styles.textField}
-										value={fameValue}
 										onChange={(e) => handleManualInput(e)}
 										ref={inputRef}
 										placeholder="0"></input>
