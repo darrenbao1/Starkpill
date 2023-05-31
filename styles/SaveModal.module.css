@@ -78,6 +78,9 @@
 	border-radius: 6px;
 	border: 1px solid white;
 }
+.saveButton:hover {
+	cursor: pointer;
+}
 .selectionContainer {
 	display: grid;
 	--grid-layout-gap: 10px;

@@ -108,6 +108,9 @@
 	border-radius: 6px;
 	border: 1px solid white;
 }
+.saveButton:hover {
+	cursor: pointer;
+}
 @media screen and (max-width: 750px) {
 	.contentContainer {
 		align-items: center;

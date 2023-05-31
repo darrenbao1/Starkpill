@@ -141,6 +141,10 @@
 	color: #ffffff;
 	border: 2px solid #ffffff;
 }
+
+.mintButton:hover {
+	cursor: pointer;
+}
 .hoverContainer {
 	position: relative;
 }
