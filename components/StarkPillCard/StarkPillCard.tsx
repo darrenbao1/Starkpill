@@ -28,6 +28,7 @@ import {
 	MenuOptionsWrapper,
 	CardInnerContainer,
 } from "./StarkPillCard.styles";
+import { TxHistoryModal } from "../Modals/TxHistory/TxHistoryModal";
 
 //INTERFACES↓↓↓
 interface Props {
@@ -61,6 +62,7 @@ export const StarkPillCard = (props: Props) => {
 	} = props;
 
 	//STATES↓↓↓
+	const [showTxHistoryModal, setShowTxHistoryModal] = useState(false);
 	const [showModal, setShowModal] = useState(false);
 	const [showImageModal, setShowImageModal] = useState(false);
 	const [menuId, setMenuId] = useState<string | null>(null);
@@ -218,6 +220,13 @@ export const StarkPillCard = (props: Props) => {
 								}}>
 								<ExternalLinksIcon /> Mint Square{" "}
 							</p>
+							{/* <p
+								onClick={() => {
+									setShowTxHistoryModal(true);
+									setMenuId(null);
+								}}>
+								<ExternalLinksIcon /> Tx History{" "}
+							</p> */}
 						</MenuOptions>
 					</MenuOptionsWrapper>
 				)}
@@ -246,6 +255,11 @@ export const StarkPillCard = (props: Props) => {
 					ownerAddress={ownerAddress}
 				/>
 			)}
+			{/* <TxHistoryModal
+				showTxHistoryModal={showTxHistoryModal}
+				tokenId={Number(tokenId)}
+				close={() => setShowTxHistoryModal(false)}
+			/> */}
 		</>
 	);
 };

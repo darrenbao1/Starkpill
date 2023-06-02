@@ -43,7 +43,7 @@ export const USERPAGES: Page[] = [
 
 export const STARKPILL_API_ENDPOINT =
 	"https://orca-app-c3df4.ondigitalocean.app/starkpill-api2/graphql";
-const LINK_HASH = "v61bKgMreylGfDMjffAhrXvHv9TK-Fi18V4U8j-9Q5I";
+const LINK_HASH = "3tsgIKE0d0F-56pDXRpm2E7a-_c-IfUJB7wyhwDhr9o";
 export const IMAGE_ENDPOINT =
 	"https://arweave.net/" + LINK_HASH + "/TestPill/pill_";
 const FACE_TRAIT_LINK = "https://arweave.net/" + LINK_HASH + "/PillIngredient/";
@@ -229,6 +229,63 @@ export const FACE_TRAITS: Trait[] = [
 		link: FACE_TRAIT_LINK + "ing_028.png",
 		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_028.png",
 	},
+	{
+		id: 29,
+		name: "Apibara",
+		link: FACE_TRAIT_LINK + "ing_029.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_029.png",
+	},
+	{
+		id: 30,
+		name: "ARC Cap",
+		link: FACE_TRAIT_LINK + "ing_030.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_030.png",
+		isHidden: true,
+	},
+	{
+		id: 31,
+		name: "Thetanuts",
+		link: FACE_TRAIT_LINK + "ing_031.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_031.png",
+	},
+	{
+		id: 32,
+		name: "Paccan",
+		link: FACE_TRAIT_LINK + "ing_032.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_032.png",
+	},
+	{
+		id: 33,
+		name: "Elite Kabuto",
+		link: FACE_TRAIT_LINK + "ing_033.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_033.png",
+		isHidden: true,
+	},
+	{
+		id: 34,
+		name: "Nurstar",
+		link: FACE_TRAIT_LINK + "ing_034.png",
+	},
+	{
+		id: 35,
+		name: "Radbro",
+		link: FACE_TRAIT_LINK + "ing_035.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_035.png",
+		isHidden: true,
+	},
+	{
+		id: 36,
+		name: "Milady Spiral Eyes",
+		link: FACE_TRAIT_LINK + "ing_036.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_036.png",
+	},
+	{
+		id: 37,
+		name: "Milady Trucket Hat",
+		link: FACE_TRAIT_LINK + "ing_037.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_037.png",
+		isHidden: true,
+	},
 ];
 const BACKGROUND_LINK =
 	"https://arweave.net/" + LINK_HASH + "/PillBackground/bg_";
@@ -328,6 +385,36 @@ export const BACKGROUND: Trait[] = [
 		id: 18,
 		name: "Impenetrable Defense",
 		link: BACKGROUND_LINK + "018.png",
+	},
+	{
+		id: 19,
+		name: "Briq Builder",
+		link: BACKGROUND_LINK + "019.png",
+	},
+	{
+		id: 20,
+		name: "Radcat XYZ",
+		link: BACKGROUND_LINK + "020.png",
+	},
+	{
+		id: 21,
+		name: "Tropical Paradise",
+		link: BACKGROUND_LINK + "021.png",
+	},
+	{
+		id: 22,
+		name: "Synthwave Sunset",
+		link: BACKGROUND_LINK + "022.png",
+	},
+	{
+		id: 23,
+		name: "Fantasy Forest",
+		link: BACKGROUND_LINK + "023.png",
+	},
+	{
+		id: 24,
+		name: "Neon City Night",
+		link: BACKGROUND_LINK + "024.png",
 	},
 ];
 export const FAQ_QUESTIONS: FAQ[] = [
@@ -469,6 +556,32 @@ export const GET_TOKEN_BY_ID = gql`
 	}
 `;
 
+export const GET_TXHISTORY_BY_TOKENID = gql`
+	query Token($tokenId: Int!) {
+		token(tokenId: $tokenId) {
+			transactions {
+				transactionType
+				hash
+				timestamp
+				transfer {
+					from {
+						address
+					}
+					to {
+						address
+					}
+				}
+				changeAttribute {
+					newBackground
+					newIngredient
+					oldBackground
+					oldIngredient
+				}
+			}
+		}
+	}
+`;
+
 export const DROPDOWN_MENU_ITEMS = [
 	{
 		id: 0,
@@ -501,25 +614,26 @@ export const COLLAB_PROJECTS: CollabProject[] = [
 		contract_address: "0xf4A7C105CFdc6aaBe9AE65bDF2d0dF0A567A7aDE",
 		name: "ARC Stellar",
 		imageUrl: "/png/arcImage.png",
-		redeemId: 2,
+		redeemIngId: 30,
 	},
 	{
 		contract_address: "0x1D20A51F088492A0f1C57f047A9e30c9aB5C07Ea",
 		name: "WASSIE",
 		imageUrl: "/png/wassies.png",
-		redeemId: 3,
+		redeemIngId: 33,
 	},
 	{
 		contract_address: "0xABCDB5710B88f456fED1e99025379e2969F29610",
 		name: "Radbro",
 		imageUrl: "/png/Radbro.png",
-		redeemId: 4,
+		redeemIngId: 35,
+		redeemBgId: 20,
 	},
 	{
 		contract_address: "0x5Af0D9827E0c53E4799BB226655A1de152A425a5",
 		name: "Milady",
 		imageUrl: "/png/Milady.png",
-		redeemId: 5,
+		redeemIngId: 37,
 	},
 ];
 export const handleScrollToTop = (ref: React.RefObject<any>) => {
