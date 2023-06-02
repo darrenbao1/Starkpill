@@ -109,6 +109,7 @@ export function getRedemptionVariables(
 				walletAddress,
 				collabContractAddress,
 				l1_tokenId,
+				0,
 				signature_len,
 				signature.v,
 				signature.rLow,
