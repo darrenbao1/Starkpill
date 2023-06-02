@@ -5,7 +5,7 @@ import {
 	STARKPILL_CONTRACT_ADDRESS,
 	STARKETH_CONTRACT_ADDRESS,
 } from "../types/constants";
-import { Trait } from "../types/interfaces";
+import { Trait, decodedSignature } from "../types/interfaces";
 export function useStarkPillContract() {
 	return useContract({
 		abi: starkpillAbi as Abi,
@@ -92,4 +92,31 @@ export function getFameOrDefameVariables(
 		});
 	}
 	return fameOrDefameTransactionVariables;
+}
+
+export function getRedemptionVariables(
+	walletAddress: string,
+	collabContractAddress: string,
+	l1_tokenId: number,
+	signature: decodedSignature
+) {
+	const signature_len = 5;
+	const redemptionTransactionVariables = [
+		{
+			contractAddress: STARKPILL_CONTRACT_ADDRESS,
+			entrypoint: "claimL1Trait",
+			calldata: [
+				walletAddress,
+				collabContractAddress,
+				l1_tokenId,
+				signature_len,
+				signature.v,
+				signature.rLow,
+				signature.rHigh,
+				signature.sLow,
+				signature.sHigh,
+			],
+		},
+	];
+	return redemptionTransactionVariables;
 }

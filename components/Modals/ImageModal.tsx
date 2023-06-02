@@ -85,7 +85,7 @@ export const ImageModal = (props: Props) => {
 	//Links to owner address when clicked
 	const handleClickLink = () => {
 		window.open(
-			`https://starkscan.co/contract/${props.ownerAddress}`,
+			`https://testnet.starkscan.co/contract/${props.ownerAddress}`,
 			"_blank"
 		);
 	};

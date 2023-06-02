@@ -18,6 +18,7 @@ export const TraitCard = (props: {
 }) => {
 	//destructure props
 	const { trait, isSelected, onSelect, index, isMintingPage } = props;
+	if (trait.isHidden) return null;
 	return (
 		<TraitCardWrapper isSelected={isSelected}>
 			<TraitCardContainer isSelected={isSelected}>

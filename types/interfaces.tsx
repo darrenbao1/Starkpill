@@ -13,6 +13,7 @@ export interface Trait {
 	premiumPrice?: number;
 	quantityLeft?: number;
 	marketViewLink?: string;
+	isHidden?: boolean;
 }
 export interface FAQ {
 	question: string;
@@ -37,5 +38,14 @@ export interface CollabProject {
 	contract_address: string;
 	name: string;
 	imageUrl: string;
-	redeemId: number;
+	redeemIngId: number;
+	redeemBgId?: number;
+}
+
+export interface decodedSignature {
+	v: number;
+	rLow: string;
+	rHigh: string;
+	sLow: string;
+	sHigh: string;
 }

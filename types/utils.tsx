@@ -1,11 +1,11 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql } from "@apollo/client";
 import {
 	BACKGROUND,
 	FACE_TRAITS,
 	GET_VOTING_POWER_QUERY,
 	STARKPILL_CONTRACT_ADDRESS,
 } from "./constants";
-import { Trait } from "./interfaces";
+import { Trait, decodedSignature } from "./interfaces";
 import client from "../apollo-client";
 import Web3 from "web3";
 import BN from "bn.js";
@@ -13,6 +13,7 @@ export function shortenAddress(string: string) {
 	if (string === undefined) return "unknown";
 	return string.substring(0, 4) + "..." + string.substring(string.length - 4);
 }
+
 export function shortAddressForModal(string: string) {
 	if (string === undefined) return "unknown";
 	return string.substring(0, 23) + "..." + string.substring(string.length - 4);
@@ -149,17 +150,15 @@ export async function getRedemptionSignature(
 		domain: {
 			name: "get testpilled",
 			version: "1",
-			verifyingContract: STARKPILL_CONTRACT_ADDRESS,
 		},
 		message: {
 			testPillClaimHash: hash,
 		},
 		primaryType: "Payload",
 		types: {
-			domain: [
+			EIP712Domain: [
 				{ name: "name", type: "string" },
 				{ name: "version", type: "string" },
-				{ name: "verifyingContract", type: "address" },
 			],
 			Payload: [{ name: "testPillClaimHash", type: "uint256" }],
 		},
@@ -173,9 +172,35 @@ export async function getRedemptionSignature(
 			from: accounts[0],
 			params: [accounts[0], JSON.stringify(msg)],
 		});
-		return signature;
+
+		return decodeSignature(signature);
 	} catch (error) {
 		console.log("signing error");
 		return "error";
 	}
+}
+
+export function decodeSignature(signature: string): decodedSignature {
+	const decoded = Web3.utils.hexToBytes(signature);
+	const rLow = decoded.slice(0, 16);
+	const rHigh = decoded.slice(16, 32);
+	const sLow = decoded.slice(32, 48);
+	const sHigh = decoded.slice(48, 64);
+	const v = decoded.slice(64);
+	// Convert number arrays to hex strings
+	const rLowHex = Web3.utils.bytesToHex(rLow);
+	const rHighHex = Web3.utils.bytesToHex(rHigh);
+	const sLowHex = Web3.utils.bytesToHex(sLow);
+	const sHighHex = Web3.utils.bytesToHex(sHigh);
+	//minus 27 because jin khai said so.
+	const vHex =
+		(Web3.utils.hexToNumber(Web3.utils.bytesToHex(v)) as number) - 27;
+
+	return {
+		v: vHex,
+		rLow: rLowHex,
+		rHigh: rHighHex,
+		sLow: sLowHex,
+		sHigh: sHighHex,
+	} as decodedSignature;
 }
