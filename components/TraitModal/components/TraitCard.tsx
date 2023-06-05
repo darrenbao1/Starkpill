@@ -7,6 +7,7 @@ import {
 	QuantityLabelContainer,
 	QuantityLabelContent,
 	TraitNameLabel,
+	RedeemLabel,
 } from "./TraitCard.styles";
 import ETHLogo from "../../../public/svgs/ethLogo.svg";
 export const TraitCard = (props: {
@@ -18,10 +19,12 @@ export const TraitCard = (props: {
 }) => {
 	//destructure props
 	const { trait, isSelected, onSelect, index, isMintingPage } = props;
-	if (trait.isHidden) return null;
+	const isOutOfStock = trait.quantityLeft === 0;
 	return (
 		<TraitCardWrapper isSelected={isSelected}>
-			<TraitCardContainer isSelected={isSelected}>
+			<TraitCardContainer
+				isSelected={isSelected}
+				isHidden={trait.isHidden || isOutOfStock}>
 				<TraitCardImage
 					src={trait.marketViewLink ? trait.marketViewLink : trait.link}
 					alt={trait.name}
@@ -35,13 +38,24 @@ export const TraitCard = (props: {
 				)}
 				{trait.quantityLeft && isMintingPage && (
 					<QuantityLabelContainer>
-						<QuantityLabelContent isSelected={isSelected}>
-							{trait.quantityLeft} Left
-						</QuantityLabelContent>
+						{trait.quantityLeft > 0 ? (
+							<QuantityLabelContent isSelected={isSelected}>
+								{trait.quantityLeft} Left
+							</QuantityLabelContent>
+						) : (
+							<RedeemLabel isSelected={isSelected}>Out of stock</RedeemLabel>
+						)}
+					</QuantityLabelContainer>
+				)}
+				{trait.isHidden && (
+					<QuantityLabelContainer>
+						<RedeemLabel isSelected={isSelected}>Only Redeemable</RedeemLabel>
 					</QuantityLabelContainer>
 				)}
 			</TraitCardContainer>
-			<TraitNameLabel isSelected={isSelected}>{trait.name}</TraitNameLabel>
+			<TraitNameLabel isSelected={isSelected} isHidden={trait.isHidden}>
+				{trait.name}
+			</TraitNameLabel>
 		</TraitCardWrapper>
 	);
 };

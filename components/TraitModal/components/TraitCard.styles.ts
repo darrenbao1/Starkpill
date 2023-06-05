@@ -4,6 +4,7 @@ import Image from "next/image";
 interface TraitCardProps {
 	trait?: Trait;
 	isSelected: boolean;
+	isHidden?: boolean;
 }
 export const TraitCardWrapper = styled.div<TraitCardProps>`
 	outline: 1px solid transparent;
@@ -18,6 +19,16 @@ export const TraitCardContainer = styled.div<TraitCardProps>`
 	border-radius: 5px 5px 0 0;
 	${(props) => props.isSelected && "background-color: rgba(0, 0, 0, 0.2);"}
 	${(props) => props.isSelected && "border-bottom: none;"}
+
+	&::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: black;
+		opacity: 0.5;
+		cursor: not-allowed;
+		display: ${(props) => (props.isHidden ? "block" : "none")};
+	}
 `;
 export const TraitCardImage = styled(Image)`
 	border-radius: 5px 5px 0 0;
@@ -63,6 +74,24 @@ export const QuantityLabelContent = styled.div<TraitCardProps>`
 	padding: 5px 10px;
 	${(props) => props.isSelected && "background-color: #9D9D9D;"}
 `;
+
+export const RedeemLabel = styled.div<TraitCardProps>`
+	position: relative;
+	width: fit-content;
+	bottom: 5px;
+	border: 1px solid white;
+	border-radius: 20px;
+	text-align: center;
+	font-family: "Patrick Hand";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 100%;
+	padding: 10px 20px;
+	background: #eecccc;
+	color: #aa0000;
+`;
+
 export const TraitNameLabel = styled.div<TraitCardProps>`
 	position: relative;
 	background-color: ${(props) => props.theme.primaryColor};
@@ -71,6 +100,17 @@ export const TraitNameLabel = styled.div<TraitCardProps>`
 	border-top: 2px solid #f6a787;
 	text-align: center;
 	padding: 7px 0;
+	${(props) => props.isHidden && "border-top: 2px solid grey;"}
 	${(props) => props.isSelected && "border-top: 2px solid #d03b00;"}
 	${(props) => !props.isSelected && "backdrop-filter: blur(300px);"}
+	&::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: black;
+		opacity: 0.5;
+		border-radius: 0 0 5px 5px;
+		cursor: not-allowed;
+		display: ${(props) => (props.isHidden ? "block" : "none")};
+	}
 `;
