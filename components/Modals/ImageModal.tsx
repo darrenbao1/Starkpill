@@ -183,7 +183,7 @@ export const ImageModal = (props: Props) => {
 						</div>
 						{/* Owned by container */}
 						<div className={styles.captionBox}>
-							<div className={styles.contentHeader}>Owner: </div>
+							<div className={styles.contentHeader}>Owner </div>
 							<div
 								className={`${styles.contentValue} ${styles.ownerAddress}`}
 								onClick={handleClickLink}>
