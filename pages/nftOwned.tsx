@@ -36,7 +36,6 @@ export default function NftOwned() {
 	const projectObj = COLLAB_PROJECTS.find(
 		(project) => project.contract_address === projectString
 	);
-
 	const [nfts, setNfts] = useState<NFTData[]>([]);
 	const [isLoading, setIsloading] = useState<boolean>(false);
 	const [showTraitModal, setShowTraitModal] = useState<boolean>(false);
@@ -59,13 +58,6 @@ export default function NftOwned() {
 			setNfts([]);
 		}
 	}, [wallet.isConnected, wallet.address]);
-	useEffect(() => {
-		if (wallet.address) {
-			handleGetNfts();
-		} else {
-			setNfts([]);
-		}
-	}, []);
 	return (
 		<>
 			<NftOwnedPageContainer>

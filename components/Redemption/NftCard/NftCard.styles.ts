@@ -1,6 +1,33 @@
-import Image from "next/image";
 import styled, { css } from "styled-components";
-export const NftCardContainer = styled.div`
+
+export const ClaimedLabel = styled.div`
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 2px 16px;
+	font-family: "Patrick Hand";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 24px;
+	border: 1px solid transparent;
+	&::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		border-radius: 16px;
+		padding: 1px;
+		background: linear-gradient(100.92deg, #a259ff 13.57%, #ff6250 97.65%);
+		-webkit-mask: linear-gradient(#fff 0 0) content-box,
+			linear-gradient(#fff 0 0);
+		-webkit-mask-composite: xor;
+		mask-composite: exclude;
+	}
+`;
+
+export const NftCardContainer = styled.div<{ isClaimed?: boolean }>`
 	display: flex;
 	position: relative;
 	flex-direction: column;
@@ -27,6 +54,33 @@ export const NftCardContainer = styled.div`
 	@media screen and (max-width: 750px) {
 		width: 100%;
 	}
+	&::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		border-radius: 16px;
+		background: black;
+		opacity: ${(props) => (!props.isClaimed ? 0 : 0.5)};
+		cursor: ${(props) => (!props.isClaimed ? "pointer" : "not-allowed")};
+		&:before {
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: fit-content;
+			height: fit-content;
+			pointer-events: none;
+		}
+	}
+	${(props) =>
+		props.isClaimed &&
+		css`
+			&::after:before {
+				content: "";
+				${ClaimedLabel};
+			}
+		`}
 `;
 const HeaderStyle = css`
 	font-family: "Patrick Hand";

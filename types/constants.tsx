@@ -281,7 +281,7 @@ export const FACE_TRAITS: Trait[] = [
 	},
 	{
 		id: 37,
-		name: "Milady Trucket Hat",
+		name: "Milady Trucker Hat",
 		link: FACE_TRAIT_LINK + "ing_037.png",
 		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_037.png",
 		isHidden: true,
@@ -580,6 +580,12 @@ export const GET_TXHISTORY_BY_TOKENID = gql`
 				}
 			}
 		}
+	}
+`;
+
+export const CHECK_IS_REDEEMED = gql`
+	query Query($tokenIds: [Int!]!, $contractAddress: String!) {
+		checkIsClaimed(tokenIds: $tokenIds, contract_address: $contractAddress)
 	}
 `;
 

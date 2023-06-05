@@ -4,11 +4,17 @@ import {
 	Header,
 	TokenId,
 	ImageContainer,
+	ClaimedLabel,
 } from "./NftCard.styles";
 
 export const NftCard = (props: { nftData: NFTData; onClick: () => void }) => {
 	return (
-		<NftCardContainer onClick={props.onClick}>
+		<NftCardContainer
+			onClick={() =>
+				!props.nftData.hasBeenClaimed ? props.onClick() : console.log()
+			}
+			isClaimed={props.nftData.hasBeenClaimed}>
+			{props.nftData.hasBeenClaimed && <ClaimedLabel>Claimed</ClaimedLabel>}
 			<Header>{props.nftData.collectionName}</Header>
 			<TokenId>#{props.nftData.collectionTokenId}</TokenId>
 			<ImageContainer

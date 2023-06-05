@@ -204,3 +204,9 @@ export function decodeSignature(signature: string): decodedSignature {
 		sHigh: sHighHex,
 	} as decodedSignature;
 }
+
+export function zeroPadHexString(hexString: string): string {
+	const cleanedHex = hexString.replace(/^0x/, "").toLowerCase();
+	const paddedHex = cleanedHex.padStart(64, "0");
+	return `0x${paddedHex}`;
+}

@@ -24,6 +24,7 @@ export interface NFTData {
 	imageUrl: string;
 	collectionName: string;
 	collectionTokenId: string;
+	hasBeenClaimed?: boolean;
 }
 export enum TraitName {
 	Ingredient = "Ingredient",
