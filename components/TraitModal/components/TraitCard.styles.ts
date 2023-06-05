@@ -85,11 +85,14 @@ export const RedeemLabel = styled.div<TraitCardProps>`
 	font-family: "Patrick Hand";
 	font-style: normal;
 	font-weight: 400;
-	font-size: 14px;
+	font-size: 18px;
 	line-height: 100%;
 	padding: 10px 20px;
 	background: #eecccc;
 	color: #aa0000;
+	@media (max-width: 540px) {
+		font-size: 14px;
+	}
 `;
 
 export const TraitNameLabel = styled.div<TraitCardProps>`
