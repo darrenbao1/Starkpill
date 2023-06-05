@@ -395,6 +395,7 @@ export const BACKGROUND: Trait[] = [
 		id: 20,
 		name: "Radcat XYZ",
 		link: BACKGROUND_LINK + "020.png",
+		isHidden: true,
 	},
 	{
 		id: 21,
