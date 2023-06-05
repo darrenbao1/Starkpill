@@ -265,6 +265,7 @@ export const FACE_TRAITS: Trait[] = [
 		id: 34,
 		name: "Nurstar",
 		link: FACE_TRAIT_LINK + "ing_034.png",
+		marketViewLink: MKT_FACE_TRAIT_LINK + "ing_034.png",
 	},
 	{
 		id: 35,
