@@ -1,6 +1,8 @@
 import styled from "styled-components";
 export const NoInstalledWalletModalWrapper = styled.div`
 	padding-bottom: 16px;
+	display: flex;
+	flex-direction: column;
 `;
 export const Menu_text = styled.text`
 	font-weight: bold;
@@ -19,6 +21,9 @@ export const ButtonWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	@media (max-width: 500px) {
+		margin: 0 20px;
+	}
 `;
 export const Button = styled.a`
 	all: unset;
@@ -32,7 +37,7 @@ export const Button = styled.a`
 	justify-content: space-between;
 	border-radius: 15px;
 	height: 64px;
-	margin-left: 7.5px;
+
 	padding: 10px 16px 10px 16px;
 	cursor: pointer;
 
