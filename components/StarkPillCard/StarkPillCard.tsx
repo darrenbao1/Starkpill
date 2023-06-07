@@ -15,7 +15,7 @@ import KebabIconSmall from "../../public/svgs/kebabSmall.svg";
 import ExternalLinksIcon from "../../public/svgs/ExternalLinks.svg";
 import PillDetailsIcon from "../../public/svgs/PillDetailsIcon.svg";
 import { useState, useEffect, useCallback } from "react";
-
+import DownloadLogo from "../../public/svgs/downloadIcon.svg";
 //STYLES↓↓↓
 import {
 	KebabIconStyled,
@@ -27,8 +27,10 @@ import {
 	HeaderContainer,
 	MenuOptionsWrapper,
 	CardInnerContainer,
+	SaveImageIcon,
 } from "./StarkPillCard.styles";
 import { TxHistoryModal } from "../Modals/TxHistory/TxHistoryModal";
+import { saveAs } from "file-saver";
 
 //INTERFACES↓↓↓
 interface Props {
@@ -143,6 +145,11 @@ export const StarkPillCard = (props: Props) => {
 		dispatch(showEditPillModalRedux(false));
 		setShowModal(false);
 	};
+
+	const SaveImage = () => {
+		saveAs(imageUrl, "image.png");
+	};
+
 	return (
 		<>
 			{/* Overall Card Container ↓↓ */}
@@ -194,14 +201,23 @@ export const StarkPillCard = (props: Props) => {
 							{/* Edit Pill Option will be shown on mypills.tsx page ↓↓ */}
 							{/* Wen clicked, showModal state changes to true and EditPillModal will be displayed */}
 							{isOwner && (
-								<p
-									onClick={() => {
-										setShowModal(true);
-										dispatch(showEditPillModalRedux(true));
-										setMenuId(null);
-									}}>
-									<EditIcon /> Edit Pill{" "}
-								</p>
+								<>
+									<p
+										onClick={() => {
+											setShowModal(true);
+											dispatch(showEditPillModalRedux(true));
+											setMenuId(null);
+										}}>
+										<EditIcon /> Edit Pill{" "}
+									</p>
+									<p
+										onClick={() => {
+											SaveImage();
+											setMenuId(null);
+										}}>
+										<SaveImageIcon /> Save Image{" "}
+									</p>
+								</>
 							)}
 							{/* Option to display Pill Details via Image Modal ↓↓ */}
 							{/* Wen clicked, showImageModal state changes to true and ImageModal will be displayed */}

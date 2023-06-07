@@ -257,6 +257,7 @@ export const ImageModal = (props: Props) => {
 										className={styles.textField}
 										onChange={(e) => handleManualInput(e)}
 										ref={inputRef}
+										value={fameValue !== 0 ? fameValue : ""}
 										placeholder="0"></input>
 
 									<button

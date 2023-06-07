@@ -6,6 +6,8 @@ import EditPillIcon from "../../public/svgs/EditPillIcon.svg";
 import PillDetailsIcon from "../../public/svgs/PillDetailsIcon.svg";
 import ExternalLinksIcon from "../../public/svgs/EditPillIcon.svg";
 
+import DownloadLogo from "../../public/svgs/downloadIcon.svg";
+
 //STYLED COMPONENTS FOR THE CARD(StarkpillCard.tsx) ↓↓↓
 
 //Interfaces ↓↓↓
@@ -132,8 +134,12 @@ export const KebabIconStyled = Styled.div<CardProps>`
 export const MenuOptionsWrapper = Styled.div<MenuProps>`
     position: absolute;
     z-index:3;
-    bottom: ${(props) =>
-			props.isTop3 ? "17px" : props.isOwner ? "-105px" : "-27px"};
+    top: ${(props) =>
+			props.isTop3
+				? "calc(100% - 130px);"
+				: props.isOwner
+				? "calc(100% - 60px);"
+				: "calc(100% - 87px);"};
     right: ${(props) =>
 			props.isTop3
 				? props.isOwner
@@ -179,44 +185,45 @@ export const MenuOptions = Styled.div<OptionProps>`
 
 //ADJUST OPTIONS HERE ↓↓↓                                    
      p {
-        padding: 10px 16px;
+        padding: 0px 16px 0px 16px;
 	    cursor: pointer;
         border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
          
         display: flex;
         align-items: center;
         
-        gap: 8px;
+        gap: 5px;
         
         &:hover {
             background-color: #f1f1f1}
         }
-        //Edit Pill Option ↓
+        //First Option ↓
         p:first-child {
-            padding-top: 3px;
-            gap: 3px;
-        }
-       //Pill Details Option ↓↓ 
-       p:nth-child(2) {
             padding-top: 0px;
-            
+           
+           
+        }
+        p:nth-child(2) {
+            padding-left: ${(props) => (props.isOwner ? "12px" : "16px")};
+            gap: ${(props) => (props.isOwner ? "3px" : "5px")};
+          
        }
-       //External Links Option ↓↓↓
+   
+       //LastOption ↓↓↓
         p:last-child {
             padding-top: 0px;
             margin-bottom: 10px;
             border-bottom: none;
+            padding-bottom: 0px;
 
         }
             `;
 
 //Icons↓↓↓
-const sharedIconStyles = css`
-	margin-right: 8px;
-	margin-bottom: -4px;
-`;
+const sharedIconStyles = css``;
 export const EditIcon = Styled(EditPillIcon)`
-    ${sharedIconStyles}
+   
     `;
 export const DetailsIcon = Styled(PillDetailsIcon)`
     ${sharedIconStyles}
@@ -224,3 +231,5 @@ export const DetailsIcon = Styled(PillDetailsIcon)`
 export const ExternalLinks = Styled(ExternalLinksIcon)`
     ${sharedIconStyles}
     `;
+export const SaveImageIcon = Styled(DownloadLogo)`
+`;
