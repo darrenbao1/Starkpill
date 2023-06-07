@@ -16,7 +16,7 @@ export const ModalContainer = styled.div`
 	height: 100vh;
 
 	@media (max-width: 820px) {
-		width: 95%;
+		width: 100vw;
 	}
 `;
 
@@ -30,12 +30,14 @@ export const Menu = styled.div`
 	z-index: 1;
 	width: 100%;
 	max-width: 400px;
-	height: 100%;
-	max-height: 240px;
+	height: fit-content;
+	max-height: 370px;
 	display: flex;
 	flex-direction: column;
 	color: white;
 	border-radius: 15px;
+	@media (max-width: 820px) {
+	}
 `;
 
 //"Connect wallet" title ↓↓↓
@@ -63,7 +65,7 @@ export const WalletLinks = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	margin-top: 16px;
+	margin: 16px 0;
 	align-items: center;
 
 	p {

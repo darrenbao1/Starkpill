@@ -9,7 +9,7 @@ import {
 	CrossIcon,
 } from "./ConnectMenuModal.styles";
 import { useConnectors } from "@starknet-react/core";
-import { NoInstalledWalletModal } from "../NoInstalledWalletModal";
+import { NoInstalledWalletModal } from "../NoInstalledWalletModal/NoInstalledWalletModal";
 import { useEffect, useRef } from "react";
 
 function ConnectMenuModal(props: { connectors: any; close: any }) {

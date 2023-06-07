@@ -147,7 +147,7 @@ export const StarkPillCard = (props: Props) => {
 	};
 
 	const SaveImage = () => {
-		saveAs(imageUrl, "image.png");
+		saveAs(imageUrl, "TestPill_#" + tokenId + ".png");
 	};
 
 	return (
