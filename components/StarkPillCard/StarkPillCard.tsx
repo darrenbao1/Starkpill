@@ -185,7 +185,7 @@ export const StarkPillCard = (props: Props) => {
 						</HeaderContainer>
 
 						{/* Price Of Pill ↓↓ */}
-						<p>{Number(mintPrice) / Math.pow(10, 18)} ETH</p>
+						<p>{(Number(mintPrice) / Math.pow(10, 18)).toFixed(3)} ETH</p>
 
 						{/* Fame Of Pill ↓↓ */}
 						<p>{fame} Fame</p>
