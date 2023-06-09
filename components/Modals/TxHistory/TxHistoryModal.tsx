@@ -34,7 +34,28 @@ export const TxHistoryModal = (props: Props) => {
 		return <div>Loading...</div>;
 	}
 	const txArray = data.token.transactions;
-	console.log(...txArray);
+	const result: any[] = [];
+	const changeAttributeMap = new Map<string, any[]>();
+
+	// Iterate over the transactions
+	for (let i = 0; i < txArray.length; i++) {
+		const transaction = txArray[i];
+		const { transactionType, hash } = transaction;
+
+		if (transactionType === "TRANSFER" || transactionType === "MINT") {
+			result.push(transaction);
+		} else if (transactionType === "CHANGE_ATTRIBUTE") {
+			if (changeAttributeMap.has(hash)) {
+				(changeAttributeMap.get(hash) as any[]).push(transaction);
+			} else {
+				changeAttributeMap.set(hash, [transaction]);
+				result.push(changeAttributeMap.get(hash));
+			}
+		}
+	}
+	console.log(result);
+	//from txArray get all tx that has transactionType === "MINT"
+
 	return (
 		<ModalBackground ref={modalRef}>
 			<ModalContainer>
@@ -52,25 +73,35 @@ export const TxHistoryModal = (props: Props) => {
 				</HeaderContainerWrapper>
 				<ContentContainer>
 					<h1>Events</h1>
-					{txArray.map((tx: any, index: number) =>
-						tx.transactionType === "MINT" ? (
-							<Minted txHash={tx.hash} timeStamp={tx.timestamp} key={index} />
-						) : tx.transactionType === "TRANSFER" ? (
-							<Transfer
-								txHash={tx.hash}
-								timeStamp={tx.timestamp}
-								to={tx.transfer.to.address}
-								from={tx.transfer.from.address}
-								key={index}
-							/>
-						) : (
-							<TraitChange key={index} />
-						)
-					)}
-
-					{/* <Transfer />
-					<TraitChange /> */}
-					{/* <Minted /> */}
+					{result.map((item, index) => {
+						if (Array.isArray(item)) {
+							// Pass the array of events directly to TraitChange component
+							return <TraitChange events={item} key={index} />;
+						} else if (item.transactionType === "MINT") {
+							// Handle MINT event
+							return (
+								<Minted
+									txHash={item.hash}
+									timeStamp={item.timestamp}
+									key={index}
+								/>
+							);
+						} else if (item.transactionType === "TRANSFER") {
+							// Handle TRANSFER event
+							return (
+								<Transfer
+									txHash={item.hash}
+									timeStamp={item.timestamp}
+									to={item.transfer.to.address}
+									from={item.transfer.from.address}
+									key={index}
+								/>
+							);
+						} else {
+							// Handle other cases
+							return null;
+						}
+					})}
 				</ContentContainer>
 			</ModalContainer>
 		</ModalBackground>

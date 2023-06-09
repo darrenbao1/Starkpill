@@ -22,7 +22,6 @@ export function Minted(props: Props) {
 		<Container>
 			<MintedWrapper>
 				<h1>Minted</h1>
-				{/* {txHash} */}
 				<IconsContainer>
 					<HighlightedText>{timeInDate}</HighlightedText>
 					<LinkIcon onClick={openLink} />
