@@ -653,3 +653,29 @@ export const handleScrollToTop = (ref: React.RefObject<any>) => {
 		});
 	}
 };
+
+export const Get_Transfers = gql`
+	query Token($tokenId: Int!) {
+		token(tokenId: $tokenId) {
+			transactions {
+				transactionType
+				hash
+				transfer {
+					from {
+						address
+					}
+					to {
+						address
+					}
+				}
+				changeAttribute {
+					newBackground
+					newIngredient
+					oldBackground
+					oldIngredient
+				}
+				timestamp
+			}
+		}
+	}
+`;
