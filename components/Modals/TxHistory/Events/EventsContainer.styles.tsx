@@ -15,7 +15,7 @@ export const Container = styled.div`
 	background: #f5f5f5;
 	width: 287px;
 	height: fit-content;
-	max-height: 129px;
+
 	border-radius: 6px;
 	color: #262626;
 	min-height: 48px;
