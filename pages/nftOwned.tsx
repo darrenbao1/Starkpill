@@ -74,9 +74,8 @@ export default function NftOwned() {
 							<HeaderContainer>
 								<HeaderText>Your eligible NFT redemptions</HeaderText>
 								<ContentText>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-									do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-									Ut enim ad minim veniam
+									Eligible NFTs are displayed, click on your NFT card to redeem
+									exclusive traits.
 								</ContentText>
 							</HeaderContainer>
 							<ButtonContainer>

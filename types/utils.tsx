@@ -21,6 +21,7 @@ export function shortAddressForModal(string: string) {
 export function convertToStandardWalletAddress(walletAddress: string) {
 	return "0x" + walletAddress.substring(2).padStart(64, "0");
 }
+
 export async function getPharmacyData() {
 	const GET_PHARMACY_DATA = gql`
 		query GetPharmacyData {
@@ -209,4 +210,29 @@ export function zeroPadHexString(hexString: string): string {
 	const cleanedHex = hexString.replace(/^0x/, "").toLowerCase();
 	const paddedHex = cleanedHex.padStart(64, "0");
 	return `0x${paddedHex}`;
+}
+
+export function convertUnixToDate(unixTimestamp: number) {
+	const date = new Date(unixTimestamp);
+	const now = new Date();
+
+	const timeDiffInMilliseconds: number = now.getTime() - date.getTime();
+
+	const secondsDiff: number = Math.floor(timeDiffInMilliseconds / 1000);
+	const minutesDiff: number = Math.floor(secondsDiff / 60);
+	const hoursDiff: number = Math.floor(minutesDiff / 60);
+	const daysDiff: number = Math.floor(hoursDiff / 24);
+	const monthsDiff: number = Math.floor(daysDiff / 30); // Approximate value
+
+	if (monthsDiff >= 1) {
+		return `${monthsDiff} month${monthsDiff > 1 ? "s" : ""} ago`;
+	} else if (daysDiff >= 1) {
+		return `${daysDiff} day${daysDiff > 1 ? "s" : ""} ago`;
+	} else if (hoursDiff >= 1) {
+		return `${hoursDiff} hour${hoursDiff > 1 ? "s" : ""} ago`;
+	} else if (minutesDiff >= 1) {
+		return `${minutesDiff} minute${minutesDiff > 1 ? "s" : ""} ago`;
+	} else {
+		return "Less than a minute ago";
+	}
 }
