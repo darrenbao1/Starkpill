@@ -54,16 +54,17 @@ export const TxHistoryModal = (props: Props) => {
 					<h1>Events</h1>
 					{txArray.map((tx: any, index: number) =>
 						tx.transactionType === "MINT" ? (
-							<Minted txHash={tx.hash} timeStamp={tx.timestamp} />
+							<Minted txHash={tx.hash} timeStamp={tx.timestamp} key={index} />
 						) : tx.transactionType === "TRANSFER" ? (
 							<Transfer
 								txHash={tx.hash}
 								timeStamp={tx.timestamp}
 								to={tx.transfer.to.address}
 								from={tx.transfer.from.address}
+								key={index}
 							/>
 						) : (
-							<TraitChange />
+							<TraitChange key={index} />
 						)
 					)}
 
