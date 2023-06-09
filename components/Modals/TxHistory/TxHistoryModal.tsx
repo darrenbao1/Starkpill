@@ -7,6 +7,7 @@ import {
 	ModalContainer,
 	ContentContainer,
 	HeaderContainerWrapper,
+	ModalWrapper,
 } from "./TxHistoryModal.styles";
 import CrossIcon from "../../../public/PillActivityModalCross.svg";
 import { useRef } from "react";
@@ -58,52 +59,54 @@ export const TxHistoryModal = (props: Props) => {
 
 	return (
 		<ModalBackground ref={modalRef}>
-			<ModalContainer>
-				<HeaderContainerWrapper>
-					<HeaderContainer>
-						<h1>Pill Activity </h1>
-						<ModalCloseButton
-							onClick={(event) => {
-								event.stopPropagation();
-								props.close();
-							}}>
-							<CrossIcon />
-						</ModalCloseButton>
-					</HeaderContainer>
-				</HeaderContainerWrapper>
-				<ContentContainer>
-					<h1>Events</h1>
-					{result.map((item, index) => {
-						if (Array.isArray(item)) {
-							// Pass the array of events directly to TraitChange component
-							return <TraitChange events={item} key={index} />;
-						} else if (item.transactionType === "MINT") {
-							// Handle MINT event
-							return (
-								<Minted
-									txHash={item.hash}
-									timeStamp={item.timestamp}
-									key={index}
-								/>
-							);
-						} else if (item.transactionType === "TRANSFER") {
-							// Handle TRANSFER event
-							return (
-								<Transfer
-									txHash={item.hash}
-									timeStamp={item.timestamp}
-									to={item.transfer.to.address}
-									from={item.transfer.from.address}
-									key={index}
-								/>
-							);
-						} else {
-							// Handle other cases
-							return null;
-						}
-					})}
-				</ContentContainer>
-			</ModalContainer>
+			<ModalWrapper>
+				<ModalContainer>
+					<HeaderContainerWrapper>
+						<HeaderContainer>
+							<h1>Pill Activity </h1>
+							<ModalCloseButton
+								onClick={(event) => {
+									event.stopPropagation();
+									props.close();
+								}}>
+								<CrossIcon />
+							</ModalCloseButton>
+						</HeaderContainer>
+					</HeaderContainerWrapper>
+					<ContentContainer>
+						<h1>Events</h1>
+						{result.map((item, index) => {
+							if (Array.isArray(item)) {
+								// Pass the array of events directly to TraitChange component
+								return <TraitChange events={item} key={index} />;
+							} else if (item.transactionType === "MINT") {
+								// Handle MINT event
+								return (
+									<Minted
+										txHash={item.hash}
+										timeStamp={item.timestamp}
+										key={index}
+									/>
+								);
+							} else if (item.transactionType === "TRANSFER") {
+								// Handle TRANSFER event
+								return (
+									<Transfer
+										txHash={item.hash}
+										timeStamp={item.timestamp}
+										to={item.transfer.to.address}
+										from={item.transfer.from.address}
+										key={index}
+									/>
+								);
+							} else {
+								// Handle other cases
+								return null;
+							}
+						})}
+					</ContentContainer>
+				</ModalContainer>
+			</ModalWrapper>
 		</ModalBackground>
 	);
 };

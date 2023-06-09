@@ -16,8 +16,7 @@ export const ModalBackground = styled.div`
 	background-color: rgb(0, 0, 0); /* Fallback color */
 	background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
 `;
-
-export const ModalContainer = styled.div`
+export const ModalWrapper = styled.div`
 	position: absolute;
 	display: flex;
 	height: fit-content;
@@ -25,10 +24,19 @@ export const ModalContainer = styled.div`
 	width: 100%;
 	max-width: 335px;
 	max-height: 445px;
-	overflow: overlay;
+
 	background-color: #ffffff;
 
 	border-radius: 12px;
+`;
+export const ModalContainer = styled.div`
+	display: flex;
+	height: fit-content;
+	flex-direction: column;
+	width: 100%;
+	max-width: 335px;
+	max-height: 445px;
+	overflow: overlay;
 `;
 export const HeaderContainerWrapper = styled.div`
 	padding-bottom: 16px;
