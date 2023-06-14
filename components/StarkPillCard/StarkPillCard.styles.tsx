@@ -163,7 +163,7 @@ export const MenuOptions = Styled.div<OptionProps>`
     padding: 0px 8px -0px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     overflow: overlay;
-    max-height: 197px;
+    max-height: 183px;
     &::-webkit-scrollbar {
         width: 4px;
     }
