@@ -37,7 +37,6 @@ export default function Mypills() {
 	useEffect(() => {
 		setTimeout(() => {
 			refetch();
-			console.log(data);
 		}, 3000);
 	}, [refetchState.value, refetch, data]);
 

@@ -1,7 +1,6 @@
-import { FACE_TRAITS } from "../../../types/constants";
+import { BACKGROUND, FACE_TRAITS } from "../../../types/constants";
 import Cross from "../../../public/png/close.png";
 import {
-	ImageContainer,
 	ModalContainer,
 	ModalHeader,
 	RedeemButton,
@@ -9,6 +8,7 @@ import {
 	CrossImage,
 	TopContainer,
 	HeaderText,
+	CardContainer,
 } from "./RedemptionTraitModal.styles";
 import { CollabProject, decodedSignature } from "../../../types/interfaces";
 import { getRedemptionSignature } from "../../../types/utils";
@@ -19,6 +19,7 @@ import {
 import { getRedemptionVariables } from "../../../hooks/StarkPillContract";
 import { useAccount } from "wagmi";
 import { useEffect, useState } from "react";
+import { RedemptionTraitCard } from "./RedemptionTraitCard";
 
 export const RedemptionTraitModal = (props: {
 	project: CollabProject;
@@ -86,17 +87,22 @@ export const RedemptionTraitModal = (props: {
 			<TraitModal>
 				<TopContainer>
 					<ModalHeader>
-						<HeaderText>
-							{FACE_TRAITS[props.project.redeemIngId].name}
-						</HeaderText>
+						<HeaderText>Redeemable Traits</HeaderText>
 					</ModalHeader>
 					<CrossImage src={Cross} alt="cross" onClick={props.handleClose} />
 				</TopContainer>
-
-				<ImageContainer>
-					<img src={FACE_TRAITS[props.project.redeemIngId].marketViewLink} />
-				</ImageContainer>
-				{/* OnClick to redeem here  */}
+				<CardContainer>
+					<RedemptionTraitCard
+						name={FACE_TRAITS[props.project.redeemIngId].name}
+						imageUrl={FACE_TRAITS[props.project.redeemIngId].marketViewLink!}
+					/>
+					{props.project.redeemBgId && (
+						<RedemptionTraitCard
+							name={BACKGROUND[props.project.redeemBgId].name}
+							imageUrl={BACKGROUND[props.project.redeemBgId].link}
+						/>
+					)}
+				</CardContainer>
 				<RedeemButton onClick={handleClick}>Redeem</RedeemButton>
 			</TraitModal>
 		</ModalContainer>

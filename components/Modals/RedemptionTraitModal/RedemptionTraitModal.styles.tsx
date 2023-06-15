@@ -67,23 +67,6 @@ export const HeaderText = styled.h1`
 
 	margin: 0;
 `;
-export const ImageContainer = styled.div`
-	position: relative;
-
-	width: 100%;
-	height: 100%;
-	max-height: 19.188rem;
-	max-width: 20.188rem;
-
-	border: 3px solid #ff4f0a;
-	border-radius: 3px;
-
-	img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
-`;
 //keep CrossImage at fixed position relative to parent
 export const CrossImage = styled(Image)`
 	position: fixed;
@@ -91,6 +74,7 @@ export const CrossImage = styled(Image)`
 	height: 31px;
 	right: 0;
 	margin-right: 16px;
+	cursor: pointer;
 `;
 
 export const RedeemButton = styled.div`
@@ -111,4 +95,36 @@ export const RedeemButton = styled.div`
 	&:hover {
 		cursor: pointer;
 	}
+`;
+
+export const RedeemTraitCard = styled.div`
+	border: 2px solid ${(props) => props.theme.primaryColor};
+	border-radius: 6px;
+	width: 154px;
+`;
+export const RedeemTraitImage = styled(Image)`
+	width: 123px;
+	height: 123px;
+	margin: 16px;
+`;
+export const RedeemTraitItemName = styled.div`
+	border-top: 1px solid #dadada;
+	padding: 4px 16px;
+	width: 100%;
+	font-family: "Patrick Hand";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 34px;
+	color: ${(props) => props.theme.primaryColor};
+`;
+export const CardContainer = styled.div`
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	gap: 12px;
+	margin-top: 1.313rem;
 `;

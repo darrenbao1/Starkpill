@@ -590,6 +590,21 @@ export const CHECK_IS_REDEEMED = gql`
 	}
 `;
 
+export const GET_BACKPACK_TOKENS_BY_ADDRESS = gql`
+	query BackpackTokens($address: String!) {
+		user(address: $address) {
+			backpackTokens {
+				traitMetadata {
+					id
+					imageUrl
+					isIngredient
+					itemName
+				}
+			}
+		}
+	}
+`;
+
 export const DROPDOWN_MENU_ITEMS = [
 	{
 		id: 0,
@@ -653,29 +668,3 @@ export const handleScrollToTop = (ref: React.RefObject<any>) => {
 		});
 	}
 };
-
-export const Get_Transfers = gql`
-	query Token($tokenId: Int!) {
-		token(tokenId: $tokenId) {
-			transactions {
-				transactionType
-				hash
-				transfer {
-					from {
-						address
-					}
-					to {
-						address
-					}
-				}
-				changeAttribute {
-					newBackground
-					newIngredient
-					oldBackground
-					oldIngredient
-				}
-				timestamp
-			}
-		}
-	}
-`;
