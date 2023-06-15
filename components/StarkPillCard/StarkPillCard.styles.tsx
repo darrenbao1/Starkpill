@@ -1,7 +1,6 @@
 import Styled, { css } from "styled-components";
 import Image from "next/image";
-import KebabIcon from "../../public/svgs/kebab.svg";
-import KebabIconSmall from "../../public/svgs/kebabSmall.svg";
+
 import EditPillIcon from "../../public/svgs/EditPillIcon.svg";
 import PillDetailsIcon from "../../public/svgs/PillDetailsIcon.svg";
 import ExternalLinksIcon from "../../public/svgs/EditPillIcon.svg";
@@ -160,7 +159,7 @@ export const MenuOptions = Styled.div<OptionProps>`
     color: #262626;
     border:1px solid #ccc;
     border-radius: 8px;
-    padding: 0px 8px -0px;
+    padding: 8px 8px ;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     overflow: overlay;
     max-height: 183px;
@@ -198,10 +197,12 @@ export const MenuOptions = Styled.div<OptionProps>`
 
 //ADJUST OPTIONS HERE ↓↓↓                                    
      p {
-        padding: 0px 16px 0px 16px;
+        margin: 0px;
+        padding: 12px 16px 0px 16px;
 	    cursor: pointer;
         border-bottom: 1px solid #ccc;
         padding-bottom: 10px;
+        
          
         display: flex;
         align-items: center;
@@ -213,22 +214,24 @@ export const MenuOptions = Styled.div<OptionProps>`
         }
         //First Option ↓
         p:first-child {
-            padding-top: 0px;
+        
            
            
         }
         p:nth-child(2) {
             padding-left: ${(props) => (props.isOwner ? "12px" : "16px")};
             gap: ${(props) => (props.isOwner ? "3px" : "5px")};
+            
           
        }
    
        //LastOption ↓↓↓
         p:last-child {
-            padding-top: 0px;
-            margin-bottom: 10px;
+            
+            padding-bottom: 12px;
             border-bottom: none;
-            padding-bottom: 0px;
+          
+        
 
         }
             `;
