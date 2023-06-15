@@ -15,7 +15,7 @@ import KebabIconSmall from "../../public/svgs/kebabSmall.svg";
 import ExternalLinksIcon from "../../public/svgs/ExternalLinks.svg";
 import PillDetailsIcon from "../../public/svgs/PillDetailsIcon.svg";
 import { useState, useEffect, useCallback } from "react";
-import DownloadLogo from "../../public/svgs/downloadIcon.svg";
+
 //STYLES↓↓↓
 import {
 	KebabIconStyled,

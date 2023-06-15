@@ -96,6 +96,7 @@ export const RedemptionTraitModal = (props: {
 				<ImageContainer>
 					<img src={FACE_TRAITS[props.project.redeemIngId].marketViewLink} />
 				</ImageContainer>
+
 				{/* OnClick to redeem here  */}
 				<RedeemButton onClick={handleClick}>Redeem</RedeemButton>
 			</TraitModal>

@@ -150,6 +150,7 @@ export const MenuOptionsWrapper = Styled.div<MenuProps>`
 				: "-2px"};
 
 `;
+
 export const MenuOptions = Styled.div<OptionProps>`
     background-color: white;
     font-style: normal;
@@ -161,6 +162,17 @@ export const MenuOptions = Styled.div<OptionProps>`
     border-radius: 8px;
     padding: 0px 8px -0px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    overflow: overlay;
+    max-height: 183px;
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background:#757575 ;
+        border-radius: 8px;
+       }
+   
+    
    
    &:before {
         content: "";
@@ -168,6 +180,7 @@ export const MenuOptions = Styled.div<OptionProps>`
         border-style: solid;
         border-color: #ccc transparent;
         border-width: 0 12.5px 11.5px 13px;
+        
         top: -11px;
         left: 75%;
             } 
