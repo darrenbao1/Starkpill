@@ -10,8 +10,6 @@ import { convertToStandardWalletAddress } from "../types/utils";
 import sharedBackgroundStyles from "../styles/sharedBackground.module.css";
 import { GET_USER_TOKENS, handleScrollToTop } from "../types/constants";
 import { BackToTopButton } from "../components/BackToTopButton";
-import Image from "next/image";
-import { ConnectWalletButton } from "../components/ConnectWalletButton";
 import { Disconnected } from "../components/DisconnectedPage.tsx/Disconnected";
 export default function Mypills() {
 	const refetchState = useSelector((state: any) => state.refetch);
@@ -28,7 +26,6 @@ export default function Mypills() {
 	useEffect(() => {
 		setTimeout(() => {
 			refetch();
-			console.log(data);
 		}, 3000);
 	}, [refetchState.value, refetch, data]);
 	if (loading) {

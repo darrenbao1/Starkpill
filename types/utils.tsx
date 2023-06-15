@@ -2,6 +2,7 @@ import { gql } from "@apollo/client";
 import {
 	BACKGROUND,
 	FACE_TRAITS,
+	GET_BACKPACK_TOKENS_BY_ADDRESS,
 	GET_VOTING_POWER_QUERY,
 	STARKPILL_CONTRACT_ADDRESS,
 } from "./constants";
@@ -48,23 +49,14 @@ export async function getUserBackPack(walletAddress: String) {
 	);
 	const ingredientArray: Trait[] = [];
 	const backgroundArray: Trait[] = [];
-	const query = gql`
-		query OwnerBackpack($ownerAddress: String!) {
-			ownerBackpack(ownerAddress: $ownerAddress) {
-				id
-				imageUrl
-				isIngredient
-				itemName
-			}
-		}
-	`;
 	try {
 		const result = await client.query({
-			query,
-			variables: { ownerAddress: walletAddressForAPI },
+			query: GET_BACKPACK_TOKENS_BY_ADDRESS,
+			variables: { address: walletAddressForAPI },
 		});
-		const tokens = result.data.ownerBackpack;
-		tokens.map((token: any) => {
+		const tokens = result.data.user.backpackTokens;
+		tokens.map((tokenObj: any) => {
+			const token = tokenObj.traitMetadata;
 			if (token.isIngredient) {
 				const value = token.imageUrl.substring(
 					token.imageUrl.lastIndexOf("_") + 1,
