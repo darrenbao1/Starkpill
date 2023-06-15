@@ -11,6 +11,7 @@ import { BackToTopButton } from "../components/BackToTopButton";
 import { useAccount } from "@starknet-react/core";
 import { convertToStandardWalletAddress } from "../types/utils";
 import { Disconnected } from "../components/DisconnectedPage.tsx/Disconnected";
+import { Inventory } from "../components/Inventory/Inventory";
 export default function Mypills() {
 	const [toggleTabState, setToggleTabState] = useState(1);
 	const toggleTabStateHandler = (index: number) => {
@@ -67,13 +68,7 @@ export default function Mypills() {
 						</div>
 					</div>
 
-					{toggleTabState === 1 ? (
-						<Prescriptions />
-					) : (
-						<div>
-							<h1>Inventory</h1>
-						</div>
-					)}
+					{toggleTabState === 1 ? <Prescriptions /> : <Inventory />}
 				</div>
 			) : (
 				<div

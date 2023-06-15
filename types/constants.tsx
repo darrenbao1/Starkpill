@@ -605,6 +605,31 @@ export const GET_BACKPACK_TOKENS_BY_ADDRESS = gql`
 	}
 `;
 
+export const GET_ALL_TRAITS_BY_ADDRESS = gql`
+	query AllUserTraits($address: String!) {
+		user(address: $address) {
+			backpackTokens {
+				traitMetadata {
+					id
+					imageUrl
+					isIngredient
+					itemName
+					equippedById
+				}
+			}
+			equippedTraitTokens {
+				traitMetadata {
+					equippedById
+					id
+					imageUrl
+					itemName
+					isIngredient
+				}
+			}
+		}
+	}
+`;
+
 export const DROPDOWN_MENU_ITEMS = [
 	{
 		id: 0,
