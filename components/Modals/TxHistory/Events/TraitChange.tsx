@@ -46,7 +46,6 @@ export function TraitChange(props: Props) {
 			}
 		}
 	});
-	console.log(decodedEvents);
 
 	return (
 		<Container>
