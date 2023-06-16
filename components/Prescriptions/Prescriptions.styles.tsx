@@ -26,3 +26,10 @@ export const NoPillsFound = styled.div`
 	text-align: center;
 	width: 100%;
 `;
+
+export const LoadingWrapper = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 25%;
+`;

@@ -9,6 +9,8 @@ import { useEffect, useRef, useState } from "react";
 
 import sharedBackgroundStyles from "../../styles/sharedBackground.module.css";
 import { GET_USER_TOKENS } from "../../types/constants";
+import Loading from "../Loading/Loading";
+import { LoadingWrapper } from "../Prescriptions/Prescriptions.styles";
 
 export default function Prescriptions() {
 	const refetchState = useSelector((state: any) => state.refetch);
@@ -32,8 +34,9 @@ export default function Prescriptions() {
 		return (
 			<div className={`container ${sharedBackgroundStyles.extendedBackground}`}>
 				<div className="contentContainer">
-					<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>my pills</h1>
-					<div className={styles.cardContainer}>Loading</div>
+					<LoadingWrapper>
+						<Loading />
+					</LoadingWrapper>
 				</div>
 			</div>
 		);

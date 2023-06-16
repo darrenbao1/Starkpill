@@ -34,3 +34,7 @@ export const CardContainer = styled.div`
 		grid-template-columns: 1fr;
 	}
 `;
+export const LoadingWrapper = styled.div`
+	display: flex;
+	margin-top: 10%;
+`;

@@ -4,10 +4,12 @@ import {
 	CardContainer,
 	HeaderColumn,
 	InventoryWrapper,
+	LoadingWrapper,
 } from "./Inventory.styles";
 import { InventoryCard } from "./InventoryCard";
 import router from "next/router";
 import { InventoryTokenObj } from "../../types/interfaces";
+import Loading from "../Loading/Loading";
 
 export const Inventory = () => {
 	const { walletAddress } = router.query;
@@ -16,7 +18,12 @@ export const Inventory = () => {
 			address: walletAddress,
 		},
 	});
-	if (loading) return <div>Loading...</div>;
+	if (loading)
+		return (
+			<LoadingWrapper>
+				<Loading />{" "}
+			</LoadingWrapper>
+		);
 	if (error) return <div>Error! {error.message}</div>;
 
 	const backpackTokens = data.user.backpackTokens;
