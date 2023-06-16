@@ -23,6 +23,7 @@ import {
 	SearchResultsWrapper,
 	StarkpillCardContainer,
 } from "../components/SearchBar2/SearchBar2.styles";
+import Loading from "../components/Loading/Loading";
 
 export default function Cabinet() {
 	const offsetIncrement = 20; //number of pills per load
@@ -124,7 +125,10 @@ export default function Cabinet() {
 					<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>
 						Starkpills
 					</h1>
-					<div className={styles.cardContainer}>Loading</div>
+
+					<div className={styles.loadingWrapper}>
+						<Loading />
+					</div>
 				</div>
 			</div>
 		);

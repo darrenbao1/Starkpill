@@ -38,6 +38,9 @@ export const CardContainer = styled.div`
 		justify-items: center;
 	}
 `;
+export const LoadingWrapper = styled.div`
+	display: flex;
+	margin-top: 10%;
 
 export const ShowAllButton = styled.div`
 	border: 2px solid #ffffff;

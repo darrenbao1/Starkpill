@@ -4,11 +4,18 @@ import {
 	CardContainer,
 	HeaderColumn,
 	InventoryWrapper,
+
+	LoadingWrapper,
+
 	ShowAllButton,
+
 } from "./Inventory.styles";
 import { InventoryCard } from "./InventoryCard";
 import router from "next/router";
 import { InventoryTokenObj } from "../../types/interfaces";
+
+import Loading from "../Loading/Loading";
+
 import { useEffect, useState } from "react";
 
 function useWindowSize() {
@@ -36,6 +43,7 @@ function useWindowSize() {
 	return windowSize;
 }
 
+
 export const Inventory = () => {
 	const size = useWindowSize();
 	const [showAllTraits, setShowAllTraits] = useState(false);
@@ -46,6 +54,14 @@ export const Inventory = () => {
 			address: walletAddress,
 		},
 	});
+
+	if (loading)
+		return (
+			<LoadingWrapper>
+				<Loading />{" "}
+			</LoadingWrapper>
+		);
+
 	const traitsPerRow =
 		size.width > 1350
 			? 6
@@ -61,6 +77,7 @@ export const Inventory = () => {
 			? 1
 			: 0;
 	if (loading) return <div>Loading...</div>;
+
 	if (error) return <div>Error! {error.message}</div>;
 
 	const backpackTokens = data.user.backpackTokens;
