@@ -12,6 +12,8 @@ export const HeaderColumn = styled.div`
 	font-weight: 400;
 	font-size: 24px;
 	line-height: 100%;
+	margin-top: 24px;
+	margin-bottom: 16px;
 `;
 
 export const CardContainer = styled.div`
@@ -35,4 +37,20 @@ export const CardContainer = styled.div`
 		align-items: center;
 		justify-items: center;
 	}
+`;
+
+export const ShowAllButton = styled.div`
+	border: 2px solid #ffffff;
+	border-radius: 3px;
+	padding: 8px 24px;
+	color: #ffffff;
+	font-family: "Patrick Hand";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 24px;
+	line-height: 100%;
+	width: fit-content;
+	margin: auto;
+	cursor: pointer;
+	margin-top: 32px;
 `;

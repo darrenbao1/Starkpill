@@ -11,14 +11,15 @@ export const CardImage = styled(Image)`
 	height: auto;
 	border-radius: 6px 6px 0px 0px;
 	@media (max-width: 450px) {
-		width: 350px;
+		width: 340px;
 	}
 `;
 export const CardItemName = styled.div`
 	padding: 8px 16px;
+
 	border-top: 1px solid #e9e9e9;
 	width: 100%;
-	height: 100%;
+	height: fit-content;
 	display: flex;
 	flex-direction: row;
 	font-family: "Patrick Hand";
