@@ -41,7 +41,7 @@ export const CardContainer = styled.div`
 export const LoadingWrapper = styled.div`
 	display: flex;
 	margin-top: 10%;
-
+`;
 export const ShowAllButton = styled.div`
 	border: 2px solid #ffffff;
 	border-radius: 3px;

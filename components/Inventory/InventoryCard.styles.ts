@@ -5,6 +5,10 @@ export const CardContainer = styled.div`
 	position: relative;
 	border-radius: 6px;
 	background: #ffffff;
+	border: 2px solid #ffffff;
+	&:hover {
+		border: 2px solid #ff4f0a;
+	}
 `;
 export const CardImage = styled(Image)`
 	width: 100%;
