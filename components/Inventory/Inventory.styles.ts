@@ -32,5 +32,7 @@ export const CardContainer = styled.div`
 	}
 	@media screen and (max-width: 450px) {
 		grid-template-columns: 1fr;
+		align-items: center;
+		justify-items: center;
 	}
 `;
