@@ -6,6 +6,7 @@ import {
 	InventoryWrapper,
 } from "./Inventory.styles";
 import { InventoryCard } from "./InventoryCard";
+import router from "next/router";
 
 interface InventoryTokenObj {
 	id: number;
@@ -16,10 +17,10 @@ interface InventoryTokenObj {
 }
 
 export const Inventory = () => {
+	const { walletAddress } = router.query;
 	const { data, loading, error } = useQuery(GET_ALL_TRAITS_BY_ADDRESS, {
 		variables: {
-			address:
-				"0x0728c8dd49322ab110c0fb295fb093aa7c5a4a423004d606c0a320f44d35684e",
+			address: walletAddress,
 		},
 	});
 	if (loading) return <div>Loading...</div>;
