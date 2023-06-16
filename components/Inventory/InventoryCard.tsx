@@ -27,8 +27,9 @@ export const InventoryCard = (props: Props) => {
 						: imageUrl
 				}
 				alt={itemName}
-				width={208}
-				height={208}
+				width={0}
+				height={0}
+				sizes="100vw"
 			/>
 			{equippedById !== 0 ? (
 				<EquippedBadge>Equipped</EquippedBadge>

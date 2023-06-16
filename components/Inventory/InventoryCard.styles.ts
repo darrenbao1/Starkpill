@@ -3,24 +3,23 @@ import styled from "styled-components";
 
 export const CardContainer = styled.div`
 	position: relative;
-	border: 1px solid #ffffff;
 	border-radius: 6px;
-	width: fit-content;
 	background: #ffffff;
 `;
 export const CardImage = styled(Image)`
 	width: 100%;
-	height: 100%;
-	max-width: 208px;
-	max-height: 208px;
-	aspect-ratio: 1/1;
+	height: auto;
 	border-radius: 6px 6px 0px 0px;
+	@media (max-width: 450px) {
+		width: 340px;
+	}
 `;
 export const CardItemName = styled.div`
 	padding: 8px 16px;
+
 	border-top: 1px solid #e9e9e9;
 	width: 100%;
-	height: 100%;
+	height: fit-content;
 	display: flex;
 	flex-direction: row;
 	font-family: "Patrick Hand";

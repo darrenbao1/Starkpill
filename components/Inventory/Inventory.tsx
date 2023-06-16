@@ -4,32 +4,86 @@ import {
 	CardContainer,
 	HeaderColumn,
 	InventoryWrapper,
+
 	LoadingWrapper,
+
+	ShowAllButton,
+
 } from "./Inventory.styles";
 import { InventoryCard } from "./InventoryCard";
 import router from "next/router";
 import { InventoryTokenObj } from "../../types/interfaces";
+
 import Loading from "../Loading/Loading";
 
+import { useEffect, useState } from "react";
+
+function useWindowSize() {
+	// detect window screen width function
+
+	const [windowSize, setWindowSize] = useState({
+		width: 0,
+		height: 0,
+	});
+
+	useEffect(() => {
+		function handleResize() {
+			setWindowSize({
+				width: window.innerWidth,
+				height: window.innerHeight,
+			});
+		}
+		window.addEventListener("resize", handleResize);
+
+		handleResize();
+
+		// Remove event listener on cleanup
+		return () => window.removeEventListener("resize", handleResize);
+	}, []); // Empty array ensures that effect is only run on mount
+	return windowSize;
+}
+
+
 export const Inventory = () => {
+	const size = useWindowSize();
+	const [showAllTraits, setShowAllTraits] = useState(false);
+	const [showAllBackgrounds, setShowAllBackgrounds] = useState(false);
 	const { walletAddress } = router.query;
 	const { data, loading, error } = useQuery(GET_ALL_TRAITS_BY_ADDRESS, {
 		variables: {
 			address: walletAddress,
 		},
 	});
+
 	if (loading)
 		return (
 			<LoadingWrapper>
 				<Loading />{" "}
 			</LoadingWrapper>
 		);
+
+	const traitsPerRow =
+		size.width > 1350
+			? 6
+			: size.width > 1130
+			? 5
+			: size.width > 900
+			? 4
+			: size.width > 670
+			? 3
+			: size.width > 450
+			? 2
+			: size.width > 0
+			? 1
+			: 0;
+	if (loading) return <div>Loading...</div>;
+
 	if (error) return <div>Error! {error.message}</div>;
 
 	const backpackTokens = data.user.backpackTokens;
 	const equippedTokens = data.user.equippedTraitTokens;
 
-	const allTokens = [...equippedTokens, ...backpackTokens];
+	const allTokens = [...backpackTokens, ...equippedTokens];
 	const ingredients: InventoryTokenObj[] = [];
 	const backgrounds: InventoryTokenObj[] = [];
 	//map throught allTokens and check the attribute isIngredient
@@ -42,21 +96,44 @@ export const Inventory = () => {
 			backgrounds.push(token);
 		}
 	});
+
 	//if false, add to traits array
 	return (
 		<InventoryWrapper>
 			<HeaderColumn>Traits</HeaderColumn>
 			<CardContainer>
-				{ingredients.map((ingredient, index) => (
+				{ingredients.slice(0, traitsPerRow).map((ingredient, index) => (
 					<InventoryCard key={index} traitTokenObj={ingredient} />
 				))}
+
+				{showAllTraits &&
+					ingredients
+						.slice(traitsPerRow)
+						.map((ingredient, index) => (
+							<InventoryCard key={index} traitTokenObj={ingredient} />
+						))}
 			</CardContainer>
+			<ShowAllButton onClick={() => setShowAllTraits(!showAllTraits)}>
+				{showAllTraits ? "Show Less" : "Show All"}
+			</ShowAllButton>
 			<HeaderColumn>Background</HeaderColumn>
 			<CardContainer>
-				{backgrounds.map((background, index) => (
+				{backgrounds.slice(0, traitsPerRow).map((background, index) => (
 					<InventoryCard key={index} traitTokenObj={background} />
 				))}
+				{showAllBackgrounds &&
+					backgrounds
+						.slice(traitsPerRow)
+						.map((background, index) => (
+							<InventoryCard key={index} traitTokenObj={background} />
+						))}
+				{/* {backgrounds.map((background, index) => (
+					<InventoryCard key={index} traitTokenObj={background} />
+				))} */}
 			</CardContainer>
+			<ShowAllButton onClick={() => setShowAllBackgrounds(!showAllBackgrounds)}>
+				{showAllBackgrounds ? "Show Less" : "Show All"}
+			</ShowAllButton>
 		</InventoryWrapper>
 	);
 };
