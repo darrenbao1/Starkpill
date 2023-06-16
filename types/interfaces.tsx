@@ -50,3 +50,11 @@ export interface decodedSignature {
 	sLow: string;
 	sHigh: string;
 }
+
+export interface InventoryTokenObj {
+	id: number;
+	imageUrl: string;
+	isIngredient: boolean;
+	itemName: string;
+	equippedById: number;
+}

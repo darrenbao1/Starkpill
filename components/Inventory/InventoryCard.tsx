@@ -1,4 +1,5 @@
 import { FACE_TRAITS } from "../../types/constants";
+import { InventoryTokenObj } from "../../types/interfaces";
 import {
 	CardContainer,
 	CardImage,
@@ -8,15 +9,12 @@ import {
 } from "./InventoryCard.styles";
 
 interface Props {
-	id: number;
-	imageUrl: string;
-	itemName: string;
-	equippedById: number;
-	isIngredient: boolean;
+	traitTokenObj: InventoryTokenObj;
 }
 
 export const InventoryCard = (props: Props) => {
-	const { id, imageUrl, itemName, equippedById, isIngredient } = props;
+	const { id, imageUrl, itemName, equippedById, isIngredient } =
+		props.traitTokenObj;
 	const itemIndexInConstant = Number(
 		imageUrl.substring(imageUrl.lastIndexOf("_") + 1, imageUrl.lastIndexOf("."))
 	);

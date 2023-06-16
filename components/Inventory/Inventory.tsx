@@ -7,14 +7,7 @@ import {
 } from "./Inventory.styles";
 import { InventoryCard } from "./InventoryCard";
 import router from "next/router";
-
-interface InventoryTokenObj {
-	id: number;
-	imageUrl: string;
-	isIngredient: boolean;
-	itemName: string;
-	equippedById: number;
-}
+import { InventoryTokenObj } from "../../types/interfaces";
 
 export const Inventory = () => {
 	const { walletAddress } = router.query;
@@ -29,7 +22,7 @@ export const Inventory = () => {
 	const backpackTokens = data.user.backpackTokens;
 	const equippedTokens = data.user.equippedTraitTokens;
 
-	const allTokens = [...backpackTokens, ...equippedTokens];
+	const allTokens = [...equippedTokens, ...backpackTokens];
 	const ingredients: InventoryTokenObj[] = [];
 	const backgrounds: InventoryTokenObj[] = [];
 	//map throught allTokens and check the attribute isIngredient
@@ -48,27 +41,13 @@ export const Inventory = () => {
 			<HeaderColumn>Traits</HeaderColumn>
 			<CardContainer>
 				{ingredients.map((ingredient, index) => (
-					<InventoryCard
-						key={index}
-						id={ingredient.id}
-						itemName={ingredient.itemName}
-						imageUrl={ingredient.imageUrl}
-						equippedById={ingredient.equippedById}
-						isIngredient={ingredient.isIngredient}
-					/>
+					<InventoryCard key={index} traitTokenObj={ingredient} />
 				))}
 			</CardContainer>
 			<HeaderColumn>Background</HeaderColumn>
 			<CardContainer>
 				{backgrounds.map((background, index) => (
-					<InventoryCard
-						key={index}
-						id={background.id}
-						itemName={background.itemName}
-						imageUrl={background.imageUrl}
-						equippedById={background.equippedById}
-						isIngredient={background.isIngredient}
-					/>
+					<InventoryCard key={index} traitTokenObj={background} />
 				))}
 			</CardContainer>
 		</InventoryWrapper>
