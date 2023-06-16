@@ -22,7 +22,7 @@ export const Inventory = () => {
 	const backpackTokens = data.user.backpackTokens;
 	const equippedTokens = data.user.equippedTraitTokens;
 
-	const allTokens = [...equippedTokens, ...backpackTokens];
+	const allTokens = [...backpackTokens, ...equippedTokens];
 	const ingredients: InventoryTokenObj[] = [];
 	const backgrounds: InventoryTokenObj[] = [];
 	//map throught allTokens and check the attribute isIngredient
