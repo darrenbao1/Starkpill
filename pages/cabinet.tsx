@@ -5,10 +5,14 @@ import styles from "../styles/cabinet.module.css";
 import { useQuery, gql } from "@apollo/client";
 import sharedBackgroundStyles from "../styles/sharedBackground.module.css";
 import SortIcon from "../public/svgs/sortIcon.svg";
-import { DROPDOWN_MENU_ITEMS, handleScrollToTop } from "../types/constants";
+import {
+	DROPDOWN_MENU_ITEMS,
+	GET_TRAIT_TOKEN_BY_ID,
+	handleScrollToTop,
+} from "../types/constants";
 import { BackToTopButton } from "../components/BackToTopButton";
 import { useSelector } from "react-redux";
-import { debounce } from "lodash";
+import { debounce, set } from "lodash";
 import { useLazyQuery } from "@apollo/client";
 import { GET_TOKEN_BY_ID } from "../types/constants";
 import SearchBar2 from "../components/SearchBar2/SearchBar2";
@@ -24,10 +28,13 @@ import {
 	StarkpillCardContainer,
 } from "../components/SearchBar2/SearchBar2.styles";
 import Loading from "../components/Loading/Loading";
+import { StarkTraitCard } from "../components/StarkPillCard/StarkTraitCard";
+import { InventoryTokenObj } from "../types/interfaces";
 
 export default function Cabinet() {
 	const offsetIncrement = 20; //number of pills per load
 	const [offsetAmount, setOffsetAmount] = useState(0);
+	const [traitObj, setTraitObj] = useState<InventoryTokenObj>();
 	const [loading, setLoading] = useState(false);
 	const [loadedAllPills, setIsLoadedAllPills] = useState(false);
 	const [sortOption, setSortOption] = useState(0); // is the index of the DROPDOWN_MENU_ITEMS
@@ -42,15 +49,41 @@ export default function Cabinet() {
 		useLazyQuery(GET_TOKEN_BY_ID, {
 			variables: { tokenId: searchQuery },
 		});
-	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const [
+		searchTraitToken,
+		{ loading: searchTraitLoading, data: searchTraitData },
+	] = useLazyQuery(GET_TRAIT_TOKEN_BY_ID, {
+		variables: { traitTokenId: searchQuery },
+	});
+	const handleInputChange = async (
+		event: React.ChangeEvent<HTMLInputElement>
+	) => {
 		console.log(event.target.value);
 		setSearchQuery(Number(event.target.value));
 		setShowResults(true);
 
-		searchToken({ variables: { tokenId: Number(event.target.value) } });
+		const token = await searchToken({
+			variables: { tokenId: Number(event.target.value) },
+		});
+		if (token && token.data) {
+			setTraitObj(undefined);
+		}
+		if (!token.data && event.target.value !== "") {
+			const traitToken = await searchTraitToken({
+				variables: { traitTokenId: Number(event.target.value) },
+			});
+			if (traitToken && traitToken.data) {
+				const newObj: InventoryTokenObj = {
+					...traitToken.data.traitToken.traitMetadata,
+					address: traitToken.data.traitToken.owner.address,
+				};
+				setTraitObj(newObj);
+			}
+		}
 
 		if (event.target.value === "") {
 			setShowResults(false);
+			setTraitObj(undefined);
 		}
 	};
 	const debouncedHandleInputChange = useCallback(
@@ -208,7 +241,7 @@ export default function Cabinet() {
 							<SearchResultsWrapper>
 								<SearchResultsContainer>
 									<SearchResultsModal>
-										{searchLoading && <p>Loading...</p>}
+										{(searchLoading || searchTraitLoading) && <p>Loading...</p>}
 										{searchData && searchData.token && (
 											<>
 												<Header>
@@ -226,18 +259,31 @@ export default function Cabinet() {
 												</StarkpillCardContainer>
 											</>
 										)}
+										{searchTraitData && traitObj && (
+											<>
+												<Header>
+													<p>Search Results for &ldquo;{searchQuery}&ldquo;</p>
+												</Header>
+												<StarkpillCardContainer>
+													<StarkTraitCard traitObj={traitObj!} />
+												</StarkpillCardContainer>
+											</>
+										)}
 									</SearchResultsModal>
-									{!searchData && !searchLoading && (
-										<NoResults>
-											<SadFace src={SadFaceIcon} alt="" />
-											<p>Sorry, we could not find any results for</p>
+									{!searchData &&
+										!searchLoading &&
+										!searchTraitData &&
+										!searchTraitLoading && (
+											<NoResults>
+												<SadFace src={SadFaceIcon} alt="" />
+												<p>Sorry, we could not find any results for</p>
 
-											<SearchQueryText>
-												&ldquo;{searchQuery}&ldquo;
-											</SearchQueryText>
-											<p>Please try another search</p>
-										</NoResults>
-									)}
+												<SearchQueryText>
+													&ldquo;{searchQuery}&ldquo;
+												</SearchQueryText>
+												<p>Please try another search</p>
+											</NoResults>
+										)}
 								</SearchResultsContainer>
 							</SearchResultsWrapper>
 						)}

@@ -57,4 +57,5 @@ export interface InventoryTokenObj {
 	isIngredient: boolean;
 	itemName: string;
 	equippedById: number;
+	address?: string;
 }

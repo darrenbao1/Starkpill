@@ -557,6 +557,22 @@ export const GET_TOKEN_BY_ID = gql`
 		}
 	}
 `;
+export const GET_TRAIT_TOKEN_BY_ID = gql`
+	query Owner($traitTokenId: Int!) {
+		traitToken(traitTokenId: $traitTokenId) {
+			owner {
+				address
+			}
+			traitMetadata {
+				id
+				equippedById
+				imageUrl
+				isIngredient
+				itemName
+			}
+		}
+	}
+`;
 
 export const GET_TXHISTORY_BY_TOKENID = gql`
 	query Token($tokenId: Int!) {
