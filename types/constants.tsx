@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 import { CollabProject, FAQ, Page, Trait } from "./interfaces";
+import { useState, useEffect } from "react";
 export const IS_TESTNET = true;
 export const STARKPILL_CONTRACT_ADDRESS =
 	"0x05ef092a31619faa63bf317bbb636bfbba86baf8e0e3e8d384ee764f2904e5dd";
@@ -693,3 +694,28 @@ export const handleScrollToTop = (ref: React.RefObject<any>) => {
 		});
 	}
 };
+
+export function useWindowSize() {
+	// detect window screen width function
+
+	const [windowSize, setWindowSize] = useState({
+		width: 0,
+		height: 0,
+	});
+
+	useEffect(() => {
+		function handleResize() {
+			setWindowSize({
+				width: window.innerWidth,
+				height: window.innerHeight,
+			});
+		}
+		window.addEventListener("resize", handleResize);
+
+		handleResize();
+
+		// Remove event listener on cleanup
+		return () => window.removeEventListener("resize", handleResize);
+	}, []); // Empty array ensures that effect is only run on mount
+	return windowSize;
+}
