@@ -36,11 +36,9 @@ export default function Redemption() {
 						<HeaderContainer>
 							<HeaderText>Redemption</HeaderText>
 							<ContentText>
-								We are thrilled to present you with a unique opportunity to
-								redeem your NFT (Non-Fungible Token) and unlock exclusive
-								benefits. This page serves as your gateway to a world of
-								possibilities where you can convert your digital assets into
-								real-world rewards.
+								Introducing our NFT Redemption Page. We are thrilled to present
+								members of different communities and projects that we love, the
+								unique opportunity to claim exclusive traits!
 							</ContentText>
 						</HeaderContainer>
 						<ButtonContainer>

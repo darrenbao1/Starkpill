@@ -23,7 +23,6 @@ export const PAGES: Page[] = [
 		title: "Redeem",
 		link: "/redemption",
 		isActive: true,
-		isBeta: true,
 	},
 	// {
 	// 	title: "Snakes",
