@@ -59,3 +59,11 @@ export interface InventoryTokenObj {
 	equippedById: number;
 	address?: string;
 }
+
+export interface StarkpillToken {
+	ownerAddress: string;
+	imageUrl: string;
+	mintPrice: number;
+	tokenId: number;
+	fame: number;
+}

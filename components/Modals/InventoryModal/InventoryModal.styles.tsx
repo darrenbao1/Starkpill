@@ -75,6 +75,7 @@ export const HeaderContainer = styled.div`
 		}
 	}
 `;
+
 export const Cross = styled(Image)`
 	width: 30px;
 	height: 31px;
@@ -94,6 +95,10 @@ export const ImageContainer = styled.div`
 	width: 19.875rem;
 	height: 19.875rem;
 	border-radius: 8px;
+`;
+export const ImageStyle = styled(Image)`
+	width: 100%;
+	height: 100%;
 `;
 
 export const EquippedOn = styled.div`

@@ -10,6 +10,22 @@ export const CardContainer = styled.div`
 		border: 2px solid #ff4f0a;
 	}
 `;
+export const ModalContainer = styled.div`
+	display: flex; /* Hidden by default */
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	/* Stay in place */
+	z-index: 3;
+	/* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+`;
 export const CardImage = styled(Image)`
 	width: 100%;
 	height: auto;
