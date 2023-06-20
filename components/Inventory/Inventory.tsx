@@ -4,11 +4,8 @@ import {
 	CardContainer,
 	HeaderColumn,
 	InventoryWrapper,
-
 	LoadingWrapper,
-
 	ShowAllButton,
-
 } from "./Inventory.styles";
 import { InventoryCard } from "./InventoryCard";
 import router from "next/router";
@@ -42,7 +39,6 @@ function useWindowSize() {
 	}, []); // Empty array ensures that effect is only run on mount
 	return windowSize;
 }
-
 
 export const Inventory = () => {
 	const size = useWindowSize();
@@ -98,42 +94,59 @@ export const Inventory = () => {
 	});
 
 	//if false, add to traits array
+	if (ingredients.length === 0 && backgrounds.length === 0) {
+		return (
+			<InventoryWrapper>
+				<HeaderColumn>No Traits Found</HeaderColumn>
+			</InventoryWrapper>
+		);
+	}
 	return (
 		<InventoryWrapper>
-			<HeaderColumn>Traits</HeaderColumn>
-			<CardContainer>
-				{ingredients.slice(0, traitsPerRow).map((ingredient, index) => (
-					<InventoryCard key={index} traitTokenObj={ingredient} />
-				))}
-
-				{showAllTraits &&
-					ingredients
-						.slice(traitsPerRow)
-						.map((ingredient, index) => (
+			{ingredients.length > 0 && (
+				<>
+					<HeaderColumn>Traits</HeaderColumn>
+					<CardContainer>
+						{ingredients.slice(0, traitsPerRow).map((ingredient, index) => (
 							<InventoryCard key={index} traitTokenObj={ingredient} />
 						))}
-			</CardContainer>
-			<ShowAllButton onClick={() => setShowAllTraits(!showAllTraits)}>
-				{showAllTraits ? "Show Less" : "Show All"}
-			</ShowAllButton>
-			<HeaderColumn>Background</HeaderColumn>
-			<CardContainer>
-				{backgrounds.slice(0, traitsPerRow).map((background, index) => (
-					<InventoryCard key={index} traitTokenObj={background} />
-				))}
-				{showAllBackgrounds &&
-					backgrounds
-						.slice(traitsPerRow)
-						.map((background, index) => (
+
+						{showAllTraits &&
+							ingredients
+								.slice(traitsPerRow)
+								.map((ingredient, index) => (
+									<InventoryCard key={index} traitTokenObj={ingredient} />
+								))}
+					</CardContainer>
+					{ingredients.length > traitsPerRow && (
+						<ShowAllButton onClick={() => setShowAllTraits(!showAllTraits)}>
+							{showAllTraits ? "Show Less" : "Show All"}
+						</ShowAllButton>
+					)}
+				</>
+			)}
+			{backgrounds.length > 0 && (
+				<>
+					<HeaderColumn>Background</HeaderColumn>
+					<CardContainer>
+						{backgrounds.slice(0, traitsPerRow).map((background, index) => (
 							<InventoryCard key={index} traitTokenObj={background} />
 						))}
-				{/* {backgrounds.map((background, index) => (
-					<InventoryCard key={index} traitTokenObj={background} />
-				))} */}
-			</CardContainer>
-			<ShowAllButton onClick={() => setShowAllBackgrounds(!showAllBackgrounds)}>
-				{showAllBackgrounds ? "Show Less" : "Show All"}
-			</ShowAllButton>
+						{showAllBackgrounds &&
+							backgrounds
+								.slice(traitsPerRow)
+								.map((background, index) => (
+									<InventoryCard key={index} traitTokenObj={background} />
+								))}
+					</CardContainer>
+					{backgrounds.length > traitsPerRow && (
+						<ShowAllButton
+							onClick={() => setShowAllBackgrounds(!showAllBackgrounds)}>
+							{showAllBackgrounds ? "Show Less" : "Show All"}
+						</ShowAllButton>
+					)}
+				</>
+			)}
 		</InventoryWrapper>
 	);
 };
