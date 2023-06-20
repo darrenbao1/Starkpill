@@ -44,7 +44,7 @@ const SearchBar2: React.FC<SearchBarProps> = ({
 					ref={inputRef}
 					type="number"
 					onChange={onChange}
-					placeholder="Search for pill"
+					placeholder="Search for Id"
 				/>
 
 				<Cross

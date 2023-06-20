@@ -86,6 +86,16 @@ export default function Cabinet() {
 			setTraitObj(undefined);
 		}
 	};
+	const searchPillManual = async (tokenId: number) => {
+		setSearchQuery(tokenId);
+		setShowResults(true);
+		const token = await searchToken({
+			variables: { tokenId },
+		});
+		if (token && token.data) {
+			setTraitObj(undefined);
+		}
+	};
 	const debouncedHandleInputChange = useCallback(
 		debounce(handleInputChange, 300),
 		[]
@@ -265,7 +275,10 @@ export default function Cabinet() {
 													<p>Search Results for &ldquo;{searchQuery}&ldquo;</p>
 												</Header>
 												<StarkpillCardContainer>
-													<StarkTraitCard traitObj={traitObj!} />
+													<StarkTraitCard
+														traitObj={traitObj!}
+														searchPillManual={searchPillManual}
+													/>
 												</StarkpillCardContainer>
 											</>
 										)}

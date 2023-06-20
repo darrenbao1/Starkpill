@@ -69,3 +69,11 @@ export const HeaderContainer = styled.div`
 	display: flex;
 	align-items: center;
 `;
+
+export const PillIdSpan = styled.span`
+	cursor: pointer;
+	color: #ff4f0a;
+	&:hover {
+		text-decoration: underline;
+	}
+`;

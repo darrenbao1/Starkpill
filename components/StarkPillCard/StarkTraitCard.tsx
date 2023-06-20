@@ -1,3 +1,4 @@
+import { eq } from "lodash";
 import { FACE_TRAITS } from "../../types/constants";
 import { InventoryTokenObj } from "../../types/interfaces";
 import { shortenAddress } from "../../types/utils";
@@ -7,10 +8,12 @@ import {
 	CardInnerContainer,
 	Content,
 	HeaderContainer,
+	PillIdSpan,
 } from "./StarkTraitCard.styles";
 
 interface Props {
 	traitObj: InventoryTokenObj;
+	searchPillManual: (tokenId: number) => void;
 }
 
 export const StarkTraitCard = (props: Props) => {
@@ -46,7 +49,12 @@ export const StarkTraitCard = (props: Props) => {
 					</HeaderContainer>
 					<p>Name: {itemName}</p>
 					{equippedById !== 0 ? (
-						<p>Equipped By: TestPill #{equippedById}</p>
+						<p>
+							Equipped By:
+							<PillIdSpan onClick={() => props.searchPillManual(equippedById)}>
+								TestPill #{equippedById}
+							</PillIdSpan>
+						</p>
 					) : (
 						<p>Not Equipped</p>
 					)}
