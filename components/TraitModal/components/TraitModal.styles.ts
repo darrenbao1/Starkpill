@@ -57,7 +57,7 @@ export const TraitCardContainer = styled.div`
 	grid-gap: 2rem;
 	padding: 1rem;
 	padding-top: 5px;
-	overflow: hidden;
+	overflow: overlay;
 	&:hover {
 		overflow: overlay;
 	}
