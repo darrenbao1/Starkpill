@@ -249,3 +249,13 @@ export const ExternalLinks = Styled(ExternalLinksIcon)`
     `;
 export const SaveImageIcon = Styled(DownloadLogo)`
 `;
+
+export const OwnerAddressP = Styled.p`
+color: #ff4f0a;
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+            
+        }
+
+`;

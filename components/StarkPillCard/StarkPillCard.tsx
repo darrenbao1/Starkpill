@@ -28,6 +28,7 @@ import {
 	MenuOptionsWrapper,
 	CardInnerContainer,
 	SaveImageIcon,
+	OwnerAddressP,
 } from "./StarkPillCard.styles";
 import { TxHistoryModal } from "../Modals/TxHistory";
 import { saveAs } from "file-saver";
@@ -83,6 +84,20 @@ export const StarkPillCard = (props: Props) => {
 				STARKPILL_CONTRACT_ADDRESS +
 				"/" +
 				tokenId,
+			"_blank"
+		);
+	};
+
+	const openExternalLink = () => {
+		window.open(
+			`https://testnet.aspect.co/asset/${STARKPILL_CONTRACT_ADDRESS}/${tokenId}`,
+			"_blank"
+		);
+	};
+
+	const openOwnerAddressLink = () => {
+		window.open(
+			`https://testnet.starkscan.co/contract/${ownerAddress}`,
 			"_blank"
 		);
 	};
@@ -191,7 +206,11 @@ export const StarkPillCard = (props: Props) => {
 						<p>{fame} Fame</p>
 
 						{/* Owner Of Pill ↓↓ */}
-						{!isOwner && <p>Owner: {shortenAddress(ownerAddress)}</p>}
+						{!isOwner && (
+							<OwnerAddressP onClick={openOwnerAddressLink}>
+								Owner: {shortenAddress(ownerAddress)}
+							</OwnerAddressP>
+						)}
 					</Content>
 				</CardInnerContainer>
 
@@ -231,10 +250,10 @@ export const StarkPillCard = (props: Props) => {
 							{/* Option to redirect user to Mint Square ↓↓ */}
 							<p
 								onClick={() => {
-									openMintSquareLink();
+									openExternalLink();
 									setMenuId(null);
 								}}>
-								<ExternalLinksIcon /> Mint Square{" "}
+								<ExternalLinksIcon /> Aspect{" "}
 							</p>
 							<p
 								onClick={() => {

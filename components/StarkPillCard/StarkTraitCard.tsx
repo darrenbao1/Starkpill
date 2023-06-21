@@ -1,5 +1,5 @@
 import { eq } from "lodash";
-import { FACE_TRAITS } from "../../types/constants";
+import { FACE_TRAITS, STARKPILL_CONTRACT_ADDRESS } from "../../types/constants";
 import { InventoryTokenObj } from "../../types/interfaces";
 import { shortenAddress } from "../../types/utils";
 import {
@@ -8,6 +8,7 @@ import {
 	CardInnerContainer,
 	Content,
 	HeaderContainer,
+	OwnerAddressP,
 	PillIdSpan,
 } from "./StarkTraitCard.styles";
 
@@ -27,7 +28,15 @@ export const StarkTraitCard = (props: Props) => {
 	const itemIndexInConstant = Number(
 		imageUrl.substring(imageUrl.lastIndexOf("_") + 1, imageUrl.lastIndexOf("."))
 	);
-
+	const openOwnerAddressLink = () => {
+		window.open(`https://testnet.starkscan.co/contract/${address}`, "_blank");
+	};
+	const openExternalLink = () => {
+		window.open(
+			`https://testnet.aspect.co/asset/${STARKPILL_CONTRACT_ADDRESS}/${id}`,
+			"_blank"
+		);
+	};
 	return (
 		<Card>
 			<CardInnerContainer>
@@ -43,7 +52,7 @@ export const StarkTraitCard = (props: Props) => {
 				/>
 				<Content>
 					<HeaderContainer>
-						<h1>
+						<h1 onClick={openExternalLink}>
 							{isIngredient ? "Ingredient" : "Background"} #{id}
 						</h1>
 					</HeaderContainer>
@@ -58,7 +67,9 @@ export const StarkTraitCard = (props: Props) => {
 					) : (
 						<p>Not Equipped</p>
 					)}
-					<p>Owner: {shortenAddress(address!)}</p>
+					<OwnerAddressP onClick={openOwnerAddressLink}>
+						Owner: {shortenAddress(address!)}
+					</OwnerAddressP>
 				</Content>
 			</CardInnerContainer>
 		</Card>

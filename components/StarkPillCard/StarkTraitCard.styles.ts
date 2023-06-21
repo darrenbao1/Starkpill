@@ -29,9 +29,6 @@ export const CardImage = styled(Image)`
 	height: 200px;
 	background-color: white;
 	border-bottom: 1px solid hsla(0, 0%, 89%, 0.6);
-	&:hover {
-		opacity: 0.7;
-	}
 	@media screen and (max-width: 500px) {
 		width: 300px;
 		height: 300px;
@@ -75,5 +72,12 @@ export const PillIdSpan = styled.span`
 	color: #ff4f0a;
 	&:hover {
 		text-decoration: underline;
+	}
+`;
+export const OwnerAddressP = styled.p`
+	color: #ff4f0a;
+	&:hover {
+		text-decoration: underline;
+		cursor: pointer;
 	}
 `;
