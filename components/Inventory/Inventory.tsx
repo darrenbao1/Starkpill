@@ -10,10 +10,9 @@ import {
 import { InventoryCard } from "./InventoryCard";
 import router from "next/router";
 import { InventoryTokenObj } from "../../types/interfaces";
-
 import Loading from "../Loading/Loading";
-
 import { useEffect, useState } from "react";
+import UserBackPackTokenProvider from "../Provider/UserBackpackTokenProvider";
 
 function useWindowSize() {
 	// detect window screen width function
@@ -102,51 +101,54 @@ export const Inventory = () => {
 		);
 	}
 	return (
-		<InventoryWrapper>
-			{ingredients.length > 0 && (
-				<>
-					<HeaderColumn>Traits</HeaderColumn>
-					<CardContainer>
-						{ingredients.slice(0, traitsPerRow).map((ingredient, index) => (
-							<InventoryCard key={index} traitTokenObj={ingredient} />
-						))}
+		<UserBackPackTokenProvider.Provider
+			value={[...ingredients, ...backgrounds]}>
+			<InventoryWrapper>
+				{ingredients.length > 0 && (
+					<>
+						<HeaderColumn>Traits</HeaderColumn>
+						<CardContainer>
+							{ingredients.slice(0, traitsPerRow).map((ingredient, index) => (
+								<InventoryCard key={index} traitTokenObj={ingredient} />
+							))}
 
-						{showAllTraits &&
-							ingredients
-								.slice(traitsPerRow)
-								.map((ingredient, index) => (
-									<InventoryCard key={index} traitTokenObj={ingredient} />
-								))}
-					</CardContainer>
-					{ingredients.length > traitsPerRow && (
-						<ShowAllButton onClick={() => setShowAllTraits(!showAllTraits)}>
-							{showAllTraits ? "Show Less" : "Show All"}
-						</ShowAllButton>
-					)}
-				</>
-			)}
-			{backgrounds.length > 0 && (
-				<>
-					<HeaderColumn>Background</HeaderColumn>
-					<CardContainer>
-						{backgrounds.slice(0, traitsPerRow).map((background, index) => (
-							<InventoryCard key={index} traitTokenObj={background} />
-						))}
-						{showAllBackgrounds &&
-							backgrounds
-								.slice(traitsPerRow)
-								.map((background, index) => (
-									<InventoryCard key={index} traitTokenObj={background} />
-								))}
-					</CardContainer>
-					{backgrounds.length > traitsPerRow && (
-						<ShowAllButton
-							onClick={() => setShowAllBackgrounds(!showAllBackgrounds)}>
-							{showAllBackgrounds ? "Show Less" : "Show All"}
-						</ShowAllButton>
-					)}
-				</>
-			)}
-		</InventoryWrapper>
+							{showAllTraits &&
+								ingredients
+									.slice(traitsPerRow)
+									.map((ingredient, index) => (
+										<InventoryCard key={index} traitTokenObj={ingredient} />
+									))}
+						</CardContainer>
+						{ingredients.length > traitsPerRow && (
+							<ShowAllButton onClick={() => setShowAllTraits(!showAllTraits)}>
+								{showAllTraits ? "Show Less" : "Show All"}
+							</ShowAllButton>
+						)}
+					</>
+				)}
+				{backgrounds.length > 0 && (
+					<>
+						<HeaderColumn>Background</HeaderColumn>
+						<CardContainer>
+							{backgrounds.slice(0, traitsPerRow).map((background, index) => (
+								<InventoryCard key={index} traitTokenObj={background} />
+							))}
+							{showAllBackgrounds &&
+								backgrounds
+									.slice(traitsPerRow)
+									.map((background, index) => (
+										<InventoryCard key={index} traitTokenObj={background} />
+									))}
+						</CardContainer>
+						{backgrounds.length > traitsPerRow && (
+							<ShowAllButton
+								onClick={() => setShowAllBackgrounds(!showAllBackgrounds)}>
+								{showAllBackgrounds ? "Show Less" : "Show All"}
+							</ShowAllButton>
+						)}
+					</>
+				)}
+			</InventoryWrapper>
+		</UserBackPackTokenProvider.Provider>
 	);
 };

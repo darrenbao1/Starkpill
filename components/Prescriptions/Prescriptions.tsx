@@ -27,7 +27,6 @@ export default function Prescriptions() {
 	useEffect(() => {
 		setTimeout(() => {
 			refetch();
-			console.log(data);
 		}, 3000);
 	}, [refetchState.value, refetch, data]);
 	if (loading) {

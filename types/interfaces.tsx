@@ -66,4 +66,6 @@ export interface StarkpillToken {
 	mintPrice: number;
 	tokenId: number;
 	fame: number;
+	bgId: number;
+	ingId: number;
 }

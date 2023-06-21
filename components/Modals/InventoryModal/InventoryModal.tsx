@@ -26,18 +26,12 @@ import {
 	PillImageContainer,
 	ImageStyle,
 } from "./InventoryModal.styles";
-import {
-	FACE_TRAITS,
-	GET_TOKEN_BY_ID,
-	GET_USER_TOKENS,
-	useWindowSize,
-} from "../../../types/constants";
+import { FACE_TRAITS, useWindowSize } from "../../../types/constants";
 
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { InventoryTokenObj, StarkpillToken } from "../../../types/interfaces";
-import { useLazyQuery } from "@apollo/client";
-import Loading from "../../Loading/Loading";
-import router from "next/router";
+import UserTokenProvider from "../../Provider/UserTokenProvider";
+import UserBackPackTokenProvider from "../../Provider/UserBackpackTokenProvider";
 
 interface Props {
 	traitTokenObj: InventoryTokenObj;
@@ -48,10 +42,8 @@ export default function InventoryModal(props: Props) {
 	//drestructure traitTokenObj
 	const { id, imageUrl, itemName, equippedById, isIngredient } =
 		props.traitTokenObj;
-	const { walletAddress } = router.query;
 	const [select, setSelect] = useState("");
 	const [RadioButtonSelected, setRadioButtonSelected] = useState(false);
-	const [allUserTokens, setAllUserTokens] = useState<StarkpillToken[]>([]);
 	const [showDropDownPills, setShowDropDownPills] = useState(false);
 	const testingtraits = [
 		"Wassie Face",
@@ -67,69 +59,60 @@ export default function InventoryModal(props: Props) {
 	];
 	const [selectedPill, setSelectedPill] = useState(testpills[0]);
 	const [pillSelected, setPillSelected] = useState(false);
-	const [equippedByPillToken, setEquippedByPillToken] =
-		useState<StarkpillToken>();
 	const [selectedTrait, setSelectedTrait] = useState(testingtraits[0]);
-
 	const [traitSelected, setTraitSelected] = useState(false);
-
 	const handleSelectChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value;
 		setSelect(value);
 		setRadioButtonSelected(true);
 	};
 	const size = useWindowSize();
+	//Darren Code here.
+	const [equippedByPillToken, setEquippedByPillToken] =
+		useState<StarkpillToken>();
 	const itemIndexInConstant = Number(
 		imageUrl.substring(imageUrl.lastIndexOf("_") + 1, imageUrl.lastIndexOf("."))
 	);
-	const [equippedByPill, { loading: searchLoading, data: searchData }] =
-		useLazyQuery(GET_TOKEN_BY_ID, {
-			variables: { tokenId: equippedById },
-		});
 
-	const [UserTokens, { loading: loadingUserTokens, data: userTokensData }] =
-		useLazyQuery(GET_USER_TOKENS, {
-			variables: { address: walletAddress },
-		});
-	const getUserTokens = async () => {
-		if (!walletAddress) return;
-		const userTokensObjArray: StarkpillToken[] = [];
-		const result = await UserTokens();
-		//console.log(result.data.user.tokens);
-		result.data.user.tokens.forEach((token: any) => {
+	const providerPillData = useContext(UserTokenProvider);
+	const providerBackpackData: InventoryTokenObj[] = useContext(
+		UserBackPackTokenProvider
+	);
+	console.table(providerBackpackData);
+	let starkpillTokenArray: StarkpillToken[] = [];
+	providerPillData.user.tokens.forEach(
+		(token: {
+			id: number;
+			owner: { address: string };
+			metadata: { mintPrice: number; imageUrl: string; fame: number };
+			background: number;
+			ingredient: number;
+		}) => {
 			const newTokenObj: StarkpillToken = {
 				tokenId: token.id,
 				ownerAddress: token.owner.address,
 				mintPrice: token.metadata.mintPrice,
 				imageUrl: token.metadata.imageUrl,
 				fame: token.metadata.fame,
+				bgId: token.background,
+				ingId: token.ingredient,
 			};
-			userTokensObjArray.push(newTokenObj);
-		});
-		setAllUserTokens(userTokensObjArray);
-	};
-	const getEquippedToken = async () => {
+			starkpillTokenArray.push(newTokenObj);
+		}
+	);
+	console.table(starkpillTokenArray);
+	const getEquippedToken = () => {
 		if (equippedById === 0) return;
-		const equippedByToken = await equippedByPill();
-		const newTokenObj: StarkpillToken = {
-			tokenId: equippedByToken.data.token.id,
-			ownerAddress: equippedByToken.data.token.owner.address,
-			mintPrice: equippedByToken.data.token.metadata.mintPrice,
-			imageUrl: equippedByToken.data.token.metadata.imageUrl,
-			fame: equippedByToken.data.token.metadata.fame,
-		};
-		setEquippedByPillToken(newTokenObj);
+		//search for the token id from starkpillTokenArray where the equippedById is equal to the tokenId
+		const equippedByToken = starkpillTokenArray.find(
+			(token) => token.tokenId === equippedById
+		);
+		setEquippedByPillToken(equippedByToken);
 	};
 	useEffect(() => {
 		getEquippedToken();
-		getUserTokens();
 	}, []);
-	if (searchLoading || loadingUserTokens)
-		return (
-			<Container>
-				<Loading />
-			</Container>
-		);
+	//Darren Code ends here.
 	return (
 		<Container>
 			<ModalContainer>

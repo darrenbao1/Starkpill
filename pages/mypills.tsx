@@ -12,6 +12,7 @@ import { useAccount } from "@starknet-react/core";
 import { convertToStandardWalletAddress } from "../types/utils";
 import { Disconnected } from "../components/DisconnectedPage.tsx/Disconnected";
 import { Inventory } from "../components/Inventory/Inventory";
+import UserTokenProvider from "../components/Provider/UserTokenProvider";
 export default function Mypills() {
 	const [toggleTabState, setToggleTabState] = useState(1);
 	const toggleTabStateHandler = (index: number) => {
@@ -42,47 +43,49 @@ export default function Mypills() {
 	}, [refetchState.value, refetch, data]);
 
 	return (
-		<div
-			className={`container ${sharedBackgroundStyles.extendedBackground}`}
-			ref={scrollTopRef}
-			onScroll={(e) => handleScroll(e)}>
-			{address && walletAddress == convertToStandardWalletAddress(address) ? (
-				<div>
-					<div className={styles.headerContainer}>
-						<div className={styles.cabinetHeader}> My Cabinet</div>
-						<div className={styles.blocTabs}>
-							<div
-								className={
-									toggleTabState === 1 ? styles.activeTabs : styles.tabs
-								}
-								onClick={() => toggleTabStateHandler(1)}>
-								Prescriptions
-							</div>
-							<div
-								className={
-									toggleTabState === 2 ? styles.activeTabs : styles.tabs
-								}
-								onClick={() => toggleTabStateHandler(2)}>
-								Inventory
+		<UserTokenProvider.Provider value={data}>
+			<div
+				className={`container ${sharedBackgroundStyles.extendedBackground}`}
+				ref={scrollTopRef}
+				onScroll={(e) => handleScroll(e)}>
+				{address && walletAddress == convertToStandardWalletAddress(address) ? (
+					<div>
+						<div className={styles.headerContainer}>
+							<div className={styles.cabinetHeader}> My Cabinet</div>
+							<div className={styles.blocTabs}>
+								<div
+									className={
+										toggleTabState === 1 ? styles.activeTabs : styles.tabs
+									}
+									onClick={() => toggleTabStateHandler(1)}>
+									Prescriptions
+								</div>
+								<div
+									className={
+										toggleTabState === 2 ? styles.activeTabs : styles.tabs
+									}
+									onClick={() => toggleTabStateHandler(2)}>
+									Inventory
+								</div>
 							</div>
 						</div>
-					</div>
 
-					{toggleTabState === 1 ? <Prescriptions /> : <Inventory />}
-				</div>
-			) : (
-				<div
-					className={`container ${sharedBackgroundStyles.extendedBackground}`}>
-					<Disconnected text="You have to connect your wallet before viewing your Starkpills" />
-				</div>
-			)}
-			{showButton &&
-				!refetchState.imageModalShown &&
-				!refetchState.editPillModalShown && (
-					<BackToTopButton
-						scrollTopFunc={() => handleScrollToTop(scrollTopRef)}
-					/>
+						{toggleTabState === 1 ? <Prescriptions /> : <Inventory />}
+					</div>
+				) : (
+					<div
+						className={`container ${sharedBackgroundStyles.extendedBackground}`}>
+						<Disconnected text="You have to connect your wallet before viewing your Starkpills" />
+					</div>
 				)}
-		</div>
+				{showButton &&
+					!refetchState.imageModalShown &&
+					!refetchState.editPillModalShown && (
+						<BackToTopButton
+							scrollTopFunc={() => handleScrollToTop(scrollTopRef)}
+						/>
+					)}
+			</div>
+		</UserTokenProvider.Provider>
 	);
 }
