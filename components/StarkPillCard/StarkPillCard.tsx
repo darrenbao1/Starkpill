@@ -14,6 +14,7 @@ import KebabIcon from "../../public/svgs/kebab.svg";
 import KebabIconSmall from "../../public/svgs/kebabSmall.svg";
 import ExternalLinksIcon from "../../public/svgs/ExternalLinks.svg";
 import PillDetailsIcon from "../../public/svgs/PillDetailsIcon.svg";
+import PillActivityIcon from "../../public/svgs/pillActivityIcon.svg";
 import { useState, useEffect, useCallback } from "react";
 
 //STYLES↓↓↓
@@ -260,7 +261,7 @@ export const StarkPillCard = (props: Props) => {
 									setShowTxHistoryModal(true);
 									setMenuId(null);
 								}}>
-								<ExternalLinksIcon /> Tx History{" "}
+								<PillActivityIcon /> Pill Activity{" "}
 							</p>
 						</MenuOptions>
 					</MenuOptionsWrapper>
