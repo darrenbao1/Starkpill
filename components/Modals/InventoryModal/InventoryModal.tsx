@@ -78,7 +78,10 @@ export default function InventoryModal(props: Props) {
 	const providerBackpackData: InventoryTokenObj[] = useContext(
 		UserBackPackTokenProvider
 	);
-	console.table(providerBackpackData);
+	const filteredBackpackData = providerBackpackData.filter(
+		(item) => item.isIngredient === isIngredient
+	);
+	console.table(filteredBackpackData);
 	let starkpillTokenArray: StarkpillToken[] = [];
 	providerPillData.user.tokens.forEach(
 		(token: {
