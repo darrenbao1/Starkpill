@@ -19,13 +19,15 @@ export const Container = styled.div`
 	width: 100%;
 	height: 100%;
 	z-index: 3;
+	top: 0;
+	left: 0;
 
 	@media (max-width: 769px) {
 		overflow: auto;
 	}
 `;
 export const ModalContainer = styled.div`
-	display: flex;
+	display: block;
 	justify-content: center;
 	align-items: center;
 	flex-direction: row;
