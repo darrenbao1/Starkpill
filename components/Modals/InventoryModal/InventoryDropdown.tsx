@@ -73,8 +73,7 @@ export default function InventoryDropdown(props: Props) {
 								setSelected(true);
 								onDropdownItemClick(index);
 							}}>
-							{itemName}
-
+							{itemName}hcvhf
 							<PillImage
 								src={
 									isIngredient
