@@ -20,7 +20,7 @@ export const Container = styled.div`
 	height: 100%;
 
 	@media (max-width: 769px) {
-		overflow: auto;
+		overflow-y: scroll;
 	}
 `;
 export const ModalContainer = styled.div`
@@ -40,6 +40,7 @@ export const ModalContainer = styled.div`
 		height: 100%;
 		max-height: 722px;
 		gap: 11px;
+		overflow-y: auto;
 	}
 `;
 
