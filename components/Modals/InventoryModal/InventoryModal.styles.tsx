@@ -41,6 +41,7 @@ export const ModalContainer = styled.div`
 		height: 100%;
 		max-height: 722px;
 		gap: 11px;
+		z-index: 10;
 	}
 `;
 
