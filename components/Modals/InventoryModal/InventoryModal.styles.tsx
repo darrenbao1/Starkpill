@@ -10,19 +10,19 @@ interface ButtonProps {
 interface UnequipButtonProps {
 	unequipSelected: boolean;
 }
-export const Container = styled.div`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: fixed;
-	background-color: rgba(0, 0, 0, 0.9);
-	width: 100%;
-	height: 100%;
+// export const Container = styled.div`
+// 	display: flex;
+// 	justify-content: center;
+// 	align-items: center;
+// 	position: fixed;
+// 	background-color: rgba(0, 0, 0, 0.9);
+// 	width: 100%;
+// 	height: 100%;
 
-	@media (max-width: 750px) {
-		overflow: auto;
-	}
-`;
+// 	@media (max-width: 750px) {
+// 		overflow: auto;
+// 	}
+// `;
 export const ModalContainer = styled.div`
 	display: flex;
 	justify-content: center;
@@ -299,6 +299,9 @@ export const DropdownContainer = styled.div`
 	&::-webkit-scrollbar-thumb {
 		background: #757575;
 		border-radius: 8px;
+	}
+	@media (max-width: 750px) {
+		margin-top: 0px;
 	}
 `;
 
