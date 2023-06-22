@@ -233,4 +233,6 @@ export function getEquipOnAnotherPillCalls(
 		entrypoint: "scalarTransferFrom",
 		calldata: [address, traitObj.id, 0, equipOntoPill.tokenId, 0],
 	});
+
+	return calls;
 }

@@ -43,6 +43,16 @@ import {
 import UserTokenProvider from "../../Provider/UserTokenProvider";
 import UserBackPackTokenProvider from "../../Provider/UserBackpackTokenProvider";
 import InventoryDropdown from "./InventoryDropdown";
+import {
+	useStarknetExecute,
+	useTransactionManager,
+} from "@starknet-react/core";
+import {
+	getEquipOnAnotherPillCalls,
+	getSwitchCalls,
+	getUnequipCall,
+} from "../../../hooks/StarkPillContract";
+import { useRouter } from "next/router";
 
 interface Props {
 	traitTokenObj: InventoryTokenObj;
@@ -51,7 +61,10 @@ interface Props {
 }
 
 export default function InventoryModal(props: Props) {
-	//drestructure traitTokenObj
+	const router = useRouter();
+	const { addTransaction } = useTransactionManager();
+	const { walletAddress } = router.query;
+	//drestructure  traitTokenObj
 	const { id, imageUrl, itemName, equippedById, isIngredient } =
 		props.traitTokenObj;
 	const [select, setSelect] = useState("");
@@ -86,7 +99,6 @@ export default function InventoryModal(props: Props) {
 	const filteredBackpackData = providerBackpackData.filter(
 		(item) => item.isIngredient === isIngredient
 	);
-	console.table(filteredBackpackData);
 	let starkpillTokenArray: StarkpillToken[] = [];
 	providerPillData.user.tokens.forEach(
 		(token: {
@@ -108,7 +120,9 @@ export default function InventoryModal(props: Props) {
 			starkpillTokenArray.push(newTokenObj);
 		}
 	);
-	console.table(starkpillTokenArray);
+	const equippedByToken = starkpillTokenArray.find(
+		(token) => token.tokenId === equippedById
+	);
 	const getEquippedToken = () => {
 		if (equippedById === 0) return;
 		//search for the token id from starkpillTokenArray where the equippedById is equal to the tokenId
@@ -122,6 +136,78 @@ export default function InventoryModal(props: Props) {
 	}, []);
 
 	const [indexOfSelectedTrait, setIndexOfSelectedTrait] = useState<number>(0);
+
+	//here for contract interactions
+	let unequipCalls: any[] = [];
+	if (equippedByToken) {
+		unequipCalls = getUnequipCall(equippedByToken, isIngredient);
+	}
+
+	const { execute: unequipExecute } = useStarknetExecute({
+		calls: unequipCalls,
+	});
+
+	const onClickUnequip = async () => {
+		try {
+			const response = await unequipExecute();
+			addTransaction({
+				hash: response.transaction_hash,
+				metadata: { transactionName: "unequip trait" },
+			});
+			props.closeModal();
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
+	let equipOnAnotherPillCalls: any[] = [];
+	equipOnAnotherPillCalls = getEquipOnAnotherPillCalls(
+		starkpillTokenArray[indexOfSelectedTrait],
+		props.traitTokenObj,
+		walletAddress! as string
+	);
+
+	const { execute: equipOnAnotherPillExecute } = useStarknetExecute({
+		calls: equipOnAnotherPillCalls,
+	});
+
+	const onClickEquipOnAnotherPill = async () => {
+		try {
+			const response = await equipOnAnotherPillExecute();
+			addTransaction({
+				hash: response.transaction_hash,
+				metadata: { transactionName: "Equip trait on another pill" },
+			});
+			props.closeModal();
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
+	let switchCalls: any[] = [];
+	if (equippedByToken) {
+		switchCalls = getSwitchCalls(
+			equippedByToken,
+			filteredBackpackData[indexOfSelectedTrait],
+			walletAddress! as string
+		);
+	}
+	const { execute: switchExecute } = useStarknetExecute({
+		calls: switchCalls,
+	});
+
+	const onClickSwitchExecute = async () => {
+		try {
+			const response = await switchExecute();
+			addTransaction({
+				hash: response.transaction_hash,
+				metadata: { transactionName: "switch trait" },
+			});
+			props.closeModal();
+		} catch (e) {
+			console.log(e);
+		}
+	};
 
 	//Darren Code ends here.
 	return (
@@ -188,8 +274,8 @@ export default function InventoryModal(props: Props) {
 									<RadioButton
 										type="radio"
 										name="radio"
-										value="optionA"
-										checked={select === "optionA"}
+										value="swapTrait"
+										checked={select === "swapTrait"}
 										onChange={(event) => handleSelectChange(event)}
 									/>
 									<RadioButtonLabel />
@@ -199,8 +285,8 @@ export default function InventoryModal(props: Props) {
 									<RadioButton
 										type="radio"
 										name="radio"
-										value="optionB"
-										checked={select === "optionB"}
+										value="unequipTrait"
+										checked={select === "unequipTrait"}
 										onChange={(event) => {
 											handleSelectChange(event);
 											setOptionBSelected(true);
@@ -210,7 +296,7 @@ export default function InventoryModal(props: Props) {
 									<RadioButtonText>Unequip Trait</RadioButtonText>
 								</Item>
 							</RadioWrapper>
-							{select === "optionA" && (
+							{select === "swapTrait" && (
 								<SelectionContainer>
 									<SelectATrait
 										onClick={() => setShowDropDownPills(!showDropDownPills)}>
@@ -239,16 +325,19 @@ export default function InventoryModal(props: Props) {
 										isHidden={showDropDownPills}
 									/>
 
-									<ButtonContainer itemSelectedBG={isSelected}>
+									<ButtonContainer
+										itemSelectedBG={isSelected}
+										onClick={() => onClickSwitchExecute()}>
 										Confirm
 									</ButtonContainer>
 								</SelectionContainer>
 							)}
 
-							{select === "optionB" && (
+							{select === "unequipTrait" && (
 								<ButtonContainer2
 									unequipSelected={optionBSelected}
-									itemSelectedBG={isSelected}>
+									itemSelectedBG={isSelected}
+									onClick={() => onClickUnequip()}>
 									Confirm
 								</ButtonContainer2>
 							)}
@@ -264,15 +353,15 @@ export default function InventoryModal(props: Props) {
 								<RadioButton
 									type="radio"
 									name="radio"
-									value="optionC"
-									checked={select === "optionC"}
+									value="equipOntoPill"
+									checked={select === "equipOntoPill"}
 									onChange={(event) => handleSelectChange(event)}
 								/>
 								<RadioButtonLabel />
 								<RadioButtonText>Equip Trait</RadioButtonText>
 							</Item>
 
-							{select === "optionC" && (
+							{select === "equipOntoPill" && (
 								<SelectionContainer>
 									<SelectATrait
 										onClick={() => setShowDropDownPills(!showDropDownPills)}>
@@ -302,7 +391,9 @@ export default function InventoryModal(props: Props) {
 										isHidden={showDropDownPills}
 									/>
 
-									<ButtonContainer itemSelectedBG={isSelected}>
+									<ButtonContainer
+										itemSelectedBG={isSelected}
+										onClick={() => onClickEquipOnAnotherPill()}>
 										Confirm
 									</ButtonContainer>
 								</SelectionContainer>
