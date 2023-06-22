@@ -18,12 +18,13 @@ export const Container = styled.div`
 	background-color: rgba(0, 0, 0, 0.9);
 	backdrop-filter: blur(10px);
 	width: 100vw;
-	height: 100vh;
+	height: calc(100vh + rem);
 	z-index: 2;
 	top: 0;
 	left: 0;
 	bottom: 0;
 	right: 0;
+	overflow: auto;
 
 	@media (max-width: 769px) {
 		overflow: auto;
