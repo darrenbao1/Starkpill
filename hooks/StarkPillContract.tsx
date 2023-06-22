@@ -5,7 +5,12 @@ import {
 	STARKPILL_CONTRACT_ADDRESS,
 	STARKETH_CONTRACT_ADDRESS,
 } from "../types/constants";
-import { Trait, decodedSignature } from "../types/interfaces";
+import {
+	InventoryTokenObj,
+	StarkpillToken,
+	Trait,
+	decodedSignature,
+} from "../types/interfaces";
 export function useStarkPillContract() {
 	return useContract({
 		abi: starkpillAbi as Abi,
@@ -120,4 +125,112 @@ export function getRedemptionVariables(
 		},
 	];
 	return redemptionTransactionVariables;
+}
+
+export function getSwitchCalls(
+	equippedByToken: StarkpillToken,
+	traitObj: InventoryTokenObj,
+	address: string
+) {
+	console.log("Switch function is called");
+	let calls: {
+		contractAddress: string;
+		entrypoint: string;
+		calldata: any[];
+	}[] = [];
+	const { isIngredient } = traitObj;
+	//Unequip the current Trait
+	//if isIngredient is true, remove the ingredient from the pill
+	if (isIngredient) {
+		calls.push({
+			contractAddress: STARKPILL_CONTRACT_ADDRESS,
+			entrypoint: "scalarRemoveFrom",
+			calldata: [equippedByToken.tokenId, 0, equippedByToken.ingId, 0],
+		});
+	} else {
+		calls.push({
+			contractAddress: STARKPILL_CONTRACT_ADDRESS,
+			entrypoint: "scalarRemoveFrom",
+			calldata: [equippedByToken.tokenId, 0, equippedByToken.bgId, 0],
+		});
+	}
+	//need to check if traitObj is equipped by another token
+	//if it is, need to unequip it from that token
+	if (traitObj.equippedById != 0) {
+		calls.push({
+			contractAddress: STARKPILL_CONTRACT_ADDRESS,
+			entrypoint: "scalarRemoveFrom",
+			calldata: [traitObj.equippedById, 0, traitObj.id, 0],
+		});
+	}
+	//Equip the traitObj Trait
+	calls.push({
+		contractAddress: STARKPILL_CONTRACT_ADDRESS,
+		entrypoint: "scalarTransferFrom",
+		calldata: [address, traitObj.id, 0, equippedByToken.tokenId, 0],
+	});
+
+	return calls;
+}
+
+export function getUnequipCall(
+	equippedByToken: StarkpillToken,
+	isIngredient: boolean
+) {
+	console.log("Unequip function is called");
+	//Check if is ingredient to remove the relevant trait.
+	if (isIngredient) {
+		return [
+			{
+				contractAddress: STARKPILL_CONTRACT_ADDRESS,
+				entrypoint: "scalarRemoveFrom",
+				calldata: [equippedByToken.tokenId, 0, equippedByToken.ingId, 0],
+			},
+		];
+	} else {
+		return [
+			{
+				contractAddress: STARKPILL_CONTRACT_ADDRESS,
+				entrypoint: "scalarRemoveFrom",
+				calldata: [equippedByToken.tokenId, 0, equippedByToken.bgId, 0],
+			},
+		];
+	}
+}
+
+export function getEquipOnAnotherPillCalls(
+	equipOntoPill: StarkpillToken,
+	traitObj: InventoryTokenObj,
+	address: string
+) {
+	console.log("Equip trait onto another pill function is called");
+	const { isIngredient } = traitObj;
+	let calls: {
+		contractAddress: string;
+		entrypoint: string;
+		calldata: any[];
+	}[] = [];
+	//traitObj won't be equipped as it's already unequipped don't need to check.
+	//Need to check the equipOntoPill if it already has the trait type equipped.
+	//If it does, need to unequip it first.
+	if (isIngredient && equipOntoPill.ingId != 0) {
+		calls.push({
+			contractAddress: STARKPILL_CONTRACT_ADDRESS,
+			entrypoint: "scalarRemoveFrom",
+			calldata: [equipOntoPill.tokenId, 0, equipOntoPill.ingId, 0],
+		});
+	}
+	if (!isIngredient && equipOntoPill.bgId != 0) {
+		calls.push({
+			contractAddress: STARKPILL_CONTRACT_ADDRESS,
+			entrypoint: "scalarRemoveFrom",
+			calldata: [equipOntoPill.tokenId, 0, equipOntoPill.bgId, 0],
+		});
+	}
+	//Equip the traitObj Trait
+	calls.push({
+		contractAddress: STARKPILL_CONTRACT_ADDRESS,
+		entrypoint: "scalarTransferFrom",
+		calldata: [address, traitObj.id, 0, equipOntoPill.tokenId, 0],
+	});
 }
