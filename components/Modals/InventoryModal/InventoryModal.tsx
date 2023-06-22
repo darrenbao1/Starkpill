@@ -125,8 +125,8 @@ export default function InventoryModal(props: Props) {
 
 	//Darren Code ends here.
 	return (
-		<div className="contentContainer">
-			{/* <Container> */}
+		// <div className="contentContainer">
+		<Container>
 			<ModalContainer>
 				{size.width < 768 && (
 					<HeaderContainer>
@@ -311,7 +311,7 @@ export default function InventoryModal(props: Props) {
 					)}
 				</ModalContent>
 			</ModalContainer>
-			{/* </Container> */}
-		</div>
+		</Container>
+		// </div>
 	);
 }
