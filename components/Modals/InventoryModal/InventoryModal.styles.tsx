@@ -20,8 +20,7 @@ export const Container = styled.div`
 	height: 100%;
 
 	@media (max-width: 750px) {
-		padding-top: 12vh;
-		padding-bottom: 12vh;
+		margin-top: 40px;
 		overflow: auto;
 	}
 `;
