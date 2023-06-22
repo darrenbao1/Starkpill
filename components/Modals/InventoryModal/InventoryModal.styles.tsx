@@ -20,8 +20,9 @@ export const Container = styled.div`
 	height: 100%;
 
 	@media (max-width: 750px) {
+		padding-top: 12vh;
 		padding-bottom: 12vh;
-		overflow-y: scroll;
+		overflow: auto;
 	}
 `;
 export const ModalContainer = styled.div`
