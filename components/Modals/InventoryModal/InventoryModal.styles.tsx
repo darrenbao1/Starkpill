@@ -300,9 +300,6 @@ export const DropdownContainer = styled.div`
 		background: #757575;
 		border-radius: 8px;
 	}
-	@media (max-width: 769px) {
-		margin-top: 0px;
-	}
 `;
 
 export const DropdownItem = styled.div<ModalProps>`
