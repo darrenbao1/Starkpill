@@ -280,7 +280,7 @@ export const ButtonContainer2 = styled(ButtonContainer)<UnequipButtonProps>`
 	}
 `;
 export const DropdownContainer = styled.div`
-	position: fixed;
+	position: absolute;
 	display: flex;
 
 	margin-top: 50px;
