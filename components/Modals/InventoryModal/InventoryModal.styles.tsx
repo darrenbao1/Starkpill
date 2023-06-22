@@ -10,19 +10,19 @@ interface ButtonProps {
 interface UnequipButtonProps {
 	unequipSelected: boolean;
 }
-// export const Container = styled.div`
-// 	display: flex;
-// 	justify-content: center;
-// 	align-items: center;
-// 	position: fixed;
-// 	background-color: rgba(0, 0, 0, 0.9);
-// 	width: 100%;
-// 	height: 100%;
+export const Container = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	background-color: rgba(0, 0, 0, 0.9);
+	width: 100%;
+	height: 100%;
 
-// 	@media (max-width: 750px) {
-// 		overflow: auto;
-// 	}
-// `;
+	@media (max-width: 769px) {
+		overflow: auto;
+	}
+`;
 export const ModalContainer = styled.div`
 	display: flex;
 	justify-content: center;
@@ -34,7 +34,7 @@ export const ModalContainer = styled.div`
 	width: 47rem;
 	border-radius: 12px;
 
-	@media (max-width: 750px) {
+	@media (max-width: 769px) {
 		flex-direction: column;
 		width: 22.813rem;
 		height: 100%;
@@ -51,7 +51,7 @@ export const ModalContent = styled.div`
 	flex-direction: column;
 	width: 22.813rem;
 	height: 20.625rem;
-	@media (max-width: 750px) {
+	@media (max-width: 769px) {
 		width: 100%;
 	}
 `;
@@ -68,7 +68,7 @@ export const HeaderContainer = styled.div`
 
 		color: #ff4f0a;
 	}
-	@media (max-width: 750px) {
+	@media (max-width: 769px) {
 		display: flex;
 		justify-content: space-between;
 		width: 100%;
@@ -147,7 +147,7 @@ export const RadioWrapper = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	@media (max-width: 750px) {
+	@media (max-width: 769px) {
 		padding: 0px;
 		gap: 0px;
 		width: 19.813rem;
@@ -253,7 +253,7 @@ export const ButtonContainer = styled.div<ButtonProps>`
 		border: 1px solid
 			${(props) => (props.itemSelectedBG ? "#ff7037" : "#9B9B9B")};
 	}
-	@media (max-width: 750px) {
+	@media (max-width: 769px) {
 		width: 320px;
 		align-self: bottom;
 	}
@@ -300,8 +300,7 @@ export const DropdownContainer = styled.div`
 		background: #757575;
 		border-radius: 8px;
 	}
-	@media (max-width: 750px) {
-		position: absolute;
+	@media (max-width: 769px) {
 		margin-top: 0px;
 	}
 `;
@@ -321,7 +320,7 @@ export const DropdownItem = styled.div<ModalProps>`
 		background: #ececec;
 		cursor: pointer;
 	}
-	@media (max-width: 750px) {
+	@media (max-width: 769px) {
 		width: 19.5rem;
 	}
 `;
