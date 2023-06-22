@@ -16,13 +16,15 @@ export const Container = styled.div`
 	align-items: center;
 	position: fixed;
 	background-color: rgba(0, 0, 0, 0.9);
-	width: 100%;
-	height: 100%;
-	z-index: 10;
+	backdrop-filter: blur(10px);
+	width: 100vw;
+	height: 100vh;
+	z-index: 2;
 	top: 0;
 	left: 0;
 
 	@media (max-width: 769px) {
+		overflow: auto;
 	}
 `;
 export const ModalContainer = styled.div`
