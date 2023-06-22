@@ -48,6 +48,7 @@ export const InventoryCard = (props: Props) => {
 					<InventoryModal
 						traitTokenObj={props.traitTokenObj}
 						closeModal={() => setShowModal(false)}
+						isTraitDropdown={false}
 					/>
 				</ModalContainer>
 			)}

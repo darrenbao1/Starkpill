@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import Image from "next/image";
-import DropDownIcon from "../../../public/svgs/InventoryDown.svg";
 
 interface ModalProps {
-	selectedTrait: boolean;
+	selected: boolean;
 }
 interface ButtonProps {
-	traitSelected: boolean;
+	itemSelectedBG: boolean;
+}
+interface UnequipButtonProps {
+	unequipSelected: boolean;
 }
 export const Container = styled.div`
 	display: flex;
@@ -14,15 +16,18 @@ export const Container = styled.div`
 	align-items: center;
 	position: fixed;
 	background-color: rgba(0, 0, 0, 0.9);
-	width: 100%;
-	height: 100%;
-
-	@media (max-width: 750px) {
-		padding-bottom: 12vh;
-		overflow-y: scroll;
-	}
+	backdrop-filter: blur(10px);
+	width: 100vw;
+	height: calc(100vh + 5rem);
+	z-index: 2;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	overflow: overlay;
 `;
 export const ModalContainer = styled.div`
+	position: absolute;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -32,12 +37,13 @@ export const ModalContainer = styled.div`
 	background: #ffffff;
 	width: 47rem;
 	border-radius: 12px;
+	z-index: 1;
 
-	@media (max-width: 750px) {
+	@media (max-width: 769px) {
 		flex-direction: column;
 		width: 22.813rem;
 		height: 100%;
-		max-height: 680px;
+		max-height: 722px;
 		gap: 11px;
 	}
 `;
@@ -47,7 +53,7 @@ export const ModalContent = styled.div`
 	flex-direction: column;
 	width: 22.813rem;
 	height: 20.625rem;
-	@media (max-width: 750px) {
+	@media (max-width: 769px) {
 		width: 100%;
 	}
 `;
@@ -64,11 +70,10 @@ export const HeaderContainer = styled.div`
 
 		color: #ff4f0a;
 	}
-	@media (max-width: 750px) {
+	@media (max-width: 769px) {
 		display: flex;
 		justify-content: space-between;
 		width: 100%;
-		padding-left: 70px;
 
 		h1 {
 			margin-top: 10px;
@@ -144,7 +149,7 @@ export const RadioWrapper = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	@media (max-width: 750px) {
+	@media (max-width: 769px) {
 		padding: 0px;
 		gap: 0px;
 		width: 19.813rem;
@@ -229,30 +234,57 @@ export const ButtonContainer = styled.div<ButtonProps>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: ${(props) => (props.traitSelected ? "#ff4f0a" : "#9B9B9B")};
+	background: ${(props) => (props.itemSelectedBG ? "#ff4f0a" : "#9B9B9B")};
 	width: 176px;
 	height: 41px;
-	border: 2px solid ${(props) => (props.traitSelected ? "#ff4f0a" : "#9B9B9B")};
+	border: 2px solid ${(props) => (props.itemSelectedBG ? "#ff4f0a" : "#9B9B9B")};
 	border-radius: 3px;
 	font-size: 24px;
 	color: #ffffff;
 	&:hover {
 		cursor: pointer;
+		background: ${(props) => (props.itemSelectedBG ? "#ba3400" : "#9B9B9B")};
+		border: 2px solid
+			${(props) => (props.itemSelectedBG ? "#ba3400" : "#9B9B9B")};
 	}
-	@media (max-width: 750px) {
+	&:active {
+		background: ${(props) =>
+			props.itemSelectedBG
+				? "linear-gradient(180deg, #ff4f0a 0%, rgba(255, 79, 10, 0.56) 100%)"
+				: "#9B9B9B"};
+		border: 1px solid
+			${(props) => (props.itemSelectedBG ? "#ff7037" : "#9B9B9B")};
+	}
+	@media (max-width: 769px) {
 		width: 320px;
 		align-self: bottom;
 	}
 `;
-export const ButtonContainer2 = styled(ButtonContainer)`
+export const ButtonContainer2 = styled(ButtonContainer)<UnequipButtonProps>`
 	margin-top: 99px;
 	align-self: flex-end;
+	background: ${(props) => (props.unequipSelected ? "#ff4f0a" : "#9B9B9B")};
+	border: 2px solid
+		${(props) => (props.unequipSelected ? "#ff4f0a" : "#9B9B9B")};
+	&:hover {
+		cursor: pointer;
+		background: ${(props) => (props.unequipSelected ? "#ba3400" : "#9B9B9B")};
+		border: 2px solid
+			${(props) => (props.unequipSelected ? "#ba3400" : "#9B9B9B")};
+	}
+	&:active {
+		background: ${(props) =>
+			props.itemSelectedBG
+				? "linear-gradient(180deg, #ff4f0a 0%, rgba(255, 79, 10, 0.56) 100%)"
+				: "#9B9B9B"};
+		border: 1px solid
+			${(props) => (props.unequipSelected ? "#ff7037" : "#9B9B9B")};
+	}
 `;
 export const DropdownContainer = styled.div`
-	position: fixed;
+	position: absolute;
 	display: flex;
-	justify-content: center;
-	padding: 20px 0px 0px 0px;
+
 	margin-top: 50px;
 
 	align-items: center;
@@ -280,21 +312,31 @@ export const DropdownItem = styled.div<ModalProps>`
 	padding: 10px 24px 7px 24px;
 	border-bottom: 1px solid #e0e0e0;
 
-	color: ${(props) => (props.selectedTrait ? "#008344" : "#262626")};
+	color: ${(props) => (props.selected ? "#ff4f0a" : "#262626")};
 	width: 22.5rem;
 	font-size: 24px;
 	&:hover {
 		background: #ececec;
 		cursor: pointer;
 	}
-	@media (max-width: 750px) {
+	@media (max-width: 769px) {
 		width: 19.5rem;
 	}
+`;
+export const DropdownContainerPILL = styled(DropdownContainer)`
+	padding-top: 97px;
+`;
+export const DropdownItemPILL = styled(DropdownItem)`
+	padding: 10px 24px 7px 24px;
 `;
 
 export const Tick = styled(Image)`
 	width: 24px;
 	height: 24px;
+`;
+export const PillImage = styled(Image)`
+	width: 50px;
+	height: 50px;
 `;
 
 export const PillImageContainer = styled(Image)`
