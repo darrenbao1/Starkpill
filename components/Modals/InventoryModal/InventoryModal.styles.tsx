@@ -301,6 +301,7 @@ export const DropdownContainer = styled.div`
 		border-radius: 8px;
 	}
 	@media (max-width: 750px) {
+		position: absolute;
 		margin-top: 0px;
 	}
 `;
