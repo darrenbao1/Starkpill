@@ -126,9 +126,46 @@ export default function InventoryModal(props: Props) {
 	//Darren Code ends here.
 	return (
 		<div className="contentContainer">
-			<Container>
-				<ModalContainer>
-					{size.width < 768 && (
+			{/* <Container> */}
+			<ModalContainer>
+				{size.width < 768 && (
+					<HeaderContainer>
+						<h1>{itemName}</h1>
+						<Cross
+							src="/svgs/InventoryModalClose.svg"
+							alt="cross"
+							width={0}
+							height={0}
+							onClick={props.closeModal}
+						/>
+					</HeaderContainer>
+				)}
+				<ImageContainer>
+					{equippedById === 0 && (
+						<ImageStyle
+							src={
+								isIngredient
+									? FACE_TRAITS[itemIndexInConstant].marketViewLink!
+									: imageUrl
+							}
+							alt={itemName}
+							width={0}
+							height={0}
+							sizes="100vw"
+						/>
+					)}
+					{equippedById !== 0 && equippedByPillToken && (
+						<ImageStyle
+							src={equippedByPillToken.imageUrl}
+							alt={itemName}
+							width={0}
+							height={0}
+							sizes="100vw"
+						/>
+					)}
+				</ImageContainer>
+				<ModalContent>
+					{size.width > 768 && (
 						<HeaderContainer>
 							<h1>{itemName}</h1>
 							<Cross
@@ -140,178 +177,141 @@ export default function InventoryModal(props: Props) {
 							/>
 						</HeaderContainer>
 					)}
-					<ImageContainer>
-						{equippedById === 0 && (
-							<ImageStyle
-								src={
-									isIngredient
-										? FACE_TRAITS[itemIndexInConstant].marketViewLink!
-										: imageUrl
-								}
-								alt={itemName}
-								width={0}
-								height={0}
-								sizes="100vw"
-							/>
-						)}
-						{equippedById !== 0 && equippedByPillToken && (
-							<ImageStyle
-								src={equippedByPillToken.imageUrl}
-								alt={itemName}
-								width={0}
-								height={0}
-								sizes="100vw"
-							/>
-						)}
-					</ImageContainer>
-					<ModalContent>
-						{size.width > 768 && (
-							<HeaderContainer>
-								<h1>{itemName}</h1>
-								<Cross
-									src="/svgs/InventoryModalClose.svg"
-									alt="cross"
-									width={0}
-									height={0}
-									onClick={props.closeModal}
-								/>
-							</HeaderContainer>
-						)}
-						{equippedById !== 0 ? (
-							<ContentContainer>
-								<EquippedOn>
-									<EquipText>Equipped On</EquipText>
-									<HighlightText>Starkpill #{equippedById}</HighlightText>
-								</EquippedOn>
-								<RadioWrapper>
-									<Item>
-										<RadioButton
-											type="radio"
-											name="radio"
-											value="optionA"
-											checked={select === "optionA"}
-											onChange={(event) => handleSelectChange(event)}
-										/>
-										<RadioButtonLabel />
-										<RadioButtonText>Swap Trait</RadioButtonText>
-									</Item>
-									<Item>
-										<RadioButton
-											type="radio"
-											name="radio"
-											value="optionB"
-											checked={select === "optionB"}
-											onChange={(event) => {
-												handleSelectChange(event);
-												setOptionBSelected(true);
-											}}
-										/>
-										<RadioButtonLabel />
-										<RadioButtonText>Unequip Trait</RadioButtonText>
-									</Item>
-								</RadioWrapper>
-								{select === "optionA" && (
-									<SelectionContainer>
-										<SelectATrait
-											onClick={() => setShowDropDownPills(!showDropDownPills)}>
-											{isSelected ? (
-												<SelectTraitText>
-													{filteredBackpackData[indexOfSelectedTrait].itemName}
-												</SelectTraitText>
-											) : (
-												<SelectTraitText>Select a trait</SelectTraitText>
-											)}
-
-											<Down
-												src="/svgs/InventoryDown.svg"
-												alt="down"
-												width={0}
-												height={0}
-											/>
-										</SelectATrait>
-
-										<InventoryDropdown
-											showDropDownPills={false}
-											tokenArray={starkpillTokenArray}
-											traitArray={filteredBackpackData}
-											isTraitDropdown={true}
-											onDropdownItemClick={handleDropDownItemClick}
-											isHidden={showDropDownPills}
-										/>
-
-										<ButtonContainer itemSelectedBG={isSelected}>
-											Confirm
-										</ButtonContainer>
-									</SelectionContainer>
-								)}
-
-								{select === "optionB" && (
-									<ButtonContainer2
-										unequipSelected={optionBSelected}
-										itemSelectedBG={isSelected}>
-										Confirm
-									</ButtonContainer2>
-								)}
-							</ContentContainer>
-						) : (
-							<ContentContainer>
-								<EquippedOn>
-									<EquipText>Equipped On</EquipText>
-									<HighlightText>-</HighlightText>
-								</EquippedOn>
-
+					{equippedById !== 0 ? (
+						<ContentContainer>
+							<EquippedOn>
+								<EquipText>Equipped On</EquipText>
+								<HighlightText>Starkpill #{equippedById}</HighlightText>
+							</EquippedOn>
+							<RadioWrapper>
 								<Item>
 									<RadioButton
 										type="radio"
 										name="radio"
-										value="optionC"
-										checked={select === "optionC"}
+										value="optionA"
+										checked={select === "optionA"}
 										onChange={(event) => handleSelectChange(event)}
 									/>
 									<RadioButtonLabel />
-									<RadioButtonText>Equip Trait</RadioButtonText>
+									<RadioButtonText>Swap Trait</RadioButtonText>
 								</Item>
+								<Item>
+									<RadioButton
+										type="radio"
+										name="radio"
+										value="optionB"
+										checked={select === "optionB"}
+										onChange={(event) => {
+											handleSelectChange(event);
+											setOptionBSelected(true);
+										}}
+									/>
+									<RadioButtonLabel />
+									<RadioButtonText>Unequip Trait</RadioButtonText>
+								</Item>
+							</RadioWrapper>
+							{select === "optionA" && (
+								<SelectionContainer>
+									<SelectATrait
+										onClick={() => setShowDropDownPills(!showDropDownPills)}>
+										{isSelected ? (
+											<SelectTraitText>
+												{filteredBackpackData[indexOfSelectedTrait].itemName}
+											</SelectTraitText>
+										) : (
+											<SelectTraitText>Select a trait</SelectTraitText>
+										)}
 
-								{select === "optionC" && (
-									<SelectionContainer>
-										<SelectATrait
-											onClick={() => setShowDropDownPills(!showDropDownPills)}>
-											{isSelected ? (
-												<SelectTraitText>
-													Starkpill #
-													{starkpillTokenArray[indexOfSelectedTrait].tokenId}
-												</SelectTraitText>
-											) : (
-												<SelectTraitText>Select a pill</SelectTraitText>
-											)}
-
-											<Down
-												src="/svgs/InventoryDown.svg"
-												alt="down"
-												width={0}
-												height={0}
-											/>
-										</SelectATrait>
-
-										<InventoryDropdown
-											onDropdownItemClick={handleDropDownItemClick}
-											tokenArray={starkpillTokenArray}
-											traitArray={filteredBackpackData}
-											isTraitDropdown={false}
-											showDropDownPills={false}
-											isHidden={showDropDownPills}
+										<Down
+											src="/svgs/InventoryDown.svg"
+											alt="down"
+											width={0}
+											height={0}
 										/>
+									</SelectATrait>
 
-										<ButtonContainer itemSelectedBG={isSelected}>
-											Confirm
-										</ButtonContainer>
-									</SelectionContainer>
-								)}
-							</ContentContainer>
-						)}
-					</ModalContent>
-				</ModalContainer>
-			</Container>
+									<InventoryDropdown
+										showDropDownPills={false}
+										tokenArray={starkpillTokenArray}
+										traitArray={filteredBackpackData}
+										isTraitDropdown={true}
+										onDropdownItemClick={handleDropDownItemClick}
+										isHidden={showDropDownPills}
+									/>
+
+									<ButtonContainer itemSelectedBG={isSelected}>
+										Confirm
+									</ButtonContainer>
+								</SelectionContainer>
+							)}
+
+							{select === "optionB" && (
+								<ButtonContainer2
+									unequipSelected={optionBSelected}
+									itemSelectedBG={isSelected}>
+									Confirm
+								</ButtonContainer2>
+							)}
+						</ContentContainer>
+					) : (
+						<ContentContainer>
+							<EquippedOn>
+								<EquipText>Equipped On</EquipText>
+								<HighlightText>-</HighlightText>
+							</EquippedOn>
+
+							<Item>
+								<RadioButton
+									type="radio"
+									name="radio"
+									value="optionC"
+									checked={select === "optionC"}
+									onChange={(event) => handleSelectChange(event)}
+								/>
+								<RadioButtonLabel />
+								<RadioButtonText>Equip Trait</RadioButtonText>
+							</Item>
+
+							{select === "optionC" && (
+								<SelectionContainer>
+									<SelectATrait
+										onClick={() => setShowDropDownPills(!showDropDownPills)}>
+										{isSelected ? (
+											<SelectTraitText>
+												Starkpill #
+												{starkpillTokenArray[indexOfSelectedTrait].tokenId}
+											</SelectTraitText>
+										) : (
+											<SelectTraitText>Select a pill</SelectTraitText>
+										)}
+
+										<Down
+											src="/svgs/InventoryDown.svg"
+											alt="down"
+											width={0}
+											height={0}
+										/>
+									</SelectATrait>
+
+									<InventoryDropdown
+										onDropdownItemClick={handleDropDownItemClick}
+										tokenArray={starkpillTokenArray}
+										traitArray={filteredBackpackData}
+										isTraitDropdown={false}
+										showDropDownPills={false}
+										isHidden={showDropDownPills}
+									/>
+
+									<ButtonContainer itemSelectedBG={isSelected}>
+										Confirm
+									</ButtonContainer>
+								</SelectionContainer>
+							)}
+						</ContentContainer>
+					)}
+				</ModalContent>
+			</ModalContainer>
+			{/* </Container> */}
 		</div>
 	);
 }
