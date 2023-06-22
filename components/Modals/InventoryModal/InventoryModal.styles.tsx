@@ -24,6 +24,8 @@ export const Container = styled.div`
 
 	@media (max-width: 769px) {
 		overflow: auto;
+		padding-top: 2.5rem;
+		padding-bottom: 2.5rem;
 	}
 `;
 export const ModalContainer = styled.div`
@@ -43,9 +45,6 @@ export const ModalContainer = styled.div`
 		height: 100%;
 		max-height: 722px;
 		gap: 11px;
-
-		margin-top: 20vh;
-		overflow: auto;
 	}
 `;
 
