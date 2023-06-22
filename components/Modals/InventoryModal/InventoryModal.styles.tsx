@@ -22,13 +22,16 @@ export const Container = styled.div`
 	z-index: 2;
 	top: 0;
 	left: 0;
+	bottom: 0;
+	right: 0;
 
 	@media (max-width: 769px) {
 		overflow: auto;
 	}
 `;
 export const ModalContainer = styled.div`
-	display: block;
+	position: absolute;
+	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: row;
@@ -37,6 +40,7 @@ export const ModalContainer = styled.div`
 	background: #ffffff;
 	width: 47rem;
 	border-radius: 12px;
+	z-index: 1;
 
 	@media (max-width: 769px) {
 		flex-direction: column;
