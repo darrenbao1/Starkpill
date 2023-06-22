@@ -34,6 +34,7 @@ export const ModalContainer = styled.div`
 	background: #ffffff;
 	width: 47rem;
 	border-radius: 12px;
+	position: absolute;
 
 	@media (max-width: 769px) {
 		flex-direction: column;
