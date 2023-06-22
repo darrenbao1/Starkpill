@@ -20,7 +20,6 @@ export const Container = styled.div`
 	height: 100%;
 
 	@media (max-width: 750px) {
-		margin-top: 40px;
 		overflow: auto;
 	}
 `;
@@ -41,8 +40,8 @@ export const ModalContainer = styled.div`
 		height: 100%;
 		max-height: 722px;
 		gap: 11px;
-		padding-top: 12vh;
-		padding-bottom: 12vh;
+
+		margin-top: 20vh;
 		overflow: auto;
 	}
 `;
