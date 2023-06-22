@@ -19,9 +19,6 @@ export const Container = styled.div`
 	width: 100%;
 	height: 100%;
 
-	top: 0;
-	left: 0;
-
 	@media (max-width: 769px) {
 		overflow: auto;
 	}
@@ -43,7 +40,6 @@ export const ModalContainer = styled.div`
 		height: 100%;
 		max-height: 722px;
 		gap: 11px;
-		overflow: auto;
 	}
 `;
 
