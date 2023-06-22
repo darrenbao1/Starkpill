@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import Image from "next/image";
-import DropDownIcon from "../../../public/svgs/InventoryDown.svg";
 
 interface ModalProps {
-	selectedTrait: boolean;
+	selected: boolean;
 }
 interface ButtonProps {
-	traitSelected: boolean;
+	itemSelectedBG: boolean;
+}
+interface UnequipButtonProps {
+	unequipSelected: boolean;
 }
 export const Container = styled.div`
 	display: flex;
@@ -37,7 +39,7 @@ export const ModalContainer = styled.div`
 		flex-direction: column;
 		width: 22.813rem;
 		height: 100%;
-		max-height: 680px;
+		max-height: 722px;
 		gap: 11px;
 	}
 `;
@@ -68,7 +70,6 @@ export const HeaderContainer = styled.div`
 		display: flex;
 		justify-content: space-between;
 		width: 100%;
-		padding-left: 70px;
 
 		h1 {
 			margin-top: 10px;
@@ -229,30 +230,57 @@ export const ButtonContainer = styled.div<ButtonProps>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: ${(props) => (props.traitSelected ? "#ff4f0a" : "#9B9B9B")};
+	background: ${(props) => (props.itemSelectedBG ? "#ff4f0a" : "#9B9B9B")};
 	width: 176px;
 	height: 41px;
-	border: 2px solid ${(props) => (props.traitSelected ? "#ff4f0a" : "#9B9B9B")};
+	border: 2px solid ${(props) => (props.itemSelectedBG ? "#ff4f0a" : "#9B9B9B")};
 	border-radius: 3px;
 	font-size: 24px;
 	color: #ffffff;
 	&:hover {
 		cursor: pointer;
+		background: ${(props) => (props.itemSelectedBG ? "#ba3400" : "#9B9B9B")};
+		border: 2px solid
+			${(props) => (props.itemSelectedBG ? "#ba3400" : "#9B9B9B")};
+	}
+	&:active {
+		background: ${(props) =>
+			props.itemSelectedBG
+				? "linear-gradient(180deg, #ff4f0a 0%, rgba(255, 79, 10, 0.56) 100%)"
+				: "#9B9B9B"};
+		border: 1px solid
+			${(props) => (props.itemSelectedBG ? "#ff7037" : "#9B9B9B")};
 	}
 	@media (max-width: 750px) {
 		width: 320px;
 		align-self: bottom;
 	}
 `;
-export const ButtonContainer2 = styled(ButtonContainer)`
+export const ButtonContainer2 = styled(ButtonContainer)<UnequipButtonProps>`
 	margin-top: 99px;
 	align-self: flex-end;
+	background: ${(props) => (props.unequipSelected ? "#ff4f0a" : "#9B9B9B")};
+	border: 2px solid
+		${(props) => (props.unequipSelected ? "#ff4f0a" : "#9B9B9B")};
+	&:hover {
+		cursor: pointer;
+		background: ${(props) => (props.unequipSelected ? "#ba3400" : "#9B9B9B")};
+		border: 2px solid
+			${(props) => (props.unequipSelected ? "#ba3400" : "#9B9B9B")};
+	}
+	&:active {
+		background: ${(props) =>
+			props.itemSelectedBG
+				? "linear-gradient(180deg, #ff4f0a 0%, rgba(255, 79, 10, 0.56) 100%)"
+				: "#9B9B9B"};
+		border: 1px solid
+			${(props) => (props.unequipSelected ? "#ff7037" : "#9B9B9B")};
+	}
 `;
 export const DropdownContainer = styled.div`
 	position: fixed;
 	display: flex;
-	justify-content: center;
-	padding: 20px 0px 0px 0px;
+
 	margin-top: 50px;
 
 	align-items: center;
@@ -280,7 +308,7 @@ export const DropdownItem = styled.div<ModalProps>`
 	padding: 10px 24px 7px 24px;
 	border-bottom: 1px solid #e0e0e0;
 
-	color: ${(props) => (props.selectedTrait ? "#008344" : "#262626")};
+	color: ${(props) => (props.selected ? "#ff4f0a" : "#262626")};
 	width: 22.5rem;
 	font-size: 24px;
 	&:hover {
@@ -291,10 +319,20 @@ export const DropdownItem = styled.div<ModalProps>`
 		width: 19.5rem;
 	}
 `;
+export const DropdownContainerPILL = styled(DropdownContainer)`
+	padding-top: 97px;
+`;
+export const DropdownItemPILL = styled(DropdownItem)`
+	padding: 10px 24px 7px 24px;
+`;
 
 export const Tick = styled(Image)`
 	width: 24px;
 	height: 24px;
+`;
+export const PillImage = styled(Image)`
+	width: 50px;
+	height: 50px;
 `;
 
 export const PillImageContainer = styled(Image)`

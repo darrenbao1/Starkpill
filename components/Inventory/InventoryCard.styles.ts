@@ -8,6 +8,7 @@ export const CardContainer = styled.div`
 	border: 2px solid #ffffff;
 	&:hover {
 		border: 2px solid #ff4f0a;
+		cursor: pointer;
 	}
 `;
 export const ModalContainer = styled.div`
