@@ -24,11 +24,7 @@ export const Container = styled.div`
 	left: 0;
 	bottom: 0;
 	right: 0;
-	overflow: auto;
-
-	@media (max-width: 769px) {
-		overflow: auto;
-	}
+	overflow: overlay;
 `;
 export const ModalContainer = styled.div`
 	position: absolute;
