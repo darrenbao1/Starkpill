@@ -11,40 +11,37 @@ interface UnequipButtonProps {
 	unequipSelected: boolean;
 }
 export const Container = styled.div`
-	display: flex;
+	display: flex; /* Hidden by default */
 	justify-content: center;
 	align-items: center;
 	position: fixed;
-	background-color: rgba(0, 0, 0, 0.9);
-	backdrop-filter: blur(10px);
-	width: 100vw;
-	height: calc(100vh + 5rem);
-	z-index: 2;
-	top: 0;
+	/* Stay in place */
+	z-index: 3;
+	/* Location of the box */
 	left: 0;
-	bottom: 0;
-	right: 0;
-	overflow: overlay;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
 `;
 export const ModalContainer = styled.div`
 	position: absolute;
 	display: flex;
+	height: fit-content;
+	background-color: #ffffff;
+	padding: 24px 21px 24px 24px;
+	border-radius: 12px;
+	gap: 24px;
 	justify-content: center;
 	align-items: center;
 	flex-direction: row;
-	padding: 24px 21px 24px 24px;
-	gap: 24px;
-	background: #ffffff;
-	width: 47rem;
-	border-radius: 12px;
-	z-index: 1;
-
+	z-index: 4;
 	@media (max-width: 769px) {
 		flex-direction: column;
-		width: 22.813rem;
-		height: 100%;
-		max-height: 722px;
 		gap: 11px;
+		top: 100px;
 	}
 `;
 

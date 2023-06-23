@@ -44,13 +44,11 @@ export const InventoryCard = (props: Props) => {
 				<CardItemName>{itemName}</CardItemName>
 			</CardContainer>
 			{showModal && (
-				<ModalContainer>
-					<InventoryModal
-						traitTokenObj={props.traitTokenObj}
-						closeModal={() => setShowModal(false)}
-						isTraitDropdown={false}
-					/>
-				</ModalContainer>
+				<InventoryModal
+					traitTokenObj={props.traitTokenObj}
+					closeModal={() => setShowModal(false)}
+					isTraitDropdown={false}
+				/>
 			)}
 		</>
 	);
