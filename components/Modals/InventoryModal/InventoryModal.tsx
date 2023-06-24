@@ -327,7 +327,8 @@ export default function InventoryModal(props: Props) {
 
 									<ButtonContainer
 										itemSelectedBG={isSelected}
-										onClick={() => onClickSwitchExecute()}>
+										onClick={() => onClickSwitchExecute()}
+										disabled={!isSelected}>
 										Confirm
 									</ButtonContainer>
 								</SelectionContainer>
@@ -393,7 +394,8 @@ export default function InventoryModal(props: Props) {
 
 									<ButtonContainer
 										itemSelectedBG={isSelected}
-										onClick={() => onClickEquipOnAnotherPill()}>
+										onClick={() => onClickEquipOnAnotherPill()}
+										disabled={!isSelected}>
 										Confirm
 									</ButtonContainer>
 								</SelectionContainer>
