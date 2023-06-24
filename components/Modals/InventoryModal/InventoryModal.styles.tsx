@@ -227,7 +227,7 @@ export const SelectionContainer = styled.div`
 	flex-direction: column;
 `;
 
-export const ButtonContainer = styled.div<ButtonProps>`
+export const ButtonContainer = styled.button<ButtonProps>`
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -237,6 +237,7 @@ export const ButtonContainer = styled.div<ButtonProps>`
 	border: 2px solid ${(props) => (props.itemSelectedBG ? "#ff4f0a" : "#9B9B9B")};
 	border-radius: 3px;
 	font-size: 24px;
+	font-family: "Patrick Hand", normal;
 	color: #ffffff;
 	&:hover {
 		cursor: pointer;
