@@ -18,9 +18,6 @@ import {
 	Down,
 	ButtonContainer,
 	SelectionContainer,
-	DropdownContainer,
-	DropdownItem,
-	Tick,
 	ButtonContainer2,
 	Container,
 	PillImageContainer,
@@ -78,14 +75,12 @@ export default function InventoryModal(props: Props) {
 	};
 
 	const [isSelected, setIsSelected] = useState(false);
-	const [isTraitDropdown, setIsTraitDropdown] = useState(false);
 	const handleSelectChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value;
 		setSelect(value);
 		setRadioButtonSelected(true);
 	};
 	const size = useWindowSize();
-	//Darren Code here.
 	const [equippedByPillToken, setEquippedByPillToken] =
 		useState<StarkpillToken>();
 	const itemIndexInConstant = Number(
@@ -211,7 +206,6 @@ export default function InventoryModal(props: Props) {
 
 	//Darren Code ends here.
 	return (
-		// <div className="contentContainer">
 		<Container>
 			<ModalContainer>
 				{size.width < 768 && (
@@ -323,6 +317,7 @@ export default function InventoryModal(props: Props) {
 										isTraitDropdown={true}
 										onDropdownItemClick={handleDropDownItemClick}
 										isHidden={showDropDownPills}
+										traitId={id}
 									/>
 
 									<ButtonContainer
@@ -390,6 +385,7 @@ export default function InventoryModal(props: Props) {
 										isTraitDropdown={false}
 										showDropDownPills={false}
 										isHidden={showDropDownPills}
+										traitId={id}
 									/>
 
 									<ButtonContainer
@@ -405,6 +401,5 @@ export default function InventoryModal(props: Props) {
 				</ModalContent>
 			</ModalContainer>
 		</Container>
-		// </div>
 	);
 }

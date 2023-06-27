@@ -16,6 +16,7 @@ interface Props {
 	showDropDownPills: boolean;
 	onDropdownItemClick: (tokenId: number) => void;
 	isHidden: boolean;
+	traitId: number;
 }
 
 export default function InventoryDropdown(props: Props) {
@@ -64,28 +65,32 @@ export default function InventoryDropdown(props: Props) {
 				</DropdownContainer>
 			) : (
 				<DropdownContainer>
-					{traitArray.map(({ id, itemName, imageUrl, isIngredient }, index) => (
-						<DropdownItem
-							selected={selectedTrait === id}
-							key={id}
-							onClick={() => {
-								setSelectedTrait(id);
-								setSelected(true);
-								onDropdownItemClick(index);
-							}}>
-							{itemName}
-							<PillImage
-								src={
-									isIngredient
-										? FACE_TRAITS[getMarketViewIndex(imageUrl)].marketViewLink!
-										: imageUrl
-								}
-								alt="Tick"
-								width={300}
-								height={300}
-							/>
-						</DropdownItem>
-					))}
+					{traitArray.map(
+						({ id, itemName, imageUrl, isIngredient }, index) =>
+							id != props.traitId && (
+								<DropdownItem
+									selected={selectedTrait === id}
+									key={id}
+									onClick={() => {
+										setSelectedTrait(id);
+										setSelected(true);
+										onDropdownItemClick(index);
+									}}>
+									{itemName}
+									<PillImage
+										src={
+											isIngredient
+												? FACE_TRAITS[getMarketViewIndex(imageUrl)]
+														.marketViewLink!
+												: imageUrl
+										}
+										alt="Tick"
+										width={300}
+										height={300}
+									/>
+								</DropdownItem>
+							)
+					)}
 				</DropdownContainer>
 			)}
 		</>
