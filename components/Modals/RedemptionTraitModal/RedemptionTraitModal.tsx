@@ -12,10 +12,7 @@ import {
 } from "./RedemptionTraitModal.styles";
 import { CollabProject, decodedSignature } from "../../../types/interfaces";
 import { getRedemptionSignature } from "../../../types/utils";
-import {
-	useStarknetExecute,
-	useTransactionManager,
-} from "@starknet-react/core";
+import { useContractWrite, useTransactionManager } from "@starknet-react/core";
 import { getRedemptionVariables } from "../../../hooks/StarkPillContract";
 import { useAccount } from "wagmi";
 import { useEffect, useState } from "react";
@@ -43,7 +40,7 @@ export const RedemptionTraitModal = (props: {
 		props.nftTokenId,
 		signature
 	);
-	const { execute } = useStarknetExecute({
+	const { writeAsync: execute } = useContractWrite({
 		calls: redemptionVariable,
 	});
 

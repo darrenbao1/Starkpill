@@ -1,91 +1,104 @@
-import Prescriptions from "../components/Prescriptions/Prescriptions";
-import { useRef, useState } from "react";
-import styles from "../styles/cabinet.module.css";
-import sharedBackgroundStyles from "../styles/sharedBackground.module.css";
-import { GET_USER_TOKENS, handleScrollToTop } from "../types/constants";
-import { useQuery } from "@apollo/client";
-import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import { BackToTopButton } from "../components/BackToTopButton";
-import { useAccount } from "@starknet-react/core";
-import { convertToStandardWalletAddress } from "../types/utils";
-import { Disconnected } from "../components/DisconnectedPage.tsx/Disconnected";
-import { Inventory } from "../components/Inventory/Inventory";
-import UserTokenProvider from "../components/Provider/UserTokenProvider";
-export default function Mypills() {
-	const [toggleTabState, setToggleTabState] = useState(1);
-	const toggleTabStateHandler = (index: number) => {
-		setToggleTabState(index);
-	};
-	const handleScroll = async (e: any) => {
-		if (e.target.scrollTop >= 300) {
-			setShowButton(true);
-		} else if (e.target.scrollTop < 300) {
-			setShowButton(false);
-		}
-	};
-	const refetchState = useSelector((state: any) => state.refetch);
-	const scrollTopRef = useRef<HTMLDivElement>(null);
-	const { address } = useAccount();
-	const router = useRouter();
-	const [showButton, setShowButton] = useState(false);
-	const { walletAddress } = router.query;
-	const { data, refetch } = useQuery(GET_USER_TOKENS, {
-		variables: {
-			address: walletAddress,
-		},
-	});
+import { useEffect, useState } from "react";
+import MyPillsPage from "../components/DynamicPages/MyPillsPage";
+const MyPills = () => {
+	const [shouldRender, setShouldRender] = useState(false);
 	useEffect(() => {
-		setTimeout(() => {
-			refetch();
-		}, 3000);
-	}, [refetchState.value, refetch, data]);
+		if (typeof window !== "undefined") {
+			setShouldRender(true);
+		}
+	}, []);
 
-	return (
-		<UserTokenProvider.Provider value={data}>
-			<div
-				className={`container ${sharedBackgroundStyles.extendedBackground}`}
-				ref={scrollTopRef}
-				onScroll={(e) => handleScroll(e)}>
-				{address && walletAddress == convertToStandardWalletAddress(address) ? (
-					<div>
-						<div className={styles.headerContainer}>
-							<div className={styles.cabinetHeader}> My Cabinet</div>
-							<div className={styles.blocTabs}>
-								<div
-									className={
-										toggleTabState === 1 ? styles.activeTabs : styles.tabs
-									}
-									onClick={() => toggleTabStateHandler(1)}>
-									Prescriptions
-								</div>
-								<div
-									className={
-										toggleTabState === 2 ? styles.activeTabs : styles.tabs
-									}
-									onClick={() => toggleTabStateHandler(2)}>
-									Inventory
-								</div>
-							</div>
-						</div>
+	return shouldRender ? <MyPillsPage /> : null;
+};
+export default MyPills;
+// import Prescriptions from "../components/Prescriptions/Prescriptions";
+// import { useRef, useState } from "react";
+// import styles from "../styles/cabinet.module.css";
+// import sharedBackgroundStyles from "../styles/sharedBackground.module.css";
+// import { GET_USER_TOKENS, handleScrollToTop } from "../types/constants";
+// import { useQuery } from "@apollo/client";
+// import { useRouter } from "next/router";
+// import { useSelector } from "react-redux";
+// import { useEffect } from "react";
+// import { BackToTopButton } from "../components/BackToTopButton";
+// import { useAccount } from "@starknet-react/core";
+// import { convertToStandardWalletAddress } from "../types/utils";
+// import { Disconnected } from "../components/DisconnectedPage.tsx/Disconnected";
+// import { Inventory } from "../components/Inventory/Inventory";
+// import UserTokenProvider from "../components/Provider/UserTokenProvider";
+// export default function Mypills() {
+// 	const [toggleTabState, setToggleTabState] = useState(1);
+// 	const toggleTabStateHandler = (index: number) => {
+// 		setToggleTabState(index);
+// 	};
+// 	const handleScroll = async (e: any) => {
+// 		if (e.target.scrollTop >= 300) {
+// 			setShowButton(true);
+// 		} else if (e.target.scrollTop < 300) {
+// 			setShowButton(false);
+// 		}
+// 	};
+// 	const refetchState = useSelector((state: any) => state.refetch);
+// 	const scrollTopRef = useRef<HTMLDivElement>(null);
+// 	const { address } = useAccount();
+// 	const router = useRouter();
+// 	const [showButton, setShowButton] = useState(false);
+// 	const { walletAddress } = router.query;
+// 	const { data, refetch } = useQuery(GET_USER_TOKENS, {
+// 		variables: {
+// 			address: walletAddress,
+// 		},
+// 	});
+// 	useEffect(() => {
+// 		setTimeout(() => {
+// 			refetch();
+// 		}, 3000);
+// 	}, [refetchState.value, refetch, data]);
 
-						{toggleTabState === 1 ? <Prescriptions /> : <Inventory />}
-					</div>
-				) : (
-					<div
-						className={`container ${sharedBackgroundStyles.extendedBackground}`}>
-						<Disconnected text="You have to connect your wallet before viewing your Starkpills" />
-					</div>
-				)}
-				{showButton &&
-					!refetchState.imageModalShown &&
-					!refetchState.editPillModalShown && (
-						<BackToTopButton
-							scrollTopFunc={() => handleScrollToTop(scrollTopRef)}
-						/>
-					)}
-			</div>
-		</UserTokenProvider.Provider>
-	);
-}
+// 	return (
+// 		<UserTokenProvider.Provider value={data}>
+// 			<div
+// 				className={`container ${sharedBackgroundStyles.extendedBackground}`}
+// 				ref={scrollTopRef}
+// 				onScroll={(e) => handleScroll(e)}>
+// 				{address && walletAddress == convertToStandardWalletAddress(address) ? (
+// 					<div>
+// 						<div className={styles.headerContainer}>
+// 							<div className={styles.cabinetHeader}> My Cabinet</div>
+// 							<div className={styles.blocTabs}>
+// 								<div
+// 									className={
+// 										toggleTabState === 1 ? styles.activeTabs : styles.tabs
+// 									}
+// 									onClick={() => toggleTabStateHandler(1)}>
+// 									Prescriptions
+// 								</div>
+// 								<div
+// 									className={
+// 										toggleTabState === 2 ? styles.activeTabs : styles.tabs
+// 									}
+// 									onClick={() => toggleTabStateHandler(2)}>
+// 									Inventory
+// 								</div>
+// 							</div>
+// 						</div>
+
+// 						{toggleTabState === 1 ? <Prescriptions /> : <Inventory />}
+// 					</div>
+// 				) : (
+// 					<div
+// 						className={`container ${sharedBackgroundStyles.extendedBackground}`}>
+// 						<Disconnected text="You have to connect your wallet before viewing your Starkpills" />
+// 					</div>
+// 				)}
+// 				{showButton &&
+// 					!refetchState.imageModalShown &&
+// 					!refetchState.editPillModalShown && (
+// 						<BackToTopButton
+// 							scrollTopFunc={() => handleScrollToTop(scrollTopRef)}
+// 						/>
+// 					)}
+// 			</div>
+// 		</UserTokenProvider.Provider>
+// 	);
+// }

@@ -1,4 +1,4 @@
-import { useAccount, useContract, useStarknetCall } from "@starknet-react/core";
+import { useAccount, useContract, useContractRead } from "@starknet-react/core";
 import { Abi } from "starknet";
 
 import starkEthAbi from "../abi/starkEth.json";
@@ -14,16 +14,15 @@ export function useStarkEthContract() {
 export function UserBalance() {
 	const { contract } = useStarkEthContract();
 	const { address } = useAccount();
-	const { data, loading, error } = useStarknetCall({
-		contract,
-		method: "balanceOf",
-		args: address ? [address] : undefined,
-		options: {
-			watch: false,
-		},
+	const { data, isLoading, error } = useContractRead({
+		address: STARKETH_CONTRACT_ADDRESS,
+		abi: starkEthAbi as Abi,
+		functionName: "balanceOf",
+		args: [address],
+		watch: false,
 	});
 	const ethBalance = useMemo(() => {
-		if (loading || !data?.length) {
+		if (isLoading || !data?.length) {
 			return <span>...</span>;
 		}
 		if (error) {
@@ -36,6 +35,6 @@ export function UserBalance() {
 		} else {
 			return null;
 		}
-	}, [data, error, loading]);
+	}, [data, error, isLoading]);
 	return ethBalance;
 }

@@ -1,7 +1,4 @@
-import {
-	useTransactionManager,
-	useTransactionReceipt,
-} from "@starknet-react/core";
+import { useTransactionManager, useTransaction } from "@starknet-react/core";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { shortAddressForModal } from "../../types/utils";
@@ -43,63 +40,45 @@ export const TransactionList = () => {
 
 function TransactionItem({ transactionHash }: { transactionHash: string }) {
 	const [showSnackBar, setShowSnackBar] = useState(false);
-	const { data, loading } = useTransactionReceipt({
+	const { data, isLoading, status } = useTransaction({
 		hash: transactionHash,
 	});
 	const getStatusColor = useCallback(() => {
-		if (data?.status != undefined) {
-			switch (data.status) {
-				case "ACCEPTED_ON_L1": {
+		if (status != undefined) {
+			switch (status) {
+				case "success": {
 					return "#04D300";
 				}
-				case "ACCEPTED_ON_L2": {
-					return "#04D300";
-				}
-				case "NOT_RECEIVED": {
+				case "error": {
 					return "#FF4026";
 				}
-				case "REJECTED": {
-					return "#FF4026";
-				}
-				case "PENDING": {
-					return "#FFAC40";
-				}
-				case "RECEIVED": {
+				case "loading": {
 					return "#FFAC40";
 				}
 			}
 		} else return "yellow";
-	}, [data?.status]);
+	}, [status]);
 	let statusColor = getStatusColor();
 
 	const getStatusText = useCallback(() => {
-		if (data?.status != undefined) {
-			switch (data.status) {
-				case "ACCEPTED_ON_L1": {
+		if (status != undefined) {
+			switch (status) {
+				case "success": {
 					return "Completed";
 				}
-				case "ACCEPTED_ON_L2": {
-					return "Completed";
-				}
-				case "NOT_RECEIVED": {
+				case "error": {
 					return "Unsuccessful";
 				}
-				case "REJECTED": {
-					return "Unsuccessful";
-				}
-				case "PENDING": {
-					return "In Progress";
-				}
-				case "RECEIVED": {
+				case "loading": {
 					return "In Progress";
 				}
 			}
 		} else return "Pending";
-	}, [data?.status]);
+	}, [status]);
 	let statusText = getStatusText();
 	useEffect(() => {
 		getStatusColor();
-	}, [getStatusColor, loading]);
+	}, [getStatusColor, isLoading]);
 	const copyTxAddress = (txAddress: string) => {
 		navigator.clipboard.writeText(txAddress);
 		setShowSnackBar(true);
@@ -107,8 +86,8 @@ function TransactionItem({ transactionHash }: { transactionHash: string }) {
 	};
 	return (
 		<>
-			<StatusContainer color={statusColor}>
-				<Dot color={statusColor}></Dot>
+			<StatusContainer color={statusColor!}>
+				<Dot color={statusColor!}></Dot>
 				<text>{statusText}</text>
 			</StatusContainer>
 			<TransactionItems>

@@ -57,8 +57,8 @@ export default function App({ Component, pageProps }: AppProps) {
 						</ApolloProvider>
 					</StarknetConfig>
 				</WagmiConfig>
-				<Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
 			</Provider>
+			<Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
 		</div>
 	);
 }

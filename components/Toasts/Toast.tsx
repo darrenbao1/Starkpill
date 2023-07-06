@@ -1,7 +1,4 @@
-import {
-	useTransactionManager,
-	useTransactionReceipt,
-} from "@starknet-react/core";
+import { useTransactionManager, useTransaction } from "@starknet-react/core";
 import styles from "./Toast.module.css";
 import { useCallback, useEffect, useState } from "react";
 import Completed from "../../public/svgs/Completed.svg";
@@ -25,7 +22,7 @@ export const Toast = () => {
 };
 const ToastObj = (props: { hash: string }) => {
 	const dispatch = useDispatch();
-	const { data } = useTransactionReceipt({ hash: props.hash, watch: true });
+	const { data, status } = useTransaction({ hash: props.hash, watch: true });
 	const [isShown, setIsShown] = useState(false);
 	const [txStatus, setTxStatus] = useState("");
 	const [statusText, setStatusText] = useState("");
@@ -34,14 +31,14 @@ const ToastObj = (props: { hash: string }) => {
 		(status: string | undefined) => {
 			if (status == undefined) {
 			} else {
-				if (status == "RECEIVED") {
+				if (status == "loading") {
 					setIsShown(true);
 					setTxStatus("Pending");
 					setStatusText("Pending wallet transaction");
 					setStatusColor("#FFFBEF");
 					setTimeout(() => setIsShown(false), 7000);
 				}
-				if (status == "ACCEPTED_ON_L2") {
+				if (status == "success") {
 					setIsShown(true);
 					setTxStatus("Success");
 					setStatusColor("#EFFFFB");
@@ -49,7 +46,7 @@ const ToastObj = (props: { hash: string }) => {
 					dispatch(increment());
 					setTimeout(() => setIsShown(false), 7000);
 				}
-				if (status == "REJECTED") {
+				if (status == "error") {
 					setIsShown(true);
 					setTxStatus("Failed");
 					setStatusColor("#FFEFEF");
@@ -63,8 +60,8 @@ const ToastObj = (props: { hash: string }) => {
 		[dispatch, setIsShown, setTxStatus, setStatusColor, setStatusText]
 	);
 	useEffect(() => {
-		changeState(data?.status);
-	}, [data?.status, changeState]);
+		changeState(status);
+	}, [status, changeState]);
 
 	return (
 		<>
