@@ -3,10 +3,7 @@ import styles from "../../styles/MintModal.module.css";
 import InformationIcon from "../../public/svgs/information.svg";
 import SubtractIcon from "../../public/svgs/subtractIcon.svg";
 import { createRef, useEffect, useRef, useState } from "react";
-import {
-	useStarknetExecute,
-	useTransactionManager,
-} from "@starknet-react/core";
+import { useContractWrite, useTransactionManager } from "@starknet-react/core";
 import { getMintVariables } from "../../hooks/StarkPillContract";
 import { BACKGROUND, FACE_TRAITS } from "../../types/constants";
 export const MintModal = (props: {
@@ -41,7 +38,7 @@ export const MintModal = (props: {
 			props.backgroundId,
 			mintPrice + ingPrice + bgPrice + baseMint
 		);
-		const { execute: mintExecute } = useStarknetExecute({
+		const { writeAsync: mintExecute } = useContractWrite({
 			calls: mintVariables,
 		});
 		const mintPill = async () => {

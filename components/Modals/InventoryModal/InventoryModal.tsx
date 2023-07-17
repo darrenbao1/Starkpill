@@ -40,10 +40,7 @@ import {
 import UserTokenProvider from "../../Provider/UserTokenProvider";
 import UserBackPackTokenProvider from "../../Provider/UserBackpackTokenProvider";
 import InventoryDropdown from "./InventoryDropdown";
-import {
-	useStarknetExecute,
-	useTransactionManager,
-} from "@starknet-react/core";
+import { useContractWrite, useTransactionManager } from "@starknet-react/core";
 import {
 	getEquipOnAnotherPillCalls,
 	getSwitchCalls,
@@ -138,7 +135,7 @@ export default function InventoryModal(props: Props) {
 		unequipCalls = getUnequipCall(equippedByToken, isIngredient);
 	}
 
-	const { execute: unequipExecute } = useStarknetExecute({
+	const { writeAsync: unequipExecute } = useContractWrite({
 		calls: unequipCalls,
 	});
 
@@ -162,7 +159,7 @@ export default function InventoryModal(props: Props) {
 		walletAddress! as string
 	);
 
-	const { execute: equipOnAnotherPillExecute } = useStarknetExecute({
+	const { writeAsync: equipOnAnotherPillExecute } = useContractWrite({
 		calls: equipOnAnotherPillCalls,
 	});
 
@@ -187,7 +184,7 @@ export default function InventoryModal(props: Props) {
 			walletAddress! as string
 		);
 	}
-	const { execute: switchExecute } = useStarknetExecute({
+	const { writeAsync: switchExecute } = useContractWrite({
 		calls: switchCalls,
 	});
 

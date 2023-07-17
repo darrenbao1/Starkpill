@@ -1,6 +1,6 @@
 import {
 	useAccount,
-	useStarknetExecute,
+	useContractWrite,
 	useTransactionManager,
 } from "@starknet-react/core";
 import styles from "../../styles/EditPillModal.module.css";
@@ -108,7 +108,7 @@ export const EditPillModal = (props: Props) => {
 		let unEquipCalls = getUnequipCalls(unEquipArray, tokenId);
 		return [...unEquipCalls, ...equipCalls];
 	};
-	const { execute } = useStarknetExecute({
+	const { writeAsync: execute } = useContractWrite({
 		calls: getCalls(getChanges().equipArray, getChanges().unEquipArray),
 	});
 	const saveChanges = async () => {

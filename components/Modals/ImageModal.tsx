@@ -12,7 +12,7 @@ import { ExitModal } from "./ExitModal";
 import {
 	useAccount,
 	useConnectors,
-	useStarknetExecute,
+	useContractWrite,
 	useTransactionManager,
 } from "@starknet-react/core";
 import { getFameOrDefameVariables } from "../../hooks/StarkPillContract";
@@ -110,7 +110,7 @@ export const ImageModal = (props: Props) => {
 		fameValue
 	);
 	const { addTransaction } = useTransactionManager();
-	const { execute } = useStarknetExecute({
+	const { writeAsync: execute } = useContractWrite({
 		calls: fameOrDefameVariables,
 	});
 	const fameOrDefame = async () => {

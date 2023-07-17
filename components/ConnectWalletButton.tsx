@@ -12,7 +12,7 @@ export const ConnectWalletButton = () => {
 
 	//useEffect to check the available wallet user has installed
 	useEffect(() => {
-		const interval = setInterval(refresh, 5000);
+		const interval = setInterval(refresh, 400);
 		return () => clearInterval(interval);
 	}, [refresh]);
 	return (
