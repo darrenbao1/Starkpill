@@ -1,14 +1,30 @@
 import { useEffect, useState } from "react";
 import RedemptionPageComponent from "../components/DynamicPages/RedemptionPage";
+import sharedBackgroundStyles from "../styles/sharedBackground.module.css";
 export default function Redemption() {
 	const [shouldRender, setShouldRender] = useState(false);
 	useEffect(() => {
+		let timeoutId: NodeJS.Timeout | null = null;
+
 		if (typeof window !== "undefined") {
-			setShouldRender(true);
+			timeoutId = setTimeout(() => {
+				setShouldRender(true);
+			}, 100);
 		}
+
+		return () => {
+			if (timeoutId) {
+				clearTimeout(timeoutId);
+			}
+		};
 	}, []);
 
-	return shouldRender ? <RedemptionPageComponent /> : null;
+	return shouldRender ? (
+		<RedemptionPageComponent />
+	) : (
+		<div
+			className={`container ${sharedBackgroundStyles.extendedBackground}`}></div>
+	);
 }
 
 // const wallet = useAccount();

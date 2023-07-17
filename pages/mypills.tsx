@@ -1,16 +1,35 @@
 import { useEffect, useState } from "react";
 import MyPillsPage from "../components/DynamicPages/MyPillsPage";
-const MyPills = () => {
+import sharedBackgroundStyles from "../styles/sharedBackground.module.css";
+const MyPills: React.FC = () => {
 	const [shouldRender, setShouldRender] = useState(false);
+
 	useEffect(() => {
+		let timeoutId: NodeJS.Timeout | null = null;
+
 		if (typeof window !== "undefined") {
-			setShouldRender(true);
+			timeoutId = setTimeout(() => {
+				setShouldRender(true);
+			}, 100);
 		}
+
+		return () => {
+			if (timeoutId) {
+				clearTimeout(timeoutId);
+			}
+		};
 	}, []);
 
-	return shouldRender ? <MyPillsPage /> : null;
+	return shouldRender ? (
+		<MyPillsPage />
+	) : (
+		<div
+			className={`container ${sharedBackgroundStyles.extendedBackground}`}></div>
+	);
 };
+
 export default MyPills;
+
 // import Prescriptions from "../components/Prescriptions/Prescriptions";
 // import { useRef, useState } from "react";
 // import styles from "../styles/cabinet.module.css";
