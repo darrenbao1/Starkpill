@@ -40,8 +40,8 @@ h1 {
 	position: fixed;
 	left: 0;
 	width: 100vw;
-	top: 100px;
-	height: calc(100vh - 100px);
+	top: 0;
+	height: 100vh;
 	align-content: center;
 	overflow-y: overlay;
 	background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
@@ -67,8 +67,8 @@ h1 {
 	position: fixed;
 	left: 0;
 	width: 100vw;
-	top: 100px;
-	height: calc(100vh - 100px);
+	top: 0;
+	height: 100vh;
 	align-content: center;
 	background-image: url("/background.png");
 	background-size: cover;

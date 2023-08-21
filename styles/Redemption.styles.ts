@@ -4,8 +4,8 @@ export const RedemptionPageContainer = styled.div`
 	position: fixed;
 	left: 0;
 	width: 100vw;
-	top: 100px;
-	height: calc(100vh - 100px);
+	top: 0;
+	height: 100vh;
 	align-content: center;
 	background: linear-gradient(
 		180deg,
@@ -25,6 +25,7 @@ export const RedemptionPageContainer = styled.div`
 export const ContentContainer = styled.div`
 	position: relative;
 	margin: 0 auto;
+	margin-top: 63px;
 	max-width: 1440px;
 	padding: 24px;
 `;

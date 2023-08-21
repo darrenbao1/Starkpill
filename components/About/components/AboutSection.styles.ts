@@ -4,6 +4,7 @@ import Link from "next/link";
 export const AboutContainer = styled.div`
 	position: relative;
 	margin: auto;
+	margin-top: 100px;
 	max-width: 1200px;
 	overflow: auto;
 	display: flex;
