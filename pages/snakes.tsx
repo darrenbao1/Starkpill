@@ -1,4 +1,6 @@
 import Gameboy from "../components/Gameboy";
+import { signIn } from "next-auth/react";
+import { TwitterSignIn } from "../components/TwitterSignIn";
 export default function snakes() {
 	return (
 		<div
@@ -7,6 +9,7 @@ export default function snakes() {
 				alignItems: "center",
 				justifyContent: "center",
 			}}>
+			<TwitterSignIn />
 			<Gameboy />
 		</div>
 	);

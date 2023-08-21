@@ -18,8 +18,10 @@ import {
 import { Web3Modal } from "@web3modal/react";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { arbitrum, mainnet, polygon } from "wagmi/chains";
-import { get } from "lodash";
+
 import { getWeb3ConnectId } from "../types/utils";
+import { SessionProvider } from "next-auth/react";
+
 const chains = [arbitrum, mainnet, polygon];
 const projectId = getWeb3ConnectId();
 
@@ -30,7 +32,10 @@ const wagmiConfig = createConfig({
 	publicClient,
 });
 const ethereumClient = new EthereumClient(wagmiConfig, chains);
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+	Component,
+	pageProps: { session, ...pageProps },
+}: AppProps) {
 	const connectors = [
 		new InjectedConnector({
 			options: { id: "braavos" },
@@ -42,21 +47,23 @@ export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<div style={{ position: "fixed" }}>
 			<Provider store={store}>
-				<WagmiConfig config={wagmiConfig}>
-					<StarknetConfig connectors={connectors} autoConnect={true}>
-						<ApolloProvider client={client}>
-							<Head>
-								<link rel="icon" href="/starkpill.PNG"></link>
-								<title> getStarkpilled </title>
-							</Head>
-							<ThemeProvider theme={StarkpillTheme}>
-								<Navbar />
-								<Component {...pageProps} />
-								<Toast />
-							</ThemeProvider>
-						</ApolloProvider>
-					</StarknetConfig>
-				</WagmiConfig>
+				<SessionProvider session={session}>
+					<WagmiConfig config={wagmiConfig}>
+						<StarknetConfig connectors={connectors} autoConnect={true}>
+							<ApolloProvider client={client}>
+								<Head>
+									<link rel="icon" href="/starkpill.PNG"></link>
+									<title> getStarkpilled </title>
+								</Head>
+								<ThemeProvider theme={StarkpillTheme}>
+									<Navbar />
+									<Component {...pageProps} />
+									<Toast />
+								</ThemeProvider>
+							</ApolloProvider>
+						</StarknetConfig>
+					</WagmiConfig>
+				</SessionProvider>
 			</Provider>
 			<Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
 		</div>
