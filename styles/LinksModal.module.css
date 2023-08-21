@@ -1,12 +1,11 @@
 .modalContainer {
 	position: fixed;
 	z-index: 1;
-	top: 100px;
+	top: 63px;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: #29296e;
-	opacity: 0.9;
+	background-color: rgba(47, 47, 47, 0.85);
 }
 .modalItems {
 	padding: 0rem 4rem;

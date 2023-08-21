@@ -7,7 +7,7 @@ interface Props {
 
 export const Container = styled.div`
 	position: fixed;
-	top: 110px;
+	top: 77px;
 	align-content: center;
 	align-items: center;
 	z-index: 3;
@@ -150,21 +150,21 @@ export const Copy = styled(CopyIcon)`
 
 export const ConnectWalletText = styled.div`
 	border-radius: 6px;
-	height: 51px;
-	padding: 0 0.7rem;
-	padding-top: 13px;
+	height: 40px;
+	padding: 8px 16px;
+
 	cursor: pointer;
 	background-color: #ff4f0a;
 	border: 1px solid rgba(228, 228, 228, 0.6);
-	width: 200px;
+	width: 171px;
 	text-align: center;
-	font-size: 32px;
-	line-height: 75%;
+	font-size: 24px;
+	line-height: 100%;
 `;
 
 export const DownArrow = styled.img<Props>`
 	transform: ${(props) => (props.showDropDown ? "rotate(180deg)" : {})};
-	margin-bottom: 3px;
-	width: 21px;
+
+	width: 15px;
 	height: 15px;
 `;

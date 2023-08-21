@@ -5,7 +5,7 @@ import { BACKGROUND, FACE_TRAITS } from "../../types/constants";
 import EditIcon from "../../public/svgs/Edit.svg";
 import { TraitModal } from "../TraitModal/components/TraitModal";
 import Image from "next/image";
-import { ConnectWalletButton } from "../ConnectWalletButton/ConnectWalletButton";
+import { ConnectWalletButton } from "../ConnectWalletButton";
 import { TraitName } from "../../types/interfaces";
 import { MintModal } from "../Modals/MintModal";
 

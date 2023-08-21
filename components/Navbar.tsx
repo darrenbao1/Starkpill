@@ -23,31 +23,16 @@ export const Navbar = () => {
 						<div className={styles.logo}>
 							<Image
 								src="/logo.png"
-								width={267}
-								height={83}
+								width={200}
+								height={60}
 								alt=""
 								style={{ marginTop: "10px" }}
 							/>
 						</div>
 					</Link>
-					<div className={styles.links}>
-						{PAGES.map(
-							(page, index) =>
-								page.isActive && (
-									<Link
-										className={
-											router.pathname == page.link
-												? styles.link_active
-												: styles.link
-										}
-										href={page.link}
-										key={index}>
-										{page.title} {page.isBeta && <sup>Beta</sup>}
-									</Link>
-								)
-						)}
-						{address &&
-							USERPAGES.map(
+					<div className={styles.linkButtonContainer}>
+						<div className={styles.links}>
+							{PAGES.map(
 								(page, index) =>
 									page.isActive && (
 										<Link
@@ -56,21 +41,38 @@ export const Navbar = () => {
 													? styles.link_active
 													: styles.link
 											}
-											href={
-												page.paramName
-													? page.link +
-													  page.paramName +
-													  convertToStandardWalletAddress(address)
-													: page.link
-											}
+											href={page.link}
 											key={index}>
-											{page.title}
+											{page.title} {page.isBeta && <sup>Beta</sup>}
 										</Link>
 									)
 							)}
-					</div>
-					<div className={styles.buttonContainer}>
-						<ConnectWalletButton />
+							{address &&
+								USERPAGES.map(
+									(page, index) =>
+										page.isActive && (
+											<Link
+												className={
+													router.pathname == page.link
+														? styles.link_active
+														: styles.link
+												}
+												href={
+													page.paramName
+														? page.link +
+														  page.paramName +
+														  convertToStandardWalletAddress(address)
+														: page.link
+												}
+												key={index}>
+												{page.title}
+											</Link>
+										)
+								)}
+						</div>
+						<div className={styles.buttonContainer}>
+							<ConnectWalletButton />
+						</div>
 					</div>
 					{showModal ? (
 						<div

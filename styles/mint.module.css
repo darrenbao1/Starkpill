@@ -3,12 +3,12 @@
 	margin: auto;
 	max-width: 1440px;
 	display: flex;
-	height: calc(100vh - 100px);
+	height: 100vh;
 }
 .backgroundFade {
 	position: fixed;
 	width: calc(100vw + 5px);
-	height: calc(100vh - 100px);
+	height: 100vh;
 	background: linear-gradient(
 		269.9deg,
 		rgba(0, 0, 0, 0.792) 53.43%,
