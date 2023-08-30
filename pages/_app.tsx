@@ -55,9 +55,11 @@ export default function App({
 									<link rel="icon" href="/starkpill.PNG"></link>
 									<title> getStarkpilled </title>
 								</Head>
+
 								<ThemeProvider theme={StarkpillTheme}>
 									<Navbar />
 									<Component {...pageProps} />
+
 									<Toast />
 								</ThemeProvider>
 							</ApolloProvider>

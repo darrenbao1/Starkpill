@@ -165,7 +165,7 @@ export default function Cabinet() {
 		return (
 			<div className={`container ${sharedBackgroundStyles.sharedBackground}`}>
 				<div className="contentContainer">
-					<h1 style={{ textAlign: "center", paddingTop: "2rem" }}>
+					<h1 style={{ textAlign: "center", paddingTop: "10rem" }}>
 						Starkpills
 					</h1>
 
