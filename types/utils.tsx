@@ -240,5 +240,6 @@ export async function login(walletAddress: string) {
 		body: JSON.stringify({ walletAddress }),
 	});
 	const data = await response.json();
+	
 	return data;
 }
