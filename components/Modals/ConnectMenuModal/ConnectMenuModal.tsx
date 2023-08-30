@@ -11,11 +11,15 @@ import {
 import { useConnectors } from "@starknet-react/core";
 import { NoInstalledWalletModal } from "../NoInstalledWalletModal/NoInstalledWalletModal";
 import { useEffect, useRef } from "react";
+import { login } from "../../../types/utils";
 
 function ConnectMenuModal(props: { connectors: any; close: any }) {
 	const { connect } = useConnectors();
 	let loginWallet = async (connector: any) => {
+		console.log(connector._wallet.selectedAddress);
 		connect(connector);
+		const res = await login(connector._wallet.selectedAddress);
+		console.log(res);
 		props.close();
 	};
 	function useOutsideAlerter(ref: any) {

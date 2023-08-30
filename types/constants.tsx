@@ -40,7 +40,8 @@ export const USERPAGES: Page[] = [
 		paramName: "?walletAddress=",
 	},
 ];
-
+export const STARKPILL_SOCIAL_API_ENDPOINT =
+	"https://orca-app-c3df4.ondigitalocean.app/starkpill-api2";
 export const STARKPILL_API_ENDPOINT =
 	"https://orca-app-c3df4.ondigitalocean.app/starkpill-api2/graphql";
 const LINK_HASH = "3tsgIKE0d0F-56pDXRpm2E7a-_c-IfUJB7wyhwDhr9o";
