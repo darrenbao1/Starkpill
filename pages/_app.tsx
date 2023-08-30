@@ -49,7 +49,7 @@ export default function App({
 			<Provider store={store}>
 				<SessionProvider session={session}>
 					<WagmiConfig config={wagmiConfig}>
-						<StarknetConfig connectors={connectors} autoConnect={true}>
+						<StarknetConfig connectors={connectors} autoConnect={false}>
 							<ApolloProvider client={client}>
 								<Head>
 									<link rel="icon" href="/starkpill.PNG"></link>

@@ -5,11 +5,13 @@ import {
 	GET_BACKPACK_TOKENS_BY_ADDRESS,
 	GET_VOTING_POWER_QUERY,
 	STARKPILL_CONTRACT_ADDRESS,
+	STARKPILL_SOCIAL_API_ENDPOINT,
 } from "./constants";
 import { Trait, decodedSignature } from "./interfaces";
 import client from "../apollo-client";
 import Web3 from "web3";
 import BN from "bn.js";
+
 export function shortenAddress(string: string) {
 	if (string === undefined) return "unknown";
 	return string.substring(0, 4) + "..." + string.substring(string.length - 4);
@@ -227,4 +229,26 @@ export function convertUnixToDate(unixTimestamp: number) {
 	} else {
 		return "Less than a minute ago";
 	}
+}
+//Login with wallet address for social.
+export async function login(walletAddress: string) {
+	const response = await fetch(`${STARKPILL_SOCIAL_API_ENDPOINT}/auth/login`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ walletAddress }),
+	});
+	const data = await response.json();
+	localStorage.setItem("access_token", data.access_token);
+}
+
+// Logout
+export async function logout() {
+	localStorage.removeItem("access_token");
+}
+
+// Clear Local Storage
+function clearLocalStorage() {
+	localStorage.clear(); // This will remove all data from Local Storage
 }
