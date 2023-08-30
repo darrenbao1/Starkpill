@@ -16,11 +16,13 @@ import { login } from "../../../types/utils";
 function ConnectMenuModal(props: { connectors: any; close: any }) {
 	const { connect } = useConnectors();
 	let loginWallet = async (connector: any) => {
-		console.log(connector._wallet.selectedAddress);
-		connect(connector);
-		const res = await login(connector._wallet.selectedAddress);
-		console.log(res);
-		props.close();
+		try {
+			await login(connector._wallet.selectedAddress);
+			connect(connector);
+			props.close();
+		} catch (error) {
+			console.log(error);
+		}
 	};
 	function useOutsideAlerter(ref: any) {
 		useEffect(() => {

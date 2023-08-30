@@ -11,6 +11,7 @@ import { Trait, decodedSignature } from "./interfaces";
 import client from "../apollo-client";
 import Web3 from "web3";
 import BN from "bn.js";
+
 export function shortenAddress(string: string) {
 	if (string === undefined) return "unknown";
 	return string.substring(0, 4) + "..." + string.substring(string.length - 4);
@@ -231,7 +232,6 @@ export function convertUnixToDate(unixTimestamp: number) {
 }
 //Login with wallet address for social.
 export async function login(walletAddress: string) {
-	console.log(JSON.stringify({ walletAddress }));
 	const response = await fetch(`${STARKPILL_SOCIAL_API_ENDPOINT}/auth/login`, {
 		method: "POST",
 		headers: {
@@ -240,6 +240,15 @@ export async function login(walletAddress: string) {
 		body: JSON.stringify({ walletAddress }),
 	});
 	const data = await response.json();
-	
-	return data;
+	localStorage.setItem("access_token", data.access_token);
+}
+
+// Logout
+export async function logout() {
+	localStorage.removeItem("access_token");
+}
+
+// Clear Local Storage
+function clearLocalStorage() {
+	localStorage.clear(); // This will remove all data from Local Storage
 }

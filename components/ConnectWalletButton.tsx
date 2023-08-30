@@ -1,6 +1,6 @@
 import { useAccount, useConnectors } from "@starknet-react/core";
 import { useEffect, useRef, useState } from "react";
-import { shortAddressForModal, shortenAddress } from "../types/utils";
+import { logout, shortAddressForModal, shortenAddress } from "../types/utils";
 import ConnectMenuModal from "./Modals/ConnectMenuModal/ConnectMenuModal";
 import styles from "../styles/ConnectWalletButton.module.css";
 import { TransactionList } from "./TransactionList/TransactionList";
@@ -15,6 +15,12 @@ export const ConnectWalletButton = () => {
 		const interval = setInterval(refresh, 400);
 		return () => clearInterval(interval);
 	}, [refresh]);
+
+	const handleLogout = () => {
+		disconnect();
+		logout();
+	};
+
 	return (
 		<>
 			{!account ? (
@@ -24,7 +30,7 @@ export const ConnectWalletButton = () => {
 					Connect Wallet
 				</div>
 			) : (
-				<ConnectedButton address={address!} disconnect={disconnect} />
+				<ConnectedButton address={address!} disconnect={handleLogout} />
 			)}
 			{showConnectMenuModal ? (
 				<ConnectMenuModal
