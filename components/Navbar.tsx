@@ -72,6 +72,14 @@ export const Navbar = () => {
 						</div>
 						<div className={styles.buttonContainer}>
 							<ConnectWalletButton />
+							<div className={styles.profileIcon}>
+								<Image
+									src="/MyProfileIcon.svg"
+									width={40}
+									height={40}
+									alt="ProfilePage"
+								/>
+							</div>
 						</div>
 					</div>
 					{showModal ? (
