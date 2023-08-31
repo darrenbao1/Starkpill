@@ -10,6 +10,7 @@ import { followUser, getTokenImage, unfollowUser } from "../../types/utils";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FollowButton } from "../FollowButton/FollowButton";
+import { TwitterSignIn } from "../TwitterSignIn";
 
 const ProfilePage = () => {
 	const router = useRouter();
@@ -62,7 +63,10 @@ const ProfilePage = () => {
 							height={200}></Image>
 
 						<div>{userProfile.username}</div>
-						<div>{userProfile.twitterHandle}</div>
+						<div>
+							{userProfile.twitterHandle}
+							<TwitterSignIn />
+						</div>
 						<div>{userProfile.firstName}</div>
 						<div>{userProfile.lastName}</div>
 						<div>{userProfile.location}</div>

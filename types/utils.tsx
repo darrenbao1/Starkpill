@@ -259,14 +259,19 @@ export async function login(walletAddress: string) {
 
 // Logout
 export async function logout() {
-	console.log("testing");
 	localStorage.removeItem("access_token");
 	localStorage.removeItem("walletAddress");
 }
 
 // Clear Local Storage
 function clearLocalStorage() {
-	localStorage.clear(); // This will remove all data from Local Storage
+	// remove all data accept lastUsedConnector
+	for (const key in localStorage) {
+		if (key !== "lastUsedConnector") {
+			localStorage.removeItem(key);
+		}
+	}
+	//localStorage.clear(); // This will remove all data from Local Storage
 }
 
 // follow a user
