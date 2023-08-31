@@ -647,6 +647,42 @@ export const GET_ALL_TRAITS_BY_ADDRESS = gql`
 	}
 `;
 
+export const GET_TOKEN_IMAGE_BY_ID = gql`
+	query Token($tokenId: Int!) {
+		token(tokenId: $tokenId) {
+			metadata {
+				imageUrl
+			}
+		}
+	}
+`;
+
+export const GET_USER_PROFILE = gql`
+	query User($address: String!) {
+		user(address: $address) {
+			address
+			username
+			twitterHandle
+			firstName
+			lastName
+			bio
+			profilePictureTokenId
+			ensDomain
+			location
+			websiteUrl
+			coverPictureUrl
+			followersCount
+			followingCount
+			transactions {
+				hash
+			}
+			followers
+			following
+			totalFame
+		}
+	}
+`;
+
 export const DROPDOWN_MENU_ITEMS = [
 	{
 		id: 0,

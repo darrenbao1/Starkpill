@@ -3,6 +3,7 @@ import {
 	BACKGROUND,
 	FACE_TRAITS,
 	GET_BACKPACK_TOKENS_BY_ADDRESS,
+	GET_TOKEN_IMAGE_BY_ID,
 	GET_VOTING_POWER_QUERY,
 	STARKPILL_CONTRACT_ADDRESS,
 	STARKPILL_SOCIAL_API_ENDPOINT,
@@ -251,4 +252,54 @@ export async function logout() {
 // Clear Local Storage
 function clearLocalStorage() {
 	localStorage.clear(); // This will remove all data from Local Storage
+}
+
+// follow a user
+// endpoint /account/follow
+
+export async function followUser(walletAddress: string) {
+	// add access_token to header from localStorage
+	const response = await fetch(
+		`${STARKPILL_SOCIAL_API_ENDPOINT}/account/follow`,
+		{
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "bearer " + localStorage.getItem("access_token"),
+			},
+			body: JSON.stringify({ walletAddress }),
+		}
+	);
+}
+
+//unfollow a user
+// endpoint /account/unfollow
+export async function unfollowUser(walletAddress: string) {
+	const response = await fetch(
+		`${STARKPILL_SOCIAL_API_ENDPOINT}/account/unfollow`,
+		{
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "bearer " + localStorage.getItem("access_token"),
+			},
+			body: JSON.stringify({ walletAddress }),
+		}
+	);
+}
+
+export async function getTokenImage(tokenId: number | null) {
+	console.log("inside here");
+	if (!tokenId) {
+		return "/starkpill.PNG";
+	}
+	try {
+		const result = await client.query({
+			query: GET_TOKEN_IMAGE_BY_ID,
+			variables: { tokenId: tokenId },
+		});
+		return result.data.token.metadata.imageUrl;
+	} catch (error) {
+		console.error(error);
+	}
 }

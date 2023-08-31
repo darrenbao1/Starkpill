@@ -69,3 +69,23 @@ export interface StarkpillToken {
 	bgId: number;
 	ingId: number;
 }
+
+export interface UserProfile {
+	address: string;
+	totalFame: number;
+	username: string | null;
+	twitterHandle: string | null;
+	firstName: string | null;
+	lastName: string | null;
+	bio: string | null;
+	profilePictureTokenId: number | null;
+	ensDomain: string | null;
+	location: string | null;
+	websiteUrl: string | null;
+	coverPictureUrl: string | null;
+	followersCount: number;
+	followingCount: number;
+	followers: string[];
+	following: string[];
+	transactions: any[];
+}

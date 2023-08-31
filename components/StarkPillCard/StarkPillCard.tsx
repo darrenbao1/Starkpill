@@ -33,6 +33,7 @@ import {
 } from "./StarkPillCard.styles";
 import { TxHistoryModal } from "../Modals/TxHistory";
 import { saveAs } from "file-saver";
+import { useRouter } from "next/router";
 
 //INTERFACES↓↓↓
 interface Props {
@@ -49,6 +50,7 @@ interface Props {
 
 //MAIN FUNCTION↓↓↓
 export const StarkPillCard = (props: Props) => {
+	const router = useRouter();
 	//REDUX↓↓↓
 	const dispatch = useDispatch();
 
@@ -97,10 +99,10 @@ export const StarkPillCard = (props: Props) => {
 	};
 
 	const openOwnerAddressLink = () => {
-		window.open(
-			`https://testnet.starkscan.co/contract/${ownerAddress}`,
-			"_blank"
-		);
+		router.push({
+			pathname: "/profile",
+			query: { walletAddress: ownerAddress },
+		});
 	};
 	//Display Image Modal when menu option Pill Details Option is clicked ↓↓
 	const openImageModal = () => {
