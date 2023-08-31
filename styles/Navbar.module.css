@@ -7,7 +7,6 @@
 .navbar {
 	max-width: 1440px;
 	height: 68px;
-
 	color: white;
 	padding-left: 2rem;
 	display: flex;
@@ -65,11 +64,24 @@
 	font-size: 16px;
 }
 .buttonContainer {
+	display: flex;
+
+	gap: 16px;
+
 	height: 100px;
 	margin-top: 15px;
 
 	margin-right: 2rem;
-	width: 100px;
+}
+.profileIcon {
+	width: 40px;
+	height: 40px;
+}
+.profileIcon:hover {
+	cursor: pointer;
+}
+.profileIcon:active {
+	transform: scale(0.9);
 }
 .hamburger_menu {
 	width: 0px;
