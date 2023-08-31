@@ -8,13 +8,19 @@ import Hamburger from "../public/hamburger.svg";
 import Cross from "../public/cross.svg";
 import { LinksModal } from "./Modals/LinksModal";
 import Image from "next/image";
-import Logo from "../public/logo.png";
 import { useAccount } from "@starknet-react/core";
 import { convertToStandardWalletAddress } from "../types/utils";
 export const Navbar = () => {
 	const router = useRouter();
 	const [showModal, setShowModal] = useState(false);
 	const { address } = useAccount();
+
+	const openProfilePage = () => {
+		router.push({
+			pathname: "/profile",
+			query: { walletAddress: convertToStandardWalletAddress(address!) },
+		});
+	};
 	return (
 		<>
 			<div className={styles.container}>
@@ -72,14 +78,17 @@ export const Navbar = () => {
 						</div>
 						<div className={styles.buttonContainer}>
 							<ConnectWalletButton />
-							<div className={styles.profileIcon}>
-								<Image
-									src="/MyProfileIcon.svg"
-									width={40}
-									height={40}
-									alt="ProfilePage"
-								/>
-							</div>
+							{address && (
+								<div className={styles.profileIcon}>
+									<Image
+										src="/MyProfileIcon.svg"
+										width={40}
+										height={40}
+										alt="ProfilePage"
+										onClick={() => openProfilePage()}
+									/>
+								</div>
+							)}
 						</div>
 					</div>
 					{showModal ? (
