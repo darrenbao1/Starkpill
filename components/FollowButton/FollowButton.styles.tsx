@@ -3,7 +3,8 @@ import styled from "styled-components";
 interface ButtonProps {
 	isFollowing: boolean;
 }
-export const StyledButton = styled.button`
+
+export const StyledButton = styled.button<ButtonProps>`
 	display: flex;
 	height: 40px;
 	align-items: center;
@@ -12,12 +13,12 @@ export const StyledButton = styled.button`
 	font-size: 24px;
 	font-weight: 400;
 	font-family: Patrick Hand;
-	color: ${(props: ButtonProps) => (props.isFollowing ? "#FF4F0A" : "#FFFFFF")};
+	color: ${(props) => (props.isFollowing ? "#FF4F0A" : "#FFFFFF")};
 	text-align: center;
 	border-radius: 6px;
-	border: ${(props: ButtonProps) =>
+	border: ${(props) =>
 		props.isFollowing ? "1px solid #FF4F0A" : "1px solid #FFFFFF"};
-	background-color: ${(props: ButtonProps) =>
-		props.isFollowing ? "#FFFFFF" : "#FF4F0A"};
+	background-color: ${(props) => (props.isFollowing ? "#FFFFFF" : "#FF4F0A")};
+	cursor: pointer;
 	cursor: pointer;
 `;

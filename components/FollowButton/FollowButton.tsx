@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyledButton, isFollowingButton } from "./FollowButton.styles";
+import { StyledButton } from "./FollowButton.styles";
 import Image from "next/image";
 import styled from "styled-components";
 
@@ -7,8 +7,9 @@ const IsFollowingButton = styled.div`
 	/* your styles here */
 `;
 
-export const FollowButton = ({ isLoading, onClick }) => {
+export const FollowButton = ({}) => {
 	const [showModal, setShowModal] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const [isFollowing, setIsFollowing] = useState(false);
 	const handleClick = () => {
