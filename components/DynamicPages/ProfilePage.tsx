@@ -9,6 +9,7 @@ import { UserProfile } from "../../types/interfaces";
 import { followUser, getTokenImage, unfollowUser } from "../../types/utils";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { FollowButton } from "../FollowButton/FollowButton";
 
 const ProfilePage = () => {
 	const router = useRouter();
@@ -22,7 +23,7 @@ const ProfilePage = () => {
 		},
 	});
 
-	if (!data) {
+	if (!data || !walletAddress) {
 		//TODO return loading.
 		return <div></div>;
 	}
@@ -31,19 +32,23 @@ const ProfilePage = () => {
 	const fetchProfilePicture = async () => {
 		try {
 			const imageUrl = await getTokenImage(userProfile.profilePictureTokenId);
-			console.log("image url:", imageUrl);
 			setProfilePictureUrl(imageUrl);
 		} catch (error) {
 			console.error("Error fetching profile picture:", error);
 		}
 	};
 	fetchProfilePicture();
-
-	//Check if this wallet has interacted with the contract.
-	//if true, show the profile page.
-	//if false, show profile doesn't exist.
-	console.log(userProfile);
+	//check if localStorage walletAddress is inside followers array
+	//if it is, then set isFollowing to true
+	//if it isn't, then set isFollowing to false
+	const loggedInUserAddress = localStorage.getItem("walletAddress");
+	if (!loggedInUserAddress) {
+		return <div>Wallet not connected</div>;
+	}
+	const isViewingOwnProfile = loggedInUserAddress === walletAddress;
+	const isFollowing = userProfile.followers.includes(loggedInUserAddress);
 	const hasInteractedWithContract = userProfile.transactions.length > 0;
+
 	return (
 		<ProfilePageWrapper>
 			<ContentWrapper>
@@ -69,26 +74,15 @@ const ProfilePage = () => {
 						<div>{userProfile.totalFame} total Fame</div>
 					</div>
 				) : (
-					<div>Profile doesn't exist</div>
+					<div>Profile does not exist</div>
 				)}
-				<button
-					onClick={async () => {
-						followUser(userProfile.address);
-						// Delay for 0.3 seconds
-						await new Promise((resolve) => setTimeout(resolve, 100));
-						refetch();
-					}}>
-					Follow
-				</button>
-				<button
-					onClick={async () => {
-						unfollowUser(userProfile.address);
-						// Delay for 0.3 seconds
-						await new Promise((resolve) => setTimeout(resolve, 100));
-						refetch();
-					}}>
-					Unfollow{" "}
-				</button>
+				{!isViewingOwnProfile && (
+					<FollowButton
+						followAddress={walletAddress.toString()}
+						isFollowing={isFollowing}
+						refetch={refetch}
+					/>
+				)}
 			</ContentWrapper>
 		</ProfilePageWrapper>
 	);

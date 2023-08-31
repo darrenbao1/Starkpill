@@ -234,20 +234,34 @@ export function convertUnixToDate(unixTimestamp: number) {
 //Login with wallet address for social.
 export async function login(walletAddress: string) {
 	clearLocalStorage();
-	const response = await fetch(`${STARKPILL_SOCIAL_API_ENDPOINT}/auth/login`, {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({ walletAddress }),
-	});
-	const data = await response.json();
-	localStorage.setItem("access_token", data.access_token);
+	try {
+		const response = await fetch(
+			`${STARKPILL_SOCIAL_API_ENDPOINT}/auth/login`,
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ walletAddress }),
+			}
+		);
+		const data = await response.json();
+		localStorage.setItem("access_token", data.access_token);
+		localStorage.setItem(
+			"walletAddress",
+			convertToStandardWalletAddress(walletAddress)
+		);
+	} catch (error) {
+		// Handle error
+		console.error("Error during login:", error);
+	}
 }
 
 // Logout
 export async function logout() {
+	console.log("testing");
 	localStorage.removeItem("access_token");
+	localStorage.removeItem("walletAddress");
 }
 
 // Clear Local Storage
@@ -260,6 +274,7 @@ function clearLocalStorage() {
 
 export async function followUser(walletAddress: string) {
 	// add access_token to header from localStorage
+
 	const response = await fetch(
 		`${STARKPILL_SOCIAL_API_ENDPOINT}/account/follow`,
 		{
@@ -271,6 +286,7 @@ export async function followUser(walletAddress: string) {
 			body: JSON.stringify({ walletAddress }),
 		}
 	);
+	return response;
 }
 
 //unfollow a user
@@ -287,6 +303,8 @@ export async function unfollowUser(walletAddress: string) {
 			body: JSON.stringify({ walletAddress }),
 		}
 	);
+
+	return response;
 }
 
 export async function getTokenImage(tokenId: number | null) {

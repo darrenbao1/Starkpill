@@ -18,7 +18,12 @@ import {
 import { useAccount, useConnectors } from "@starknet-react/core";
 import ConnectMenuModal from "../Modals/ConnectMenuModal/ConnectMenuModal";
 import { useEffect, useRef, useState } from "react";
-import { shortAddressForModal, shortenAddress } from "../../types/utils";
+import {
+	login,
+	logout,
+	shortAddressForModal,
+	shortenAddress,
+} from "../../types/utils";
 import { UserBalance } from "../../hooks/StarkEthContract";
 import { TransactionList } from "../TransactionList/TransactionList";
 import TxCross from "../../public/svgs/TxCross.svg";
@@ -33,6 +38,16 @@ export const ConnectWalletButton = () => {
 		const interval = setInterval(refresh, 5000);
 		return () => clearInterval(interval);
 	}, [refresh]);
+	useEffect(() => {
+		if (address) {
+			login(address);
+		}
+	}, [address]);
+
+	const handleLogOut = () => {
+		disconnect();
+		logout();
+	};
 	return (
 		<>
 			{!account ? (
@@ -40,7 +55,7 @@ export const ConnectWalletButton = () => {
 					Connect Wallet
 				</ConnectWalletText>
 			) : (
-				<ConnectedButton address={address!} disconnect={disconnect} />
+				<ConnectedButton address={address!} disconnect={handleLogOut} />
 			)}
 			{showConnectMenuModal ? (
 				<ConnectMenuModal

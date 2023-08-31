@@ -2,21 +2,31 @@ import { useState } from "react";
 import { StyledButton } from "./FollowButton.styles";
 import Image from "next/image";
 import styled from "styled-components";
+import { followUser, unfollowUser } from "../../types/utils";
 
 const IsFollowingButton = styled.div`
 	/* your styles here */
 `;
-
-export const FollowButton = ({}) => {
-	const [showModal, setShowModal] = useState(false);
+interface Props {
+	followAddress: string;
+	refetch: () => void;
+	isFollowing: boolean;
+}
+export const FollowButton = (props: Props) => {
 	const [isLoading, setIsLoading] = useState(false);
-
-	const [isFollowing, setIsFollowing] = useState(false);
-	const handleClick = () => {
-		if (isFollowing) {
-			setShowModal(true);
+	const isFollowing = props.isFollowing;
+	const handleClick = async () => {
+		setIsLoading(true);
+		if (!isFollowing) {
+			await followUser(props.followAddress).then(() => {
+				props.refetch();
+				setIsLoading(false);
+			});
 		} else {
-			setIsFollowing(true);
+			await unfollowUser(props.followAddress).then(() => {
+				props.refetch();
+				setIsLoading(false);
+			});
 		}
 	};
 
@@ -26,6 +36,20 @@ export const FollowButton = ({}) => {
 			isFollowing={isFollowing}
 			data-testid="follow-button">
 			{isFollowing ? (
+				<span>Following</span>
+			) : isLoading ? (
+				<>
+					<Image src="/LoadingFollowIcon.svg" width={24} height={24} alt="" />
+					<span>Follow</span>
+				</>
+			) : (
+				<>
+					<Image src="/FollowIcon.svg" width={16} height={16} alt="" />
+					<span>Follow</span>
+				</>
+			)}
+
+			{/* {isFollowing ? (
 				<span>Following</span>
 			) : (
 				<>
@@ -38,7 +62,7 @@ export const FollowButton = ({}) => {
 					<Image src="/LoadingFollowIcon.svg" width={24} height={24} alt="" />
 					<span>Follow</span>
 				</>
-			)}
+			)} */}
 		</StyledButton>
 	);
 };

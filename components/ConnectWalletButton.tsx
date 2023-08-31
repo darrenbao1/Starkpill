@@ -16,9 +16,9 @@ export const ConnectWalletButton = () => {
 		return () => clearInterval(interval);
 	}, [refresh]);
 
-	const handleLogout = () => {
+	const handleLogout = async () => {
+		await logout();
 		disconnect();
-		logout();
 	};
 
 	return (
@@ -30,7 +30,7 @@ export const ConnectWalletButton = () => {
 					Connect Wallet
 				</div>
 			) : (
-				<ConnectedButton address={address!} disconnect={handleLogout} />
+				<ConnectedButton address={address!} disconnect={() => handleLogout()} />
 			)}
 			{showConnectMenuModal ? (
 				<ConnectMenuModal
