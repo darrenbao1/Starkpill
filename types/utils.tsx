@@ -233,6 +233,7 @@ export function convertUnixToDate(unixTimestamp: number) {
 }
 //Login with wallet address for social.
 export async function login(walletAddress: string) {
+	clearLocalStorage();
 	const response = await fetch(`${STARKPILL_SOCIAL_API_ENDPOINT}/auth/login`, {
 		method: "POST",
 		headers: {
