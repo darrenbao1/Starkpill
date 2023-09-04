@@ -313,7 +313,6 @@ export async function unfollowUser(walletAddress: string) {
 }
 
 export async function getTokenImage(tokenId: number | null) {
-	console.log("inside here");
 	if (!tokenId) {
 		return "/starkpill.PNG";
 	}

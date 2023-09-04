@@ -1,4 +1,3 @@
-import { Button } from "../Modals/ConnectMenuModal/ConnectMenuModal.styles";
 import {
 	ButtonContainer,
 	CancelButton,
@@ -6,12 +5,11 @@ import {
 	Container,
 	ContentContainer,
 	ModalContainer,
-	Subtitle,
-	Title,
 } from "./UnfollowModal.styles";
 
 interface Props {
 	close: () => void;
+	handleUnfollow: () => void;
 }
 
 export const UnfollowModal = (props: Props) => {
@@ -23,8 +21,10 @@ export const UnfollowModal = (props: Props) => {
 					<p>Are you sure you want to unfollow?</p>
 				</ContentContainer>
 				<ButtonContainer>
-					<CancelButton onClick={props.close}>Cancel</CancelButton>
-					<ConfirmButton>Unfollow</ConfirmButton>
+					<CancelButton onClick={() => props.close()}>Cancel</CancelButton>
+					<ConfirmButton onClick={() => props.handleUnfollow()}>
+						Unfollow
+					</ConfirmButton>
 				</ButtonContainer>
 			</Container>
 		</ModalContainer>
