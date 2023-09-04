@@ -9,7 +9,6 @@ export default function snakes() {
 				alignItems: "center",
 				justifyContent: "center",
 			}}>
-			<TwitterSignIn />
 			<Gameboy />
 		</div>
 	);
