@@ -57,6 +57,7 @@ export const FollowButton = (props: Props) => {
 				<UnfollowModal
 					close={() => setShowUnfollowModal(false)}
 					handleUnfollow={handleUnfollow}
+					walletAddress={props.followAddress}
 				/>
 			)}
 		</StyledButton>

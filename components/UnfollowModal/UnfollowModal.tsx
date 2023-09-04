@@ -10,21 +10,23 @@ import {
 interface Props {
 	close: () => void;
 	handleUnfollow: () => void;
+	walletAddress: string;
 }
-
 export const UnfollowModal = (props: Props) => {
+	//destructure props
+	const { close, handleUnfollow, walletAddress } = props;
+	const shortenWalletAddress = walletAddress.slice(0, 8) + "...";
+
 	return (
 		<ModalContainer>
 			<Container>
 				<ContentContainer>
-					<h1>Unfollow 0x934897...?</h1>
+					<h1>Unfollow {shortenWalletAddress}?</h1>
 					<p>Are you sure you want to unfollow?</p>
 				</ContentContainer>
 				<ButtonContainer>
-					<CancelButton onClick={() => props.close()}>Cancel</CancelButton>
-					<ConfirmButton onClick={() => props.handleUnfollow()}>
-						Unfollow
-					</ConfirmButton>
+					<CancelButton onClick={close}>Cancel</CancelButton>
+					<ConfirmButton onClick={handleUnfollow}>Unfollow</ConfirmButton>
 				</ButtonContainer>
 			</Container>
 		</ModalContainer>
