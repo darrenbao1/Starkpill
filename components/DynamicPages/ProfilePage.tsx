@@ -65,7 +65,10 @@ const ProfilePage = () => {
 						<div>{userProfile.username}</div>
 						<div>
 							{userProfile.twitterHandle}
-							<TwitterSignIn />
+							<TwitterSignIn
+								isLinked={userProfile.twitterHandle ? true : false}
+								refetch={refetch}
+							/>
 						</div>
 						<div>{userProfile.firstName}</div>
 						<div>{userProfile.lastName}</div>

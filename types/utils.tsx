@@ -312,6 +312,39 @@ export async function unfollowUser(walletAddress: string) {
 	return response;
 }
 
+//Set Twitter
+//endpoint /account/updateInfo
+export async function setTwitterHandle(twitterHandle: string) {
+	const response = await fetch(
+		`${STARKPILL_SOCIAL_API_ENDPOINT}/account/updateInfo`,
+		{
+			method: "PATCH",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "bearer " + localStorage.getItem("access_token"),
+			},
+			body: JSON.stringify({ twitterHandle }),
+		}
+	);
+	return response;
+}
+//remove Twitter account
+//endpoint /account/updateInfo
+export async function removeTwitterHandle() {
+	const response = await fetch(
+		`${STARKPILL_SOCIAL_API_ENDPOINT}/account/updateInfo`,
+		{
+			method: "PATCH",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "bearer " + localStorage.getItem("access_token"),
+			},
+			body: JSON.stringify({ twitterHandle: null }),
+		}
+	);
+	return response;
+}
+
 export async function getTokenImage(tokenId: number | null) {
 	if (!tokenId) {
 		return "/starkpill.PNG";
