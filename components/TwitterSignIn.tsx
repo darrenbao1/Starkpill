@@ -16,7 +16,7 @@ export const TwitterSignIn = (props: Props) => {
 				console.error(data.status);
 			}
 		} catch (error) {
-			console.error("Error fetching data:", error);
+			console.error("Error", error);
 		}
 	};
 	//destructure props
