@@ -51,7 +51,6 @@ export const TwitterSignIn = (props: Props) => {
 
 	return (
 		<div>
-			{session && <div>{JSON.stringify(session)}</div>}
 			{isLinked ? (
 				<button onClick={removeTwitter}>Unlink Twitter</button>
 			) : (
