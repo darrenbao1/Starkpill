@@ -8,4 +8,9 @@ export default NextAuth({
 			clientSecret: process.env.TWITTER_CLIENT_SECRET,
 		}),
 	],
+	callbacks: {
+		async jwt(token, user, account = {}, profile, isNewUser) {
+			return token;
+		},
+	},
 });

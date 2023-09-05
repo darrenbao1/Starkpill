@@ -1,13 +1,24 @@
-import { useAccount } from "@starknet-react/core";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { removeTwitterHandle, setTwitterHandle } from "../types/utils";
-
 interface Props {
 	isLinked: boolean;
 	refetch: () => void;
 }
 
 export const TwitterSignIn = (props: Props) => {
+	const fetchTwitterHandle = async () => {
+		try {
+			const response = await fetch("/api/search");
+			const data = await response.json();
+			if (response.ok) {
+				return data.data.twitterHandle;
+			} else {
+				console.error(data.status);
+			}
+		} catch (error) {
+			console.error("Error fetching data:", error);
+		}
+	};
 	//destructure props
 	const { isLinked, refetch } = props;
 	const { data: session } = useSession();
@@ -19,23 +30,33 @@ export const TwitterSignIn = (props: Props) => {
 			console.error("Error during sign-in:", result.error);
 			return;
 		}
-
-		// Obtain the Twitter handle and wallet address
 		if (session) {
-			const twitterHandle = session.user!.name; // Adjust based on your user object structure
-			if (twitterHandle) {
-				await setTwitterHandle(twitterHandle).then(() => refetch());
-			}
+			fetchTwitterHandle()
+				.then((userName) => {
+					setTwitterHandle(userName).then(() => {
+						refetch();
+					});
+				})
+				.catch((error) => {
+					console.error("Error fetching Twitter handle:", error);
+				});
 		}
 	};
 
 	const removeTwitter = async () => {
-		await removeTwitterHandle().then(() => refetch());
+		await removeTwitterHandle().then(() => {
+			refetch();
+		});
 	};
 
-	return isLinked ? (
-		<button onClick={removeTwitter}>Unlink Twitter</button>
-	) : (
-		<button onClick={handleLinkTwitter}>Link Twitter</button>
+	return (
+		<div>
+			{session && <div>{JSON.stringify(session)}</div>}
+			{isLinked ? (
+				<button onClick={removeTwitter}>Unlink Twitter</button>
+			) : (
+				<button onClick={handleLinkTwitter}>Link Twitter</button>
+			)}
+		</div>
 	);
 };
