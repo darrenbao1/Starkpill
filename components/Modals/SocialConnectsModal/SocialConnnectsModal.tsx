@@ -48,6 +48,7 @@ type SocialConnectsModalProps = {
 	onClose: () => void;
 	followers: string[];
 	following: string[];
+	showFollowers: boolean;
 };
 interface Props {
 	walletAddress: string;
@@ -104,9 +105,9 @@ const ListObject = (props: Props) => {
 
 export const SocialConnectsModal = (props: SocialConnectsModalProps) => {
 	//destructure props
-	const { onClose, followers, following } = props;
+	const { onClose, followers, following, showFollowers } = props;
 	const [showUnfollowModal, setShowUnfollowModal] = useState(false);
-	const [toggleTabState, setToggleTabState] = useState(1);
+	const [toggleTabState, setToggleTabState] = useState(showFollowers ? 1 : 2);
 
 	const toggleTabStateHandler = (index: number) => {
 		setToggleTabState(index);
