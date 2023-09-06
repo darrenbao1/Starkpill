@@ -115,6 +115,6 @@
 // };
 
 // export default ChatBox;
-export default function testing() {
-	return <div></div>;
+export default function Testing() {
+	return <></>;
 }

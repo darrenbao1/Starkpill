@@ -11,9 +11,14 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FollowButton } from "../FollowButton/FollowButton";
 import { TwitterSignIn } from "../TwitterSignIn";
+import { SocialConnectsModal } from "../Modals/SocialConnectsModal";
+import { Header } from "../ProfilePageComponents/Header/Header";
+import { StatusUpdateSectionContainer } from "../ProfilePageComponents/StatusUpdateSection/StatusUpdateSection.styles";
+import { StatusUpdateSection } from "../ProfilePageComponents/StatusUpdateSection";
 
 const ProfilePage = () => {
 	const router = useRouter();
+
 	const [profilePictureUrl, setProfilePictureUrl] = useState<string | null>(
 		null
 	);
@@ -77,6 +82,7 @@ const ProfilePage = () => {
 						<div>{userProfile.bio}</div>
 						<div>{userProfile.address}</div>
 						<div>{userProfile.followers.length} followers</div>
+
 						<div>{userProfile.following.length} following</div>
 						<div>{userProfile.totalFame} total Fame</div>
 					</div>
@@ -90,6 +96,20 @@ const ProfilePage = () => {
 						refetch={refetch}
 					/>
 				)}
+				{/* <SocialConnectsModal /> */}
+				<Header
+					profilePictureUrl={
+						profilePictureUrl ? profilePictureUrl : "/starkpill.PNG"
+					}
+					profileObject={userProfile}
+					followers={userProfile.followers}
+					following={userProfile.following}
+				/>
+				<StatusUpdateSection
+					profilePictureUrl={
+						profilePictureUrl ? profilePictureUrl : "/starkpill.PNG"
+					}
+				/>
 			</ContentWrapper>
 		</ProfilePageWrapper>
 	);
