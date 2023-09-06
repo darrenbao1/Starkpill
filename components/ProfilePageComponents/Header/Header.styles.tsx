@@ -19,7 +19,7 @@ export const CoverPhotoContainer = styled.div`
 
 export const ProfilePictureContainer = styled(Image)`
 	display: flex;
-	position: fixed;
+	position: absolute;
 	margin-top: 10.1rem;
 	margin-left: 1.4rem;
 

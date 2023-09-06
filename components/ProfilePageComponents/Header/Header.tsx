@@ -12,7 +12,7 @@ import {
 	ProfilePictureContainer,
 } from "./Header.styles";
 import { UserProfile } from "../../../types/interfaces";
-import { shortAddressForModal, shortenAddress } from "../../../types/utils";
+import { shortenAddress } from "../../../types/utils";
 interface Props {
 	profilePictureUrl: string;
 	followers: string[];
