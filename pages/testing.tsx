@@ -20,8 +20,6 @@
 // 	UserFace,
 // } from "../styles/Testing.styles";
 
-import { Header } from "../components/ProfilePageComponents/Header";
-
 // type ChatLogEntry = {
 // 	user: string;
 // 	text: string;
