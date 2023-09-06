@@ -63,7 +63,7 @@ const ProfilePage = () => {
 					<>
 						<Header
 							profilePictureUrl={
-								profilePictureUrl ? profilePictureUrl : "/starkpill.PNG"
+								profilePictureUrl ? profilePictureUrl : "/basepill.png"
 							}
 							profileObject={userProfile}
 							followers={userProfile.followers}
@@ -75,7 +75,7 @@ const ProfilePage = () => {
 						/>
 						<StatusUpdateSection
 							profilePictureUrl={
-								profilePictureUrl ? profilePictureUrl : "/starkpill.PNG"
+								profilePictureUrl ? profilePictureUrl : "/basepill.png"
 							}
 						/>
 					</>

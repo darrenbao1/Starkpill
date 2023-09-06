@@ -347,7 +347,7 @@ export async function removeTwitterHandle() {
 
 export async function getTokenImage(tokenId: number | null) {
 	if (!tokenId) {
-		return "/starkpill.PNG";
+		return "/basepill.png";
 	}
 	try {
 		const result = await client.query({
