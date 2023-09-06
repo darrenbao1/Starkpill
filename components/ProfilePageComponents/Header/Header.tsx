@@ -66,11 +66,11 @@ export const Header = (props: Props) => {
 						<p>{profileObject.twitterHandle && profileObject.twitterHandle}</p>
 					</NameContainer>
 					<FollowWrapper>
-						<FollowContainer onClick={() => handleFollowContainerClick(2)}>
-							{following.length} Following
-						</FollowContainer>
 						<FollowContainer onClick={() => handleFollowContainerClick(1)}>
 							{followers.length} Followers
+						</FollowContainer>
+						<FollowContainer onClick={() => handleFollowContainerClick(2)}>
+							{following.length} Following
 						</FollowContainer>
 					</FollowWrapper>
 					{isViewingOwnProfile ? (
