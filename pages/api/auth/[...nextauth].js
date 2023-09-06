@@ -3,6 +3,7 @@ import NextAuth from "next-auth";
 
 export default async function auth(req, res) {
 	return await NextAuth(req, res, {
+		secret: process.env.SECRET,
 		providers: [
 			TwitterProvider({
 				clientId: process.env.TWITTER_CLIENT_ID,
