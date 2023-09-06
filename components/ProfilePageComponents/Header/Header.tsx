@@ -13,18 +13,36 @@ import {
 } from "./Header.styles";
 import { UserProfile } from "../../../types/interfaces";
 import { shortAddressForModal, shortenAddress } from "../../../types/utils";
+import { FollowButton } from "../../FollowButton/FollowButton";
 interface Props {
 	profilePictureUrl: string;
 	followers: string[];
 	following: string[];
 	profileObject: UserProfile;
+	isViewingOwnProfile: boolean;
+	followAddress: string;
+	refetch: () => void;
+	isFollowing: boolean;
 }
 export const Header = (props: Props) => {
 	//destructure props
-	const { profilePictureUrl, followers, following, profileObject } = props;
+	const {
+		profilePictureUrl,
+		followers,
+		following,
+		profileObject,
+		isViewingOwnProfile,
+		followAddress,
+		refetch,
+		isFollowing,
+	} = props;
 
 	const [showSocialConnectsModal, setShowSocialConnectsModal] = useState(false);
-	const handleFollowContainerClick = () => {
+	const [showFollowers, setShowFollowers] = useState(false);
+	//index 1 is to show followers and index 2 is to show following
+	const handleFollowContainerClick = (index: number) => {
+		if (index === 1) setShowFollowers(true);
+		else setShowFollowers(false);
 		setShowSocialConnectsModal(true);
 	};
 
@@ -48,14 +66,22 @@ export const Header = (props: Props) => {
 						<p>{profileObject.twitterHandle && profileObject.twitterHandle}</p>
 					</NameContainer>
 					<FollowWrapper>
-						<FollowContainer onClick={handleFollowContainerClick}>
+						<FollowContainer onClick={() => handleFollowContainerClick(2)}>
 							{following.length} Following
 						</FollowContainer>
-						<FollowContainer onClick={handleFollowContainerClick}>
+						<FollowContainer onClick={() => handleFollowContainerClick(1)}>
 							{followers.length} Followers
 						</FollowContainer>
 					</FollowWrapper>
-					<EditProfileButton>Edit Profile</EditProfileButton>
+					{isViewingOwnProfile ? (
+						<EditProfileButton>Edit Profile</EditProfileButton>
+					) : (
+						<FollowButton
+							followAddress={followAddress}
+							isFollowing={isFollowing}
+							refetch={refetch}
+						/>
+					)}
 				</Details>
 			</DetailsContainer>
 			{showSocialConnectsModal && (
@@ -63,6 +89,7 @@ export const Header = (props: Props) => {
 					followers={followers}
 					following={following}
 					onClose={() => setShowSocialConnectsModal(false)}
+					showFollowers={showFollowers}
 				/>
 			)}
 		</Container>

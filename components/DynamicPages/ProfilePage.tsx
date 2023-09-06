@@ -60,32 +60,25 @@ const ProfilePage = () => {
 			<ContentWrapper>
 				{/* labels to list out the attributes in userProfile */}
 				{hasInteractedWithContract ? (
-					<div>
-						<Image
-							src={profilePictureUrl ? profilePictureUrl : "/starkpill.PNG"}
-							alt="profilePicture"
-							width={200}
-							height={200}></Image>
-
-						<div>{userProfile.username}</div>
-						<div>
-							{userProfile.twitterHandle}
-							<TwitterSignIn
-								isLinked={userProfile.twitterHandle ? true : false}
-								refetch={refetch}
-							/>
-						</div>
-						<div>{userProfile.firstName}</div>
-						<div>{userProfile.lastName}</div>
-						<div>{userProfile.location}</div>
-						<div>{userProfile.websiteUrl}</div>
-						<div>{userProfile.bio}</div>
-						<div>{userProfile.address}</div>
-						<div>{userProfile.followers.length} followers</div>
-
-						<div>{userProfile.following.length} following</div>
-						<div>{userProfile.totalFame} total Fame</div>
-					</div>
+					<>
+						<Header
+							profilePictureUrl={
+								profilePictureUrl ? profilePictureUrl : "/starkpill.PNG"
+							}
+							profileObject={userProfile}
+							followers={userProfile.followers}
+							following={userProfile.following}
+							isViewingOwnProfile={isViewingOwnProfile}
+							isFollowing={isFollowing}
+							followAddress={walletAddress.toString()}
+							refetch={refetch}
+						/>
+						<StatusUpdateSection
+							profilePictureUrl={
+								profilePictureUrl ? profilePictureUrl : "/starkpill.PNG"
+							}
+						/>
+					</>
 				) : (
 					<div>Profile does not exist</div>
 				)}
@@ -97,19 +90,6 @@ const ProfilePage = () => {
 					/>
 				)}
 				{/* <SocialConnectsModal /> */}
-				<Header
-					profilePictureUrl={
-						profilePictureUrl ? profilePictureUrl : "/starkpill.PNG"
-					}
-					profileObject={userProfile}
-					followers={userProfile.followers}
-					following={userProfile.following}
-				/>
-				<StatusUpdateSection
-					profilePictureUrl={
-						profilePictureUrl ? profilePictureUrl : "/starkpill.PNG"
-					}
-				/>
 			</ContentWrapper>
 		</ProfilePageWrapper>
 	);
