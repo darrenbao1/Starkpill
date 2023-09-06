@@ -14,6 +14,7 @@ import { Header } from "../ProfilePageComponents/Header/Header";
 import { StatusUpdateSectionContainer } from "../ProfilePageComponents/StatusUpdateSection/StatusUpdateSection.styles";
 import { StatusUpdateSection } from "../ProfilePageComponents/StatusUpdateSection";
 import { SideSection } from "../ProfilePageComponents/SideSection";
+import { TwitterSignIn } from "../TwitterSignIn";
 
 const ProfilePage = () => {
 	const router = useRouter();
@@ -87,6 +88,10 @@ const ProfilePage = () => {
 						{userProfile.websiteUrl && (
 							<SideSection title="Website" content={userProfile.websiteUrl} />
 						)}
+						<TwitterSignIn
+							isLinked={userProfile.twitterHandle ? true : false}
+							refetch={refetch}
+						/>
 					</RightContainerWrapper>
 				</ContentWrapper>
 			) : (

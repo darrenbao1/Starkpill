@@ -42,6 +42,7 @@
     "starknet": "^4.9.0",
     "styled-components": "^6.0.0-rc.1",
     "typescript": "4.9.3",
+    "typescript-cookie": "^1.0.6",
     "viem": "^0.3.24",
     "wagmi": "^1.0.2",
     "web3": "^1.9.0",
