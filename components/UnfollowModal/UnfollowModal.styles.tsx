@@ -90,6 +90,7 @@ export const CancelButton = styled.button`
 	text-decoration-line: underline;
 `;
 export const ConfirmButton = styled.button`
+	cursor: pointer;
 	display: flex;
 	height: 40px;
 	padding: 8px 16px;

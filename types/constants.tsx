@@ -512,6 +512,18 @@ const GET_ALL_TOKENS_LOWEST_FAME = gql`
 		}
 	}
 `;
+export const GET_USER_TOKENS_FOR_PROFILE_PICT = gql`
+	query Tokens($address: String!) {
+		user(address: $address) {
+			tokens {
+				id
+				metadata {
+					imageUrl
+				}
+			}
+		}
+	}
+`;
 export const GET_USER_TOKENS = gql`
 	query Tokens($address: String!) {
 		user(address: $address) {
@@ -653,6 +665,19 @@ export const GET_TOKEN_IMAGE_BY_ID = gql`
 			metadata {
 				imageUrl
 			}
+		}
+	}
+`;
+
+export const GET_USER_PROFILE_BASIC = gql`
+	query User($address: String!) {
+		user(address: $address) {
+			address
+			username
+			twitterHandle
+			profilePictureTokenId
+			followers
+			following
 		}
 	}
 `;

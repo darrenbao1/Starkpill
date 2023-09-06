@@ -19,6 +19,7 @@ import { useAccount, useConnectors } from "@starknet-react/core";
 import ConnectMenuModal from "../Modals/ConnectMenuModal/ConnectMenuModal";
 import { useEffect, useRef, useState } from "react";
 import {
+	convertToStandardWalletAddress,
 	login,
 	logout,
 	shortAddressForModal,
@@ -99,7 +100,7 @@ const ConnectedButton = (props: { address: string; disconnect: any }) => {
 	return (
 		<div ref={wrapperRef}>
 			<ConnectWalletText onClick={() => setShowDropDown(!showDropDown)}>
-				{shortenAddress(props.address)} &nbsp;{" "}
+				{shortenAddress(convertToStandardWalletAddress(props.address))} &nbsp;{" "}
 				<picture>
 					<DownArrow src="/downArrow.svg" alt="" showDropDown={showDropDown} />
 				</picture>
@@ -114,13 +115,11 @@ const ConnectedButton = (props: { address: string; disconnect: any }) => {
 									<TxCross />
 								</TxCrossContainer>
 							</HeaderContainer>
-
 							<ContentWrapper>
 								<AddressContainer>
 									<span>Address</span>
 									<AddressText>
 										{shortAddressForModal(props.address)}
-
 										<Copy onClick={() => CopyAddress(props.address)}></Copy>
 									</AddressText>
 								</AddressContainer>

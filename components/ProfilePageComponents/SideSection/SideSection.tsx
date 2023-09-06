@@ -23,7 +23,3 @@ export const SideSection = ({ title, content }: SideSectionProps) => {
 		</Container>
 	);
 };
-
-{
-	/* <SideSection title="Location" content="Location, Location" /> */
-}

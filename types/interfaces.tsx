@@ -89,3 +89,17 @@ export interface UserProfile {
 	following: string[];
 	transactions: any[];
 }
+
+export interface UserProfileBasic {
+	address: string;
+	username: string | null;
+	twitterHandle: string | null;
+	profilePictureTokenId: number | null;
+	followers: string[];
+	following: string[];
+}
+
+export enum Action {
+	Unfollow = 1,
+	RemoveFollower = 2,
+}

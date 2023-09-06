@@ -2,23 +2,21 @@ import { useRouter } from "next/router";
 import {
 	ProfilePageWrapper,
 	ContentWrapper,
+	LeftContainerWrapper,
+	RightContainerWrapper,
 } from "../../styles/ProfilePage.style";
 import { GET_TOKEN_IMAGE_BY_ID, GET_USER_PROFILE } from "../../types/constants";
 import { useQuery } from "@apollo/client";
 import { UserProfile } from "../../types/interfaces";
-import { followUser, getTokenImage, unfollowUser } from "../../types/utils";
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import { FollowButton } from "../FollowButton/FollowButton";
-import { TwitterSignIn } from "../TwitterSignIn";
-import { SocialConnectsModal } from "../Modals/SocialConnectsModal";
+import { getTokenImage } from "../../types/utils";
+import { useState } from "react";
 import { Header } from "../ProfilePageComponents/Header/Header";
 import { StatusUpdateSectionContainer } from "../ProfilePageComponents/StatusUpdateSection/StatusUpdateSection.styles";
 import { StatusUpdateSection } from "../ProfilePageComponents/StatusUpdateSection";
+import { SideSection } from "../ProfilePageComponents/SideSection";
 
 const ProfilePage = () => {
 	const router = useRouter();
-
 	const [profilePictureUrl, setProfilePictureUrl] = useState<string | null>(
 		null
 	);
@@ -57,10 +55,9 @@ const ProfilePage = () => {
 
 	return (
 		<ProfilePageWrapper>
-			<ContentWrapper>
-				{/* labels to list out the attributes in userProfile */}
-				{hasInteractedWithContract ? (
-					<>
+			{hasInteractedWithContract ? (
+				<ContentWrapper>
+					<LeftContainerWrapper>
 						<Header
 							profilePictureUrl={
 								profilePictureUrl ? profilePictureUrl : "/basepill.png"
@@ -72,19 +69,29 @@ const ProfilePage = () => {
 							isFollowing={isFollowing}
 							followAddress={walletAddress.toString()}
 							refetch={refetch}
+							ownerAddress={userProfile.address}
 						/>
 						<StatusUpdateSection
 							profilePictureUrl={
 								profilePictureUrl ? profilePictureUrl : "/basepill.png"
 							}
 						/>
-					</>
-				) : (
-					<div>Profile does not exist</div>
-				)}
-
-				{/* <SocialConnectsModal /> */}
-			</ContentWrapper>
+					</LeftContainerWrapper>
+					<RightContainerWrapper>
+						{userProfile.bio && (
+							<SideSection title="Bio" content={userProfile.bio} />
+						)}
+						{userProfile.location && (
+							<SideSection title="Location" content={userProfile.location} />
+						)}
+						{userProfile.websiteUrl && (
+							<SideSection title="Website" content={userProfile.websiteUrl} />
+						)}
+					</RightContainerWrapper>
+				</ContentWrapper>
+			) : (
+				<div>Profile does not exist</div>
+			)}
 		</ProfilePageWrapper>
 	);
 };

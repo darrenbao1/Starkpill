@@ -312,6 +312,22 @@ export async function unfollowUser(walletAddress: string) {
 	return response;
 }
 
+//remove a follower
+export async function removeFollower(walletAddress: string) {
+	const response = await fetch(
+		`${STARKPILL_SOCIAL_API_ENDPOINT}/account/removeFollower`,
+		{
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "bearer " + localStorage.getItem("access_token"),
+			},
+			body: JSON.stringify({ walletAddress }),
+		}
+	);
+	return response;
+}
+
 //Set Twitter
 //endpoint /account/updateInfo
 export async function setTwitterHandle(twitterHandle: string) {
@@ -340,6 +356,22 @@ export async function removeTwitterHandle() {
 				Authorization: "bearer " + localStorage.getItem("access_token"),
 			},
 			body: JSON.stringify({ twitterHandle: null }),
+		}
+	);
+	return response;
+}
+//update PFP
+//endpoint /account/updateInfo
+export async function updateProfilePicture(tokenId: number) {
+	const response = await fetch(
+		`${STARKPILL_SOCIAL_API_ENDPOINT}/account/updateInfo`,
+		{
+			method: "PATCH",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "bearer " + localStorage.getItem("access_token"),
+			},
+			body: JSON.stringify({ profilePictureTokenId: tokenId }),
 		}
 	);
 	return response;

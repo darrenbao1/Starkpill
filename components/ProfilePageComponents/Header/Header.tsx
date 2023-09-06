@@ -14,6 +14,7 @@ import {
 import { UserProfile } from "../../../types/interfaces";
 import { shortenAddress } from "../../../types/utils";
 import { FollowButton } from "../../FollowButton/FollowButton";
+import { ProfilePictModal } from "../../Modals/SelectProfilePictureModal/ProfilePictModal";
 interface Props {
 	profilePictureUrl: string;
 	followers: string[];
@@ -23,6 +24,7 @@ interface Props {
 	followAddress: string;
 	refetch: () => void;
 	isFollowing: boolean;
+	ownerAddress: string;
 }
 export const Header = (props: Props) => {
 	//destructure props
@@ -36,7 +38,7 @@ export const Header = (props: Props) => {
 		refetch,
 		isFollowing,
 	} = props;
-
+	const [showProfilePictModal, setShowProfilePictModal] = useState(false);
 	const [showSocialConnectsModal, setShowSocialConnectsModal] = useState(false);
 	const [showFollowers, setShowFollowers] = useState(false);
 	//index 1 is to show followers and index 2 is to show following
@@ -50,6 +52,9 @@ export const Header = (props: Props) => {
 		<Container>
 			<CoverPhotoContainer />
 			<ProfilePictureContainer
+				onClick={
+					isViewingOwnProfile ? () => setShowProfilePictModal(true) : () => {}
+				}
 				src={profilePictureUrl}
 				width={161.008}
 				height={161.008}
@@ -86,10 +91,19 @@ export const Header = (props: Props) => {
 			</DetailsContainer>
 			{showSocialConnectsModal && (
 				<SocialConnectsModal
+					isViewingOwnProfile={isViewingOwnProfile}
 					followers={followers}
 					following={following}
 					onClose={() => setShowSocialConnectsModal(false)}
 					showFollowers={showFollowers}
+					refetch={refetch}
+				/>
+			)}
+			{showProfilePictModal && (
+				<ProfilePictModal
+					ownerAddress={props.ownerAddress}
+					close={() => setShowProfilePictModal(false)}
+					refetch={refetch}
 				/>
 			)}
 		</Container>
