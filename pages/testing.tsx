@@ -115,12 +115,6 @@
 // };
 
 // export default ChatBox;
-
-export const Testing = () => {
-	return (
-		<div>
-			<Header />
-			<p>Testing component</p>
-		</div>
-	);
-};
+export default function Testing() {
+	return <></>;
+}
