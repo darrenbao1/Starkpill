@@ -82,13 +82,7 @@ const ProfilePage = () => {
 				) : (
 					<div>Profile does not exist</div>
 				)}
-				{!isViewingOwnProfile && (
-					<FollowButton
-						followAddress={walletAddress.toString()}
-						isFollowing={isFollowing}
-						refetch={refetch}
-					/>
-				)}
+
 				{/* <SocialConnectsModal /> */}
 			</ContentWrapper>
 		</ProfilePageWrapper>

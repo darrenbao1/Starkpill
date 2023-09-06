@@ -20,5 +20,6 @@ export const StyledButton = styled.button<ButtonProps>`
 		props.isFollowing ? "1px solid #FF4F0A" : "1px solid #FFFFFF"};
 	background-color: ${(props) => (props.isFollowing ? "#FFFFFF" : "#FF4F0A")};
 	cursor: pointer;
-	cursor: pointer;
+	margin-top: 40px;
+	margin-left: 40px;
 `;
