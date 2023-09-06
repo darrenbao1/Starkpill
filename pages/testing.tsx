@@ -20,6 +20,8 @@
 // 	UserFace,
 // } from "../styles/Testing.styles";
 
+import { Header } from "../components/ProfilePageComponents/Header";
+
 // type ChatLogEntry = {
 // 	user: string;
 // 	text: string;
@@ -115,6 +117,12 @@
 // };
 
 // export default ChatBox;
-export default function testing() {
-	return <div></div>;
-}
+
+export const Testing = () => {
+	return (
+		<div>
+			<Header />
+			<p>Testing component</p>
+		</div>
+	);
+};
