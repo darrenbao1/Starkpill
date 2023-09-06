@@ -88,10 +88,12 @@ const ProfilePage = () => {
 						{userProfile.websiteUrl && (
 							<SideSection title="Website" content={userProfile.websiteUrl} />
 						)}
-						<TwitterSignIn
-							isLinked={userProfile.twitterHandle ? true : false}
-							refetch={refetch}
-						/>
+						{isViewingOwnProfile && (
+							<TwitterSignIn
+								isLinked={userProfile.twitterHandle ? true : false}
+								refetch={refetch}
+							/>
+						)}
 					</RightContainerWrapper>
 				</ContentWrapper>
 			) : (
