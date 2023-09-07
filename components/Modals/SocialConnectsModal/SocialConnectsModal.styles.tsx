@@ -171,6 +171,10 @@ export const DisplayName = styled.h1`
 	font-weight: 700;
 	line-height: 20px;
 	margin-top: 0px;
+	&:hover {
+		cursor: pointer;
+		text-decoration: underline;
+	}
 `;
 export const HandleName = styled.p`
 	margin-top: -5px;
@@ -199,6 +203,10 @@ export const RemoveButton = styled.button`
 	font-weight: 400;
 	line-height: 100%;
 	cursor: pointer;
+	&:hover {
+		cursor: pointer;
+		background: #ffeaea;
+	}
 `;
 export const NameRemoveWrapper = styled.div`
 	display: flex;

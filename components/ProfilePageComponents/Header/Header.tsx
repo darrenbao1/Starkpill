@@ -6,6 +6,7 @@ import {
 	Details,
 	DetailsContainer,
 	EditProfileButton,
+	FollowButtonWrapper,
 	FollowContainer,
 	FollowWrapper,
 	NameContainer,
@@ -81,11 +82,13 @@ export const Header = (props: Props) => {
 					{isViewingOwnProfile ? (
 						<EditProfileButton>Edit Profile</EditProfileButton>
 					) : (
-						<FollowButton
-							followAddress={followAddress}
-							isFollowing={isFollowing}
-							refetch={refetch}
-						/>
+						<FollowButtonWrapper>
+							<FollowButton
+								followAddress={followAddress}
+								isFollowing={isFollowing}
+								refetch={refetch}
+							/>
+						</FollowButtonWrapper>
 					)}
 				</Details>
 			</DetailsContainer>
