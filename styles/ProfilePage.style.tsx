@@ -27,7 +27,8 @@ export const LeftContainerWrapper = styled.div`
 `;
 export const RightContainerWrapper = styled.div`
 	max-width: 300px;
-	padding: 25px;
+	padding-top: 25px;
+
 	& > * {
 		margin-bottom: 16px;
 	}

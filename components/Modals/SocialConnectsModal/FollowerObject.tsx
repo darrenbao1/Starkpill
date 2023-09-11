@@ -108,9 +108,7 @@ export const FollowerObject = (props: Props) => {
 							followAddress={walletAddress}
 							isFollowing={isFollowing}
 						/>
-					) : (
-						<div style={{ color: "red" }}>SELF TODO</div>
-					)}
+					) : null}
 				</NameRemoveWrapper>
 				{showActionModal && (
 					<ActionModal

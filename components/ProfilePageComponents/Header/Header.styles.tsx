@@ -112,3 +112,9 @@ export const EditProfileButton = styled.button`
 		cursor: pointer;
 	}
 `;
+
+export const FollowButtonWrapper = styled.div`
+	display: flex;
+	margin-top: 40px;
+	margin-left: 40px;
+`;

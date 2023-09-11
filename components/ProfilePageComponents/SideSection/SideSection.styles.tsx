@@ -18,6 +18,7 @@ export const Container = styled.div`
 		font-weight: 400;
 		line-height: normal;
 		margin-bottom: 0;
+		margin-top: 0;
 	}
 	p {
 		color: #494949;
@@ -26,7 +27,7 @@ export const Container = styled.div`
 		font-style: normal;
 		font-weight: 400;
 		line-height: normal;
-		margin-top: 10px;
+		margin-top: 17px;
 		margin-bottom: 0;
 	}
 `;
@@ -34,7 +35,7 @@ export const Container = styled.div`
 export const LocationIcon = styled(Image)`
 	width: 24px;
 	height: 24px;
-	margin-top: 5px;
+	margin-top: 15px;
 `;
 
 export const ContentWrapper = styled.div`
