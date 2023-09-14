@@ -111,6 +111,6 @@ export interface Post {
 	content: string;
 	createdAt: string;
 	updatedAt: string;
-	image: string | null;
+	image: string[] | null;
 	authorAddress: string;
 }

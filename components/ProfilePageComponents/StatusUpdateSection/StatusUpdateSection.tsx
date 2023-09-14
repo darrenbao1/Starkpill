@@ -1,6 +1,5 @@
 import { EmojiSelectionModal } from "../../Modals/EmojiSelectionModal/EmojiSelectionModal";
 import { createPost } from "../../../types/utils";
-import FileUploadComponent from "../../FileUploadButton/FileUploadButton";
 import {
 	StatusUpdateSectionContainer,
 	ProfilePic,
@@ -13,9 +12,11 @@ import {
 	PostButton,
 	BottomContainer,
 } from "./StatusUpdateSection.styles";
-import { useState, useCallback, useEffect } from "react";
+import { useState } from "react";
 import { GifSelectorModal } from "../../Modals/GIFSelectorModal/GIFSelectorModal";
 import { TenorImage } from "gif-picker-react";
+import Image from "next/image";
+import { FileUploadModal } from "../../Modals/FileUploadModal/FileUploadModal";
 
 interface Props {
 	profilePictureUrl: string;
@@ -24,10 +25,12 @@ export const StatusUpdateSection = (props: Props) => {
 	const [inputValue, setInputValue] = useState("");
 
 	const [showEmojiModal, setShowEmojiModal] = useState(false);
-	const [selectedGIF, setSelectedGIF] = useState<TenorImage>(null!);
+	const [showUploadImageModal, setShowUploadImageModal] = useState(false);
+	const [gifArray, setGifArray] = useState<string[]>([]);
+	// const [selectedGIF, setSelectedGIF] = useState<TenorImage>(null!);
 	const [showGIFModal, setShowGIFModal] = useState(false);
 
-	const [selectedFile, setSelectedFile] = useState<File | null>(null);
+	const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
 	const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
 		if (event.key === "Enter" && !event.shiftKey) {
@@ -65,10 +68,10 @@ export const StatusUpdateSection = (props: Props) => {
 	};
 
 	const handleGifSelect = (gif: TenorImage) => {
-		setSelectedGIF(gif);
 		setShowGIFModal(false);
 		const gifUrl = gif.url;
-		setInputValue(`${inputValue} ${(<img src="${gifUrl}" alt="" />)}`);
+		//append gifUrl to the gifArray state variable
+		setGifArray([...gifArray, gifUrl]);
 	};
 	const handleEmojiSelect = (emoji: string) => {
 		setInputValue(inputValue + emoji);
@@ -79,7 +82,11 @@ export const StatusUpdateSection = (props: Props) => {
 	};
 
 	const handlePostButtonClick = async () => {
-		await createPost(inputValue, selectedFile);
+		await createPost(inputValue, selectedFiles, gifArray).then(() => {
+			setInputValue("");
+			setSelectedFiles([]);
+			setGifArray([]);
+		});
 	};
 
 	return (
@@ -93,13 +100,26 @@ export const StatusUpdateSection = (props: Props) => {
 					style={{ height: "50px" }}
 					value={inputValue}
 				/>
+				<div>
+					{gifArray.map((gif, index) => {
+						return (
+							<Image key={index} width={100} height={100} src={gif} alt={gif} />
+						);
+					})}
+					{/* Preview uploaded images */}
+					{selectedFiles.map((file, index) => (
+						<Image
+							key={index}
+							src={URL.createObjectURL(file)}
+							alt={`Preview ${index}`}
+							width={100}
+							height={100}
+						/>
+					))}
+				</div>
 				<BottomContainer>
 					<IconsWrapper>
-						{/* <FileUploadComponent
-							setSelectedFile={setSelectedFile}
-							selectedFile={selectedFile}
-						/> */}
-						<UploadPicIcon />
+						<UploadPicIcon onClick={() => setShowUploadImageModal(true)} />
 						<InsertGIFIcon onClick={handleGIFClick} />
 						<InsertEmojiIcon onClick={handleOnClick} />
 					</IconsWrapper>
@@ -120,6 +140,12 @@ export const StatusUpdateSection = (props: Props) => {
 				onSelect={handleGifSelect}
 				showGIFModal={showGIFModal}
 				close={() => setShowGIFModal(false)}
+			/>
+			<FileUploadModal
+				setSelectedFiles={setSelectedFiles}
+				selectedFiles={selectedFiles}
+				showUploadImageModal={showUploadImageModal}
+				close={() => setShowUploadImageModal(false)}
 			/>
 		</StatusUpdateSectionContainer>
 	);

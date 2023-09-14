@@ -372,14 +372,26 @@ export async function removeTwitterHandle() {
 
 //create a post
 //endpoint /account/createPost
-export async function createPost(content: string, file: File | Blob | null) {
+export async function createPost(
+	content: string,
+	file: File[] | null,
+	gifUrlsArray: string[] | null
+) {
 	const formData = new FormData();
 
 	formData.append("content", content);
-
+	// Append each GIF URL separately
+	if (gifUrlsArray) {
+		gifUrlsArray.forEach((url, index) => {
+			formData.append(`gifUrls[${index}]`, url);
+		});
+	}
 	// Check if a file is provided and append it to the form data
 	if (file) {
-		formData.append("image", file);
+		// formData.append("images", file);
+		file.forEach((file) => {
+			formData.append("images", file);
+		});
 	}
 
 	try {

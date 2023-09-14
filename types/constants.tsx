@@ -706,7 +706,7 @@ export const GET_USER_PROFILE = gql`
 			totalFame
 			posts {
 				authorId
-				image
+				images
 				content
 				id
 				createdAt

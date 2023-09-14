@@ -24,9 +24,14 @@ module.exports = {
 				protocol: "https",
 				hostname: "arweave.net",
 			},
+
 			{
 				protocol: "https",
 				hostname: "res.cloudinary.com",
+			},
+			{
+				protocol: "https",
+				hostname: "media.tenor.com",
 			},
 		],
 	},
