@@ -1,0 +1,46 @@
+.EmojiSelectionModal {
+	font-family: sans-serif;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	color: #fff;
+
+	position: absolute;
+	margin-top: 113px;
+	margin-left: 128px;
+	z-index: 0;
+}
+.EmojiSelectionModal::before {
+	content: "";
+	position: absolute;
+	top: -10px;
+	left: 10px;
+	width: 0;
+	height: 0;
+	border-top: 0 solid transparent; /* Change border-top */
+	border-right: 15px solid transparent; /* Change border-right */
+	border-bottom: 15px solid #fff; /* Change border-bottom */
+	border-left: 15px solid transparent; /* Add border-left */
+	z-index: 1;
+}
+.EmojiSelectionModal::after {
+	content: "";
+	position: absolute;
+	top: -10px;
+	left: 10px;
+	width: 0;
+	height: 0;
+	border-top: 0px solid transparent;
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+	border-bottom: 15px solid rgba(0, 0, 0, 0.5);
+	z-index: -1;
+}
+.EmojiSelectionModal .EmojiPickerReact {
+	--epr-picker-height: 500px;
+}
+
+.showEmoji {
+	padding-bottom: 15px;
+}

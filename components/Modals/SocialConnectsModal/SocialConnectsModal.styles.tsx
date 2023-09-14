@@ -150,11 +150,21 @@ export const ProfileContainer = styled.div`
 	height: 50px;
 	width: 100%;
 	flex-direction: row;
+	border-radius: 8px;
+
+	&:hover {
+		cursor: pointer;
+		background: #f8f8ff;
+	}
 `;
 export const ProfileImageDisplay = styled(Image)`
 	width: 58px;
 	height: 50px;
 	border-radius: 50%;
+	&:hover {
+		cursor: pointer;
+		opacity: 0.8;
+	}
 `;
 
 export const ProfileNameContainer = styled.div`
