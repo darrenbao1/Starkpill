@@ -119,6 +119,7 @@ export const StatusUpdateSection = (props: Props) => {
 			<GifSelectorModal
 				onSelect={handleGifSelect}
 				showGIFModal={showGIFModal}
+				close={() => setShowGIFModal(false)}
 			/>
 		</StatusUpdateSectionContainer>
 	);

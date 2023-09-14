@@ -7,6 +7,7 @@ import { getTenorApiKey } from "../../../types/utils";
 interface Props {
 	onSelect: (gif: TenorImage) => void; // Add onSelect prop
 	showGIFModal: boolean;
+	close: () => void;
 }
 export const GifSelectorModal = (props: Props) => {
 	const modalRef = useRef<HTMLDivElement>(null);
@@ -19,7 +20,7 @@ export const GifSelectorModal = (props: Props) => {
 				modalRef.current &&
 				!modalRef.current.contains(event.target as Node)
 			) {
-				close();
+				props.close();
 			}
 		}
 		document.addEventListener("mousedown", handleClickOutside);
