@@ -360,6 +360,46 @@ export async function removeTwitterHandle() {
 	);
 	return response;
 }
+
+//create a post
+//endpoint /account/createPost
+export async function createPost(content: string, file: File | Blob | null) {
+	const formData = new FormData();
+
+	formData.append("content", content);
+
+	// Check if a file is provided and append it to the form data
+	if (file) {
+		formData.append("image", file);
+	}
+
+	try {
+		const response = await fetch(
+			`${STARKPILL_SOCIAL_API_ENDPOINT}/account/createPost`,
+			{
+				method: "POST",
+				headers: {
+					Authorization: "Bearer " + localStorage.getItem("access_token"), // Fix the Authorization header
+				},
+				body: formData,
+			}
+		);
+
+		if (response.ok) {
+			const data = await response.json();
+			// Handle the response data as needed
+			console.log("Response data:", data);
+		} else {
+			// Handle the error response
+			console.error("API call failed");
+		}
+		return response;
+	} catch (error) {
+		// Handle network or other errors
+		console.error("Error:", error);
+	}
+}
+
 //update PFP
 //endpoint /account/updateInfo
 export async function updateProfilePicture(tokenId: number) {

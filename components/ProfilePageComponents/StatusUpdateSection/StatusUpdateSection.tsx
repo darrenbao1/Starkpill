@@ -1,4 +1,6 @@
 import { EmojiSelectionModal } from "../../Modals/EmojiSelectionModal/EmojiSelectionModal";
+import { createPost } from "../../../types/utils";
+import FileUploadComponent from "../../FileUploadButton/FileUploadButton";
 import {
 	StatusUpdateSectionContainer,
 	ProfilePic,
@@ -20,10 +22,14 @@ interface Props {
 }
 export const StatusUpdateSection = (props: Props) => {
 	const [inputValue, setInputValue] = useState("");
+
 	const [showEmojiModal, setShowEmojiModal] = useState(false);
 	const [selectedEmoji, setSelectedEmoji] = useState("");
 	const [selectedGIF, setSelectedGIF] = useState<TenorImage>(null!);
 	const [showGIFModal, setShowGIFModal] = useState(false);
+
+
+	const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
 	const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
 		if (event.key === "Enter" && !event.shiftKey) {
@@ -59,6 +65,7 @@ export const StatusUpdateSection = (props: Props) => {
 			setShowGIFModal(true);
 		}
 	};
+
 	const handleGifSelect = (gif: TenorImage) => {
 		setSelectedGIF(gif);
 		setShowGIFModal(false);
@@ -74,6 +81,12 @@ export const StatusUpdateSection = (props: Props) => {
 		setShowEmojiModal(false);
 	};
 
+
+
+	const handlePostButtonClick = async () => {
+		await createPost(inputValue, selectedFile);
+	};
+
 	return (
 		<StatusUpdateSectionContainer>
 			<ProfilePic src={props.profilePictureUrl} width={56} height={56} alt="" />
@@ -87,11 +100,20 @@ export const StatusUpdateSection = (props: Props) => {
 				/>
 				<BottomContainer>
 					<IconsWrapper>
+						<FileUploadComponent
+							setSelectedFile={setSelectedFile}
+							selectedFile={selectedFile}
+						/>
 						<UploadPicIcon />
 						<InsertGIFIcon onClick={handleGIFClick} />
 						<InsertEmojiIcon onClick={handleOnClick} />
 					</IconsWrapper>
-					<PostButton className={inputValue ? "active" : ""}>Post</PostButton>
+					<PostButton
+						className={inputValue ? "active" : ""}
+						onClick={handlePostButtonClick}
+						disabled={inputValue.trim() !== "" ? false : true}>
+						Post
+					</PostButton>
 				</BottomContainer>
 			</UpdateWrapper>
 			{showEmojiModal && (

@@ -88,6 +88,7 @@ export interface UserProfile {
 	followers: string[];
 	following: string[];
 	transactions: any[];
+	posts: Post[];
 }
 
 export interface UserProfileBasic {
@@ -102,4 +103,14 @@ export interface UserProfileBasic {
 export enum Action {
 	Unfollow = 1,
 	RemoveFollower = 2,
+}
+
+export interface Post {
+	id: number;
+	authorId: number;
+	content: string;
+	createdAt: string;
+	updatedAt: string;
+	image: string | null;
+	authorAddress: string;
 }

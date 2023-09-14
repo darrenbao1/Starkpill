@@ -704,6 +704,15 @@ export const GET_USER_PROFILE = gql`
 			followers
 			following
 			totalFame
+			posts {
+				authorId
+				image
+				content
+				id
+				createdAt
+				updatedAt
+				authorAddress
+			}
 		}
 	}
 `;
