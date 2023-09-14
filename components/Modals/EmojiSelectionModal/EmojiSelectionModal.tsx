@@ -4,41 +4,39 @@ import styles from "../../../styles/EmojiSelection.module.css";
 import { useRef, useEffect } from "react";
 
 interface Props {
-	onSelect: (emoji: string) => void; // Add onSelect prop
+	onSelect: (emoji: string) => void;
 	close: () => void;
+	showEmojiModal: boolean;
 }
 export const EmojiSelectionModal = (props: Props) => {
-	const [selectedEmoji, setSelectedEmoji] = useState<string>("1f60a");
 	const modalRef = useRef<HTMLDivElement>(null);
 
 	function onClick(emojiData: EmojiClickData, event: MouseEvent) {
-		setSelectedEmoji(emojiData.emoji);
 		props.onSelect(emojiData.emoji);
 	}
 	const { close } = props;
-	const handleClickOutside = (event: MouseEvent) => {
-		if (
-			modalRef.current &&
-			!(event.target as HTMLElement).closest(".EmojiSelectionModal")
-		) {
-			console.log("clicked outside");
-			close();
-		}
-	};
 
 	useEffect(() => {
+		function handleClickOutside(event: MouseEvent) {
+			if (
+				modalRef.current &&
+				!modalRef.current.contains(event.target as Node)
+			) {
+				close();
+			}
+		}
 		document.addEventListener("mousedown", handleClickOutside);
 		return () => {
 			document.removeEventListener("mousedown", handleClickOutside);
 		};
-	}, []);
+	}, [props.showEmojiModal]);
+
+	if (!props.showEmojiModal) {
+		return null;
+	}
 
 	return (
 		<div className={styles.EmojiSelectionModal} ref={modalRef}>
-			{/* <div className={styles.showEmoji}>
-				<h3>Your selected Emoji is:</h3>
-				{selectedEmoji ? <Emoji unified={selectedEmoji} size={77} /> : null}
-			</div> */}
 			<EmojiPicker onEmojiClick={onClick} autoFocusSearch={false} />
 		</div>
 	);

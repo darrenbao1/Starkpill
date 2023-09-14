@@ -24,10 +24,8 @@ export const StatusUpdateSection = (props: Props) => {
 	const [inputValue, setInputValue] = useState("");
 
 	const [showEmojiModal, setShowEmojiModal] = useState(false);
-	const [selectedEmoji, setSelectedEmoji] = useState("");
 	const [selectedGIF, setSelectedGIF] = useState<TenorImage>(null!);
 	const [showGIFModal, setShowGIFModal] = useState(false);
-
 
 	const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
@@ -73,15 +71,12 @@ export const StatusUpdateSection = (props: Props) => {
 		setInputValue(`${inputValue} ${(<img src="${gifUrl}" alt="" />)}`);
 	};
 	const handleEmojiSelect = (emoji: string) => {
-		setSelectedEmoji(emoji);
 		setInputValue(inputValue + emoji);
 		setShowEmojiModal(false);
 	};
 	const close = () => {
 		setShowEmojiModal(false);
 	};
-
-
 
 	const handlePostButtonClick = async () => {
 		await createPost(inputValue, selectedFile);
@@ -100,10 +95,10 @@ export const StatusUpdateSection = (props: Props) => {
 				/>
 				<BottomContainer>
 					<IconsWrapper>
-						<FileUploadComponent
+						{/* <FileUploadComponent
 							setSelectedFile={setSelectedFile}
 							selectedFile={selectedFile}
-						/>
+						/> */}
 						<UploadPicIcon />
 						<InsertGIFIcon onClick={handleGIFClick} />
 						<InsertEmojiIcon onClick={handleOnClick} />
@@ -116,9 +111,12 @@ export const StatusUpdateSection = (props: Props) => {
 					</PostButton>
 				</BottomContainer>
 			</UpdateWrapper>
-			{showEmojiModal && (
-				<EmojiSelectionModal onSelect={handleEmojiSelect} close={close} />
-			)}
+			<EmojiSelectionModal
+				onSelect={handleEmojiSelect}
+				close={close}
+				showEmojiModal={showEmojiModal}
+			/>
+
 			{showGIFModal && <GifSelectorModal onSelect={handleGifSelect} />}
 		</StatusUpdateSectionContainer>
 	);
