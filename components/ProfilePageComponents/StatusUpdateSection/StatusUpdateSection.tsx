@@ -17,6 +17,7 @@ import { GifSelectorModal } from "../../Modals/GIFSelectorModal/GIFSelectorModal
 import { TenorImage } from "gif-picker-react";
 import Image from "next/image";
 import { FileUploadModal } from "../../Modals/FileUploadModal/FileUploadModal";
+import { PreviewImage } from "./PreviewImage/PreviewImage";
 
 interface Props {
 	profilePictureUrl: string;
@@ -88,7 +89,18 @@ export const StatusUpdateSection = (props: Props) => {
 			setGifArray([]);
 		});
 	};
-
+	const handleRemoveGif = (index: number) => {
+		const newSelectedFiles = [...gifArray];
+		newSelectedFiles.splice(index, 1);
+		setGifArray(newSelectedFiles);
+	};
+	const handleRemoveImage = (index: number) => {
+		const newSelectedFiles = [...selectedFiles];
+		newSelectedFiles.splice(index, 1);
+		setSelectedFiles(newSelectedFiles);
+	};
+	const shouldShowPreviewImage =
+		gifArray.length > 0 || selectedFiles.length > 0;
 	return (
 		<StatusUpdateSectionContainer>
 			<ProfilePic src={props.profilePictureUrl} width={56} height={56} alt="" />
@@ -101,21 +113,25 @@ export const StatusUpdateSection = (props: Props) => {
 					value={inputValue}
 				/>
 				<div>
-					{gifArray.map((gif, index) => {
-						return (
-							<Image key={index} width={100} height={100} src={gif} alt={gif} />
-						);
-					})}
-					{/* Preview uploaded images */}
-					{selectedFiles.map((file, index) => (
-						<Image
-							key={index}
-							src={URL.createObjectURL(file)}
-							alt={`Preview ${index}`}
-							width={100}
-							height={100}
+					{shouldShowPreviewImage && (
+						<PreviewImage
+							gifArray={gifArray}
+							imageArray={selectedFiles.map((file) =>
+								URL.createObjectURL(file)
+							)}
+							removeImage={handleRemoveImage}
+							removeGif={handleRemoveGif}
 						/>
-					))}
+					)}
+					{/* {gifArray.length > 0 && (
+						<PreviewImage imageUrl={gifArray} removeImage={handleRemoveGif} />
+					)}
+					{selectedFiles.length > 0 && (
+						<PreviewImage
+							imageUrl={selectedFiles.map((file) => URL.createObjectURL(file))}
+							removeImage={handleRemoveImage}
+						/>
+					)} */}
 				</div>
 				<BottomContainer>
 					<IconsWrapper>

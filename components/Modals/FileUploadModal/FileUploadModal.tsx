@@ -29,9 +29,8 @@ export const FileUploadModal = (props: Props) => {
 	const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const files = event.target.files;
 		if (files) {
-			// Convert the FileList to an array
 			const fileList = Array.from(files);
-			setSelectedFiles(fileList);
+			setSelectedFiles([...selectedFiles, ...fileList]);
 		}
 		close();
 	};
