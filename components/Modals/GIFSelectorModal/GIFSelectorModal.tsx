@@ -1,44 +1,42 @@
 import { Container } from "./GIFSelectorModal.styles";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import GifPicker, { TenorImage } from "gif-picker-react";
+import { getTenorApiKey } from "../../../types/utils";
 
 interface Props {
 	onSelect: (gif: TenorImage) => void; // Add onSelect prop
+	showGIFModal: boolean;
 }
 export const GifSelectorModal = (props: Props) => {
-	const [selectedGif, setSelectedGif] = useState<TenorImage>(null!);
-	const TENOR_API_KEY = "AIzaSyB04fLMjhJvt-vumwHcFeG-Mi224gHrizI";
 	const modalRef = useRef<HTMLDivElement>(null);
-
 	function handleGifClick(gif: TenorImage) {
-		console.log("gif", gif);
-		setSelectedGif(gif);
 		props.onSelect(gif);
+	}
+	const apiKey = getTenorApiKey();
+	useEffect(() => {
+		function handleClickOutside(event: MouseEvent) {
+			if (
+				modalRef.current &&
+				!modalRef.current.contains(event.target as Node)
+			) {
+				close();
+			}
+		}
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, [props.showGIFModal]);
+
+	if (!props.showGIFModal) {
+		return null;
 	}
 
 	return (
-		<Container>
-			{/* <div>
-				Your selected GIF is:
-				{selectedGif && (
-					<>
-						<img
-							src={selectedGif.url}
-							className="gif-preview"
-							alt="Selected GIF"
-						/>
-						<a
-							href={selectedGif.shortTenorUrl}
-							target="_blank"
-							rel="noreferrer">
-							{selectedGif.shortTenorUrl}
-						</a>
-					</>
-				)}
-			</div> */}
+		<Container ref={modalRef}>
 			<GifPicker
-				tenorApiKey={TENOR_API_KEY}
+				tenorApiKey={apiKey}
 				width={400}
 				height={350}
 				onGifClick={handleGifClick}

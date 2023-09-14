@@ -116,8 +116,10 @@ export const StatusUpdateSection = (props: Props) => {
 				close={close}
 				showEmojiModal={showEmojiModal}
 			/>
-
-			{showGIFModal && <GifSelectorModal onSelect={handleGifSelect} />}
+			<GifSelectorModal
+				onSelect={handleGifSelect}
+				showGIFModal={showGIFModal}
+			/>
 		</StatusUpdateSectionContainer>
 	);
 };
