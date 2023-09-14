@@ -81,12 +81,13 @@ export const FollowingObject = (props: Props) => {
 	const isFollowing = viewerProfile.following.includes(walletAddress);
 	return (
 		<>
-			<ProfileContainer key={profile.address}>
+			<ProfileContainer key={profile.address} onClick={openOwnerAddressLink}>
 				<ProfileImageDisplay
 					src={profilePictureUrl}
 					width={58}
 					height={50}
 					alt=""
+					onClick={openOwnerAddressLink}
 				/>
 				<NameRemoveWrapper>
 					<ProfileNameContainer onClick={openOwnerAddressLink}>
@@ -104,7 +105,7 @@ export const FollowingObject = (props: Props) => {
 							isFollowing={isFollowing}
 						/>
 					) : (
-						<div style={{ color: "red" }}>SELF TODO</div>
+						<div style={{ color: "red" }}></div>
 					)}
 				</NameRemoveWrapper>
 				{showActionModal && (

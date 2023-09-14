@@ -11,10 +11,11 @@ import { UserProfile } from "../../types/interfaces";
 import { getTokenImage } from "../../types/utils";
 import { useState } from "react";
 import { Header } from "../ProfilePageComponents/Header/Header";
-import { StatusUpdateSectionContainer } from "../ProfilePageComponents/StatusUpdateSection/StatusUpdateSection.styles";
+
 import { StatusUpdateSection } from "../ProfilePageComponents/StatusUpdateSection";
 import { SideSection } from "../ProfilePageComponents/SideSection";
 import { TwitterSignIn } from "../TwitterSignIn";
+import { ContentsSection } from "../ProfilePageComponents/ContentsSection/ContentsSection";
 
 const ProfilePage = () => {
 	const router = useRouter();
@@ -72,11 +73,14 @@ const ProfilePage = () => {
 							refetch={refetch}
 							ownerAddress={userProfile.address}
 						/>
-						<StatusUpdateSection
-							profilePictureUrl={
-								profilePictureUrl ? profilePictureUrl : "/basepill.png"
-							}
-						/>
+						{isViewingOwnProfile && (
+							<StatusUpdateSection
+								profilePictureUrl={
+									profilePictureUrl ? profilePictureUrl : "/basepill.png"
+								}
+							/>
+						)}
+						<ContentsSection />
 					</LeftContainerWrapper>
 					<RightContainerWrapper>
 						{userProfile.bio && (
