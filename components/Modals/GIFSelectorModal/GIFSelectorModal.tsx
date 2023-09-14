@@ -13,7 +13,7 @@ export const GifSelectorModal = (props: Props) => {
 	function handleGifClick(gif: TenorImage) {
 		props.onSelect(gif);
 	}
-	const apiKey = getTenorApiKey();
+	//const apiKey = getTenorApiKey();
 	useEffect(() => {
 		function handleClickOutside(event: MouseEvent) {
 			if (
@@ -36,7 +36,7 @@ export const GifSelectorModal = (props: Props) => {
 	return (
 		<Container ref={modalRef}>
 			<GifPicker
-				tenorApiKey={apiKey}
+				tenorApiKey={"AIzaSyB04fLMjhJvt-vumwHcFeG-Mi224gHrizI"}
 				width={400}
 				height={350}
 				onGifClick={handleGifClick}

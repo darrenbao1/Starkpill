@@ -119,11 +119,11 @@ export async function getVotingPower(walletAddress: String) {
 }
 
 export function getTenorApiKey() {
-	const result = process.env.TENOR;
-	if (!result) {
+	const tenorKey = process.env.API_KEY_TENOR;
+	if (!tenorKey) {
 		throw new Error("Tenor API key not found in environment variables");
 	}
-	return result;
+	return tenorKey;
 }
 
 export function getSecretKey() {
