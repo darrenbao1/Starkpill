@@ -1,3 +1,5 @@
+import { createPost } from "../../../types/utils";
+import FileUploadComponent from "../../FileUploadButton/FileUploadButton";
 import {
 	StatusUpdateSectionContainer,
 	ProfilePic,
@@ -16,7 +18,7 @@ interface Props {
 }
 export const StatusUpdateSection = (props: Props) => {
 	const [inputValue, setInputValue] = useState("");
-
+	const [selectedFile, setSelectedFile] = useState<File | null>(null);
 	const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
 		if (event.key === "Enter" && !event.shiftKey) {
 			event.preventDefault();
@@ -35,6 +37,10 @@ export const StatusUpdateSection = (props: Props) => {
 		input.style.height = input.scrollHeight + "px";
 		setInputValue(input.value); // Update state variable with textarea content
 	};
+
+	const handlePostButtonClick = async () => {
+		await createPost(inputValue, selectedFile);
+	};
 	return (
 		<StatusUpdateSectionContainer>
 			<ProfilePic src={props.profilePictureUrl} width={56} height={56} alt="" />
@@ -47,11 +53,20 @@ export const StatusUpdateSection = (props: Props) => {
 				/>
 				<BottomContainer>
 					<IconsWrapper>
+						<FileUploadComponent
+							setSelectedFile={setSelectedFile}
+							selectedFile={selectedFile}
+						/>
 						<UploadPicIcon />
 						<InsertGIFIcon />
 						<InsertEmojiIcon />
 					</IconsWrapper>
-					<PostButton className={inputValue ? "active" : ""}>Post</PostButton>
+					<PostButton
+						className={inputValue ? "active" : ""}
+						onClick={handlePostButtonClick}
+						disabled={inputValue.trim() !== "" ? false : true}>
+						Post
+					</PostButton>
 				</BottomContainer>
 			</UpdateWrapper>
 		</StatusUpdateSectionContainer>
