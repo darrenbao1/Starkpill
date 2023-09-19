@@ -390,6 +390,20 @@ export async function uploadCoverPhoto(xPos: number, yPos: number, file: File) {
 	);
 	return response;
 }
+//Remove cover Photo
+//endpoint /account/removeCoverPhoto
+export async function removeCoverPhoto() {
+	const response = await fetch(
+		`${STARKPILL_SOCIAL_API_ENDPOINT}/account/removeCoverPhoto`,
+		{
+			method: "DELETE",
+			headers: {
+				Authorization: "Bearer " + localStorage.getItem("access_token"),
+			},
+		}
+	);
+	return response;
+}
 
 //create a post
 //endpoint /account/createPost

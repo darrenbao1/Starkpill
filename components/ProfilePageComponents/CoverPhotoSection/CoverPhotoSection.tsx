@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { FileUploadModal } from "../../Modals/FileUploadModal/FileUploadModal";
-import { uploadCoverPhoto } from "../../../types/utils";
+import { removeCoverPhoto, uploadCoverPhoto } from "../../../types/utils";
 import { ActionButton, ActionButtonContainer } from "./CoverPhotoSection.style";
 
 interface Props {
@@ -85,6 +85,11 @@ export const CoverPhotoSection = ({
 		setSelectedFiles([]);
 		setImageCenter({ x: 0, y: 0 });
 	};
+	const handleRemoveCoverPhoto = () => {
+		const response = removeCoverPhoto().then(() => {
+			refetch();
+		});
+	};
 	const frameWidth = 850;
 	const frameHeight = 280;
 
@@ -104,6 +109,11 @@ export const CoverPhotoSection = ({
 				}}>
 				{!isViewingOwnProfile ? null : (
 					<ActionButtonContainer>
+						{imageUrl && (
+							<ActionButton onClick={handleRemoveCoverPhoto}>
+								Remove
+							</ActionButton>
+						)}
 						<ActionButton onClick={handleEditButtonClick}>Edit</ActionButton>
 					</ActionButtonContainer>
 				)}
