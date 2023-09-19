@@ -1,4 +1,9 @@
-import { Container } from "./GIFSelectorModal.styles";
+import {
+	Container,
+	HeaderContainer,
+	Wrapper,
+	CloseButton,
+} from "./GIFSelectorModal.styles";
 import { useState, useRef, useEffect } from "react";
 
 import GifPicker, { TenorImage } from "gif-picker-react";
@@ -34,13 +39,20 @@ export const GifSelectorModal = (props: Props) => {
 	}
 
 	return (
-		<Container ref={modalRef}>
-			<GifPicker
-				tenorApiKey={getTenorApiKey()}
-				width={400}
-				height={350}
-				onGifClick={handleGifClick}
-			/>
-		</Container>
+		<Wrapper>
+			<Container ref={modalRef}>
+				<HeaderContainer>
+					Choose a GIF
+					<CloseButton onClick={props.close} />
+				</HeaderContainer>
+
+				<GifPicker
+					tenorApiKey={getTenorApiKey()}
+					width={849}
+					height={700}
+					onGifClick={handleGifClick}
+				/>
+			</Container>
+		</Wrapper>
 	);
 };

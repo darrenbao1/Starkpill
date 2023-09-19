@@ -112,18 +112,16 @@ export const StatusUpdateSection = (props: Props) => {
 					style={{ height: "50px" }}
 					value={inputValue}
 				/>
-				<div>
-					{shouldShowPreviewImage && (
-						<PreviewImage
-							gifArray={gifArray}
-							imageArray={selectedFiles.map((file) =>
-								URL.createObjectURL(file)
-							)}
-							removeImage={handleRemoveImage}
-							removeGif={handleRemoveGif}
-						/>
-					)}
-					{/* {gifArray.length > 0 && (
+
+				{shouldShowPreviewImage && (
+					<PreviewImage
+						gifArray={gifArray}
+						imageArray={selectedFiles.map((file) => URL.createObjectURL(file))}
+						removeImage={handleRemoveImage}
+						removeGif={handleRemoveGif}
+					/>
+				)}
+				{/* {gifArray.length > 0 && (
 						<PreviewImage imageUrl={gifArray} removeImage={handleRemoveGif} />
 					)}
 					{selectedFiles.length > 0 && (
@@ -132,12 +130,17 @@ export const StatusUpdateSection = (props: Props) => {
 							removeImage={handleRemoveImage}
 						/>
 					)} */}
-				</div>
+
 				<BottomContainer>
 					<IconsWrapper>
 						<UploadPicIcon onClick={() => setShowUploadImageModal(true)} />
 						<InsertGIFIcon onClick={handleGIFClick} />
 						<InsertEmojiIcon onClick={handleOnClick} />
+						<EmojiSelectionModal
+							onSelect={handleEmojiSelect}
+							close={close}
+							showEmojiModal={showEmojiModal}
+						/>
 					</IconsWrapper>
 					<PostButton
 						className={inputValue ? "active" : ""}
@@ -147,11 +150,7 @@ export const StatusUpdateSection = (props: Props) => {
 					</PostButton>
 				</BottomContainer>
 			</UpdateWrapper>
-			<EmojiSelectionModal
-				onSelect={handleEmojiSelect}
-				close={close}
-				showEmojiModal={showEmojiModal}
-			/>
+
 			<GifSelectorModal
 				onSelect={handleGifSelect}
 				showGIFModal={showGIFModal}
