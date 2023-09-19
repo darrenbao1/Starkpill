@@ -713,6 +713,8 @@ export const GET_USER_PROFILE = gql`
 				updatedAt
 				authorAddress
 			}
+			pos_x_CoverPicture
+			pos_y_CoverPicture
 		}
 	}
 `;

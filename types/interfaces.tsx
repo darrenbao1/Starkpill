@@ -89,6 +89,8 @@ export interface UserProfile {
 	following: string[];
 	transactions: any[];
 	posts: Post[];
+	pos_x_CoverPicture: number;
+	pos_y_CoverPicture: number;
 }
 
 export interface UserProfileBasic {

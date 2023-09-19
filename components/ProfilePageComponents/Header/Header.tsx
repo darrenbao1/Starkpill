@@ -49,14 +49,16 @@ export const Header = (props: Props) => {
 		else setShowFollowers(false);
 		setShowSocialConnectsModal(true);
 	};
-	
 
 	return (
 		<Container>
 			<CoverPhotoContainer>
 				<CoverPhotoSection
 					imageUrl={profileObject.coverPictureUrl}
-
+					xPos={profileObject.pos_x_CoverPicture}
+					yPos={profileObject.pos_y_CoverPicture}
+					refetch={refetch}
+					isViewingOwnProfile={isViewingOwnProfile}
 				/>
 			</CoverPhotoContainer>
 			<ProfilePictureContainer
