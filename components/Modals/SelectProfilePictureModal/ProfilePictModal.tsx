@@ -9,6 +9,7 @@ import {
 	PillContainer,
 } from "./ProfilePictModal.style";
 import { updateProfilePicture } from "../../../types/utils";
+import Image from "next/image";
 interface Props {
 	ownerAddress: string;
 	close: () => void;
@@ -41,13 +42,19 @@ export const ProfilePictModal = ({ ownerAddress, close, refetch }: Props) => {
 		<ModalContainer>
 			<Container>
 				<CloseButton onClick={close} />
-				<Title>NEED DESIGN*</Title>
-				<Subtitle>Select from the pills you own</Subtitle>
+				<Title>Set Profile Picture</Title>
+				<Subtitle>Select from pills you own</Subtitle>
 				<PillContainer>
 					{userTokens.map((token: any) => {
 						return (
 							<div onClick={() => handlePillClick(token.id)} key={token.id}>
-								<img src={token.metadata.imageUrl} width={100} height={100} />
+								<Image
+									src={token.metadata.imageUrl}
+									width={100}
+									height={100}
+									alt={token.id}
+									style={{ borderRadius: "50%" }}
+								/>
 							</div>
 						);
 					})}

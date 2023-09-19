@@ -30,6 +30,20 @@ export const Container = styled.div`
 		margin-top: 17px;
 		margin-bottom: 0;
 	}
+	a {
+		color: #494949;
+		font-family: Patrick Hand;
+		font-size: 20px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: normal;
+		margin-top: 17px;
+		margin-bottom: 0;
+		text-decoration: underline;
+		&:hover {
+			color: #ff4f0a;
+		}
+	}
 `;
 
 export const LocationIcon = styled(Image)`

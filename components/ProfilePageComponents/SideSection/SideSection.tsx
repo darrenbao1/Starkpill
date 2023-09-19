@@ -5,6 +5,7 @@ interface SideSectionProps {
 }
 export const SideSection = ({ title, content }: SideSectionProps) => {
 	const isLocation = title === "Location";
+	const isWebsite = title === "Website";
 	return (
 		<Container>
 			<h1>{title}</h1>
@@ -18,7 +19,13 @@ export const SideSection = ({ title, content }: SideSectionProps) => {
 						alt="location icon"
 					/>
 				)}
-				<p>{content}</p>
+				{!isWebsite ? (
+					<p>{content}</p>
+				) : (
+					<a href={content} target="_blank" rel="noopener noreferrer">
+						{content}
+					</a>
+				)}
 			</ContentWrapper>
 		</Container>
 	);

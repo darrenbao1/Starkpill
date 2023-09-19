@@ -17,6 +17,7 @@ import { shortenAddress } from "../../../types/utils";
 import { FollowButton } from "../../FollowButton/FollowButton";
 import { ProfilePictModal } from "../../Modals/SelectProfilePictureModal/ProfilePictModal";
 import { CoverPhotoSection } from "../CoverPhotoSection/CoverPhotoSection";
+import { TwitterSignIn } from "../../TwitterSignIn";
 interface Props {
 	profilePictureUrl: string;
 	followers: string[];
@@ -78,7 +79,31 @@ export const Header = (props: Props) => {
 								? profileObject.username
 								: shortenAddress(profileObject.address)}
 						</h1>
-						<p>{profileObject.twitterHandle && profileObject.twitterHandle}</p>
+						<div
+							style={{
+								display: "flex",
+								alignItems: "center",
+								justifyContent: "center",
+								width: "max-content",
+							}}>
+							<p>
+								{profileObject.twitterHandle && profileObject.twitterHandle}
+							</p>
+							&nbsp;
+							{isViewingOwnProfile && (
+								<div
+									style={
+										profileObject.twitterHandle
+											? { marginTop: "-35px" }
+											: { marginTop: "-10px" }
+									}>
+									<TwitterSignIn
+										isLinked={profileObject.twitterHandle ? true : false}
+										refetch={refetch}
+									/>
+								</div>
+							)}
+						</div>
 					</NameContainer>
 					<FollowWrapper>
 						<FollowContainer onClick={() => handleFollowContainerClick(1)}>

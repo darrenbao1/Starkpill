@@ -1,10 +1,32 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import { removeTwitterHandle, setTwitterHandle } from "../types/utils";
 import { getCookie, setCookie } from "typescript-cookie";
+import styled from "styled-components";
+import TwitterIcon from "../public/svgs/twitterIcon.svg";
 interface Props {
 	isLinked: boolean;
 	refetch: () => void;
 }
+const TwitterButtonStyle = styled.div`
+	background-color: #1da1f2; /* Twitter brand color */
+	color: #fff; /* White text color */
+	padding: 5px 10px; /* Adjust padding as needed */
+	border-radius: 5px; /* Rounded corners */
+	text-decoration: none;
+	display: inline-block;
+	cursor: pointer;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	width: max-content;
+	&:hover {
+		background-color: #0d8eff; /* Hover color */
+	}
+
+	&:active {
+		background-color: #007acc; /* Active color */
+	}
+`;
 
 export const TwitterSignIn = (props: Props) => {
 	const fetchTwitterHandle = async () => {
@@ -33,24 +55,6 @@ export const TwitterSignIn = (props: Props) => {
 			})
 		);
 		const result = await signIn("twitter");
-
-		// Check if the sign-in was successful
-		// if (result?.error) {
-		// 	// Handle error
-		// 	console.error("Error during sign-in:", result.error);
-		// 	return;
-		// }
-		// if (session) {
-		// 	fetchTwitterHandle()
-		// 		.then((userName) => {
-		// 			setTwitterHandle(userName).then(() => {
-		// 				refetch();
-		// 			});
-		// 		})
-		// 		.catch((error) => {
-		// 			console.error("Error fetching Twitter handle:", error);
-		// 		});
-		// }
 	};
 
 	const removeTwitter = async () => {
@@ -62,9 +66,15 @@ export const TwitterSignIn = (props: Props) => {
 	return (
 		<div>
 			{isLinked ? (
-				<button onClick={removeTwitter}>Unlink Twitter</button>
+				<TwitterButtonStyle onClick={removeTwitter}>
+					<TwitterIcon />
+					&nbsp; Unlink Twitter
+				</TwitterButtonStyle>
 			) : (
-				<button onClick={handleLinkTwitter}>Link Twitter</button>
+				<TwitterButtonStyle onClick={handleLinkTwitter}>
+					<TwitterIcon />
+					&nbsp; Link Twitter
+				</TwitterButtonStyle>
 			)}
 		</div>
 	);
