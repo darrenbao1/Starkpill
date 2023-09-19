@@ -15,6 +15,7 @@ export const CoverPhotoContainer = styled.div`
 	height: 71%;
 	border-radius: 12px 12px 0px 0px;
 	background: green;
+	overflow: hidden;
 `;
 
 export const ProfilePictureContainer = styled(Image)`

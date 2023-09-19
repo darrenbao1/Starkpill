@@ -16,6 +16,7 @@ import { UserProfile } from "../../../types/interfaces";
 import { shortenAddress } from "../../../types/utils";
 import { FollowButton } from "../../FollowButton/FollowButton";
 import { ProfilePictModal } from "../../Modals/SelectProfilePictureModal/ProfilePictModal";
+import { CoverPhotoSection } from "../CoverPhotoSection/CoverPhotoSection";
 interface Props {
 	profilePictureUrl: string;
 	followers: string[];
@@ -48,10 +49,16 @@ export const Header = (props: Props) => {
 		else setShowFollowers(false);
 		setShowSocialConnectsModal(true);
 	};
+	
 
 	return (
 		<Container>
-			<CoverPhotoContainer />
+			<CoverPhotoContainer>
+				<CoverPhotoSection
+					imageUrl={profileObject.coverPictureUrl}
+
+				/>
+			</CoverPhotoContainer>
 			<ProfilePictureContainer
 				onClick={
 					isViewingOwnProfile ? () => setShowProfilePictModal(true) : () => {}
