@@ -370,6 +370,27 @@ export async function removeTwitterHandle() {
 	return response;
 }
 
+//uploadCoverPhoto
+//endpoint /account/uploadCoverPhoto
+export async function uploadCoverPhoto(xPos: number, yPos: number, file: File) {
+	const formData = new FormData();
+	formData.append("xPos", xPos.toString());
+	formData.append("yPos", yPos.toString());
+	formData.append("image", file);
+
+	const response = await fetch(
+		`${STARKPILL_SOCIAL_API_ENDPOINT}/account/uploadCoverPhoto`,
+		{
+			method: "POST",
+			headers: {
+				Authorization: "Bearer " + localStorage.getItem("access_token"),
+			},
+			body: formData,
+		}
+	);
+	return response;
+}
+
 //create a post
 //endpoint /account/createPost
 export async function createPost(
