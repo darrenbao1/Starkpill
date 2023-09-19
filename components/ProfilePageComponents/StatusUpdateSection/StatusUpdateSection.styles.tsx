@@ -34,7 +34,6 @@ export const StatusUpdateInput = styled.textarea`
 
 	overflow: hidden;
 
-	border-bottom: 1px solid #e3e3e3;
 	color: black;
 	font-family: Poppins;
 	font-size: 18px;
@@ -86,6 +85,8 @@ export const BottomContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
+	border-top: 1px solid #e3e3e3;
+	padding-top: 16px;
 `;
 export const PostButton = styled.button`
 	display: flex;
