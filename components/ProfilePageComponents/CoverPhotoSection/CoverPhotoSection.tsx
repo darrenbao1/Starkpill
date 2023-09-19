@@ -87,30 +87,6 @@ export const CoverPhotoSection = ({
 	};
 	const frameWidth = 850;
 	const frameHeight = 280;
-	//User has no image and also no selected files
-	if (!imageUrl && !selectedFiles[0]) {
-		return (
-			<div
-				style={{
-					height: `${frameHeight}px`,
-					width: `${frameWidth}px`,
-					backgroundRepeat: "no-repeat",
-					backgroundPosition: `${xPos}px ${yPos}px`,
-					backgroundImage: `url(${imageUrl})`,
-					backgroundSize: "cover",
-					position: "relative",
-					overflow: "hidden",
-				}}>
-				<ActionButton onClick={handleEditButtonClick}>Edit</ActionButton>
-				<FileUploadModal
-					setSelectedFiles={setSelectedFiles}
-					selectedFiles={selectedFiles}
-					showUploadImageModal={showUploadImageModal}
-					close={() => setShowUploadImageModal(false)}
-				/>
-			</div>
-		);
-	}
 
 	//user already has cover photo
 	if (!selectedFiles[0]) {
@@ -126,7 +102,7 @@ export const CoverPhotoSection = ({
 					position: "relative",
 					overflow: "hidden",
 				}}>
-				{selectedFiles[0] ? null : (
+				{!isViewingOwnProfile ? null : (
 					<ActionButtonContainer>
 						<ActionButton onClick={handleEditButtonClick}>Edit</ActionButton>
 					</ActionButtonContainer>
@@ -158,7 +134,7 @@ export const CoverPhotoSection = ({
 			onMouseDown={handleMouseDown}
 			onMouseUp={handleMouseUp}
 			onMouseMove={handleMouseMove}>
-			{!selectedFiles[0] ? null : (
+			{!isViewingOwnProfile ? null : (
 				<ActionButtonContainer>
 					<ActionButton onClick={handleCancelButtonClick}>Cancel </ActionButton>
 					<ActionButton onClick={handleSaveButtonClick}>Save</ActionButton>
