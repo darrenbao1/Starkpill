@@ -62,12 +62,18 @@ export const CaptionContainer = styled.div`
 	line-height: 20px;
 	padding-bottom: 10px;
 `;
-
+export const PostImage = styled.div`
+	position: relative;
+	border-radius: 12px;
+`;
 export const PostImageContainer = styled.div`
-	display: flex;
-	height: 400px;
-	border: 1px solid #c4c4c4;
-	border-radius: 16px;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+	gap: 8px;
+	height: 100vh;
+	max-height: 358px;
+	border-radius: 12px;
+	overflow-x: auto;
 `;
 
 export const CommentLikeContainer = styled.div`

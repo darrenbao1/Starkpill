@@ -3,12 +3,14 @@ import {
 	BACKGROUND,
 	FACE_TRAITS,
 	GET_BACKPACK_TOKENS_BY_ADDRESS,
+	GET_POST_BY_ID,
 	GET_TOKEN_IMAGE_BY_ID,
+	GET_USER_PROFILE_BASIC,
 	GET_VOTING_POWER_QUERY,
 	STARKPILL_CONTRACT_ADDRESS,
 	STARKPILL_SOCIAL_API_ENDPOINT,
 } from "./constants";
-import { Trait, decodedSignature } from "./interfaces";
+import { Post, Trait, UserProfileBasic, decodedSignature } from "./interfaces";
 import client from "../apollo-client";
 import Web3 from "web3";
 import BN from "bn.js";
@@ -46,6 +48,37 @@ export async function getPharmacyData() {
 		console.error(error);
 	}
 }
+
+export async function getPost(id: number) {
+	try {
+		const postResult = await client.query({
+			query: GET_POST_BY_ID,
+			variables: { postId: id },
+		});
+
+		const post: Post = postResult.data.postById;
+
+		const profileResult = await client.query({
+			query: GET_USER_PROFILE_BASIC,
+			variables: { address: post.authorAddress },
+		});
+
+		const profile: UserProfileBasic = profileResult.data.user;
+
+		const profilePictureUrl: string = await getTokenImage(
+			profile.profilePictureTokenId
+		);
+
+		return {
+			post: post,
+			profile: profile,
+			profilePictureUrl: profilePictureUrl,
+		};
+	} catch (error) {
+		console.error(error);
+	}
+}
+
 export async function getUserBackPack(walletAddress: String) {
 	const walletAddressForAPI = convertToStandardWalletAddress(
 		walletAddress.toString()

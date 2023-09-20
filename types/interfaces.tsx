@@ -113,6 +113,32 @@ export interface Post {
 	content: string;
 	createdAt: string;
 	updatedAt: string;
-	image: string[] | null;
+	images: string[] | null;
 	authorAddress: string;
+	likes: Like[];
+	comments: Comment[];
+}
+export interface Comment {
+	authorId: number;
+	createdAt: string;
+	id: number;
+	postId: number;
+	text: string;
+	updatedAt: string;
+}
+export interface Like {
+	accountId: number;
+	createdAt: string;
+	id: number;
+	postId: number;
+	updatedAt: string;
+}
+export interface PostMinimal {
+	id: number;
+	authorAddress: string;
+}
+export interface PostObjectForUI {
+	post: Post;
+	profile: UserProfileBasic;
+	profilePictureUrl: string;
 }

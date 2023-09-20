@@ -80,12 +80,7 @@ const ProfilePage = () => {
 								}
 							/>
 						)}
-						<ContentsSection
-							profilePictureUrl={
-								profilePictureUrl ? profilePictureUrl : "/basepill.png"
-							}
-							profileObject={userProfile}
-						/>
+						<ContentsSection postArray={userProfile.posts} />
 					</LeftContainerWrapper>
 					<RightContainerWrapper>
 						{userProfile.bio && (

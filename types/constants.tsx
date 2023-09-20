@@ -681,6 +681,35 @@ export const GET_USER_PROFILE_BASIC = gql`
 		}
 	}
 `;
+export const GET_POST_BY_ID = gql`
+	query Posts($postId: Int!) {
+		postById(postId: $postId) {
+			id
+			createdAt
+			updatedAt
+			content
+			images
+			authorId
+			authorAddress
+			comments {
+				id
+				createdAt
+				updatedAt
+				text
+				postId
+				authorId
+			}
+			likes {
+				id
+				createdAt
+				updatedAt
+				postId
+				accountId
+			}
+			likedByAddresses
+		}
+	}
+`;
 
 export const GET_USER_PROFILE = gql`
 	query User($address: String!) {
@@ -705,12 +734,7 @@ export const GET_USER_PROFILE = gql`
 			following
 			totalFame
 			posts {
-				authorId
-				images
-				content
 				id
-				createdAt
-				updatedAt
 				authorAddress
 			}
 			pos_x_CoverPicture
