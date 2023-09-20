@@ -7,8 +7,8 @@ export const PostContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 	width: 100%;
-	height: 409px;
-	border-top: 1px solid rgba(3, 2, 41, 0.1);
+	height: fit-content;
+	border-top: 0.8px solid rgba(3, 2, 41, 0.1);
 	color: black;
 	padding-left: 16px;
 `;
