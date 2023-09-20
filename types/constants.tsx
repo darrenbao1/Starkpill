@@ -678,6 +678,9 @@ export const GET_USER_PROFILE_BASIC = gql`
 			profilePictureTokenId
 			followers
 			following
+			transactions {
+				hash
+			}
 		}
 	}
 `;

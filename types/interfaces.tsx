@@ -100,11 +100,13 @@ export interface UserProfileBasic {
 	profilePictureTokenId: number | null;
 	followers: string[];
 	following: string[];
+	transactions: any[];
 }
 
 export enum Action {
 	Unfollow = 1,
 	RemoveFollower = 2,
+	RemoveCoverPhoto = 3,
 }
 
 export interface Post {
