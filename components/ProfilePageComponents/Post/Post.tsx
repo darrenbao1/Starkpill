@@ -84,9 +84,6 @@ export const Post = (props: Props) => {
 		}
 	};
 	fetchProfilePicture();
-	//check if localStorage walletAddress is inside likes array
-	//if it is, then set isLiked to true
-	//if it isn't, then set isLiked to false
 	const loggedInUserAddress = localStorage.getItem("walletAddress");
 	if (!loggedInUserAddress) {
 		return <div>Wallet not connected</div>;
