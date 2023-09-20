@@ -78,6 +78,7 @@ const ProfilePage = () => {
 								profilePictureUrl={
 									profilePictureUrl ? profilePictureUrl : "/basepill.png"
 								}
+								refetch={refetch}
 							/>
 						)}
 						<ContentsSection postArray={userProfile.posts} />

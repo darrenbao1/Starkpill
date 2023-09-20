@@ -21,6 +21,7 @@ import { PreviewImage } from "./PreviewImage/PreviewImage";
 
 interface Props {
 	profilePictureUrl: string;
+	refetch: () => void;
 }
 export const StatusUpdateSection = (props: Props) => {
 	const [inputValue, setInputValue] = useState("");
@@ -87,6 +88,7 @@ export const StatusUpdateSection = (props: Props) => {
 			setInputValue("");
 			setSelectedFiles([]);
 			setGifArray([]);
+			props.refetch();
 		});
 	};
 	const handleRemoveGif = (index: number) => {
@@ -121,15 +123,6 @@ export const StatusUpdateSection = (props: Props) => {
 						removeGif={handleRemoveGif}
 					/>
 				)}
-				{/* {gifArray.length > 0 && (
-						<PreviewImage imageUrl={gifArray} removeImage={handleRemoveGif} />
-					)}
-					{selectedFiles.length > 0 && (
-						<PreviewImage
-							imageUrl={selectedFiles.map((file) => URL.createObjectURL(file))}
-							removeImage={handleRemoveImage}
-						/>
-					)} */}
 
 				<BottomContainer>
 					<IconsWrapper>

@@ -49,36 +49,6 @@ export async function getPharmacyData() {
 	}
 }
 
-export async function getPost(id: number) {
-	try {
-		const postResult = await client.query({
-			query: GET_POST_BY_ID,
-			variables: { postId: id },
-		});
-
-		const post: Post = postResult.data.postById;
-
-		const profileResult = await client.query({
-			query: GET_USER_PROFILE_BASIC,
-			variables: { address: post.authorAddress },
-		});
-
-		const profile: UserProfileBasic = profileResult.data.user;
-
-		const profilePictureUrl: string = await getTokenImage(
-			profile.profilePictureTokenId
-		);
-
-		return {
-			post: post,
-			profile: profile,
-			profilePictureUrl: profilePictureUrl,
-		};
-	} catch (error) {
-		console.error(error);
-	}
-}
-
 export async function getUserBackPack(walletAddress: String) {
 	const walletAddressForAPI = convertToStandardWalletAddress(
 		walletAddress.toString()
@@ -488,7 +458,30 @@ export async function createPost(
 		console.error("Error:", error);
 	}
 }
-
+export async function LikePost(postId: number) {
+	const response = await fetch(
+		`${STARKPILL_SOCIAL_API_ENDPOINT}/account/likePost/${postId}`,
+		{
+			method: "POST",
+			headers: {
+				Authorization: "bearer " + localStorage.getItem("access_token"),
+			},
+		}
+	);
+	return response;
+}
+export async function UnlikePost(postId: number) {
+	const response = await fetch(
+		`${STARKPILL_SOCIAL_API_ENDPOINT}/account/unlikePost/${postId}`,
+		{
+			method: "DELETE",
+			headers: {
+				Authorization: "bearer " + localStorage.getItem("access_token"),
+			},
+		}
+	);
+	return response;
+}
 //update PFP
 //endpoint /account/updateInfo
 export async function updateProfilePicture(tokenId: number) {

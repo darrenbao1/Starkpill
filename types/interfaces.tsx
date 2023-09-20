@@ -117,6 +117,7 @@ export interface Post {
 	authorAddress: string;
 	likes: Like[];
 	comments: Comment[];
+	likedByAddresses: string[];
 }
 export interface Comment {
 	authorId: number;
@@ -136,9 +137,4 @@ export interface Like {
 export interface PostMinimal {
 	id: number;
 	authorAddress: string;
-}
-export interface PostObjectForUI {
-	post: Post;
-	profile: UserProfileBasic;
-	profilePictureUrl: string;
 }

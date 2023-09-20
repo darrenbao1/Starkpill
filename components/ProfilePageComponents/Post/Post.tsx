@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
 	CaptionContainer,
 	CommentIcon,
@@ -12,14 +12,25 @@ import {
 	PostImageContainer,
 	ProfilePictureContainer,
 } from "./Post.styles";
-import { PostMinimal, PostObjectForUI } from "../../../types/interfaces";
+import {
+	PostMinimal,
+	Post as PostObject,
+	UserProfileBasic,
+} from "../../../types/interfaces";
 import { ProfilePic } from "../StatusUpdateSection/StatusUpdateSection.styles";
 import {
+	LikePost,
+	UnlikePost,
 	convertUnixToDate,
-	getPost,
+	getTokenImage,
 	shortenAddress,
 } from "../../../types/utils";
 import Image from "next/image";
+import { useQuery } from "@apollo/client";
+import {
+	GET_POST_BY_ID,
+	GET_USER_PROFILE_BASIC,
+} from "../../../types/constants";
 
 interface Props {
 	postMinimal: PostMinimal;
@@ -27,43 +38,65 @@ interface Props {
 
 export const Post = (props: Props) => {
 	const { postMinimal } = props;
-	const [post, setPost] = useState<PostObjectForUI | null>(null);
+	const [profilePictureUrl, setProfilePictureUrl] = useState<string | null>(
+		null
+	);
+	const { data: postResult, refetch: refetchPost } = useQuery(GET_POST_BY_ID, {
+		variables: { postId: postMinimal.id },
+	});
+	const { data: profileResult } = useQuery(GET_USER_PROFILE_BASIC, {
+		variables: { address: postResult?.postById?.authorAddress },
+	});
 
-	useEffect(() => {
-		const fetchPost = async () => {
-			try {
-				const result = await getPost(postMinimal.id);
-				if (result) {
-					setPost(result);
-				}
-			} catch (error) {
-				console.error("Error fetching post:", error);
-			}
-		};
+	const post: PostObject = postResult?.postById;
+	const profile: UserProfileBasic = profileResult?.user;
 
-		fetchPost();
-	}, [postMinimal.id]);
-
-	if (!post) {
-		// Render loading state or return null while data is being fetched
-		return null;
-	}
 	let gridColumns = "1fr";
-	if (post.post.images) {
-		if (post.post.images.length === 1) {
+	if (post?.images) {
+		if (post.images.length === 1) {
 			gridColumns = "1fr";
-		} else if (post.post.images.length === 2) {
+		} else if (post.images.length === 2) {
 			gridColumns = "1fr 1fr";
-		} else if (post.post.images.length >= 3) {
+		} else if (post.images.length >= 3) {
 			gridColumns = "1fr 1fr 1fr";
 		}
 	}
 
+	const handleLikeClicked = async () => {
+		await LikePost(post?.id);
+		refetchPost();
+	};
+
+	const handleUnlikeClicked = async () => {
+		await UnlikePost(post?.id);
+		refetchPost();
+	};
+
+	if (!post || !profile) {
+		return <div>Loading...</div>;
+	}
+	const fetchProfilePicture = async () => {
+		try {
+			const imageUrl = await getTokenImage(profile.profilePictureTokenId);
+			setProfilePictureUrl(imageUrl);
+		} catch (error) {
+			console.error("Error fetching profile picture:", error);
+		}
+	};
+	fetchProfilePicture();
+	//check if localStorage walletAddress is inside likes array
+	//if it is, then set isLiked to true
+	//if it isn't, then set isLiked to false
+	const loggedInUserAddress = localStorage.getItem("walletAddress");
+	if (!loggedInUserAddress) {
+		return <div>Wallet not connected</div>;
+	}
+	const isLiked = post.likedByAddresses.includes(loggedInUserAddress);
 	return (
 		<PostContainer>
 			<ProfilePictureContainer>
 				<ProfilePic
-					src={post.profilePictureUrl}
+					src={profilePictureUrl || "/basepill.png"}
 					width={56}
 					height={56}
 					alt=""
@@ -72,18 +105,17 @@ export const Post = (props: Props) => {
 			<PostContentContainer>
 				<NamesContainer>
 					<h1>
-						{post.profile.username
-							? post.profile.username
-							: shortenAddress(post.profile.address)}
+						{profile.username
+							? profile.username
+							: shortenAddress(profile.address)}
 					</h1>
-					<h2>{post.profile.twitterHandle && post.profile.twitterHandle}</h2>
-					<h2>{convertUnixToDate(Number(post.post.createdAt))} </h2>
+					<h2>{profile.twitterHandle && profile.twitterHandle}</h2>
+					<h2>{convertUnixToDate(Number(post.createdAt))} </h2>
 				</NamesContainer>
-				<CaptionContainer>{post.post.content}</CaptionContainer>
-				<PostImageContainer style={{ gridTemplateColumns: gridColumns }}>
-					{post.post.images &&
-						post.post.images.length > 0 &&
-						post.post.images.map((imageUrl, index) => (
+				<CaptionContainer>{post.content}</CaptionContainer>
+				{post.images && post.images.length > 0 && (
+					<PostImageContainer style={{ gridTemplateColumns: gridColumns }}>
+						{post.images.map((imageUrl, index) => (
 							<PostImage key={index}>
 								<Image
 									src={imageUrl}
@@ -97,15 +129,17 @@ export const Post = (props: Props) => {
 								/>
 							</PostImage>
 						))}
-				</PostImageContainer>
+					</PostImageContainer>
+				)}
 				<CommentLikeContainer>
 					<LikeIconWrapper>
 						<CommentIcon />
-						{post.post.comments.length} Comment
+						{post.comments.length} Comment
 					</LikeIconWrapper>
-					<LikeIconWrapper>
-						<LikeIcon />
-						{post.post.likes.length} Likes
+					<LikeIconWrapper
+						onClick={!isLiked ? handleLikeClicked : handleUnlikeClicked}>
+						<LikeIcon isLiked={isLiked} />
+						{post.likes.length} Likes
 					</LikeIconWrapper>
 				</CommentLikeContainer>
 			</PostContentContainer>
