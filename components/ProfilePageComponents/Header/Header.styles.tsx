@@ -22,6 +22,7 @@ export const ProfilePictureContainer = styled(Image)`
 	position: absolute;
 	margin-top: 10.1rem;
 	margin-left: 1.4rem;
+	box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, 0.12);
 
 	border-radius: 50%;
 

@@ -226,3 +226,9 @@ export const NameRemoveWrapper = styled.div`
 	margin-left: 12px;
 	margin-right: 10px;
 `;
+
+export const ProfilePicNameWrapperClickable = styled.div`
+	display: flex;
+	width: 100%;
+	height: 100%;
+`;
