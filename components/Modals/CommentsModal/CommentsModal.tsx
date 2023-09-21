@@ -7,7 +7,7 @@ import {
 import { UserProfile } from "../../../types/interfaces";
 import { shortenAddress } from "../../../types/utils";
 import { Comment } from "../../Comment/Comment";
-import { PostCommentWrapper } from "../../Comment/Comment.styles";
+
 interface Props {
 	profilePictureUrl: string;
 	profileObject: UserProfile;
@@ -22,7 +22,7 @@ export const CommentsModal = (props: Props) => {
 					{profileObject.username
 						? profileObject.username
 						: shortenAddress(profileObject.address)}
-					's Post
+					&apos;s Post
 				</CommentsModalHeader>
 				{/* <PostCommentWrapper> */}
 				<Post
