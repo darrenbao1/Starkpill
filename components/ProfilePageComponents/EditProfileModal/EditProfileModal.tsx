@@ -82,11 +82,11 @@ export const EditProfileModal = ({
 			<Container>
 				<Header>
 					<TitleWrapper>
-						<Title>Edit Profile</Title>
+						<Title>Edit Info</Title>
 						<CloseButton onClick={closeModal} />
 					</TitleWrapper>
 				</Header>
-				<CoverPhotoContainer>
+				{/* <CoverPhotoContainer>
 					<CoverPhotoSectionForEditProfileModal
 						imageUrl={userObject.coverPictureUrl}
 						xPos={userObject.pos_x_CoverPicture}
@@ -97,7 +97,7 @@ export const EditProfileModal = ({
 				</CoverPhotoContainer>
 				<ProfilePictureContainer>
 					<Image src={profilePictureUrl} alt={"Profile Picture"} fill={true} />
-				</ProfilePictureContainer>
+				</ProfilePictureContainer> */}
 				<ContentContainer>
 					<AttributeContainer>
 						<AttributeLabel>Username</AttributeLabel>

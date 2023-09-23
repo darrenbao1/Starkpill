@@ -81,11 +81,13 @@ export const Header = (props: Props) => {
 				height={161.008}
 				alt=""
 			/>
-			<EditPic
-				onClick={
-					isViewingOwnProfile ? () => setShowProfilePictModal(true) : () => {}
-				}
-			/>
+			{isViewingOwnProfile && (
+				<EditPic
+					onClick={
+						isViewingOwnProfile ? () => setShowProfilePictModal(true) : () => {}
+					}
+				/>
+			)}
 
 			<DetailsContainer>
 				<Details>
@@ -131,7 +133,7 @@ export const Header = (props: Props) => {
 					</FollowWrapper>
 					{isViewingOwnProfile ? (
 						<EditProfileButton onClick={() => setShowEditProfileModal(true)}>
-							Edit Profile
+							Edit Info
 						</EditProfileButton>
 					) : (
 						<FollowButtonWrapper>
