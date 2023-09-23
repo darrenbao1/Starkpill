@@ -15,6 +15,7 @@ import {
 	AttributeContainer,
 	InputStyle,
 	SaveChangesButton,
+	InputStyleBio,
 } from "./EditProfileModal.style";
 import { removeCoverPhoto, uploadCoverPhoto } from "../../../types/utils";
 import { FileUploadModal } from "../../Modals/FileUploadModal/FileUploadModal";
@@ -107,7 +108,7 @@ export const EditProfileModal = ({
 					</AttributeContainer>
 					<AttributeContainer>
 						<AttributeLabel>Bio</AttributeLabel>
-						<InputStyle
+						<InputStyleBio
 							value={editableBio}
 							onChange={(e) => setEditableBio(e.target.value)}
 						/>

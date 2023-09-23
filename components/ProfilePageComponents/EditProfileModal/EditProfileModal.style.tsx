@@ -113,6 +113,15 @@ export const InputStyle = styled.input`
 	border: 1px solid #e0e0e0;
 	height: 43px;
 `;
+export const InputStyleBio = styled.input`
+	display: flex;
+	width: 100%;
+	padding: 4px 12px;
+	gap: 10px;
+	border-radius: 6px;
+	border: 1px solid #e0e0e0;
+	height: 101px;
+`;
 export const SaveChangesButton = styled.button`
 	display: flex;
 	border-radius: 6px;
