@@ -18,18 +18,19 @@ import { TenorImage } from "gif-picker-react";
 import Image from "next/image";
 import { FileUploadModal } from "../../Modals/FileUploadModal/FileUploadModal";
 import { PreviewImage } from "./PreviewImage/PreviewImage";
+import { useLoader } from "../../Provider/LoaderProvider";
 
 interface Props {
 	profilePictureUrl: string;
 	refetch: () => void;
 }
 export const StatusUpdateSection = (props: Props) => {
+	const { showLoader, hideLoader } = useLoader();
 	const [inputValue, setInputValue] = useState("");
 
 	const [showEmojiModal, setShowEmojiModal] = useState(false);
 	const [showUploadImageModal, setShowUploadImageModal] = useState(false);
 	const [gifArray, setGifArray] = useState<string[]>([]);
-	// const [selectedGIF, setSelectedGIF] = useState<TenorImage>(null!);
 	const [showGIFModal, setShowGIFModal] = useState(false);
 
 	const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
@@ -84,11 +85,13 @@ export const StatusUpdateSection = (props: Props) => {
 	};
 
 	const handlePostButtonClick = async () => {
+		showLoader();
 		await createPost(inputValue, selectedFiles, gifArray).then(() => {
 			setInputValue("");
 			setSelectedFiles([]);
 			setGifArray([]);
 			props.refetch();
+			hideLoader();
 		});
 	};
 	const handleRemoveGif = (index: number) => {

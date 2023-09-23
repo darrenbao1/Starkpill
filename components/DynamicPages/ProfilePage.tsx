@@ -18,9 +18,12 @@ import { Header } from "../ProfilePageComponents/Header/Header";
 import { StatusUpdateSection } from "../ProfilePageComponents/StatusUpdateSection";
 import { SideSection } from "../ProfilePageComponents/SideSection";
 import { ContentsSection } from "../ProfilePageComponents/ContentsSection/ContentsSection";
+import { useLoader } from "../Provider/LoaderProvider";
+import { Loader } from "../Loader";
 
 const ProfilePage = () => {
 	const router = useRouter();
+	const { isLoading } = useLoader();
 	const [profilePictureUrl, setProfilePictureUrl] = useState<string | null>(
 		null
 	);
@@ -126,6 +129,7 @@ const ProfilePage = () => {
 				// Render a message when the profile does not exist
 				<div>The profile does not exist.</div>
 			)}
+			{isLoading && <Loader />}
 		</ProfilePageWrapper>
 	);
 };

@@ -5,6 +5,7 @@ import { removeCoverPhoto, uploadCoverPhoto } from "../../../types/utils";
 import { ActionButton, ActionButtonContainer } from "./CoverPhotoSection.style";
 import { ActionModal } from "../../UnfollowModal/ActionModal";
 import { Action } from "../../../types/interfaces";
+import { useLoader } from "../../Provider/LoaderProvider";
 
 interface Props {
 	imageUrl: string | null;
@@ -21,6 +22,7 @@ export const CoverPhotoSection = ({
 	refetch,
 	isViewingOwnProfile,
 }: Props) => {
+	const { showLoader, hideLoader } = useLoader();
 	const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 	const [imageCenter, setImageCenter] = useState({ x: 0, y: 0 });
 	const [onImage, setOnImage] = useState(false);
@@ -75,6 +77,7 @@ export const CoverPhotoSection = ({
 		setShowUploadImageModal(true);
 	};
 	const handleSaveButtonClick = async () => {
+		showLoader();
 		const response = await uploadCoverPhoto(
 			imageCenter.x,
 			imageCenter.y,
@@ -82,6 +85,7 @@ export const CoverPhotoSection = ({
 		).then(() => {
 			refetch();
 			setSelectedFiles([]);
+			hideLoader();
 		});
 	};
 	const handleCancelButtonClick = () => {
@@ -89,9 +93,11 @@ export const CoverPhotoSection = ({
 		setImageCenter({ x: 0, y: 0 });
 	};
 	const handleRemoveCoverPhoto = () => {
+		showLoader();
 		const response = removeCoverPhoto().then(() => {
 			refetch();
 			setShowConfirmModal(false);
+			hideLoader();
 		});
 	};
 	const frameWidth = 850;
