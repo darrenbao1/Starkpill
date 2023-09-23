@@ -35,6 +35,7 @@ import {
 } from "../../../types/constants";
 
 import { PostKebabMenu } from "../../Modals/PostKebabMenu";
+import { CommentsModal } from "../../Modals/CommentsModal";
 
 interface Props {
 	postMinimal: PostMinimal;
