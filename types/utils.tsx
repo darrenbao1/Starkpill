@@ -528,3 +528,30 @@ export async function createComment(postId: number, text: string) {
 	);
 	return response;
 }
+//endpoint /account/updateInfo
+export async function UpdateInfo(
+	username: string,
+	bio: string,
+	location: string,
+	websiteUrl: string,
+	ensDomain: string
+) {
+	const response = await fetch(
+		`${STARKPILL_SOCIAL_API_ENDPOINT}/account/updateInfo`,
+		{
+			method: "PATCH",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "bearer " + localStorage.getItem("access_token"),
+			},
+			body: JSON.stringify({
+				username,
+				bio,
+				location,
+				websiteUrl,
+				ensDomain,
+			}),
+		}
+	);
+	return response;
+}

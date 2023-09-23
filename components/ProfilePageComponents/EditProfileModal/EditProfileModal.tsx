@@ -17,7 +17,11 @@ import {
 	SaveChangesButton,
 	InputStyleBio,
 } from "./EditProfileModal.style";
-import { removeCoverPhoto, uploadCoverPhoto } from "../../../types/utils";
+import {
+	UpdateInfo,
+	removeCoverPhoto,
+	uploadCoverPhoto,
+} from "../../../types/utils";
 import { FileUploadModal } from "../../Modals/FileUploadModal/FileUploadModal";
 import { ActionModal } from "../../UnfollowModal/ActionModal";
 import Image from "next/image";
@@ -76,7 +80,21 @@ export const EditProfileModal = ({
 		editableWebsiteUrl,
 		editableEnsDomain,
 	]);
-
+	const { showLoader, hideLoader } = useLoader();
+	const handleSaveChanges = async () => {
+		showLoader();
+		await UpdateInfo(
+			editableUsername,
+			editableBio,
+			editableLocation,
+			editableWebsiteUrl,
+			editableEnsDomain
+		).then(() => {
+			refetch();
+			closeModal();
+			hideLoader();
+		});
+	};
 	return (
 		<ModalContainer>
 			<Container>
@@ -134,7 +152,7 @@ export const EditProfileModal = ({
 							onChange={(e) => setEditableEnsDomain(e.target.value)}
 						/>
 					</AttributeContainer>
-					<SaveChangesButton disabled={!hasChanged}>
+					<SaveChangesButton disabled={!hasChanged} onClick={handleSaveChanges}>
 						Save Changes
 					</SaveChangesButton>
 				</ContentContainer>
