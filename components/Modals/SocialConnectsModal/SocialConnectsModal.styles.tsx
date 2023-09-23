@@ -153,7 +153,6 @@ export const ProfileContainer = styled.div`
 	border-radius: 8px;
 
 	&:hover {
-		cursor: pointer;
 		background: #f8f8ff;
 	}
 `;

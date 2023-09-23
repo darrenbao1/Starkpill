@@ -31,6 +31,7 @@ import {
 	GET_POST_BY_ID,
 	GET_USER_PROFILE_BASIC,
 } from "../../../types/constants";
+import { CommentsModal } from "../../Modals/CommentsModal";
 
 interface Props {
 	postMinimal: PostMinimal;
@@ -89,57 +90,60 @@ export const Post = (props: Props) => {
 		return <div>Wallet not connected</div>;
 	}
 	const isLiked = post.likedByAddresses.includes(loggedInUserAddress);
+
 	return (
-		<PostContainer>
-			<ProfilePictureContainer>
-				<ProfilePic
-					src={profilePictureUrl || "/basepill.png"}
-					width={56}
-					height={56}
-					alt=""
-				/>
-			</ProfilePictureContainer>
-			<PostContentContainer>
-				<NamesContainer>
-					<h1>
-						{profile.username
-							? profile.username
-							: shortenAddress(profile.address)}
-					</h1>
-					<h2>{profile.twitterHandle && profile.twitterHandle}</h2>
-					<h2>{convertUnixToDate(Number(post.createdAt))} </h2>
-				</NamesContainer>
-				<CaptionContainer>{post.content}</CaptionContainer>
-				{post.images && post.images.length > 0 && (
-					<PostImageContainer style={{ gridTemplateColumns: gridColumns }}>
-						{post.images.map((imageUrl, index) => (
-							<PostImage key={index}>
-								<Image
-									src={imageUrl}
-									alt=""
-									fill={true}
-									sizes="100vw"
-									style={{
-										borderRadius: "12px",
-										objectFit: "fill",
-									}}
-								/>
-							</PostImage>
-						))}
-					</PostImageContainer>
-				)}
-				<CommentLikeContainer>
-					<LikeIconWrapper>
-						<CommentIcon />
-						{post.comments.length} Comment
-					</LikeIconWrapper>
-					<LikeIconWrapper
-						onClick={!isLiked ? handleLikeClicked : handleUnlikeClicked}>
-						<LikeIcon isLiked={isLiked} />
-						{post.likes.length} Likes
-					</LikeIconWrapper>
-				</CommentLikeContainer>
-			</PostContentContainer>
-		</PostContainer>
+		<>
+			<PostContainer>
+				<ProfilePictureContainer>
+					<ProfilePic
+						src={profilePictureUrl || "/basepill.png"}
+						width={56}
+						height={56}
+						alt=""
+					/>
+				</ProfilePictureContainer>
+				<PostContentContainer>
+					<NamesContainer>
+						<h1>
+							{profile.username
+								? profile.username
+								: shortenAddress(profile.address)}
+						</h1>
+						<h2>{profile.twitterHandle && profile.twitterHandle}</h2>
+						<h2>{convertUnixToDate(Number(post.createdAt))} </h2>
+					</NamesContainer>
+					<CaptionContainer>{post.content}</CaptionContainer>
+					{post.images && post.images.length > 0 && (
+						<PostImageContainer style={{ gridTemplateColumns: gridColumns }}>
+							{post.images.map((imageUrl, index) => (
+								<PostImage key={index}>
+									<Image
+										src={imageUrl}
+										alt=""
+										fill={true}
+										sizes="100vw"
+										style={{
+											borderRadius: "12px",
+											objectFit: "fill",
+										}}
+									/>
+								</PostImage>
+							))}
+						</PostImageContainer>
+					)}
+					<CommentLikeContainer>
+						<LikeIconWrapper>
+							<CommentIcon />
+							{post.comments.length} Comment
+						</LikeIconWrapper>
+						<LikeIconWrapper
+							onClick={!isLiked ? handleLikeClicked : handleUnlikeClicked}>
+							<LikeIcon isLiked={isLiked} />
+							{post.likes.length} Likes
+						</LikeIconWrapper>
+					</CommentLikeContainer>
+				</PostContentContainer>
+			</PostContainer>
+		</>
 	);
 };

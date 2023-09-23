@@ -21,6 +21,7 @@
 // } from "../styles/Testing.styles";
 
 import { Loader } from "../components/Loader/Loader";
+import { CommentsModal } from "../components/Modals/CommentsModal";
 
 // type ChatLogEntry = {
 // 	user: string;
@@ -121,7 +122,7 @@ import { Loader } from "../components/Loader/Loader";
 export default function Testing() {
 	return (
 		<>
-			<Loader />
+			<CommentsModal />
 		</>
 	);
 }

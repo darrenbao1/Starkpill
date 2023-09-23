@@ -20,6 +20,11 @@ export const ProfilePictureContainer = styled.div`
 
 	padding-top: 16px;
 `;
+export const ProfilePictureContainerAddComment = styled(
+	ProfilePictureContainer
+)`
+	padding-top: 0px;
+`;
 
 export const PostContentContainer = styled.div`
 	display: flex;

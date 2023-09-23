@@ -82,7 +82,7 @@ export const FollowerObject = (props: Props) => {
 	const isFollowing = viewerProfile.following.includes(walletAddress);
 	return (
 		<>
-			<ProfileContainer key={profile.address} onClick={openOwnerAddressLink}>
+			<ProfileContainer key={profile.address}>
 				<ProfileImageDisplay
 					src={profilePictureUrl}
 					width={58}
@@ -91,7 +91,7 @@ export const FollowerObject = (props: Props) => {
 					onClick={openOwnerAddressLink}
 				/>
 				<NameRemoveWrapper>
-					<ProfileNameContainer>
+					<ProfileNameContainer onClick={openOwnerAddressLink}>
 						<DisplayName>
 							{profile.username
 								? profile.username
