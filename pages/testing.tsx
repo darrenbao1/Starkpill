@@ -20,8 +20,7 @@
 // 	UserFace,
 // } from "../styles/Testing.styles";
 
-import { Loader } from "../components/Loader/Loader";
-import { CommentsModal } from "../components/Modals/CommentsModal";
+import { PostKebabMenu } from "../components/Modals/PostKebabMenu";
 
 // type ChatLogEntry = {
 // 	user: string;

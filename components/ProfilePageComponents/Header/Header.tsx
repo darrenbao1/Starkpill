@@ -5,6 +5,7 @@ import {
 	CoverPhotoContainer,
 	Details,
 	DetailsContainer,
+	EditPic,
 	EditProfileButton,
 	FollowButtonWrapper,
 	FollowContainer,
@@ -18,7 +19,9 @@ import { FollowButton } from "../../FollowButton/FollowButton";
 import { ProfilePictModal } from "../../Modals/SelectProfilePictureModal/ProfilePictModal";
 import { CoverPhotoSection } from "../CoverPhotoSection/CoverPhotoSection";
 import { TwitterSignIn } from "../../TwitterSignIn";
+import { ProfilePageWrapper } from "../../../styles/ProfilePage.style";
 import { EditProfileModal } from "../EditProfileModal/EditProfileModal";
+
 interface Props {
 	profilePictureUrl: string;
 	followers: string[];
@@ -63,16 +66,27 @@ export const Header = (props: Props) => {
 					refetch={refetch}
 					isViewingOwnProfile={isViewingOwnProfile}
 				/>
+				{showProfilePictModal && (
+					<ProfilePictModal
+						ownerAddress={props.ownerAddress}
+						close={() => setShowProfilePictModal(false)}
+						refetch={refetch}
+					/>
+				)}
 			</CoverPhotoContainer>
+
 			<ProfilePictureContainer
-				onClick={
-					isViewingOwnProfile ? () => setShowProfilePictModal(true) : () => {}
-				}
 				src={profilePictureUrl}
 				width={161.008}
 				height={161.008}
 				alt=""
 			/>
+			<EditPic
+				onClick={
+					isViewingOwnProfile ? () => setShowProfilePictModal(true) : () => {}
+				}
+			/>
+
 			<DetailsContainer>
 				<Details>
 					<NameContainer>
@@ -97,7 +111,7 @@ export const Header = (props: Props) => {
 									style={
 										profileObject.twitterHandle
 											? { marginTop: "-35px" }
-											: { marginTop: "-10px" }
+											: { marginTop: "-30px", marginLeft: "-7px" }
 									}>
 									<TwitterSignIn
 										isLinked={profileObject.twitterHandle ? true : false}

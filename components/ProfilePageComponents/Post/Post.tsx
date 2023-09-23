@@ -3,9 +3,11 @@ import {
 	CaptionContainer,
 	CommentIcon,
 	CommentLikeContainer,
+	KebabMenu,
 	LikeIcon,
 	LikeIconWrapper,
 	NamesContainer,
+	NamesKebabWrapper,
 	PostContainer,
 	PostContentContainer,
 	PostImage,
@@ -31,7 +33,8 @@ import {
 	GET_POST_BY_ID,
 	GET_USER_PROFILE_BASIC,
 } from "../../../types/constants";
-import { CommentsModal } from "../../Modals/CommentsModal";
+
+import { PostKebabMenu } from "../../Modals/PostKebabMenu";
 
 interface Props {
 	postMinimal: PostMinimal;
@@ -39,6 +42,8 @@ interface Props {
 }
 
 export const Post = (props: Props) => {
+	const [showKebabMenu, setShowKebabMenu] = useState(false);
+
 	const { postMinimal } = props;
 	const [showCommentsModal, setShowCommentsModal] = useState(false);
 	const [profilePictureUrl, setProfilePictureUrl] = useState<string | null>(
@@ -107,6 +112,10 @@ export const Post = (props: Props) => {
 		refetchPost();
 	};
 
+	// const handleKebabMenuClick = () => {
+	// 	setShowKebabMenu(!showKebabMenu);
+	// 	console.log("kebab menu clicked");
+	// };
 	return (
 		<>
 			<PostContainer>
@@ -119,16 +128,26 @@ export const Post = (props: Props) => {
 					/>
 				</ProfilePictureContainer>
 				<PostContentContainer>
-					<NamesContainer>
-						<h1>
-							{profile.username
-								? profile.username
-								: shortenAddress(profile.address)}
-						</h1>
-						<h2>{profile.twitterHandle && profile.twitterHandle}</h2>
-						<h2>{convertUnixToDate(Number(post.createdAt))} </h2>
-					</NamesContainer>
+					<NamesKebabWrapper>
+						<NamesContainer>
+							<h1>
+								{profile.username
+									? profile.username
+									: shortenAddress(profile.address)}
+							</h1>
+							<h2>{profile.twitterHandle && profile.twitterHandle}</h2>
+							<h2>•&nbsp;{convertUnixToDate(Number(post.createdAt))} </h2>
+						</NamesContainer>
+						{/* <KebabMenu
+							onClick={() => {
+								handleKebabMenuClick();
+							}}
+						/> */}
+						{/* {showKebabMenu && <PostKebabMenu />} */}
+					</NamesKebabWrapper>
+
 					<CaptionContainer>{post.content}</CaptionContainer>
+
 					{post.images && post.images.length > 0 && (
 						<PostImageContainer style={{ gridTemplateColumns: gridColumns }}>
 							{post.images.map((imageUrl, index) => (

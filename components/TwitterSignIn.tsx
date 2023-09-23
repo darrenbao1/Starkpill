@@ -2,29 +2,30 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { removeTwitterHandle, setTwitterHandle } from "../types/utils";
 import { getCookie, setCookie } from "typescript-cookie";
 import styled from "styled-components";
-import TwitterIcon from "../public/svgs/twitterIcon.svg";
+import LinkIcon from "../public/LinkwithTwt.svg";
 interface Props {
 	isLinked: boolean;
 	refetch: () => void;
 }
 const TwitterButtonStyle = styled.div`
-	background-color: #1da1f2; /* Twitter brand color */
-	color: #fff; /* White text color */
-	padding: 5px 10px; /* Adjust padding as needed */
+	background: none;
+	color: #1d9bf0;
+
 	border-radius: 5px; /* Rounded corners */
 	text-decoration: none;
 	display: inline-block;
+	font-size: 16px;
 	cursor: pointer;
 	align-items: center;
 	justify-content: center;
 	display: flex;
 	width: max-content;
 	&:hover {
-		background-color: #0d8eff; /* Hover color */
+		text-decoration: underline;
 	}
 
 	&:active {
-		background-color: #007acc; /* Active color */
+		opacity: 0.5;
 	}
 `;
 
@@ -67,13 +68,13 @@ export const TwitterSignIn = (props: Props) => {
 		<div>
 			{isLinked ? (
 				<TwitterButtonStyle onClick={removeTwitter}>
-					<TwitterIcon />
-					&nbsp; Unlink Twitter
+					<LinkIcon />
+					Unlink Twitter
 				</TwitterButtonStyle>
 			) : (
 				<TwitterButtonStyle onClick={handleLinkTwitter}>
-					<TwitterIcon />
-					&nbsp; Link Twitter
+					<LinkIcon />
+					Link with Twitter
 				</TwitterButtonStyle>
 			)}
 		</div>

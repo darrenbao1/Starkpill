@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import Comment from "../../../public/CommentIcon.svg";
 import Like from "../../../public/LikeIcon.svg";
+import KebabIcon from "../../../public/ProfileKebabIcon.svg";
 export const PostContainer = styled.div`
 	display: flex;
 	flex-direction: row;
@@ -32,7 +33,18 @@ export const PostContentContainer = styled.div`
 	width: 749px;
 	padding: 7px;
 `;
-
+export const KebabMenu = styled(KebabIcon)`
+	display: flex;
+	align-self: flex-end;
+	&:hover {
+		cursor: pointer;
+	}
+`;
+export const NamesKebabWrapper = styled.div`
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+`;
 export const NamesContainer = styled.div`
 	display: flex;
 	flex-direction: row;
