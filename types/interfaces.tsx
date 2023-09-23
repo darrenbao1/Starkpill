@@ -128,6 +128,7 @@ export interface Comment {
 	postId: number;
 	text: string;
 	updatedAt: string;
+	authorAddress: string;
 }
 export interface Like {
 	accountId: number;

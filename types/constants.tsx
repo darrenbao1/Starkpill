@@ -701,6 +701,7 @@ export const GET_POST_BY_ID = gql`
 				text
 				postId
 				authorId
+				authorAddress
 			}
 			likes {
 				id

@@ -35,10 +35,12 @@ import { CommentsModal } from "../../Modals/CommentsModal";
 
 interface Props {
 	postMinimal: PostMinimal;
+	isCommentModal?: boolean;
 }
 
 export const Post = (props: Props) => {
 	const { postMinimal } = props;
+	const [showCommentsModal, setShowCommentsModal] = useState(false);
 	const [profilePictureUrl, setProfilePictureUrl] = useState<string | null>(
 		null
 	);
@@ -146,10 +148,12 @@ export const Post = (props: Props) => {
 						</PostImageContainer>
 					)}
 					<CommentLikeContainer>
-						<LikeIconWrapper>
-							<CommentIcon />
-							{post.comments.length} Comment
-						</LikeIconWrapper>
+						{!props.isCommentModal && (
+							<LikeIconWrapper onClick={() => setShowCommentsModal(true)}>
+								<CommentIcon />
+								{post.comments.length} Comment
+							</LikeIconWrapper>
+						)}
 						<LikeIconWrapper
 							onClick={!isLiked ? handleLikeClicked : handleUnlikeClicked}>
 							<LikeIcon isLiked={isLiked} />
@@ -157,6 +161,14 @@ export const Post = (props: Props) => {
 						</LikeIconWrapper>
 					</CommentLikeContainer>
 				</PostContentContainer>
+				{showCommentsModal && (
+					<CommentsModal
+						closeModal={() => setShowCommentsModal(false)}
+						profileObject={profile}
+						postObject={post}
+						refetch={refetchPost}
+					/>
+				)}
 			</PostContainer>
 		</>
 	);

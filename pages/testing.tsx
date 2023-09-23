@@ -120,9 +120,5 @@ import { CommentsModal } from "../components/Modals/CommentsModal";
 // export default ChatBox;
 
 export default function Testing() {
-	return (
-		<>
-			<CommentsModal />
-		</>
-	);
+	return <></>;
 }
