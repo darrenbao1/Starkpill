@@ -2,13 +2,12 @@ import styled from "styled-components";
 import Image from "next/image";
 import Comment from "../../../public/CommentIcon.svg";
 import Like from "../../../public/LikeIcon.svg";
-
 export const PostContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 	width: 100%;
 	height: fit-content;
-	border-top: 0.8px solid rgba(3, 2, 41, 0.1);
+	border-top: 1px solid rgba(3, 2, 41, 0.1);
 	color: black;
 	padding-left: 16px;
 `;
@@ -62,12 +61,18 @@ export const CaptionContainer = styled.div`
 	line-height: 20px;
 	padding-bottom: 10px;
 `;
-
+export const PostImage = styled.div`
+	position: relative;
+	border-radius: 12px;
+`;
 export const PostImageContainer = styled.div`
-	display: flex;
-	height: 400px;
-	border: 1px solid #c4c4c4;
-	border-radius: 16px;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+	gap: 8px;
+	height: 100vh;
+	max-height: 358px;
+	border-radius: 12px;
+	overflow-x: auto;
 `;
 
 export const CommentLikeContainer = styled.div`
@@ -99,6 +104,10 @@ export const CommentIcon = styled(Comment)`
 	display: flex;
 `;
 
-export const LikeIcon = styled(Like)`
+interface LikeProps {
+	isLiked: boolean;
+}
+export const LikeIcon = styled(Like)<LikeProps>`
 	display: flex;
+	fill: ${(props) => (props.isLiked ? "#ff5733" : "none")};
 `;

@@ -3,6 +3,8 @@ import Image from "next/image";
 import { FileUploadModal } from "../../Modals/FileUploadModal/FileUploadModal";
 import { removeCoverPhoto, uploadCoverPhoto } from "../../../types/utils";
 import { ActionButton, ActionButtonContainer } from "./CoverPhotoSection.style";
+import { ActionModal } from "../../UnfollowModal/ActionModal";
+import { Action } from "../../../types/interfaces";
 
 interface Props {
 	imageUrl: string | null;
@@ -29,6 +31,7 @@ export const CoverPhotoSection = ({
 	const [preloadedImageUrl, setPreloadedImageUrl] = useState<string | null>(
 		null
 	);
+	const [showConfirmModal, setShowConfirmModal] = useState(false);
 
 	useEffect(() => {
 		const handleMouseMove = (event: MouseEvent) => {
@@ -88,6 +91,7 @@ export const CoverPhotoSection = ({
 	const handleRemoveCoverPhoto = () => {
 		const response = removeCoverPhoto().then(() => {
 			refetch();
+			setShowConfirmModal(false);
 		});
 	};
 	const frameWidth = 850;
@@ -96,34 +100,44 @@ export const CoverPhotoSection = ({
 	//user already has cover photo
 	if (!selectedFiles[0]) {
 		return (
-			<div
-				style={{
-					height: `${frameHeight}px`,
-					width: `${frameWidth}px`,
-					backgroundRepeat: "no-repeat",
-					backgroundPosition: `${xPos}px ${yPos}px`,
-					backgroundImage: `url(${imageUrl})`,
-					backgroundSize: "cover",
-					position: "relative",
-					overflow: "hidden",
-				}}>
-				{!isViewingOwnProfile ? null : (
-					<ActionButtonContainer>
-						{imageUrl && (
-							<ActionButton onClick={handleRemoveCoverPhoto}>
-								Remove
-							</ActionButton>
-						)}
-						<ActionButton onClick={handleEditButtonClick}>Edit</ActionButton>
-					</ActionButtonContainer>
+			<>
+				<div
+					style={{
+						height: `${frameHeight}px`,
+						width: `${frameWidth}px`,
+						backgroundRepeat: "no-repeat",
+						backgroundPosition: `${xPos}px ${yPos}px`,
+						backgroundImage: `url(${imageUrl})`,
+						backgroundSize: "cover",
+						position: "relative",
+						overflow: "hidden",
+					}}>
+					{!isViewingOwnProfile ? null : (
+						<ActionButtonContainer>
+							{imageUrl && (
+								<ActionButton onClick={() => setShowConfirmModal(true)}>
+									Remove
+								</ActionButton>
+							)}
+							<ActionButton onClick={handleEditButtonClick}>Edit</ActionButton>
+						</ActionButtonContainer>
+					)}
+					<FileUploadModal
+						setSelectedFiles={setSelectedFiles}
+						selectedFiles={selectedFiles}
+						showUploadImageModal={showUploadImageModal}
+						close={() => setShowUploadImageModal(false)}
+					/>
+				</div>
+				{showConfirmModal && (
+					<ActionModal
+						walletAddress=""
+						close={() => setShowConfirmModal(false)}
+						handleAction={handleRemoveCoverPhoto}
+						actionIndex={Action.RemoveCoverPhoto}
+					/>
 				)}
-				<FileUploadModal
-					setSelectedFiles={setSelectedFiles}
-					selectedFiles={selectedFiles}
-					showUploadImageModal={showUploadImageModal}
-					close={() => setShowUploadImageModal(false)}
-				/>
-			</div>
+			</>
 		);
 	}
 

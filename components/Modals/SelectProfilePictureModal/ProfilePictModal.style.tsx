@@ -18,13 +18,22 @@ export const ModalContainer = styled.div`
 export const Container = styled.div`
 	position: relative;
 	display: flex;
-	width: 468px;
-	padding: 16px 8px 0px 8px;
+	width: 849px;
+	padding: 16px 0px 0px 0px;
 	flex-direction: column;
 	max-height: 50vh;
 	align-items: center;
 	background: #fff;
 	border-radius: 8px;
+`;
+export const HeaderContainer = styled.div`
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+	height: 56px;
+	padding: 0px 13px 13px 16px;
 `;
 
 export const Title = styled.div`
@@ -53,7 +62,7 @@ export const CloseButton = styled(CloseIcon)`
 	height: 31px;
 	cursor: pointer;
 	position: absolute;
-	top: 12px;
+	top: 15px;
 	right: 16px;
 `;
 
@@ -64,6 +73,6 @@ export const PillContainer = styled.div`
 	justify-content: center;
 	margin-top: 16px;
 	padding: 8px 0px;
-	gap: 8px;
+	gap: 16px;
 	overflow-y: scroll;
 `;

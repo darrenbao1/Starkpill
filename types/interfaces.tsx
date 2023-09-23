@@ -100,11 +100,13 @@ export interface UserProfileBasic {
 	profilePictureTokenId: number | null;
 	followers: string[];
 	following: string[];
+	transactions: any[];
 }
 
 export enum Action {
 	Unfollow = 1,
 	RemoveFollower = 2,
+	RemoveCoverPhoto = 3,
 }
 
 export interface Post {
@@ -113,6 +115,28 @@ export interface Post {
 	content: string;
 	createdAt: string;
 	updatedAt: string;
-	image: string[] | null;
+	images: string[] | null;
+	authorAddress: string;
+	likes: Like[];
+	comments: Comment[];
+	likedByAddresses: string[];
+}
+export interface Comment {
+	authorId: number;
+	createdAt: string;
+	id: number;
+	postId: number;
+	text: string;
+	updatedAt: string;
+}
+export interface Like {
+	accountId: number;
+	createdAt: string;
+	id: number;
+	postId: number;
+	updatedAt: string;
+}
+export interface PostMinimal {
+	id: number;
 	authorAddress: string;
 }

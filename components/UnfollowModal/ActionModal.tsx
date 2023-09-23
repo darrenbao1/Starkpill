@@ -15,14 +15,43 @@ interface Props {
 	actionIndex: number;
 }
 
+const actionData: Record<
+	number,
+	{ name: string; header: string; showAddress: boolean; buttonName: string }
+> = {
+	[Action.RemoveCoverPhoto]: {
+		name: "Remove cover photo",
+		header: "Are you sure you want to remove your cover photo?",
+		showAddress: false,
+		buttonName: "Remove",
+	},
+	[Action.Unfollow]: {
+		name: "Unfollow",
+		header: "Are you sure you want to unfollow?",
+		showAddress: true,
+		buttonName: "Unfollow",
+	},
+	[Action.RemoveFollower]: {
+		name: "Remove",
+		header: "Are you sure you want to remove this follower?",
+		showAddress: true,
+		buttonName: "Remove",
+	},
+	// Add more actions as needed
+};
+
 export const ActionModal = (props: Props) => {
-	//destructure props
+	// Destructure props
 	const { close, handleAction, walletAddress, actionIndex } = props;
-	const actionName = actionIndex === Action.Unfollow ? "Unfollow" : "Remove";
-	const headerText =
-		actionIndex === Action.Unfollow
-			? "Are you sure you want to unfollow?"
-			: "Are you sure you want to remove this follower?";
+
+	const actionInfo = actionData[actionIndex];
+
+	if (!actionInfo) {
+		// Handle unknown actionIndex or add a default action
+		return null;
+	}
+
+	const { name, header, showAddress, buttonName } = actionInfo;
 
 	const shortenWalletAddress = walletAddress.slice(0, 8) + "...";
 
@@ -31,13 +60,13 @@ export const ActionModal = (props: Props) => {
 			<Container>
 				<ContentContainer>
 					<h1>
-						{actionName} {shortenWalletAddress}?
+						{name} {showAddress && shortenWalletAddress}?
 					</h1>
-					<p>{headerText}</p>
+					<p>{header}</p>
 				</ContentContainer>
 				<ButtonContainer>
 					<CancelButton onClick={close}>Cancel</CancelButton>
-					<ConfirmButton onClick={handleAction}>{actionName}</ConfirmButton>
+					<ConfirmButton onClick={handleAction}>{buttonName}</ConfirmButton>
 				</ButtonContainer>
 			</Container>
 		</ModalContainer>

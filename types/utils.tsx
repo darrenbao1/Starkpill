@@ -3,12 +3,14 @@ import {
 	BACKGROUND,
 	FACE_TRAITS,
 	GET_BACKPACK_TOKENS_BY_ADDRESS,
+	GET_POST_BY_ID,
 	GET_TOKEN_IMAGE_BY_ID,
+	GET_USER_PROFILE_BASIC,
 	GET_VOTING_POWER_QUERY,
 	STARKPILL_CONTRACT_ADDRESS,
 	STARKPILL_SOCIAL_API_ENDPOINT,
 } from "./constants";
-import { Trait, decodedSignature } from "./interfaces";
+import { Post, Trait, UserProfileBasic, decodedSignature } from "./interfaces";
 import client from "../apollo-client";
 import Web3 from "web3";
 import BN from "bn.js";
@@ -46,6 +48,7 @@ export async function getPharmacyData() {
 		console.error(error);
 	}
 }
+
 export async function getUserBackPack(walletAddress: String) {
 	const walletAddressForAPI = convertToStandardWalletAddress(
 		walletAddress.toString()
@@ -455,7 +458,30 @@ export async function createPost(
 		console.error("Error:", error);
 	}
 }
-
+export async function LikePost(postId: number) {
+	const response = await fetch(
+		`${STARKPILL_SOCIAL_API_ENDPOINT}/account/likePost/${postId}`,
+		{
+			method: "POST",
+			headers: {
+				Authorization: "bearer " + localStorage.getItem("access_token"),
+			},
+		}
+	);
+	return response;
+}
+export async function UnlikePost(postId: number) {
+	const response = await fetch(
+		`${STARKPILL_SOCIAL_API_ENDPOINT}/account/unlikePost/${postId}`,
+		{
+			method: "DELETE",
+			headers: {
+				Authorization: "bearer " + localStorage.getItem("access_token"),
+			},
+		}
+	);
+	return response;
+}
 //update PFP
 //endpoint /account/updateInfo
 export async function updateProfilePicture(tokenId: number) {
