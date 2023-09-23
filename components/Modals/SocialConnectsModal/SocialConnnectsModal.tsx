@@ -9,10 +9,11 @@ import {
 	ContentContainer,
 	ListContainer,
 } from "./SocialConnectsModal.styles";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FollowerObject } from "./FollowerObject";
 import { FollowingObject } from "./FollowingObject";
 import { Tab } from "./Tab";
+
 type SocialConnectsModalProps = {
 	onClose: () => void;
 	followers: string[];
@@ -41,10 +42,25 @@ export const SocialConnectsModal = (props: SocialConnectsModalProps) => {
 		{ index: 1, label: "Followers" },
 		{ index: 2, label: "Following" },
 	];
+	const modalRef = useRef<HTMLDivElement>(null);
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (
+				modalRef.current &&
+				!modalRef.current.contains(event.target as Node)
+			) {
+				onClose();
+			}
+		};
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, [modalRef]);
 
 	return (
 		<ModalContainer>
-			<Container>
+			<Container ref={modalRef}>
 				<HeaderContainer>
 					<HeaderContent>
 						<Header>Social connections</Header>

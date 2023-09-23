@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import CloseIcon from "../../../public/SocialConnectsCLOSE.svg";
+import Image from "next/image";
 export const ModalContainer = styled.div`
 	position: fixed;
 	left: 0;
@@ -75,4 +76,13 @@ export const PillContainer = styled.div`
 	padding: 8px 0px;
 	gap: 16px;
 	overflow-y: scroll;
+`;
+
+export const PillImage = styled(Image)`
+	box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, 0.12);
+
+	&:hover {
+		cursor: pointer;
+		transform: scale(1.1);
+	}
 `;

@@ -1,11 +1,22 @@
-import { useState, useEffect } from "react";
-import Image from "next/image";
+import { useState, useEffect, useRef } from "react";
+
 import { FileUploadModal } from "../../Modals/FileUploadModal/FileUploadModal";
 import { removeCoverPhoto, uploadCoverPhoto } from "../../../types/utils";
-import { ActionButton, ActionButtonContainer } from "./CoverPhotoSection.style";
+import {
+	ActionButton,
+	ActionButtonContainer,
+	EditPicIcon,
+} from "./CoverPhotoSection.style";
 import { ActionModal } from "../../UnfollowModal/ActionModal";
 import { Action } from "../../../types/interfaces";
 import { useLoader } from "../../Provider/LoaderProvider";
+
+import {
+	MenuContainer,
+	MenuOption,
+	RemovePhoto,
+	UploadPhoto,
+} from "../../Modals/EditCoverMenu/EditCoverMenu.styles";
 
 interface Props {
 	imageUrl: string | null;
@@ -34,6 +45,7 @@ export const CoverPhotoSection = ({
 		null
 	);
 	const [showConfirmModal, setShowConfirmModal] = useState(false);
+	const [showEditCoverMenu, setShowEditCoverMenu] = useState(false);
 
 	useEffect(() => {
 		const handleMouseMove = (event: MouseEvent) => {
@@ -62,6 +74,18 @@ export const CoverPhotoSection = ({
 		setDistanceX(mousePos.x - imageCenter.x);
 		setDistanceY(mousePos.y - imageCenter.y);
 	};
+	const menuRef = useRef<HTMLDivElement>(null);
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+				setShowEditCoverMenu(false);
+			}
+		};
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, [showEditCoverMenu]);
 
 	const handleMouseUp = () => {
 		setOnImage(false);
@@ -73,8 +97,15 @@ export const CoverPhotoSection = ({
 		}
 	};
 
+	// const handleEditButtonClick = () => {
+	// 	setShowUploadImageModal(true);
+	// };
 	const handleEditButtonClick = () => {
+		setShowEditCoverMenu(!showEditCoverMenu);
+	};
+	const handleUploadPhotoClick = () => {
 		setShowUploadImageModal(true);
+		setShowEditCoverMenu(false);
 	};
 	const handleSaveButtonClick = async () => {
 		showLoader();
@@ -120,12 +151,22 @@ export const CoverPhotoSection = ({
 					}}>
 					{!isViewingOwnProfile ? null : (
 						<ActionButtonContainer>
-							{imageUrl && (
+							{/* {imageUrl && (
 								<ActionButton onClick={() => setShowConfirmModal(true)}>
 									Remove
 								</ActionButton>
+							)} */}
+							{imageUrl ? (
+								<ActionButton onClick={handleEditButtonClick}>
+									<EditPicIcon />
+									Edit cover photo
+								</ActionButton>
+							) : (
+								<ActionButton onClick={handleUploadPhotoClick}>
+									<EditPicIcon />
+									Upload cover photo
+								</ActionButton>
 							)}
-							<ActionButton onClick={handleEditButtonClick}>Edit</ActionButton>
 						</ActionButtonContainer>
 					)}
 					<FileUploadModal
@@ -142,6 +183,20 @@ export const CoverPhotoSection = ({
 						handleAction={handleRemoveCoverPhoto}
 						actionIndex={Action.RemoveCoverPhoto}
 					/>
+				)}
+				{imageUrl && showEditCoverMenu && (
+					<MenuContainer ref={menuRef}>
+						<MenuOption onClick={handleUploadPhotoClick}>
+							<UploadPhoto />
+							Upload photo
+						</MenuOption>
+						{imageUrl && (
+							<MenuOption onClick={() => setShowConfirmModal(true)}>
+								<RemovePhoto />
+								Remove
+							</MenuOption>
+						)}
+					</MenuContainer>
 				)}
 			</>
 		);

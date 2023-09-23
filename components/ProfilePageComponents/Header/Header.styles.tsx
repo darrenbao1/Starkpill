@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
+import Edit from "../../../public/EditPicIcon.svg";
 
 export const Container = styled.div`
 	display: flex;
@@ -111,6 +112,7 @@ export const EditProfileButton = styled.button`
 	margin-left: 40px;
 	&:hover {
 		cursor: pointer;
+		background: #ffeaea;
 	}
 `;
 
@@ -118,4 +120,18 @@ export const FollowButtonWrapper = styled.div`
 	display: flex;
 	margin-top: 40px;
 	margin-left: 40px;
+`;
+export const ProfilePicWrapper = styled.div`
+	display: flex;
+`;
+export const EditPic = styled(Edit)`
+	display: flex;
+
+	position: absolute;
+	top: 21.3rem;
+	left: 11.4rem;
+	&:hover {
+		cursor: pointer;
+		opacity: 0.7;
+	}
 `;
