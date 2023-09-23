@@ -1,5 +1,5 @@
 import EmojiPicker, { EmojiClickData, Emoji } from "emoji-picker-react";
-import { useState } from "react";
+
 import styles from "../../../styles/EmojiSelection.module.css";
 import { useRef, useEffect } from "react";
 
@@ -29,7 +29,7 @@ export const EmojiSelectionModal = (props: Props) => {
 		return () => {
 			document.removeEventListener("mousedown", handleClickOutside);
 		};
-	}, [props.showEmojiModal]);
+	}, [props.showEmojiModal, close]);
 
 	if (!props.showEmojiModal) {
 		return null;

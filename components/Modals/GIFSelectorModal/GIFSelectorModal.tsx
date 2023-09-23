@@ -4,7 +4,7 @@ import {
 	Wrapper,
 	CloseButton,
 } from "./GIFSelectorModal.styles";
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 
 import GifPicker, { TenorImage } from "gif-picker-react";
 import { getTenorApiKey } from "../../../types/utils";
@@ -15,9 +15,11 @@ interface Props {
 	close: () => void;
 }
 export const GifSelectorModal = (props: Props) => {
+	const { showGIFModal, close, onSelect } = props;
+
 	const modalRef = useRef<HTMLDivElement>(null);
 	function handleGifClick(gif: TenorImage) {
-		props.onSelect(gif);
+		onSelect(gif);
 	}
 	useEffect(() => {
 		function handleClickOutside(event: MouseEvent) {
@@ -25,16 +27,16 @@ export const GifSelectorModal = (props: Props) => {
 				modalRef.current &&
 				!modalRef.current.contains(event.target as Node)
 			) {
-				props.close();
+				close();
 			}
 		}
 		document.addEventListener("mousedown", handleClickOutside);
 		return () => {
 			document.removeEventListener("mousedown", handleClickOutside);
 		};
-	}, [props.showGIFModal]);
+	}, [showGIFModal]);
 
-	if (!props.showGIFModal) {
+	if (!showGIFModal) {
 		return null;
 	}
 

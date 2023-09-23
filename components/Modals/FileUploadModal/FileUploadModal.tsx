@@ -21,7 +21,6 @@ interface Props {
 	close: () => void;
 }
 export const FileUploadModal = (props: Props) => {
-	//destruture props
 	const modalRef = useRef<HTMLDivElement>(null);
 	const { setSelectedFiles, selectedFiles, showUploadImageModal, close } =
 		props;
@@ -40,7 +39,7 @@ export const FileUploadModal = (props: Props) => {
 				modalRef.current &&
 				!modalRef.current.contains(event.target as Node)
 			) {
-				props.close();
+				close();
 			}
 		}
 		document.addEventListener("mousedown", handleClickOutside);

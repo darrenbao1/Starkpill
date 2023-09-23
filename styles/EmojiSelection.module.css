@@ -9,7 +9,7 @@
 	position: absolute;
 	margin-top: 34px;
 	margin-left: 65px;
-	z-index: 0;
+	z-index: 5;
 }
 .EmojiSelectionModal::before {
 	content: "";

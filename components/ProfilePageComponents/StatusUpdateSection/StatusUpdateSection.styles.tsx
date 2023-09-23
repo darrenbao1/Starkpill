@@ -23,6 +23,7 @@ export const ProfilePic = styled(Image)`
 	border-radius: 50%;
 	width: 50px;
 	height: 50px;
+	box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
 `;
 
 export const StatusUpdateInput = styled.textarea`
