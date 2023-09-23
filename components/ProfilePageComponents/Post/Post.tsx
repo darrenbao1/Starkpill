@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
 	CaptionContainer,
 	CommentIcon,
@@ -41,15 +41,47 @@ export const Post = (props: Props) => {
 	const [profilePictureUrl, setProfilePictureUrl] = useState<string | null>(
 		null
 	);
+
+	// First query
 	const { data: postResult, refetch: refetchPost } = useQuery(GET_POST_BY_ID, {
 		variables: { postId: postMinimal.id },
 	});
-	const { data: profileResult } = useQuery(GET_USER_PROFILE_BASIC, {
-		variables: { address: postResult?.postById?.authorAddress },
-	});
 
 	const post: PostObject = postResult?.postById;
+
+	// Use skip option for the second query
+	const { data: profileResult } = useQuery(GET_USER_PROFILE_BASIC, {
+		variables: { address: post?.authorAddress },
+		skip: !post,
+	});
+
 	const profile: UserProfileBasic = profileResult?.user;
+
+	useEffect(() => {
+		const fetchProfilePicture = async () => {
+			try {
+				const imageUrl = await getTokenImage(profile?.profilePictureTokenId);
+				setProfilePictureUrl(imageUrl);
+			} catch (error) {
+				console.error("Error fetching profile picture:", error);
+			}
+		};
+
+		if (profile?.profilePictureTokenId) {
+			fetchProfilePicture();
+		}
+	}, [profile]);
+
+	if (!post || !profile) {
+		return <div>Loading...</div>;
+	}
+
+	const loggedInUserAddress = localStorage.getItem("walletAddress");
+	if (!loggedInUserAddress) {
+		return <div>Wallet not connected</div>;
+	}
+
+	const isLiked = post.likedByAddresses.includes(loggedInUserAddress);
 
 	let gridColumns = "1fr";
 	if (post?.images) {
@@ -71,24 +103,6 @@ export const Post = (props: Props) => {
 		await UnlikePost(post?.id);
 		refetchPost();
 	};
-
-	if (!post || !profile) {
-		return <div>Loading...</div>;
-	}
-	const fetchProfilePicture = async () => {
-		try {
-			const imageUrl = await getTokenImage(profile.profilePictureTokenId);
-			setProfilePictureUrl(imageUrl);
-		} catch (error) {
-			console.error("Error fetching profile picture:", error);
-		}
-	};
-	fetchProfilePicture();
-	const loggedInUserAddress = localStorage.getItem("walletAddress");
-	if (!loggedInUserAddress) {
-		return <div>Wallet not connected</div>;
-	}
-	const isLiked = post.likedByAddresses.includes(loggedInUserAddress);
 	return (
 		<PostContainer>
 			<ProfilePictureContainer>

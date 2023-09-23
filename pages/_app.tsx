@@ -21,6 +21,7 @@ import { arbitrum, mainnet, polygon } from "wagmi/chains";
 
 import { getWeb3ConnectId } from "../types/utils";
 import { SessionProvider } from "next-auth/react";
+import { LoaderProvider } from "../components/Provider/LoaderProvider";
 
 const chains = [arbitrum, mainnet, polygon];
 const projectId = getWeb3ConnectId();
@@ -48,23 +49,25 @@ export default function App({
 		<div style={{ position: "fixed" }}>
 			<Provider store={store}>
 				<SessionProvider session={session}>
-					<WagmiConfig config={wagmiConfig}>
-						<StarknetConfig connectors={connectors} autoConnect={true}>
-							<ApolloProvider client={client}>
-								<Head>
-									<link rel="icon" href="/starkpill.PNG"></link>
-									<title> getStarkpilled </title>
-								</Head>
+					<LoaderProvider>
+						<WagmiConfig config={wagmiConfig}>
+							<StarknetConfig connectors={connectors} autoConnect={true}>
+								<ApolloProvider client={client}>
+									<Head>
+										<link rel="icon" href="/starkpill.PNG"></link>
+										<title> getStarkpilled </title>
+									</Head>
 
-								<ThemeProvider theme={StarkpillTheme}>
-									<Navbar />
-									<Component {...pageProps} />
+									<ThemeProvider theme={StarkpillTheme}>
+										<Navbar />
+										<Component {...pageProps} />
 
-									<Toast />
-								</ThemeProvider>
-							</ApolloProvider>
-						</StarknetConfig>
-					</WagmiConfig>
+										<Toast />
+									</ThemeProvider>
+								</ApolloProvider>
+							</StarknetConfig>
+						</WagmiConfig>
+					</LoaderProvider>
 				</SessionProvider>
 			</Provider>
 			<Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
