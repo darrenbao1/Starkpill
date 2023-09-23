@@ -7,6 +7,7 @@ import {
 	Subtitle,
 	CloseButton,
 	PillContainer,
+	HeaderContainer,
 } from "./ProfilePictModal.style";
 import { updateProfilePicture } from "../../../types/utils";
 import Image from "next/image";
@@ -42,18 +43,20 @@ export const ProfilePictModal = ({ ownerAddress, close, refetch }: Props) => {
 		<ModalContainer>
 			<Container>
 				<CloseButton onClick={close} />
-				<Title>Set Profile Picture</Title>
-				<Subtitle>Select from pills you own</Subtitle>
+				<HeaderContainer>
+					<Title>Set profile picture </Title>
+				</HeaderContainer>
+
 				<PillContainer>
 					{userTokens.map((token: any) => {
 						return (
 							<div onClick={() => handlePillClick(token.id)} key={token.id}>
 								<Image
 									src={token.metadata.imageUrl}
-									width={100}
-									height={100}
+									width={147}
+									height={153}
 									alt={token.id}
-									style={{ borderRadius: "50%" }}
+									style={{ boxShadow: "1px 2px 4px 1px rgba(0, 0, 0, 0.12)" }}
 								/>
 							</div>
 						);

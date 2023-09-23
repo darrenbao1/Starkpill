@@ -20,6 +20,8 @@
 // 	UserFace,
 // } from "../styles/Testing.styles";
 
+import { Loader } from "../components/Loader/Loader";
+
 // type ChatLogEntry = {
 // 	user: string;
 // 	text: string;
@@ -115,6 +117,11 @@
 // };
 
 // export default ChatBox;
+
 export default function Testing() {
-	return <></>;
+	return (
+		<>
+			<Loader />
+		</>
+	);
 }

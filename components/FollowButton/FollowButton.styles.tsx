@@ -24,4 +24,5 @@ export const StyledButton = styled.button<ButtonProps>`
 	&:hover {
 		background-color: ${(props) => (props.isFollowing ? "#FFEAEA" : "#FF4F0A")};
 	}
+	z-index: 2;
 `;

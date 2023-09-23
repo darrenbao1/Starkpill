@@ -14,6 +14,7 @@ import {
 	ProfileContainer,
 	ProfileImageDisplay,
 	ProfileNameContainer,
+	ProfilePicNameWrapperClickable,
 } from "./SocialConnectsModal.styles";
 import { ActionModal } from "../../UnfollowModal/ActionModal";
 import { FollowButton } from "../../FollowButton/FollowButton";
@@ -81,7 +82,7 @@ export const FollowingObject = (props: Props) => {
 	const isFollowing = viewerProfile.following.includes(walletAddress);
 	return (
 		<>
-			<ProfileContainer key={profile.address} onClick={openOwnerAddressLink}>
+			<ProfileContainer key={profile.address}>
 				<ProfileImageDisplay
 					src={profilePictureUrl}
 					width={58}
@@ -98,6 +99,7 @@ export const FollowingObject = (props: Props) => {
 						</DisplayName>
 						<HandleName>{profile.twitterHandle}</HandleName>
 					</ProfileNameContainer>
+
 					{profile.address !== viewerWalletAddress ? (
 						<FollowButton
 							refetch={refetchViewerData}
