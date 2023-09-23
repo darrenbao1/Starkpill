@@ -1,10 +1,13 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import GIFicon from "../../../public/CommentGIF.svg";
 import EnterIcon from "../../../public/EnterMessageIcon.svg";
 import CloseIcon from "../../../public/SocialConnectsCLOSE.svg";
+import InsertEmojiSVG from "../../../public/InsertEMOJI.svg";
+import InsertGIFSVG from "../../../public/InsertGIF.svg";
+import UploadPicSVG from "../../../public/UploadPictureIcon.svg";
 export const Wrapper = styled.div`
 	display: flex;
-	background: rgba(0, 0, 0, 0.75);
+	background: rgba(0, 0, 0, 0.1);
 	backdrop-filter: blur(2px);
 	position: fixed;
 	height: 100vh;
@@ -107,11 +110,54 @@ export const GIFIconContainer = styled(GIFicon)`
 		cursor: pointer;
 	}
 `;
-
-export const Enter = styled(EnterIcon)`
+interface ButtonProps {
+	disabled: boolean;
+}
+export const Enter = styled(EnterIcon)<ButtonProps>`
 	display: flex;
 	margin-bottom: 4px;
 	&:hover {
 		cursor: pointer;
 	}
+	path {
+		stroke: ${(props) => (props.disabled ? "#FF4F0A" : "grey")};
+	}
+`;
+const IconStyles = css`
+	display: flex;
+	width: 22px;
+	height: 22px;
+
+	&:hover {
+		cursor: pointer;
+	}
+`;
+export const UploadPicIcon = styled(UploadPicSVG)`
+	${IconStyles}
+	path {
+		stroke: grey;
+	}
+	&:hover {
+		cursor: not-allowed;
+	}
+`;
+
+export const InsertGIFIcon = styled(InsertGIFSVG)`
+	${IconStyles}
+	path {
+		stroke: grey;
+	}
+	&:hover {
+		cursor: not-allowed;
+	}
+`;
+export const InsertEmojiIcon = styled(InsertEmojiSVG)`
+	${IconStyles}
+`;
+export const IconsWrapper = styled.div`
+	display: flex;
+	flex-direction: row;
+	gap: 18px;
+	width: 100%;
+	margin-top: 9px;
 `;

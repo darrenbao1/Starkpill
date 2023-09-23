@@ -4,7 +4,7 @@ import {
 	removeFollower,
 	shortenAddress,
 } from "../../../types/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Action, UserProfileBasic } from "../../../types/interfaces";
 import { GET_USER_PROFILE_BASIC } from "../../../types/constants";
 import {
@@ -37,22 +37,37 @@ export const FollowingObject = (props: Props) => {
 	const [profilePictureUrl, setProfilePictureUrl] = useState("");
 	const [showActionModal, setShowActionModal] = useState(false);
 	const { walletAddress, refetch, closeModal } = props;
-	const { data } = useQuery<{ user: UserProfileBasic }>(
+	const { data } = useQuery(GET_USER_PROFILE_BASIC, {
+		variables: {
+			address: walletAddress,
+		},
+	});
+	const viewerWalletAddress = localStorage.getItem("walletAddress");
+	const { data: viewerData, refetch: refetchViewerData } = useQuery(
 		GET_USER_PROFILE_BASIC,
 		{
 			variables: {
-				address: walletAddress,
+				address: viewerWalletAddress,
 			},
 		}
 	);
-	const viewerWalletAddress = localStorage.getItem("walletAddress");
-	const { data: viewerData, refetch: refetchViewerData } = useQuery<{
-		user: UserProfileBasic;
-	}>(GET_USER_PROFILE_BASIC, {
-		variables: {
-			address: viewerWalletAddress,
-		},
-	});
+	const profile: UserProfileBasic = data?.user;
+	const viewerProfile: UserProfileBasic = viewerData?.user;
+	useEffect(() => {
+		const fetchProfilePicture = async () => {
+			try {
+				const imageUrl = await getTokenImage(profile?.profilePictureTokenId);
+				console.log("image url", imageUrl);
+				setProfilePictureUrl(imageUrl);
+			} catch (error) {
+				console.error("Error fetching profile picture:", error);
+			}
+		};
+
+		if (profile?.profilePictureTokenId) {
+			fetchProfilePicture();
+		}
+	}, [profile]);
 	if (!viewerData || !viewerWalletAddress) {
 		return <div>wallet not connected cannot view</div>;
 	}
@@ -61,18 +76,6 @@ export const FollowingObject = (props: Props) => {
 		//TODO return loading.
 		return <div></div>;
 	}
-	const profile = data.user;
-	const viewerProfile = viewerData.user;
-	//image URL =
-	const fetchProfilePicture = async () => {
-		try {
-			const imageUrl = await getTokenImage(profile.profilePictureTokenId);
-			setProfilePictureUrl(imageUrl);
-		} catch (error) {
-			console.error("Error fetching profile picture:", error);
-		}
-	};
-	fetchProfilePicture();
 
 	const handleRemoveFollower = async () => {
 		await removeFollower(walletAddress).finally(() => {
@@ -84,7 +87,7 @@ export const FollowingObject = (props: Props) => {
 		<>
 			<ProfileContainer key={profile.address}>
 				<ProfileImageDisplay
-					src={profilePictureUrl}
+					src={profilePictureUrl ? profilePictureUrl : "/basepill.png"}
 					width={58}
 					height={50}
 					alt=""

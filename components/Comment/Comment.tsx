@@ -6,25 +6,67 @@ import {
 	ProfilePictureContainer,
 } from "../ProfilePageComponents/Post/Post.styles";
 import { ProfilePic } from "../ProfilePageComponents/StatusUpdateSection/StatusUpdateSection.styles";
+import {
+	Comment as CommentObject,
+	UserProfileBasic,
+} from "../../types/interfaces";
+import {
+	convertUnixToDate,
+	getTokenImage,
+	shortAddressForModal,
+} from "../../types/utils";
+import { useQuery } from "@apollo/client";
+import { GET_USER_PROFILE_BASIC } from "../../types/constants";
+import { useEffect, useState } from "react";
+interface Props {
+	CommentObject: CommentObject;
+}
 
-export const Comment = () => {
+export const Comment = ({ CommentObject }: Props) => {
+	const { data: profileResult } = useQuery(GET_USER_PROFILE_BASIC, {
+		variables: { address: CommentObject?.authorAddress },
+		skip: !CommentObject,
+	});
+	const [profilePictureUrl, setProfilePictureUrl] = useState<string | null>(
+		null
+	);
+	const profile: UserProfileBasic = profileResult?.user;
+	useEffect(() => {
+		const fetchProfilePicture = async () => {
+			try {
+				const imageUrl = await getTokenImage(profile?.profilePictureTokenId);
+				setProfilePictureUrl(imageUrl);
+			} catch (error) {
+				console.error("Error fetching profile picture:", error);
+			}
+		};
+
+		if (profile?.profilePictureTokenId) {
+			fetchProfilePicture();
+		}
+	}, [profile]);
 	return (
 		<>
 			<PostContainer>
 				<ProfilePictureContainer>
-					<ProfilePic src="/Base_StarkPill.PNG" width={56} height={56} alt="" />
+					<ProfilePic
+						src={profilePictureUrl ? profilePictureUrl : "/basepill.png"}
+						width={56}
+						height={56}
+						alt=""
+					/>
 				</ProfilePictureContainer>
 				<PostContentContainer>
 					<NamesContainer>
-						<h1>Name of profile</h1>
-						<h2>@handlename</h2>
-						{/* <h2>• *timestamp here* </h2>   */}
+						<h1>
+							{profile.username
+								? profile.username
+								: shortAddressForModal(profile.address)}
+						</h1>
+						<h2>{profile.twitterHandle}</h2>
+						<h2>• {convertUnixToDate(Number(CommentObject.createdAt))}</h2>
 					</NamesContainer>
-					<CaptionContainer>
-						Impressive! Though it seems the drag feature could be improved. But
-						overall it looks incredible. You’ve nailed the design and the
-						responsiveness at various breakpoints works really well.
-					</CaptionContainer>
+					<CaptionContainer>{CommentObject.text}</CaptionContainer>
 				</PostContentContainer>
 			</PostContainer>
 		</>

@@ -119,9 +119,5 @@ import { PostKebabMenu } from "../components/Modals/PostKebabMenu";
 // export default ChatBox;
 
 export default function Testing() {
-	return (
-		<>
-			<PostKebabMenu />
-		</>
-	);
+	return <></>;
 }

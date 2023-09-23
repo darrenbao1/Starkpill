@@ -513,3 +513,18 @@ export async function getTokenImage(tokenId: number | null) {
 		console.error(error);
 	}
 }
+//endpoint /account/createComment/:postId
+export async function createComment(postId: number, text: string) {
+	const response = await fetch(
+		`${STARKPILL_SOCIAL_API_ENDPOINT}/account/createComment/${postId}`,
+		{
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: "bearer " + localStorage.getItem("access_token"),
+			},
+			body: JSON.stringify({ text }),
+		}
+	);
+	return response;
+}

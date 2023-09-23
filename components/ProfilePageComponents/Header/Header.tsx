@@ -20,6 +20,7 @@ import { ProfilePictModal } from "../../Modals/SelectProfilePictureModal/Profile
 import { CoverPhotoSection } from "../CoverPhotoSection/CoverPhotoSection";
 import { TwitterSignIn } from "../../TwitterSignIn";
 import { ProfilePageWrapper } from "../../../styles/ProfilePage.style";
+import { EditProfileModal } from "../EditProfileModal/EditProfileModal";
 
 interface Props {
 	profilePictureUrl: string;
@@ -47,6 +48,7 @@ export const Header = (props: Props) => {
 	const [showProfilePictModal, setShowProfilePictModal] = useState(false);
 	const [showSocialConnectsModal, setShowSocialConnectsModal] = useState(false);
 	const [showFollowers, setShowFollowers] = useState(false);
+	const [showEditProfileModal, setShowEditProfileModal] = useState(false);
 	//index 1 is to show followers and index 2 is to show following
 	const handleFollowContainerClick = (index: number) => {
 		if (index === 1) setShowFollowers(true);
@@ -128,7 +130,9 @@ export const Header = (props: Props) => {
 						</FollowContainer>
 					</FollowWrapper>
 					{isViewingOwnProfile ? (
-						<EditProfileButton>Edit Profile</EditProfileButton>
+						<EditProfileButton onClick={() => setShowEditProfileModal(true)}>
+							Edit Profile
+						</EditProfileButton>
 					) : (
 						<FollowButtonWrapper>
 							<FollowButton
@@ -148,6 +152,22 @@ export const Header = (props: Props) => {
 					onClose={() => setShowSocialConnectsModal(false)}
 					showFollowers={showFollowers}
 					refetch={refetch}
+				/>
+			)}
+			{showProfilePictModal && (
+				<ProfilePictModal
+					ownerAddress={props.ownerAddress}
+					close={() => setShowProfilePictModal(false)}
+					refetch={refetch}
+				/>
+			)}
+
+			{showEditProfileModal && isViewingOwnProfile && (
+				<EditProfileModal
+					userObject={profileObject}
+					closeModal={() => setShowEditProfileModal(false)}
+					refetch={refetch}
+					profilePictureUrl={profilePictureUrl}
 				/>
 			)}
 		</Container>
