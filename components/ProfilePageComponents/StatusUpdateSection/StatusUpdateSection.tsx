@@ -1,5 +1,5 @@
 import { EmojiSelectionModal } from "../../Modals/EmojiSelectionModal/EmojiSelectionModal";
-import { createPost } from "../../../types/utils";
+import { GetResponseMessage, createPost } from "../../../types/utils";
 import {
 	StatusUpdateSectionContainer,
 	ProfilePic,
@@ -19,6 +19,7 @@ import Image from "next/image";
 import { FileUploadModal } from "../../Modals/FileUploadModal/FileUploadModal";
 import { PreviewImage } from "./PreviewImage/PreviewImage";
 import { useLoader } from "../../Provider/LoaderProvider";
+import { useToast } from "../../Provider/ToastProvider";
 
 interface Props {
 	profilePictureUrl: string;
@@ -83,10 +84,11 @@ export const StatusUpdateSection = (props: Props) => {
 	const close = () => {
 		setShowEmojiModal(false);
 	};
-
+	const { showToast } = useToast();
 	const handlePostButtonClick = async () => {
 		showLoader();
-		await createPost(inputValue, selectedFiles, gifArray).then(() => {
+		await createPost(inputValue, selectedFiles, gifArray).then((message) => {
+			showToast(GetResponseMessage(message));
 			setInputValue("");
 			setSelectedFiles([]);
 			setGifArray([]);

@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { createComment, getTokenImage } from "../../../types/utils";
+import {
+	GetResponseMessage,
+	createComment,
+	getTokenImage,
+} from "../../../types/utils";
 import {
 	ProfilePictureContainer,
 	ProfilePictureContainerAddComment,
@@ -22,6 +26,7 @@ import { useQuery } from "@apollo/client";
 import { UserProfileBasic } from "../../../types/interfaces";
 import { GET_USER_PROFILE_BASIC } from "../../../types/constants";
 import { EmojiSelectionModal } from "../EmojiSelectionModal/EmojiSelectionModal";
+import { useToast } from "../../Provider/ToastProvider";
 
 interface Props {
 	postId: number;
@@ -39,7 +44,6 @@ export const AddComments = ({ postId, refetch }: Props) => {
 		},
 	});
 	const profile: UserProfileBasic = viewerData?.user;
-
 	useEffect(() => {
 		const fetchProfilePicture = async () => {
 			try {
@@ -61,12 +65,13 @@ export const AddComments = ({ postId, refetch }: Props) => {
 	const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
 		setCommentText(event.target.value);
 	};
-
+	const { showToast } = useToast();
 	const addCommentClicked = async () => {
 		showLoader();
 		if (commentText.trim()) {
 			// only proceed if commentText is not just whitespace
-			const response = await createComment(postId, commentText).then(() => {
+			await createComment(postId, commentText).then((message) => {
+				showToast(GetResponseMessage(message));
 				refetch();
 				hideLoader();
 				setCommentText("");
@@ -81,7 +86,7 @@ export const AddComments = ({ postId, refetch }: Props) => {
 		<AddCommentContainer>
 			<ProfilePictureContainerAddComment>
 				<ProfilePic
-					src={profilePictureUrl ? profilePictureUrl : "/basepill/png"}
+					src={profilePictureUrl ? profilePictureUrl : "/basepill.png"}
 					width={56}
 					height={56}
 					alt=""

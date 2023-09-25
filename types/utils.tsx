@@ -10,7 +10,13 @@ import {
 	STARKPILL_CONTRACT_ADDRESS,
 	STARKPILL_SOCIAL_API_ENDPOINT,
 } from "./constants";
-import { Post, Trait, UserProfileBasic, decodedSignature } from "./interfaces";
+import {
+	Post,
+	Status,
+	Trait,
+	UserProfileBasic,
+	decodedSignature,
+} from "./interfaces";
 import client from "../apollo-client";
 import Web3 from "web3";
 import BN from "bn.js";
@@ -446,8 +452,6 @@ export async function createPost(
 
 		if (response.ok) {
 			const data = await response.json();
-			// Handle the response data as needed
-			console.log("Response data:", data);
 		} else {
 			// Handle the error response
 			console.error("API call failed");
@@ -526,6 +530,10 @@ export async function createComment(postId: number, text: string) {
 			body: JSON.stringify({ text }),
 		}
 	);
+	if (!response.ok) {
+		const message = await response.text(); // or response.json() if your server returns JSON
+		throw new Error(message);
+	}
 	return response;
 }
 //endpoint /account/updateInfo
@@ -553,5 +561,25 @@ export async function UpdateInfo(
 			}),
 		}
 	);
+
 	return response;
+}
+//util function that gets the api response and get the status code.
+export function GetResponseMessage(response: any) {
+	switch (response.status) {
+		case Status.Success:
+			return "Success";
+		case Status.SuccessCreate:
+			return "Success";
+		case Status.BadRequest:
+			return "Bad Request, please check your input";
+		case Status.Unauthorized:
+			return "Unauthorized, Please reconnect wallet";
+		case Status.NotFound:
+			return "Not Found, please contact support";
+		case Status.InternalServerError:
+			return "Something went wrong, please try again later";
+		default:
+			return "Unknown Error, please contact support";
+	}
 }

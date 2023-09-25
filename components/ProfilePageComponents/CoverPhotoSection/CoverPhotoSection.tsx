@@ -1,7 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 
 import { FileUploadModal } from "../../Modals/FileUploadModal/FileUploadModal";
-import { removeCoverPhoto, uploadCoverPhoto } from "../../../types/utils";
+import {
+	GetResponseMessage,
+	removeCoverPhoto,
+	uploadCoverPhoto,
+} from "../../../types/utils";
 import {
 	ActionButton,
 	ActionButtonContainer,
@@ -17,6 +21,7 @@ import {
 	RemovePhoto,
 	UploadPhoto,
 } from "../../Modals/EditCoverMenu/EditCoverMenu.styles";
+import { useToast } from "../../Provider/ToastProvider";
 
 interface Props {
 	imageUrl: string | null;
@@ -34,6 +39,7 @@ export const CoverPhotoSection = ({
 	isViewingOwnProfile,
 }: Props) => {
 	const { showLoader, hideLoader } = useLoader();
+	const { showToast } = useToast();
 	const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 	const [imageCenter, setImageCenter] = useState({ x: 0, y: 0 });
 	const [onImage, setOnImage] = useState(false);
@@ -109,23 +115,23 @@ export const CoverPhotoSection = ({
 	};
 	const handleSaveButtonClick = async () => {
 		showLoader();
-		const response = await uploadCoverPhoto(
-			imageCenter.x,
-			imageCenter.y,
-			selectedFiles[0]
-		).then(() => {
-			refetch();
-			setSelectedFiles([]);
-			hideLoader();
-		});
+		await uploadCoverPhoto(imageCenter.x, imageCenter.y, selectedFiles[0]).then(
+			(message) => {
+				showToast(GetResponseMessage(message));
+				refetch();
+				setSelectedFiles([]);
+				hideLoader();
+			}
+		);
 	};
 	const handleCancelButtonClick = () => {
 		setSelectedFiles([]);
 		setImageCenter({ x: 0, y: 0 });
 	};
-	const handleRemoveCoverPhoto = () => {
+	const handleRemoveCoverPhoto = async () => {
 		showLoader();
-		const response = removeCoverPhoto().then(() => {
+		await removeCoverPhoto().then((message) => {
+			showToast(GetResponseMessage(message));
 			refetch();
 			setShowConfirmModal(false);
 			hideLoader();

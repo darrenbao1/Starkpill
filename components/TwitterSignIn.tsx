@@ -1,8 +1,14 @@
 import { signIn, signOut, useSession } from "next-auth/react";
-import { removeTwitterHandle, setTwitterHandle } from "../types/utils";
+import {
+	GetResponseMessage,
+	removeTwitterHandle,
+	setTwitterHandle,
+} from "../types/utils";
 import { getCookie, setCookie } from "typescript-cookie";
 import styled from "styled-components";
 import LinkIcon from "../public/LinkwithTwt.svg";
+import { useToast } from "./Provider/ToastProvider";
+import { useLoader } from "./Provider/LoaderProvider";
 interface Props {
 	isLinked: boolean;
 	refetch: () => void;
@@ -48,6 +54,8 @@ export const TwitterSignIn = (props: Props) => {
 	const { data: session } = useSession();
 	//get access_token from localStorage
 	const access_token = localStorage.getItem("access_token");
+	const { showToast } = useToast();
+	const { showLoader, hideLoader } = useLoader();
 	const handleLinkTwitter = async () => {
 		setCookie(
 			"additionalAuthParams",
@@ -55,11 +63,17 @@ export const TwitterSignIn = (props: Props) => {
 				appPublicKey: access_token,
 			})
 		);
-		const result = await signIn("twitter");
+		showLoader();
+		const result = await signIn("twitter").then((message) => {
+			hideLoader();
+		});
 	};
 
 	const removeTwitter = async () => {
-		await removeTwitterHandle().then(() => {
+		showLoader();
+		await removeTwitterHandle().then((message) => {
+			hideLoader();
+			showToast(GetResponseMessage(message));
 			refetch();
 		});
 	};

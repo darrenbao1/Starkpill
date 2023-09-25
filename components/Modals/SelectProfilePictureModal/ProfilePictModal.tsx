@@ -10,7 +10,8 @@ import {
 	HeaderContainer,
 	PillImage,
 } from "./ProfilePictModal.style";
-import { updateProfilePicture } from "../../../types/utils";
+import { GetResponseMessage, updateProfilePicture } from "../../../types/utils";
+import { useToast } from "../../Provider/ToastProvider";
 
 interface Props {
 	ownerAddress: string;
@@ -18,6 +19,7 @@ interface Props {
 	refetch: () => void;
 }
 export const ProfilePictModal = ({ ownerAddress, close, refetch }: Props) => {
+	const { showToast } = useToast();
 	//graphql query to get user tokens
 	const { data, loading, error } = useQuery(GET_USER_TOKENS_FOR_PROFILE_PICT, {
 		variables: {
@@ -34,8 +36,10 @@ export const ProfilePictModal = ({ ownerAddress, close, refetch }: Props) => {
 		return <div>No data</div>;
 	}
 	const userTokens = data.user.tokens;
+
 	const handlePillClick = async (tokenId: number) => {
-		await updateProfilePicture(tokenId).then(() => {
+		await updateProfilePicture(tokenId).then((message) => {
+			showToast(GetResponseMessage(message));
 			refetch();
 			close();
 		});
