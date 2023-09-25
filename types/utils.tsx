@@ -536,6 +536,20 @@ export async function createComment(postId: number, text: string) {
 	}
 	return response;
 }
+//endpoint /account/deletePost/:postId
+export async function deletePost(postId: number) {
+	const response = await fetch(
+		`${STARKPILL_SOCIAL_API_ENDPOINT}/account/deletePost/${postId}`,
+		{
+			method: "DELETE",
+			headers: {
+				Authorization: `bearer ${localStorage.getItem("access_token")}`,
+			},
+		}
+	);
+	return response;
+}
+
 //endpoint /account/updateInfo
 export async function UpdateInfo(
 	username: string,

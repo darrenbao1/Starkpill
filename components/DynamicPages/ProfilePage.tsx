@@ -107,7 +107,7 @@ const ProfilePage = () => {
 									refetch={refetchUserProfile}
 								/>
 							)}
-							{userProfile && <ContentsSection postArray={userProfile.posts} />}
+							{userProfile && <ContentsSection postArray={userProfile.posts} refetchUserProfile={refetchUserProfile}/>}
 						</LeftContainerWrapper>
 						<RightContainerWrapper>
 							{userProfile?.bio && (

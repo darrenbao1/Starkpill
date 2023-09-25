@@ -19,12 +19,14 @@ interface Props {
 
 	closeModal: () => void;
 	refetch: () => void;
+	refetchUserProfile: () => void;
 }
 export const CommentsModal = ({
 	closeModal,
 	postObject,
 	profileObject,
 	refetch,
+	refetchUserProfile,
 }: Props) => {
 	return (
 		<Wrapper>
@@ -38,7 +40,14 @@ export const CommentsModal = ({
 				</CommentsModalHeader>
 
 				<PostCommentWrapper>
-					<PostUI postMinimal={postObject} isCommentModal={true} />
+					<PostUI
+						postMinimal={postObject}
+						isCommentModal={true}
+						refetchUserProfile={() => {
+							closeModal();
+							refetchUserProfile();
+						}}
+					/>
 					{postObject.comments.map((comment, index) => {
 						return <Comment key={index} CommentObject={comment} />;
 					})}

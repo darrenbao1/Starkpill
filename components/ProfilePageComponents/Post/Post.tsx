@@ -43,6 +43,7 @@ import { useToast } from "../../Provider/ToastProvider";
 interface Props {
 	postMinimal: PostMinimal;
 	isCommentModal?: boolean;
+	refetchUserProfile: () => void;
 }
 
 export const Post = (props: Props) => {
@@ -133,7 +134,7 @@ export const Post = (props: Props) => {
 		setShowKebabMenu(!showKebabMenu);
 		console.log("kebab menu clicked");
 	};
-
+	const isOwnerOfPost = loggedInUserAddress === post.authorAddress;
 	return (
 		<>
 			<PostContainer>
@@ -156,12 +157,20 @@ export const Post = (props: Props) => {
 							<h2>{profile.twitterHandle && profile.twitterHandle}</h2>
 							<h2>•&nbsp;{convertUnixToDate(Number(post.createdAt))} </h2>
 						</NamesContainer>
-						<KebabMenu
-							onClick={() => {
-								handleKebabMenuClick();
-							}}
-						/>
-						{showKebabMenu && <PostKebabMenu />}
+						{isOwnerOfPost && (
+							<KebabMenu
+								onClick={() => {
+									handleKebabMenuClick();
+								}}
+							/>
+						)}
+						{showKebabMenu && (
+							<PostKebabMenu
+								postId={post.id}
+								closeModal={() => setShowKebabMenu(false)}
+								refetch={props.refetchUserProfile}
+							/>
+						)}
 					</NamesKebabWrapper>
 
 					<CaptionContainer>{post.content}</CaptionContainer>
@@ -204,6 +213,7 @@ export const Post = (props: Props) => {
 						profileObject={profile}
 						postObject={post}
 						refetch={refetchPost}
+						refetchUserProfile={props.refetchUserProfile}
 					/>
 				)}
 			</PostContainer>

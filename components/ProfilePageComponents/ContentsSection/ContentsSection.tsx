@@ -9,10 +9,11 @@ import { PostMinimal } from "../../../types/interfaces";
 
 interface Props {
 	postArray: PostMinimal[];
+	refetchUserProfile: () => void;
 }
 
 export const ContentsSection = (props: Props) => {
-	const { postArray } = props;
+	const { postArray, refetchUserProfile } = props;
 	return (
 		<ContentsSectionContainer>
 			<HeaderContainer> Posts</HeaderContainer>
@@ -25,7 +26,13 @@ export const ContentsSection = (props: Props) => {
 			{postArray.map((post, index) => {
 				// if there are no posts, return "No posts yet"
 
-				return <Post postMinimal={post} key={index} />;
+				return (
+					<Post
+						postMinimal={post}
+						key={index}
+						refetchUserProfile={refetchUserProfile}
+					/>
+				);
 			})}
 		</ContentsSectionContainer>
 	);
