@@ -21,6 +21,7 @@ import {
 } from "../../../types/interfaces";
 import { ProfilePic } from "../StatusUpdateSection/StatusUpdateSection.styles";
 import {
+	GetResponseMessage,
 	LikePost,
 	UnlikePost,
 	convertUnixToDate,
@@ -36,6 +37,8 @@ import {
 
 import { PostKebabMenu } from "../../Modals/PostKebabMenu";
 import { CommentsModal } from "../../Modals/CommentsModal";
+import { useLoader } from "../../Provider/LoaderProvider";
+import { useToast } from "../../Provider/ToastProvider";
 
 interface Props {
 	postMinimal: PostMinimal;
@@ -44,7 +47,8 @@ interface Props {
 
 export const Post = (props: Props) => {
 	const [showKebabMenu, setShowKebabMenu] = useState(false);
-
+	const { showLoader, hideLoader } = useLoader();
+	const { showToast } = useToast();
 	const { postMinimal } = props;
 	const [showCommentsModal, setShowCommentsModal] = useState(false);
 	const [profilePictureUrl, setProfilePictureUrl] = useState<string | null>(
@@ -104,13 +108,25 @@ export const Post = (props: Props) => {
 	}
 
 	const handleLikeClicked = async () => {
-		await LikePost(post?.id);
-		refetchPost();
+		showLoader();
+		await LikePost(post?.id).then((message) => {
+			if (GetResponseMessage(message) !== "Success") {
+				showToast(GetResponseMessage(message));
+			}
+			refetchPost();
+			hideLoader();
+		});
 	};
 
 	const handleUnlikeClicked = async () => {
-		await UnlikePost(post?.id);
-		refetchPost();
+		showLoader();
+		await UnlikePost(post?.id).then((message) => {
+			if (GetResponseMessage(message) !== "Success") {
+				showToast(GetResponseMessage(message));
+			}
+			refetchPost();
+			hideLoader();
+		});
 	};
 
 	const handleKebabMenuClick = () => {

@@ -22,6 +22,7 @@ import { arbitrum, mainnet, polygon } from "wagmi/chains";
 import { getWeb3ConnectId } from "../types/utils";
 import { SessionProvider } from "next-auth/react";
 import { LoaderProvider } from "../components/Provider/LoaderProvider";
+import { ToastProvider } from "../components/Provider/ToastProvider";
 
 const chains = [arbitrum, mainnet, polygon];
 const projectId = getWeb3ConnectId();
@@ -50,23 +51,25 @@ export default function App({
 			<Provider store={store}>
 				<SessionProvider session={session}>
 					<LoaderProvider>
-						<WagmiConfig config={wagmiConfig}>
-							<StarknetConfig connectors={connectors} autoConnect={true}>
-								<ApolloProvider client={client}>
-									<Head>
-										<link rel="icon" href="/starkpill.PNG"></link>
-										<title> getStarkpilled </title>
-									</Head>
+						<ToastProvider>
+							<WagmiConfig config={wagmiConfig}>
+								<StarknetConfig connectors={connectors} autoConnect={true}>
+									<ApolloProvider client={client}>
+										<Head>
+											<link rel="icon" href="/starkpill.PNG"></link>
+											<title> getStarkpilled </title>
+										</Head>
 
-									<ThemeProvider theme={StarkpillTheme}>
-										<Navbar />
-										<Component {...pageProps} />
+										<ThemeProvider theme={StarkpillTheme}>
+											<Navbar />
+											<Component {...pageProps} />
 
-										<Toast />
-									</ThemeProvider>
-								</ApolloProvider>
-							</StarknetConfig>
-						</WagmiConfig>
+											<Toast />
+										</ThemeProvider>
+									</ApolloProvider>
+								</StarknetConfig>
+							</WagmiConfig>
+						</ToastProvider>
 					</LoaderProvider>
 				</SessionProvider>
 			</Provider>

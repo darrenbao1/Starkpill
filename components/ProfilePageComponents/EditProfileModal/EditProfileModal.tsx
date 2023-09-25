@@ -20,12 +20,15 @@ import {
 	TitleWordCountWrapper,
 } from "./EditProfileModal.style";
 import {
+	GetResponseMessage,
 	UpdateInfo,
 	removeCoverPhoto,
 	uploadCoverPhoto,
 } from "../../../types/utils";
 import { FileUploadModal } from "../../Modals/FileUploadModal/FileUploadModal";
 import { ActionModal } from "../../UnfollowModal/ActionModal";
+import Image from "next/image";
+import { useToast } from "../../Provider/ToastProvider";
 
 interface Props {
 	userObject: UserProfile;
@@ -83,6 +86,7 @@ export const EditProfileModal = ({
 		editableEnsDomain,
 	]);
 	const { showLoader, hideLoader } = useLoader();
+	const { showToast } = useToast();
 	const handleSaveChanges = async () => {
 		showLoader();
 		await UpdateInfo(
@@ -91,7 +95,8 @@ export const EditProfileModal = ({
 			editableLocation,
 			editableWebsiteUrl,
 			editableEnsDomain
-		).then(() => {
+		).then((message) => {
+			showToast(GetResponseMessage(message));
 			refetch();
 			closeModal();
 			hideLoader();

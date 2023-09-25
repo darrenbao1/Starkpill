@@ -141,3 +141,13 @@ export interface PostMinimal {
 	id: number;
 	authorAddress: string;
 }
+//create an enum to store Status code for the API
+export enum Status {
+	Success = 200,
+	SuccessCreate = 201,
+	BadRequest = 400,
+	Unauthorized = 401,
+	Forbidden = 403,
+	NotFound = 404,
+	InternalServerError = 500,
+}

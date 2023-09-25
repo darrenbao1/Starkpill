@@ -18,6 +18,7 @@ export default async function auth(req, res) {
 				let bearerToken = JSON.parse(
 					req.cookies.additionalAuthParams
 				).appPublicKey;
+
 				const response = await fetch(
 					`https://orca-app-c3df4.ondigitalocean.app/starkpill-api2/account/updateInfo`,
 					{
@@ -29,7 +30,11 @@ export default async function auth(req, res) {
 						body: JSON.stringify({ twitterHandle: "@" + profile.screen_name }),
 					}
 				);
-				return true;
+				if (response.ok) {
+					return true;
+				} else {
+					return "/unauthorized?twitterHandle=@" + profile.screen_name;
+				}
 			},
 		},
 	});
