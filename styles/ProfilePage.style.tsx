@@ -7,6 +7,19 @@ export const ProfilePageWrapper = styled.div`
 	height: 100vh;
 	background-color: #1d1d1d;
 	overflow-y: overlay;
+	&::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: #1d1d1d;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: #ff4f0a;
+		border-radius: 10px;
+		border: 2px solid #1d1d1d;
+	}
 `;
 
 export const ContentWrapper = styled.div`
