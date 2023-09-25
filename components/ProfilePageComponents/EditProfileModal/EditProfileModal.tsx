@@ -16,6 +16,8 @@ import {
 	InputStyle,
 	SaveChangesButton,
 	InputStyleBio,
+	WordCountLimit,
+	TitleWordCountWrapper,
 } from "./EditProfileModal.style";
 import {
 	UpdateInfo,
@@ -24,7 +26,6 @@ import {
 } from "../../../types/utils";
 import { FileUploadModal } from "../../Modals/FileUploadModal/FileUploadModal";
 import { ActionModal } from "../../UnfollowModal/ActionModal";
-import Image from "next/image";
 
 interface Props {
 	userObject: UserProfile;
@@ -50,6 +51,7 @@ export const EditProfileModal = ({
 		websiteUrl,
 		ensDomain,
 	} = userObject;
+
 	const [editableUsername, setEditableUsername] = useState(username || "");
 	const [editableBio, setEditableBio] = useState(bio || "");
 	const [editableLocation, setEditableLocation] = useState(location || "");
@@ -95,6 +97,32 @@ export const EditProfileModal = ({
 			hideLoader();
 		});
 	};
+	const [bioCount, setBioCount] = useState(editableBio.length);
+	const handleBioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setEditableBio(e.target.value);
+		setBioCount(e.target.value.length);
+	};
+	const [userNameCount, setUserNameCount] = useState(editableUsername.length);
+	const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setEditableUsername(e.target.value);
+		setUserNameCount(e.target.value.length);
+	};
+
+	const [locationCount, setLocationCount] = useState(editableLocation.length);
+	const handleLocationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setEditableLocation(e.target.value);
+		setLocationCount(e.target.value.length);
+	};
+	const [websiteCount, setWebsiteCount] = useState(editableWebsiteUrl.length);
+	const handleWebsiteChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setEditableWebsiteUrl(e.target.value);
+		setWebsiteCount(e.target.value.length);
+	};
+	const [ensCount, setEnsCount] = useState(editableEnsDomain.length);
+	const handleEnsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setEditableEnsDomain(e.target.value);
+		setEnsCount(e.target.value.length);
+	};
 	return (
 		<ModalContainer>
 			<Container>
@@ -118,38 +146,58 @@ export const EditProfileModal = ({
 				</ProfilePictureContainer> */}
 				<ContentContainer>
 					<AttributeContainer>
-						<AttributeLabel>Username</AttributeLabel>
+						<TitleWordCountWrapper>
+							<AttributeLabel>Username</AttributeLabel>
+							<WordCountLimit>{userNameCount}/50</WordCountLimit>
+						</TitleWordCountWrapper>
 						<InputStyle
 							value={editableUsername}
-							onChange={(e) => setEditableUsername(e.target.value)}
+							onChange={handleUsernameChange}
+							maxLength={50}
 						/>
 					</AttributeContainer>
 					<AttributeContainer>
-						<AttributeLabel>Bio</AttributeLabel>
+						<TitleWordCountWrapper>
+							<AttributeLabel>Bio</AttributeLabel>
+							<WordCountLimit>{bioCount}/150</WordCountLimit>
+						</TitleWordCountWrapper>
 						<InputStyleBio
 							value={editableBio}
-							onChange={(e) => setEditableBio(e.target.value)}
+							onChange={handleBioChange}
+							maxLength={150}
 						/>
 					</AttributeContainer>
 					<AttributeContainer>
-						<AttributeLabel>Location</AttributeLabel>
+						<TitleWordCountWrapper>
+							<AttributeLabel>Location</AttributeLabel>
+							<WordCountLimit>{locationCount}/30</WordCountLimit>
+						</TitleWordCountWrapper>
 						<InputStyle
 							value={editableLocation}
-							onChange={(e) => setEditableLocation(e.target.value)}
+							onChange={handleLocationChange}
+							maxLength={30}
 						/>
 					</AttributeContainer>
 					<AttributeContainer>
-						<AttributeLabel>Website</AttributeLabel>
+						<TitleWordCountWrapper>
+							<AttributeLabel>Website</AttributeLabel>
+							<WordCountLimit>{websiteCount}/100</WordCountLimit>
+						</TitleWordCountWrapper>
 						<InputStyle
 							value={editableWebsiteUrl}
-							onChange={(e) => setEditableWebsiteUrl(e.target.value)}
+							onChange={handleWebsiteChange}
+							maxLength={100}
 						/>
 					</AttributeContainer>
 					<AttributeContainer>
-						<AttributeLabel>ENS Domain</AttributeLabel>
+						<TitleWordCountWrapper>
+							<AttributeLabel>ENS Domain</AttributeLabel>
+							<WordCountLimit>{ensCount}/100</WordCountLimit>
+						</TitleWordCountWrapper>
 						<InputStyle
 							value={editableEnsDomain}
-							onChange={(e) => setEditableEnsDomain(e.target.value)}
+							onChange={handleEnsChange}
+							maxLength={100}
 						/>
 					</AttributeContainer>
 					<SaveChangesButton disabled={!hasChanged} onClick={handleSaveChanges}>

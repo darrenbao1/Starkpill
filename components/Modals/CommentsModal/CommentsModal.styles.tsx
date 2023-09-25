@@ -159,5 +159,5 @@ export const IconsWrapper = styled.div`
 	flex-direction: row;
 	gap: 18px;
 	width: 100%;
-	margin-top: 9px;
+	margin-bottom: 8px;
 `;

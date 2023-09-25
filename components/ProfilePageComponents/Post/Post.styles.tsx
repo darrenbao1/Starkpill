@@ -38,6 +38,9 @@ export const KebabMenu = styled(KebabIcon)`
 	align-self: flex-end;
 	&:hover {
 		cursor: pointer;
+		path {
+			fill: #ff4f0a;
+		}
 	}
 `;
 export const NamesKebabWrapper = styled.div`
