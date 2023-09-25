@@ -141,8 +141,9 @@ export const ListContainer = styled.div`
 		width: 4px;
 	}
 	&::-webkit-scrollbar-thumb {
-		background: #757575;
-		border-radius: 8px;
+		background-color: #ff4f0a;
+
+		border-radius: 10px;
 	}
 `;
 export const ProfileContainer = styled.div`
