@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
 	CaptionContainer,
 	CommentIcon,
@@ -129,10 +129,11 @@ export const Post = (props: Props) => {
 		});
 	};
 
-	// const handleKebabMenuClick = () => {
-	// 	setShowKebabMenu(!showKebabMenu);
-	// 	console.log("kebab menu clicked");
-	// };
+	const handleKebabMenuClick = () => {
+		setShowKebabMenu(!showKebabMenu);
+		console.log("kebab menu clicked");
+	};
+
 	return (
 		<>
 			<PostContainer>
@@ -155,12 +156,12 @@ export const Post = (props: Props) => {
 							<h2>{profile.twitterHandle && profile.twitterHandle}</h2>
 							<h2>•&nbsp;{convertUnixToDate(Number(post.createdAt))} </h2>
 						</NamesContainer>
-						{/* <KebabMenu
+						<KebabMenu
 							onClick={() => {
 								handleKebabMenuClick();
 							}}
-						/> */}
-						{/* {showKebabMenu && <PostKebabMenu />} */}
+						/>
+						{showKebabMenu && <PostKebabMenu />}
 					</NamesKebabWrapper>
 
 					<CaptionContainer>{post.content}</CaptionContainer>

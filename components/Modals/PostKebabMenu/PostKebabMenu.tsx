@@ -1,5 +1,11 @@
-import { KebabContainer } from "./PostKebabMenu.styles";
+import { Delete, KebabContainer, KebabOption } from "./PostKebabMenu.styles";
 
 export const PostKebabMenu = () => {
-	return <KebabContainer>testing</KebabContainer>;
+	return (
+		<KebabContainer>
+			<KebabOption>
+				<Delete /> Delete Post
+			</KebabOption>
+		</KebabContainer>
+	);
 };

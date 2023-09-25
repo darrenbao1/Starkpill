@@ -54,7 +54,22 @@ export const Title = styled.h1`
 	line-height: 24px;
 	align-self: center;
 `;
-
+export const TitleWordCountWrapper = styled.div`
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: space-between;
+`;
+export const WordCountLimit = styled.div`
+	display: flex;
+	color: #252525;
+	font-feature-settings: "clig" off, "liga" off;
+	font-family: Poppins;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+`;
 export const CloseButton = styled(CloseIcon)`
 	display: flex;
 	width: 31px;
@@ -112,15 +127,24 @@ export const InputStyle = styled.input`
 	border-radius: 6px;
 	border: 1px solid #e0e0e0;
 	height: 43px;
+	&:focus {
+		outline: none;
+		border: 1px solid #ff4f0a;
+	}
 `;
 export const InputStyleBio = styled.input`
 	display: flex;
 	width: 100%;
+
 	padding: 4px 12px;
 	gap: 10px;
 	border-radius: 6px;
 	border: 1px solid #e0e0e0;
 	height: 101px;
+	&:focus {
+		outline: none;
+		border: 1px solid #ff4f0a;
+	}
 `;
 export const SaveChangesButton = styled.button`
 	display: flex;
