@@ -1,19 +1,47 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../styles/Navbar.module.css";
-import { PAGES, USERPAGES } from "../types/constants";
+import { GET_USER_PROFILE_BASIC, PAGES, USERPAGES } from "../types/constants";
 import { ConnectWalletButton } from "./ConnectWalletButton/ConnectWalletButton";
 import Hamburger from "../public/hamburger.svg";
 import Cross from "../public/cross.svg";
 import { LinksModal } from "./Modals/LinksModal";
 import Image from "next/image";
 import { useAccount } from "@starknet-react/core";
-import { convertToStandardWalletAddress } from "../types/utils";
+import { convertToStandardWalletAddress, getTokenImage } from "../types/utils";
+import { useQuery } from "@apollo/client";
+import { UserProfileBasic } from "../types/interfaces";
 export const Navbar = () => {
 	const router = useRouter();
 	const [showModal, setShowModal] = useState(false);
+	const [profilePictureUrl, setProfilePictureUrl] = useState<string | null>(
+		null
+	);
 	const { address } = useAccount();
+
+	const { data: profileResult } = useQuery(GET_USER_PROFILE_BASIC, {
+		variables: {
+			address: address ? convertToStandardWalletAddress(address) : null,
+		},
+		skip: !address,
+	});
+
+	const profile: UserProfileBasic = profileResult?.user;
+	useEffect(() => {
+		const fetchProfilePicture = async () => {
+			try {
+				const imageUrl = await getTokenImage(profile?.profilePictureTokenId);
+				setProfilePictureUrl(imageUrl);
+			} catch (error) {
+				console.error("Error fetching profile picture:", error);
+			}
+		};
+
+		if (profile?.profilePictureTokenId) {
+			fetchProfilePicture();
+		}
+	}, [profile]);
 
 	const openProfilePage = () => {
 		router.push({
@@ -21,6 +49,7 @@ export const Navbar = () => {
 			query: { walletAddress: convertToStandardWalletAddress(address!) },
 		});
 	};
+
 	return (
 		<>
 			<div className={styles.container}>
@@ -78,13 +107,14 @@ export const Navbar = () => {
 						</div>
 						<div className={styles.buttonContainer}>
 							<ConnectWalletButton />
-							{address && (
+							{address && profile && profile.transactions.length > 0 && (
 								<div className={styles.profileIcon}>
 									<Image
-										src="/MyProfileIcon.svg"
+										src={profilePictureUrl || "/basepill.png"}
 										width={40}
 										height={40}
 										alt="ProfilePage"
+										style={{ borderRadius: "50%" }}
 										onClick={() => openProfilePage()}
 									/>
 								</div>
