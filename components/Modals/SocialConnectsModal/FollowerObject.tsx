@@ -55,7 +55,6 @@ export const FollowerObject = (props: Props) => {
 		const fetchProfilePicture = async () => {
 			try {
 				const imageUrl = await getTokenImage(profile?.profilePictureTokenId);
-				console.log("image url", imageUrl);
 				setProfilePictureUrl(imageUrl);
 			} catch (error) {
 				console.error("Error fetching profile picture:", error);

@@ -23,13 +23,18 @@ interface Props {
 }
 
 export const Comment = ({ CommentObject }: Props) => {
-	const { data: profileResult } = useQuery(GET_USER_PROFILE_BASIC, {
-		variables: { address: CommentObject?.authorAddress },
-		skip: !CommentObject,
+	const {
+		data: profileResult,
+		loading,
+		error,
+	} = useQuery(GET_USER_PROFILE_BASIC, {
+		variables: { address: CommentObject.authorAddress },
 	});
 	const [profilePictureUrl, setProfilePictureUrl] = useState<string | null>(
 		null
 	);
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>Error: {error.message}</p>;
 	const profile: UserProfileBasic = profileResult?.user;
 	useEffect(() => {
 		const fetchProfilePicture = async () => {
