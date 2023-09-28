@@ -33,8 +33,6 @@ export const Comment = ({ CommentObject }: Props) => {
 	const [profilePictureUrl, setProfilePictureUrl] = useState<string | null>(
 		null
 	);
-	if (loading) return <p>Loading...</p>;
-	if (error) return <p>Error: {error.message}</p>;
 	const profile: UserProfileBasic = profileResult?.user;
 	useEffect(() => {
 		const fetchProfilePicture = async () => {
@@ -50,6 +48,8 @@ export const Comment = ({ CommentObject }: Props) => {
 			fetchProfilePicture();
 		}
 	}, [profile]);
+	if (loading) return <div>Loading...</div>;
+	if (error) return <div>Error...</div>;
 	return (
 		<>
 			<PostContainer>
