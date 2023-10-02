@@ -47,6 +47,16 @@ const client = new ApolloClient({
 							return [...existing, ...uniqueIncoming];
 						},
 					},
+					getPostsForUser: {
+						keyArgs: false,
+						merge(existing = [], incoming) {
+							const uniqueIncoming = incoming.filter(
+								(token: any) =>
+									!existing.find((t: any) => t.__ref === token.__ref)
+							);
+							return [...existing, ...uniqueIncoming];
+						},
+					},
 				},
 			},
 		},
