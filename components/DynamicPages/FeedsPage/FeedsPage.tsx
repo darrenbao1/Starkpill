@@ -1,30 +1,30 @@
 import { StatusUpdateSection } from "../../ProfilePageComponents/StatusUpdateSection";
-import { Container, PostsContainer } from "./FeedsPage.styles";
-import { useState } from "react";
+import { Container, PostContainer, PostsContainer } from "./FeedsPage.styles";
+import { Key, useRef, useState } from "react";
 import {
+	GET_USER_FEED,
 	GET_USER_PROFILE,
-	GET_USER_PROFILE_BASIC,
+	handleScrollToTop,
 } from "../../../types/constants";
 import { useQuery } from "@apollo/client";
-import {
-	PostMinimal,
-	UserProfile,
-	UserProfileBasic,
-} from "../../../types/interfaces";
-import { useRouter } from "next/router";
+import { PostMinimal, UserProfile } from "../../../types/interfaces";
 import { useEffect } from "react";
 import { getTokenImage } from "../../../types/utils";
 import { Post } from "../../ProfilePageComponents/Post";
-import { ContentsSection } from "../../ProfilePageComponents/ContentsSection/ContentsSection";
-interface Props {
-	postArray: PostMinimal[];
-}
-export const FeedsPage = (props: Props) => {
+import { BackToTopButton } from "../../BackToTopButton";
+import { useLoader } from "../../Provider/LoaderProvider";
+import { Loader } from "../../Loader";
+export const FeedsPage = () => {
+	const scrollTopRef = useRef<HTMLDivElement>(null);
+	const offsetIncrement = 5;
 	const [profilePictureUrl, setProfilePictureUrl] = useState<string | null>(
 		null
 	);
-
-	const { data: userProfileData, refetch: refetchUserProfile } = useQuery<{
+	const [offsetAmount, setOffsetAmount] = useState(0);
+	const [loading, setLoading] = useState(false);
+	const [showButton, setShowButton] = useState(false);
+	const [isAllPostsLoaded, setIsAllPostsLoaded] = useState(false);
+	const { data: userProfileData, loading: loadingProfile } = useQuery<{
 		user: UserProfile;
 	}>(GET_USER_PROFILE, {
 		variables: {
@@ -32,6 +32,19 @@ export const FeedsPage = (props: Props) => {
 		},
 	});
 
+	const {
+		data,
+		loading: loadingInit,
+		fetchMore,
+		refetch,
+	} = useQuery(GET_USER_FEED, {
+		variables: {
+			skip: 0,
+			first: offsetIncrement,
+			walletAddress: localStorage.getItem("walletAddress"),
+		},
+	});
+	const { showLoader, hideLoader, isLoading } = useLoader();
 	useEffect(() => {
 		if (userProfileData) {
 			const userProfile = userProfileData.user;
@@ -48,26 +61,71 @@ export const FeedsPage = (props: Props) => {
 			fetchProfilePicture();
 		}
 	}, [userProfileData]);
+	const handleScroll = async (e: any) => {
+		const bottom =
+			e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+		if (bottom && !loading && !isAllPostsLoaded) {
+			setLoading(true);
+			showLoader();
+			let i = offsetAmount + offsetIncrement;
+			await fetchMore({
+				variables: {
+					skip: i,
+					first: offsetIncrement,
+				},
+			})
+				.then(({ data }) => {
+					if (data.getPostsForUser < offsetIncrement) {
+						setIsAllPostsLoaded(true);
+					} else setOffsetAmount(offsetAmount + offsetIncrement);
+				})
+				.finally(() => {
+					setLoading(false);
+					hideLoader();
+				});
+		}
+		if (e.target.scrollTop >= 300) {
+			setShowButton(true);
+		} else if (e.target.scrollTop < 300) {
+			setShowButton(false);
+		}
+	};
+
+	if (loadingInit || loadingProfile)
+		return (
+			<div className="pageContainer">
+				<Loader />
+			</div>
+		);
 
 	return (
-		<Container>
-			<StatusUpdateSection
-				profilePictureUrl={
-					profilePictureUrl ? profilePictureUrl : "/basepill.png"
-				}
-				refetch={refetchUserProfile}
-			/>
-			<PostsContainer>
-				{/* {postArray.map((post, index) => {
-					return (
-						<Post
-							postMinimal={post}
-							key={index}
-							refetchUserProfile={refetchUserProfile}
-						/>
-					);
-				})} */}
-			</PostsContainer>
-		</Container>
+		<div
+			className="pageContainer"
+			onScroll={(e) => handleScroll(e)}
+			ref={scrollTopRef}>
+			<Container>
+				<PostsContainer>
+					<StatusUpdateSection
+						profilePictureUrl={
+							profilePictureUrl ? profilePictureUrl : "/basepill.png"
+						}
+						refetch={refetch}
+					/>
+					{data?.getPostsForUser.map((post: PostMinimal) => {
+						return (
+							<PostContainer key={post.id}>
+								<Post postMinimal={post} refetchUserProfile={refetch} />
+							</PostContainer>
+						);
+					})}
+				</PostsContainer>
+			</Container>
+			{showButton && (
+				<BackToTopButton
+					scrollTopFunc={() => handleScrollToTop(scrollTopRef)}
+				/>
+			)}
+			{isLoading && <Loader />}
+		</div>
 	);
 };

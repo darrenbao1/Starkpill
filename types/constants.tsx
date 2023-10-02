@@ -747,6 +747,16 @@ export const GET_USER_PROFILE = gql`
 	}
 `;
 
+//get posts for user
+export const GET_USER_FEED = gql`
+	query GetPostsForUser($walletAddress: String!, $skip: Int, $first: Int) {
+		getPostsForUser(walletAddress: $walletAddress, skip: $skip, first: $first) {
+			id
+			authorAddress
+		}
+	}
+`;
+
 export const DROPDOWN_MENU_ITEMS = [
 	{
 		id: 0,

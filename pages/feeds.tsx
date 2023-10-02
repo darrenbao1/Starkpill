@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FeedsPage } from "../components/DynamicPages/FeedsPage";
 
-export default function feeds() {
+export default function Feeds() {
 	const [shouldRender, setShouldRender] = useState(false);
 	useEffect(() => {
 		let timeoutId: NodeJS.Timeout | null = null;
@@ -18,11 +18,5 @@ export default function feeds() {
 			}
 		};
 	}, []);
-	return shouldRender ? (
-		<div className="pageContainer">
-			<FeedsPage />
-		</div>
-	) : (
-		<></>
-	);
+	return shouldRender ? <FeedsPage /> : <></>;
 }
