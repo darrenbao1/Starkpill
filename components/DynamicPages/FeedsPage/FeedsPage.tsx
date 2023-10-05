@@ -1,5 +1,10 @@
 import { StatusUpdateSection } from "../../ProfilePageComponents/StatusUpdateSection";
-import { Container, PostContainer, PostsContainer } from "./FeedsPage.styles";
+import {
+	Container,
+	FeedPageContainer,
+	PostContainer,
+	PostsContainer,
+} from "./FeedsPage.styles";
 import { Key, useRef, useState } from "react";
 import {
 	GET_USER_FEED,
@@ -93,16 +98,13 @@ export const FeedsPage = () => {
 
 	if (loadingInit || loadingProfile)
 		return (
-			<div className="pageContainer">
+			<FeedPageContainer>
 				<Loader />
-			</div>
+			</FeedPageContainer>
 		);
 
 	return (
-		<div
-			className="pageContainer"
-			onScroll={(e) => handleScroll(e)}
-			ref={scrollTopRef}>
+		<FeedPageContainer onScroll={(e) => handleScroll(e)} ref={scrollTopRef}>
 			<Container>
 				<PostsContainer>
 					<StatusUpdateSection
@@ -110,11 +112,16 @@ export const FeedsPage = () => {
 							profilePictureUrl ? profilePictureUrl : "/basepill.png"
 						}
 						refetch={refetch}
+						walletAddress={userProfileData?.user.address || ""}
 					/>
 					{data?.getPostsForUser.map((post: PostMinimal) => {
 						return (
 							<PostContainer key={post.id}>
-								<Post postMinimal={post} refetchUserProfile={refetch} />
+								<Post
+									postMinimal={post}
+									refetchUserProfile={refetch}
+									walletAddress={post.authorAddress}
+								/>
 							</PostContainer>
 						);
 					})}
@@ -126,6 +133,6 @@ export const FeedsPage = () => {
 				/>
 			)}
 			{isLoading && <Loader />}
-		</div>
+		</FeedPageContainer>
 	);
 };

@@ -1,4 +1,5 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import {
 	CaptionContainer,
 	CommentIcon,
@@ -39,22 +40,28 @@ import { PostKebabMenu } from "../../Modals/PostKebabMenu";
 import { CommentsModal } from "../../Modals/CommentsModal";
 import { useLoader } from "../../Provider/LoaderProvider";
 import { useToast } from "../../Provider/ToastProvider";
+import { PostImageModal } from "../../Modals/PostImageModal";
 
 interface Props {
 	postMinimal: PostMinimal;
 	isCommentModal?: boolean;
 	refetchUserProfile: () => void;
+	walletAddress: string;
 }
 
 export const Post = (props: Props) => {
+	const router = useRouter();
+	const [showPostImageModal, setShowPostImageModal] = useState(false);
 	const [showKebabMenu, setShowKebabMenu] = useState(false);
 	const { showLoader, hideLoader } = useLoader();
 	const { showToast } = useToast();
 	const { postMinimal } = props;
+	const { walletAddress } = props;
 	const [showCommentsModal, setShowCommentsModal] = useState(false);
 	const [profilePictureUrl, setProfilePictureUrl] = useState<string | null>(
 		null
 	);
+	const [imageIndex, setImageIndex] = useState(0);
 
 	// First query
 	const { data: postResult, refetch: refetchPost } = useQuery(GET_POST_BY_ID, {
@@ -135,10 +142,20 @@ export const Post = (props: Props) => {
 		console.log("kebab menu clicked");
 	};
 	const isOwnerOfPost = loggedInUserAddress === post.authorAddress;
+
+	const openOwnerAddressLink = () => {
+		router.push({
+			pathname: "/profile",
+			query: { walletAddress: walletAddress },
+		});
+	};
+	const handleClose = () => {
+		setShowPostImageModal(false);
+	};
 	return (
 		<>
 			<PostContainer>
-				<ProfilePictureContainer>
+				<ProfilePictureContainer onClick={openOwnerAddressLink}>
 					<ProfilePic
 						src={profilePictureUrl || "/basepill.png"}
 						width={56}
@@ -149,7 +166,7 @@ export const Post = (props: Props) => {
 				<PostContentContainer>
 					<NamesKebabWrapper>
 						<NamesContainer>
-							<h1>
+							<h1 onClick={openOwnerAddressLink}>
 								{profile.username
 									? profile.username
 									: shortenAddress(profile.address)}
@@ -178,18 +195,28 @@ export const Post = (props: Props) => {
 					{post.images && post.images.length > 0 && (
 						<PostImageContainer style={{ gridTemplateColumns: gridColumns }}>
 							{post.images.map((imageUrl, index) => (
-								<PostImage key={index}>
-									<Image
-										src={imageUrl}
-										alt=""
-										fill={true}
-										sizes="100vw"
-										style={{
-											borderRadius: "12px",
-											objectFit: "fill",
-										}}
-									/>
-								</PostImage>
+								<>
+									<PostImage
+										key={index}
+										onClick={() => {
+											setShowPostImageModal(true);
+											setImageIndex(index);
+										}}>
+										<Image
+											src={imageUrl}
+											alt=""
+											fill={true}
+											sizes="100vw"
+											style={{
+												borderRadius: "12px",
+												objectFit: "fill",
+											}}
+										/>
+									</PostImage>
+									{showPostImageModal && imageIndex === index && (
+										<PostImageModal close={handleClose} imageurl={imageUrl} />
+									)}
+								</>
 							))}
 						</PostImageContainer>
 					)}

@@ -1,5 +1,28 @@
 import styled from "styled-components";
 
+export const FeedPageContainer = styled.div`
+	position: fixed;
+	left: 0;
+	width: 100vw;
+	top: 0;
+	height: 100vh;
+	overflow-y: overlay;
+
+	background-color: #2a2a2a;
+	&::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: #1d1d1d;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: #ff4f0a;
+		border-radius: 10px;
+		border: 2px solid #1d1d1d;
+	}
+`;
 export const Container = styled.div`
 	display: flex;
 	flex-direction: column;

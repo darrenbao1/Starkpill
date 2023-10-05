@@ -7,7 +7,7 @@ import InsertGIFSVG from "../../../public/InsertGIF.svg";
 import UploadPicSVG from "../../../public/UploadPictureIcon.svg";
 export const Wrapper = styled.div`
 	display: flex;
-	background: rgba(0, 0, 0, 0.1);
+	background: rgba(0, 0, 0, 0.75);
 	backdrop-filter: blur(2px);
 	position: fixed;
 	height: 100vh;

@@ -47,6 +47,7 @@ export const CommentsModal = ({
 							closeModal();
 							refetchUserProfile();
 						}}
+						walletAddress={profileObject.address}
 					/>
 					{postObject.comments.map((comment, index) => {
 						return <Comment key={index} CommentObject={comment} />;

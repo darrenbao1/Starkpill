@@ -39,6 +39,11 @@ export const USERPAGES: Page[] = [
 		isActive: true,
 		paramName: "?walletAddress=",
 	},
+	{
+		title: "Feeds",
+		link: "/feeds",
+		isActive: true,
+	},
 ];
 export const STARKPILL_SOCIAL_API_ENDPOINT =
 	"https://orca-app-c3df4.ondigitalocean.app/starkpill-api2";

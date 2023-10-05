@@ -117,5 +117,9 @@
 // export default ChatBox;
 
 export default function Testing() {
-	return <></>;
+	return (
+		<>
+			<div>testing</div>
+		</>
+	);
 }

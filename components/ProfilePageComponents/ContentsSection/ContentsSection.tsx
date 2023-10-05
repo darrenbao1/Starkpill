@@ -31,6 +31,7 @@ export const ContentsSection = (props: Props) => {
 						postMinimal={post}
 						key={index}
 						refetchUserProfile={refetchUserProfile}
+						walletAddress={post.authorAddress}
 					/>
 				);
 			})}

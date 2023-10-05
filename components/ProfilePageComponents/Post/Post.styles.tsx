@@ -20,6 +20,10 @@ export const ProfilePictureContainer = styled.div`
 	width: 56px;
 
 	padding-top: 16px;
+	&:hover {
+		cursor: pointer;
+		opacity: 0.8;
+	}
 `;
 export const ProfilePictureContainerAddComment = styled(
 	ProfilePictureContainer
@@ -60,6 +64,10 @@ export const NamesContainer = styled.div`
 		font-style: bold;
 		font-weight: 700;
 		line-height: 20px;
+		&:hover {
+			cursor: pointer;
+			text-decoration: underline;
+		}
 	}
 	h2 {
 		color: #5b7083;
@@ -84,6 +92,9 @@ export const CaptionContainer = styled.div`
 export const PostImage = styled.div`
 	position: relative;
 	border-radius: 12px;
+	&:hover {
+		cursor: pointer;
+	}
 `;
 export const PostImageContainer = styled.div`
 	display: grid;
