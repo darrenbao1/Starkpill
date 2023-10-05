@@ -101,13 +101,19 @@ const ProfilePage = () => {
 							)}
 							{isViewingOwnProfile && (
 								<StatusUpdateSection
+									walletAddress={userProfileData?.user.address || ""}
 									profilePictureUrl={
 										profilePictureUrl ? profilePictureUrl : "/basepill.png"
 									}
 									refetch={refetchUserProfile}
 								/>
 							)}
-							{userProfile && <ContentsSection postArray={userProfile.posts} refetchUserProfile={refetchUserProfile}/>}
+							{userProfile && (
+								<ContentsSection
+									postArray={userProfile.posts}
+									refetchUserProfile={refetchUserProfile}
+								/>
+							)}
 						</LeftContainerWrapper>
 						<RightContainerWrapper>
 							{userProfile?.bio && (

@@ -20,10 +20,12 @@ import { FileUploadModal } from "../../Modals/FileUploadModal/FileUploadModal";
 import { PreviewImage } from "./PreviewImage/PreviewImage";
 import { useLoader } from "../../Provider/LoaderProvider";
 import { useToast } from "../../Provider/ToastProvider";
+import { useRouter } from "next/router";
 
 interface Props {
 	profilePictureUrl: string;
 	refetch: () => void;
+	walletAddress: string;
 }
 export const StatusUpdateSection = (props: Props) => {
 	const { showLoader, hideLoader } = useLoader();
@@ -108,9 +110,26 @@ export const StatusUpdateSection = (props: Props) => {
 	};
 	const shouldShowPreviewImage =
 		gifArray.length > 0 || selectedFiles.length > 0;
+	const router = useRouter();
+	const { walletAddress } = props;
+	const openOwnerAddressLink = () => {
+		router.push({
+			pathname: "/profile",
+			query: { walletAddress: walletAddress },
+		});
+	};
+	// const hasMedia = () => {
+	// 	return selectedFiles !== null || showGIFModal;
+	// };
 	return (
 		<StatusUpdateSectionContainer>
-			<ProfilePic src={props.profilePictureUrl} width={56} height={56} alt="" />
+			<ProfilePic
+				src={props.profilePictureUrl}
+				width={56}
+				height={56}
+				alt=""
+				onClick={openOwnerAddressLink}
+			/>
 			<UpdateWrapper>
 				<StatusUpdateInput
 					placeholder="What's happening?"

@@ -8,4 +8,15 @@ export const PostCommentWrapper = styled.div`
 
 	overflow-y: auto;
 	width: 100%;
+	&::-webkit-scrollbar {
+		width: 10px;
+	}
+	&::-webkit-scrollbar-track {
+		background-color: #fff;
+	}
+	&::-webkit-scrollbar-thumb {
+		background-color: #ff4f0a;
+		border-radius: 10px;
+		border: 2px solid #fff;
+	}
 `;

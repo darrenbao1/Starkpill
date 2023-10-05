@@ -23,4 +23,7 @@ export const CloseButton = styled(CloseIcon)`
 export const PreviewImageItem = styled.div`
 	position: relative;
 	border-radius: 12px;
+	&:hover {
+		cursor: pointer;
+	}
 `;

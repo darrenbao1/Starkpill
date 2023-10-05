@@ -4,6 +4,8 @@ import {
 	PreviewImageContainer,
 	PreviewImageItem,
 } from "./PreviewImage.styles";
+import { useState } from "react";
+import { PostImageModal } from "../../../Modals/PostImageModal";
 
 interface Props {
 	gifArray: string[];
@@ -22,41 +24,69 @@ export const PreviewImage = (props: Props) => {
 	} else if (fullArray.length >= 3) {
 		gridColumns = "1fr 1fr 1fr";
 	}
-
+	const [showImageModal, setShowImageModal] = useState(false);
+	const [imageIndex, setImageIndex] = useState(0);
+	const [GifIndex, setGifIndex] = useState(0);
 	return (
 		<PreviewImageContainer style={{ gridTemplateColumns: gridColumns }}>
 			{imageArray.map((imageUrl, index) => {
 				return (
-					<PreviewImageItem key={index}>
-						<Image
-							src={imageUrl}
-							alt="Preview Image"
-							fill={true}
-							sizes="100vw"
-							style={{
-								borderRadius: "12px",
-								objectFit: "cover",
-							}}
-						/>
-						<CloseButton onClick={() => props.removeImage(index)} />
-					</PreviewImageItem>
+					<>
+						<PreviewImageItem
+							key={index}
+							onClick={() => {
+								setShowImageModal(true);
+								setImageIndex(index);
+							}}>
+							<Image
+								src={imageUrl}
+								alt="Preview Image"
+								fill={true}
+								sizes="100vw"
+								style={{
+									borderRadius: "12px",
+									objectFit: "cover",
+								}}
+							/>
+							<CloseButton onClick={() => props.removeImage(index)} />
+						</PreviewImageItem>
+						{showImageModal && imageIndex === index && (
+							<PostImageModal
+								close={() => setShowImageModal(false)}
+								imageurl={imageUrl}
+							/>
+						)}
+					</>
 				);
 			})}
 			{gifArray.map((imageUrl, index) => {
 				return (
-					<PreviewImageItem key={index}>
-						<Image
-							src={imageUrl}
-							alt="Preview Image"
-							fill={true}
-							sizes="100vw"
-							style={{
-								borderRadius: "12px",
-								objectFit: "fill",
-							}}
-						/>
-						<CloseButton onClick={() => props.removeGif(index)} />
-					</PreviewImageItem>
+					<>
+						<PreviewImageItem
+							key={index}
+							onClick={() => {
+								setShowImageModal(true);
+								setGifIndex(index);
+							}}>
+							<Image
+								src={imageUrl}
+								alt="Preview Image"
+								fill={true}
+								sizes="100vw"
+								style={{
+									borderRadius: "12px",
+									objectFit: "fill",
+								}}
+							/>
+							<CloseButton onClick={() => props.removeGif(index)} />
+						</PreviewImageItem>
+						{showImageModal && GifIndex === index && (
+							<PostImageModal
+								close={() => setShowImageModal(false)}
+								imageurl={imageUrl}
+							/>
+						)}
+					</>
 				);
 			})}
 		</PreviewImageContainer>
