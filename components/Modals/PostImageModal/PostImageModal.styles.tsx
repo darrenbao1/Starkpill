@@ -20,8 +20,6 @@ export const PostImageModalContainer = styled.div`
 	display: flex;
 	width: fit-content;
 	height: fit-content;
-	max-height: calc(100% - 150px);
-	max-width: calc(100% - 150px);
 	background-color: #fff;
 	flex-direction: column;
 	border-radius: 12px;
@@ -51,8 +49,8 @@ export const ImageContainer = styled(Image)`
 	display: flex;
 	max-width: 900px;
 	max-height: 900px;
-	min-width: 500px;
-	min-height: 500px;
+	min-width: 300px;
+	min-height: 300px;
 	background-color: red;
 	border-radius: 12px;
 `;
