@@ -7,14 +7,13 @@ import { css } from "styled-components";
 export const StatusUpdateSectionContainer = styled.div`
 	display: flex;
 	flex-direction: row;
-	width: 53.063rem;
+	width: 90vw;
+	max-width: 53.063rem;
 	height: fit-content;
-
 	border-radius: 12px;
 	background: #fff;
 	box-shadow: 0px 1px 0px 0px #ebeef0;
 	padding: 16px;
-
 	gap: 12px;
 `;
 

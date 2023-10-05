@@ -40,6 +40,7 @@ export const PostsContainer = styled.div`
 `;
 export const PostContainer = styled.div`
 	border-radius: 12px;
-	width: 53.063rem;
+	width: 90vw;
+	max-width: 53.063rem;
 	background: #fff;
 `;
