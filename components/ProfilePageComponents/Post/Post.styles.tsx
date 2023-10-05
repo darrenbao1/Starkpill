@@ -5,7 +5,6 @@ import Like from "../../../public/LikeIcon.svg";
 import KebabIcon from "../../../public/ProfileKebabIcon.svg";
 export const PostContainer = styled.div`
 	display: flex;
-	flex-direction: row;
 	width: 100%;
 	height: fit-content;
 	border-top: 1px solid rgba(3, 2, 41, 0.1);

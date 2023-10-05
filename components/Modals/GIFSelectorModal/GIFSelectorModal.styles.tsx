@@ -19,12 +19,10 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
 	display: flex;
-
-	width: 849px;
-	height: 770px;
-
-	margin-top: 8.5rem;
-	margin-left: 4rem;
+	width: 100%;
+	max-width: 849px;
+	height: 100%;
+	max-height: 770px;
 	flex-direction: column;
 	background: #ffffff;
 	border-radius: 12px;
@@ -32,29 +30,43 @@ export const Container = styled.div`
 
 export const HeaderContainer = styled.div`
 	display: flex;
-	border-radius: 12px 12px 0px 0px;
-
 	width: 100%;
 	height: 56px;
-	background: #ffffff;
-	border-bottom: 1px solid #c4c4c4;
-	color: #343434;
-
 	align-items: center;
 	justify-content: center;
+	border-radius: 12px 12px 0px 0px;
+	border-top: 0.5px solid #e7e7e7;
+	background: #fff;
+	box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.12);
+	padding: 12px 16px;
+	justify-content: space-between;
+	position: relative;
+`;
+export const TitleWrapper = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-grow: 1;
+`;
 
+export const Title = styled.h1`
 	color: #000;
 	font-family: Poppins;
 	font-size: 20px;
-	font-style: bold;
+	font-style: normal;
 	font-weight: 700;
 	line-height: 24px;
+	align-self: center;
 `;
 
 export const CloseButton = styled(CloseIcon)`
 	display: flex;
-	position: fixed;
-	margin-left: 49rem;
+	width: 31px;
+	height: 31px;
+	cursor: pointer;
+	position: absolute;
+	top: 12px;
+	right: 16px;
 	&:hover {
 		cursor: pointer;
 	}

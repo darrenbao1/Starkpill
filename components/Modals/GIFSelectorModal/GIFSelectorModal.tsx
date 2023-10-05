@@ -3,6 +3,8 @@ import {
 	HeaderContainer,
 	Wrapper,
 	CloseButton,
+	TitleWrapper,
+	Title,
 } from "./GIFSelectorModal.styles";
 import { useRef, useEffect } from "react";
 
@@ -44,14 +46,16 @@ export const GifSelectorModal = (props: Props) => {
 		<Wrapper>
 			<Container ref={modalRef}>
 				<HeaderContainer>
-					Choose a GIF
+					<TitleWrapper>
+						<Title>Choose a GIF</Title>
+					</TitleWrapper>
 					<CloseButton onClick={props.close} />
 				</HeaderContainer>
 
 				<GifPicker
 					tenorApiKey={getTenorApiKey()}
-					width={849}
-					height={700}
+					width="100%"
+					height="90%"
 					onGifClick={handleGifClick}
 				/>
 			</Container>
