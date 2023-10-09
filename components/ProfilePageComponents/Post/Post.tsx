@@ -12,7 +12,9 @@ import {
 	PostContainer,
 	PostContentContainer,
 	PostImage,
+	PostImage2,
 	PostImageContainer,
+	PostImageContainer2,
 	ProfilePictureContainer,
 } from "./Post.styles";
 import {
@@ -41,6 +43,7 @@ import { CommentsModal } from "../../Modals/CommentsModal";
 import { useLoader } from "../../Provider/LoaderProvider";
 import { useToast } from "../../Provider/ToastProvider";
 import { PostImageModal } from "../../Modals/PostImageModal";
+import { KebabWrapper } from "../../Modals/PostKebabMenu/PostKebabMenu.styles";
 
 interface Props {
 	postMinimal: PostMinimal;
@@ -175,24 +178,25 @@ export const Post = (props: Props) => {
 							<h2>•&nbsp;{convertUnixToDate(Number(post.createdAt))} </h2>
 						</NamesContainer>
 						{isOwnerOfPost && (
-							<KebabMenu
-								onClick={() => {
-									handleKebabMenuClick();
-								}}
-							/>
-						)}
-						{showKebabMenu && (
-							<PostKebabMenu
-								postId={post.id}
-								closeModal={() => setShowKebabMenu(false)}
-								refetch={props.refetchUserProfile}
-							/>
+							<KebabWrapper>
+								<KebabMenu
+									onClick={() => {
+										handleKebabMenuClick();
+									}}></KebabMenu>
+								{showKebabMenu && (
+									<PostKebabMenu
+										postId={post.id}
+										closeModal={() => setShowKebabMenu(false)}
+										refetch={props.refetchUserProfile}
+									/>
+								)}
+							</KebabWrapper>
 						)}
 					</NamesKebabWrapper>
 
 					<CaptionContainer>{post.content}</CaptionContainer>
 
-					{post.images && post.images.length > 0 && (
+					{post.images && post.images.length > 1 ? (
 						<PostImageContainer style={{ gridTemplateColumns: gridColumns }}>
 							{post.images.map((imageUrl, index) => (
 								<>
@@ -219,7 +223,39 @@ export const Post = (props: Props) => {
 								</>
 							))}
 						</PostImageContainer>
-					)}
+					) : post.images && post.images.length === 1 ? (
+						<>
+							{post.images.map((imageUrl, index) => (
+								<>
+									<PostImage2
+										key={index}
+										onClick={() => {
+											setShowPostImageModal(true);
+											setImageIndex(index);
+										}}>
+										<Image
+											src={imageUrl}
+											alt=""
+											sizes="100vw"
+											style={{
+												objectFit: "fill",
+												width: "auto",
+												maxWidth: "100%",
+												height: "auto",
+												maxHeight: "382px",
+											}}
+											width={0}
+											height={0}
+										/>
+									</PostImage2>
+									{showPostImageModal && imageIndex === index && (
+										<PostImageModal close={handleClose} imageurl={imageUrl} />
+									)}
+								</>
+							))}
+						</>
+					) : null}
+
 					<CommentLikeContainer>
 						{!props.isCommentModal && (
 							<LikeIconWrapper onClick={() => setShowCommentsModal(true)}>

@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import Image from "next/image";
+
 import Comment from "../../../public/CommentIcon.svg";
 import Like from "../../../public/LikeIcon.svg";
 import KebabIcon from "../../../public/ProfileKebabIcon.svg";
+import { Post } from "./Post";
 export const PostContainer = styled.div`
 	display: flex;
 	width: 100%;
@@ -39,6 +40,10 @@ export const PostContentContainer = styled.div`
 export const KebabMenu = styled(KebabIcon)`
 	display: flex;
 	align-self: flex-end;
+	align-items: center;
+	justify-content: center;
+	margin-top: 10px;
+
 	&:hover {
 		cursor: pointer;
 		path {
@@ -91,10 +96,18 @@ export const CaptionContainer = styled.div`
 export const PostImage = styled.div`
 	position: relative;
 	border-radius: 12px;
+
 	&:hover {
 		cursor: pointer;
 	}
 `;
+export const PostImage2 = styled(PostImage)`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #000;
+`;
+
 export const PostImageContainer = styled.div`
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
@@ -103,6 +116,13 @@ export const PostImageContainer = styled.div`
 	max-height: 358px;
 	border-radius: 12px;
 	overflow-x: auto;
+`;
+export const PostImageContainer2 = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 358px;
+	background: #000;
 `;
 
 export const CommentLikeContainer = styled.div`
