@@ -1,19 +1,22 @@
 import styled from "styled-components";
 import DeleteIcon from "../../../public/Delete.svg";
-
+export const KebabWrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+`;
 export const KebabContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	background: #fff;
 	position: absolute;
-	margin-top: 3.7rem;
-	margin-left: 36.4rem;
+	margin-top: 55px;
+	margin-left: -120px;
+	z-index: 1;
 
 	box-shadow: 2px 1px 8px 3px rgba(155, 155, 155, 0.16);
 	border-radius: 8px;
 	width: 167px;
 	height: fit-content;
-	z-index: 1;
 
 	&::after {
 		content: "";
