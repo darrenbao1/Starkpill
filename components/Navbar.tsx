@@ -2,7 +2,12 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styles from "../styles/Navbar.module.css";
-import { GET_USER_PROFILE_BASIC, PAGES, USERPAGES } from "../types/constants";
+import {
+	GET_USER_PROFILE,
+	GET_USER_PROFILE_BASIC,
+	PAGES,
+	USERPAGES,
+} from "../types/constants";
 import { ConnectWalletButton } from "./ConnectWalletButton/ConnectWalletButton";
 import Hamburger from "../public/hamburger.svg";
 import Cross from "../public/cross.svg";
@@ -11,7 +16,7 @@ import Image from "next/image";
 import { useAccount } from "@starknet-react/core";
 import { convertToStandardWalletAddress, getTokenImage } from "../types/utils";
 import { useQuery } from "@apollo/client";
-import { UserProfileBasic } from "../types/interfaces";
+import { UserProfile, UserProfileBasic } from "../types/interfaces";
 export const Navbar = () => {
 	const router = useRouter();
 	const [showModal, setShowModal] = useState(false);
@@ -49,6 +54,14 @@ export const Navbar = () => {
 			query: { walletAddress: convertToStandardWalletAddress(address!) },
 		});
 	};
+	const { walletAddress } = router.query;
+	const { data: userProfileData, refetch: refetchUserProfile } = useQuery<{
+		user: UserProfile;
+	}>(GET_USER_PROFILE, {
+		variables: {
+			address: walletAddress,
+		},
+	});
 
 	return (
 		<>
@@ -136,7 +149,15 @@ export const Navbar = () => {
 					)}
 				</div>
 			</div>
-			{showModal && <LinksModal close={() => setShowModal(false)} />}
+			{showModal && (
+				<LinksModal
+					profile={profile}
+					profilePictureUrl={
+						profilePictureUrl ? profilePictureUrl : "/basepill.png"
+					}
+					close={() => setShowModal(false)}
+				/>
+			)}
 		</>
 	);
 };
